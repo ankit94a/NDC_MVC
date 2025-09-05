@@ -28,7 +28,6 @@
     /* List item styling */
     .list-group-item {
         height: 50px;
-        line-height: 50px;
         cursor: pointer;
         border-bottom: 1px solid #eee;
         padding: 0 10px;
@@ -43,7 +42,6 @@
         }
 
     .text-muted {
-        background-color: yellow;
         border-radius: 10px;
         color: white;
         padding: 15px 0;
@@ -51,6 +49,26 @@
 
     .nav-link {
         width: 178px;
+        
+    }
+    /* Custom active tab style */
+    .nav-tabs .nav-link.active {
+        border: none !important;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        height: -webkit-fill-available;
+        background-color: #9b030c;!important;
+        color: #fff !important;
+        font-weight: 700;
+    }
+
+    .btn-color {
+        background-color: #9b030c;
+        color:#fff;
+        border:none;
+        border-radius:5px;
+        height:30px;
     }
 </style>
 
@@ -156,7 +174,7 @@
 @using (Html.BeginForm("MasterSearch", "Event", FormMethod.Get, new { @class = "input-box d-flex align-items-center justify-content-center position-relative left-50%" }))
 {
     <input type="text" name="query" class="form-control" placeholder="Master Search" value="@ViewBag.Query" autocomplete="off" />
-    <button type="submit" class="btn btn-primary ms-2">Submit</button>
+    <button type="submit" class="btn-color ms-2">Submit</button>
 }
 
 @if (TempData["SearchResults"] != null)

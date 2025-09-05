@@ -4,6 +4,7 @@
     ViewBag.Title = "Accommodation Form : Indian Armed Forces Officer's Only";
     Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
 }
+
 <style>
     table {
         border: transparent !important;
@@ -41,9 +42,9 @@
             <div class="card border p-3">
                 <div class="card-header">@ViewBag.Title</div>
                 <div class="card-body">
-                        <p class="card-title required">
-                            Fill up your details, given below, which are required for Accommodation & click on register button. Once the basic Information is provided, your account will be verified at NDC.
-                        </p>
+                    <p class="card-title required">
+                        Fill up your details, given below, which are required for Accommodation & click on register button. Once the basic Information is provided, your account will be verified at NDC.
+                    </p>
 
                     <div class="card-header">Personal Details:-</div>
                     <div class="card-body">
@@ -83,15 +84,15 @@
                             <label id="Label4" for="txtDob" class="control-label col-sm-4">5. Date of Seniority</label>
                             <div class="col-sm-6 ">
                                 @*@if (ViewBag.DOS != null)
-                                {
-                                    <input class="form-control disabled" disabled value="@ViewBag.DOS" />
-                                }
-                                else
-                                {
-                                    <input id="DateOfseniority" class="form-control disabled" disabled />
-                                }*@
-                                 @Html.EditorFor(model => model.DateOfseniority, new { htmlAttributes = new { @class = "form-control datepickerJq1" } })
-                                  @Html.ValidationMessageFor(model => model.DateOfseniority, "", new { @class = "text-danger" })
+                                    {
+                                        <input class="form-control disabled" disabled value="@ViewBag.DOS" />
+                                    }
+                                    else
+                                    {
+                                        <input id="DateOfseniority" class="form-control disabled" disabled />
+                                    }*@
+                                @Html.EditorFor(model => model.DateOfseniority, new { htmlAttributes = new { @class = "form-control datepickerJq1" } })
+                                @Html.ValidationMessageFor(model => model.DateOfseniority, "", new { @class = "text-danger" })
 
                             </div>
                         </div>
@@ -120,19 +121,19 @@
                                     </label>
                                 </div>
                                 @*<table style="padding: 0px !important; margin: 0px !important; left: 0px" cellspacing="0">
-                                    <tr>
-                                        <td style="padding: 0">
-                                            <div class="custom-control custom-radio custom-control">
-                                                <input id="AccomReq4" type="radio" name="AccomReq" value="Yes wef" class="custom-control-input" />
-                                                <label for="AccomReq4" class="custom-control-label"> Yes wef </label>
-                                            </div>
-                                        </td>
-                                        <td style="padding: 0 10px 0 10px">
-                                            <input name="AccomodationDate" type="text" id="AccomodationDate" style="width: 120px" class="form-control datepickerJq1" />
-                                        </td>
-                                        <td style="padding: 0 10px 0 10px">(please specify the date) </td>
-                                    </tr>
-                                </table>*@
+                                        <tr>
+                                            <td style="padding: 0">
+                                                <div class="custom-control custom-radio custom-control">
+                                                    <input id="AccomReq4" type="radio" name="AccomReq" value="Yes wef" class="custom-control-input" />
+                                                    <label for="AccomReq4" class="custom-control-label"> Yes wef </label>
+                                                </div>
+                                            </td>
+                                            <td style="padding: 0 10px 0 10px">
+                                                <input name="AccomodationDate" type="text" id="AccomodationDate" style="width: 120px" class="form-control datepickerJq1" />
+                                            </td>
+                                            <td style="padding: 0 10px 0 10px">(please specify the date) </td>
+                                        </tr>
+                                    </table>*@
                                 <div class="custom-control custom-radio custom-control">
                                     <input id="AccomReq5" type="radio" name="AccomReq" value="CAO Pool Retention" class="custom-control-input" />
                                     <label for="AccomReq5" class="custom-control-label">
@@ -140,168 +141,197 @@
                                         CAO Pool Retention
                                     </label>
                                 </div><br />
-                                      <table style="padding: 0px !important; margin: 0px !important; left: 0px; width:100% !important" cellspacing="0" >
-                                            @*<tr>
-                                            <td style="padding: 0">
-                                            <div class="custom-control custom-radio custom-control">
-                                            <input id="AccomReq6" type="radio" name="AccomReq" value="No. Staying under own arrangement" class="custom-control-input" />
-                                            <label for="AccomReq6" class="custom-control-label">
-                                            No. Staying under own arrangement
-                                            </label>
-                                            </div>
-                                            </td>
-                                            <!--  <td class="text-danger">(NAC will be provided for claiming HRA)</td> -->
-                                            </tr>*@
-                                          <tr>
-                                              <td style="padding: 0">
-                                                  <div class="custom-control custom-radio custom-control">
-                                                      <input id="AccomReq6" type="radio" name="AccomReq" value="Retention in Previous Station" class="custom-control-input" />
-                                                      <label for="AccomReq6" class="custom-control-label">
-                                                          <!--Any special request ?-->
-                                                          Retention in Previous Station
-                                                      </label>
-                                                  </div>
-                                                  
-                                              </td>
-                                          </tr>
-                                          <tr>
-                                              <td style="padding: 0 10px 0 10px">
-                                                  @*<input name="SpecialRequestWithReason" placeholder="Special request with reason" type="text" id="SpecialRequestWithReason" class="form-control dvAnysplreq" />*@
-                                                  @Html.EditorFor(model => model.SpecialRequestWithReason, new { htmlAttributes = new { @class = "form-control dvAnysplreq", @placeholder = "Remarks" } })
-                                              </td>
-                                          </tr>
-                                          @*<tr>
-                                              <td style="padding: 0">
-                                                  <div class="custom-control">
-                                                      <!--<input id="uploaddocuments" type="radio" name="AccomReq" value="Upload Document" class="custom-control-input" />-->
-                                                      <label for="Files" name="Files" class="control-label col-sm-4">
-                                                      <!--Any special request ?-->
-                                                      Upload Document (if any)
-                                                      </label>
-                                                  </div>
-
-                                              </td>
-                                          </tr>-->
-                                          <tr>
-                                              <td>
-                                                  <input id="Files" type="file" name="medDocFile" multiple class="uploadify-button" accept="application/pdf" />
-                                              </td>
-                                          </tr>-->*@
-                                      </table>
-                            </div>
-                                </div>
-                                @*<div class="form-group row">
-                                    <label class="control-label col-sm-4" for="PriorityFirst">8.  If yes, preference of accommodation (Select either Raksha Bhawan or Vikram Vihar as priority 1/2) </label>
-                                    <div class="col-md-8">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(model => model.PriorityFirst, htmlAttributes: new { @class = "control-label col-sm-6" })
-                                            <div class="form-group col-md-5">
-                                                @Html.DropDownList("PriorityFirst", (IEnumerable<SelectListItem>)ViewBag.GetAccnPreference, "-- Select --", htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.PriorityFirst, "", new { @class = "text-danger" })
-                                            </div>
-                                            @Html.LabelFor(model => model.PrioritySecond, htmlAttributes: new { @class = "control-label col-sm-6" })
-                                            <div class="form-group col-md-5">
-                                                @Html.EditorFor(model => model.PrioritySecond, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.PrioritySecond, "", new { @class = "text-danger" })
-                                            </div>
-                                            @Html.LabelFor(model => model.SpecialRequest, htmlAttributes: new { @class = "control-label col-sm-6" })
-                                            <div class="form-group col-md-5">
-                                                @Html.DropDownList("SpecialRequest", (IEnumerable<SelectListItem>)ViewBag.GetAccnFloorRequest, "-- Select --", htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.SpecialRequest, "", new { @class = "text-danger" })
-                                            </div>
+                                <table style="padding: 0px !important; margin: 0px !important; left: 0px; width:100% !important" cellspacing="0">
+                                    @*<tr>
+                                        <td style="padding: 0">
+                                        <div class="custom-control custom-radio custom-control">
+                                        <input id="AccomReq6" type="radio" name="AccomReq" value="No. Staying under own arrangement" class="custom-control-input" />
+                                        <label for="AccomReq6" class="custom-control-label">
+                                        No. Staying under own arrangement
+                                        </label>
                                         </div>
-                                    </div>
-                                </div>*@
-                                <div class="form-group row">
-                                    <label for="Files" name="Files" class="control-label col-sm-4">8. Upload document (if any). </label>
-                                    <div class="form-group col-md-5">
-                                        <input id="Files" type="file" name="medDocFile" multiple class="uploadify-button" accept="application/pdf" />
-                                    </div>
-                                    <label for="Files" name="Files" class="control-label col-sm-4">8. Upload Signature (Not more than 250KB) jpeg/jpg/png format only. </label>
-                                    <div class="form-group col-md-5">
-                                        <input id="Files" type="file" name="signFile" required class="uploadify-button" accept="image/jpeg,image/png" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-header">Contact Details</div>
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label id="surname" for="txtName" class="control-label col-sm-4">10. Address (Complete address with Pin Code)</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control disabled" disabled value="@ViewBag.Address" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label id="Label1" for="txtRank" class="control-label col-sm-4">11. Mobile No.</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control disabled" disabled value="@ViewBag.MobileNo" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label id="Label3" for="txtDecoration" class="control-label col-sm-4">12. E-mail(preferably use gov.in or nic.in)</label>
-                                    <div class="col-sm-6">
-                                        <input class="form-control disabled" disabled value="@ViewBag.EmailId" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-header">Terms & Conditions</div>
-                            <div class="card-body">
-                                <p>1.   	<b>Rules.</b> As per MoD Office of the JS (AD) & CAO Accommodation Rules for Service Officers dated 15 July 1991, accommodation at Nav Raksha Bhawan/Vikram Vihar can only be provided to Army/Navy/Air Force officers.</p>
-                                <p>2.   	<b>Officers Posted to Delhi.</b> Officers Posted to Delhi detailed for the course from units in Delhi <b>will not be allotted NDC accomodation.</b> They should apply to the CAO/allotting authority for retention of defence/general pool accommodation. However officers who are staying in Officers Mess/temporary accn/appointment house alongwith family may apply for the same for the duration of the Course.</p>
-                                <p>3.	    <b>Allotment.</b>	Accommodation will be allotted by <b>31 Dec</b>, and can be taken over from <b>03/04 Jan</b> onwards only. Kindly plan move & transportation accordingly.</p>
-                                <p>4.    	<b>Personal Help. Under no circumstances personal maid/help will stay in Nav Raksha Bhawan. Maid/help can come in morning & will leave in evening by 2000 hrs. </b></p>
-                                <p>5.    	<b>Attachment.</b>	NDC does not have any arrangement/facility for attachment of buddies/ NCEs/retinue staff.</p>
-                                <p>6. 	    <b>Subscription of NRB.</b>	Subscription for NRB residents will be deducted from Mess Bill towards NRB fund every month.</p>
-                                <p>7.    	<b>Hospitals and Schools.</b>	R & R Hospotal/Base Hospital and Schools are located towards <b>Shankar Vihar (SV).</b></p>
-                                <p>8.   	<b>Vacation.</b>  Accommodation to be vacated on termination of the course i.e <b>29 Nov</b>. Maximum retention upto 07 days permitted ie <b>06 Dec</b> after approval of Commandant, NDC. Since the accommodation is required to be prepared for the next course, <b>retention Of NDC Pool Accommodation on any grounds </b>(education/academic reasons, medical issues) <b>is not permitted).</b> </p>
+                                        </td>
+                                        <!--  <td class="text-danger">(NAC will be provided for claiming HRA)</td> -->
+                                        </tr>*@
+                                    <tr>
+                                        <td style="padding: 0">
+                                            <div class="custom-control custom-radio custom-control">
+                                                <input id="AccomReq6" type="radio" name="AccomReq" value="Retention in Previous Station" class="custom-control-input" />
+                                                <label for="AccomReq6" class="custom-control-label">
+                                                    <!--Any special request ?-->
+                                                    Retention in Previous Station
+                                                </label>
+                                            </div>
 
-                                <div class="custom-control custom-checkbox custom-control">
-                                    <input id="checkbox1" type="checkbox" class="custom-control-input" /><label for="checkbox1" class="custom-control-label">I have read and agreed to the Terms & Conditions of NDC Pool Accommodation</label>
-                                </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0 10px 0 10px">
+                                            @Html.EditorFor(model => model.SpecialRequestWithReason, new { htmlAttributes = new { @class = "form-control dvAnysplreq", @placeholder = "Remarks" } })
+                                            @Html.ValidationMessageFor(model => model.SpecialRequestWithReason, "", new { @class = "text-danger" })
+                                        </td>
+
+
+                                    </tr>
+                                    @*<tr>
+                                            <td style="padding: 0">
+                                                <div class="custom-control">
+                                                    <!--<input id="uploaddocuments" type="radio" name="AccomReq" value="Upload Document" class="custom-control-input" />-->
+                                                    <label for="Files" name="Files" class="control-label col-sm-4">
+                                                    <!--Any special request ?-->
+                                                    Upload Document (if any)
+                                                    </label>
+                                                </div>
+
+                                            </td>
+                                        </tr>-->
+                                        <tr>
+                                            <td>
+                                                <input id="Files" type="file" name="medDocFile" multiple class="uploadify-button" accept="application/pdf" />
+                                            </td>
+                                        </tr>-->*@
+                                </table>
                             </div>
                         </div>
-                        <div class="card-footer bg-white text-center">
-                            <input type="submit" onclick="javascript:if(!this.form.checkbox1.checked){alert('You must agree to the terms before proceeding ahead.');return false};" value="Submit" class="btn btn-primary btn-sm" />
-                            @Html.ActionLink("Back", "Index", null, new {@class="btn btn-primary btn-sm" })
+                        @*<div class="form-group row">
+                                <label class="control-label col-sm-4" for="PriorityFirst">8.  If yes, preference of accommodation (Select either Raksha Bhawan or Vikram Vihar as priority 1/2) </label>
+                                <div class="col-md-8">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.PriorityFirst, htmlAttributes: new { @class = "control-label col-sm-6" })
+                                        <div class="form-group col-md-5">
+                                            @Html.DropDownList("PriorityFirst", (IEnumerable<SelectListItem>)ViewBag.GetAccnPreference, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.PriorityFirst, "", new { @class = "text-danger" })
+                                        </div>
+                                        @Html.LabelFor(model => model.PrioritySecond, htmlAttributes: new { @class = "control-label col-sm-6" })
+                                        <div class="form-group col-md-5">
+                                            @Html.EditorFor(model => model.PrioritySecond, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PrioritySecond, "", new { @class = "text-danger" })
+                                        </div>
+                                        @Html.LabelFor(model => model.SpecialRequest, htmlAttributes: new { @class = "control-label col-sm-6" })
+                                        <div class="form-group col-md-5">
+                                            @Html.DropDownList("SpecialRequest", (IEnumerable<SelectListItem>)ViewBag.GetAccnFloorRequest, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.SpecialRequest, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        @*<div class="form-group row">
+                                <label for="Files" name="Files" class="control-label col-sm-4">8. Upload document (if any). </label>
+                                <div class="form-group col-md-5">
+                                    <input id="Files" type="file" name="medDocFile" multiple class="uploadify-button" accept="application/pdf" />
+                                </div>
+                                <label for="Files" name="Files" class="control-label col-sm-4">8. Upload Signature (Not more than 250KB) jpeg/jpg/png format only. <span class="text-danger">*</span> </label>
+                                <div class="form-group col-md-5">
+                                    <input id="Files" type="file" name="SignatureDoc" required class="uploadify-button" accept="image/jpeg,image/png" />
+                                 </div>
+
+                            </div>*@
+                        <div class="form-group row">
+                            <!-- Document upload (optional) -->
+                            <label for="medDocFile" class="control-label col-sm-4">
+                                8. Upload document (if any).
+                            </label>
+                            <div class="col-md-5">
+                                <input id="medDocFile" type="file" name="medDocFile"
+                                       multiple class="form-control-file"
+                                       accept="application/pdf" />
+                            </div>
+
+                            <!-- Signature upload (required) -->
+                            <label for="Files" name="Files" class="control-label col-sm-4">8. Upload Signature (Not more than 250KB) jpeg/jpg/png format only. </label>
+                            <div class="col-md-8">
+                                @*<input id="Files" type="file" name="SignatureDoc" required class="uploadify-button" accept="image/jpeg,image/png" />
+                                    @Html.ValidationMessageFor(model => model.SignatureDoc, "", new { @class = "text-danger" })*@
+                                @Html.TextBoxFor(m => m.SignatureDoc, new { type = "file", accept = "image/jpeg,image/png", @class = "form-control-file" })
+                                @Html.ValidationMessageFor(m => m.SignatureDoc, "", new { @class = "text-danger" })
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="card-header">Contact Details</div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label id="surname" for="txtName" class="control-label col-sm-4">10. Address (Complete address with Pin Code)</label>
+                            <div class="col-sm-6">
+                                <input class="form-control disabled" disabled value="@ViewBag.Address" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label id="Label1" for="txtRank" class="control-label col-sm-4">11. Mobile No.</label>
+                            <div class="col-sm-6">
+                                <input class="form-control disabled" disabled value="@ViewBag.MobileNo" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label id="Label3" for="txtDecoration" class="control-label col-sm-4">12. E-mail(preferably use gov.in or nic.in)</label>
+                            <div class="col-sm-6">
+                                <input class="form-control disabled" disabled value="@ViewBag.EmailId" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header">Terms & Conditions</div>
+                    <div class="card-body">
+                        <p>1.   <b>Rules.</b> As per MoD Office of the JS (AD) & CAO Accommodation Rules for Service Officers dated 15 July 1991, accommodation at Nav Raksha Bhawan/Vikram Vihar can only be provided to Army/Navy/Air Force officers.</p>
+                        <p>2.   <b>Officers Posted to Delhi.</b> Officers Posted to Delhi detailed for the course from units in Delhi <b>will not be allotted NDC accomodation.</b> They should apply to the CAO/allotting authority for retention of defence/general pool accommodation. However officers who are staying in Officers Mess/temporary accn/appointment house alongwith family may apply for the same for the duration of the Course.</p>
+                        <p>3.    <b>Allotment.</b> Accommodation will be allotted by <b>31 Dec</b>, and can be taken over from <b>03/04 Jan</b> onwards only. Kindly plan move & transportation accordingly.</p>
+                        <p>4.     <b>Personal Help. Under no circumstances personal maid/help will stay in Nav Raksha Bhawan. Maid/help can come in morning & will leave in evening by 2000 hrs. </b></p>
+                        <p>5.     <b>Attachment.</b> NDC does not have any arrangement/facility for attachment of buddies/ NCEs/retinue staff.</p>
+                        <p>6.    <b>Subscription of NRB.</b> Subscription for NRB residents will be deducted from Mess Bill towards NRB fund every month.</p>
+                        <p>7.     <b>Hospitals and Schools.</b> R & R Hospotal/Base Hospital and Schools are located towards <b>Shankar Vihar (SV).</b></p>
+                        <p>8.   <b>Vacation.</b>  Accommodation to be vacated on termination of the course i.e <b>29 Nov</b>. Maximum retention upto 07 days permitted ie <b>06 Dec</b> after approval of Commandant, NDC. Since the accommodation is required to be prepared for the next course, <b>retention Of NDC Pool Accommodation on any grounds </b>(education/academic reasons, medical issues) <b>is not permitted).</b> </p>
+
+                        <div class="custom-control custom-checkbox custom-control">
+                            <input id="checkbox1" type="checkbox" class="custom-control-input" /><label for="checkbox1" class="custom-control-label">I have read and agreed to the Terms & Conditions of NDC Pool Accommodation</label>
                         </div>
                     </div>
                 </div>
-            }
+                <div class="card-footer bg-white text-center">
+                    <input type="submit" onclick="javascript:if(!this.form.checkbox1.checked){alert('You must agree to the terms before proceeding ahead.');return false};" value="Submit" class="btn btn-primary btn-sm" />
+                    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary btn-sm" })
+                </div>
+            </div>
         </div>
-        @section Scripts{
-            <script>
-                $(function () {
-                    /*$('#PrioritySecond').attr("disabled", true);*/
-                    $("#PriorityFirst").change(function () {
-                        var pr1 = $('option:selected', this).text();
-                        if (pr1 != "-- Select --") {
-                            if (pr1 == "Raksha Bhawan") {
-                                $('input[name^="PrioritySecond"]').val("Vikram Vihar");
-                                $('#PrioritySecond').attr("style", 'color:green');
-                            }
-                            if (pr1 == "Vikram Vihar") {
-                                $('input[name^="PrioritySecond"]').val("Raksha Bhawan");
-                                $('#PrioritySecond').attr("style", 'color:blue');
-                            }
-                        }
-                        else {
-                            $('input[name^="PrioritySecond"]').val("");
-                            $('#PrioritySecond').attr("style", "background-color:orange");
-                        }
-                    })
-                    //.change();
-                });
-                $(document).ready(function () {
-                    changeAnySplReq();
-                });
-                /* $('#AnySpecialRequest').change(function () {
-                    changeAnySplReq();
-                });               
-                function changeAnySplReq() {
-                    if ($('#AnySpecialRequest').is(":checked"))
-                        $(".dvAnysplreq").show();
-                    else
-                        $(".dvAnysplreq").hide();
-                }*/
-            </script>
+    }
+</div>
+@section Scripts{
+    <script>
+
+        $(function () {
+            /*$('#PrioritySecond').attr("disabled", true);*/
+            $("#PriorityFirst").change(function () {
+                var pr1 = $('option:selected', this).text();
+                if (pr1 != "-- Select --") {
+                    if (pr1 == "Raksha Bhawan") {
+                        $('input[name^="PrioritySecond"]').val("Vikram Vihar");
+                        $('#PrioritySecond').attr("style", 'color:green');
+                    }
+                    if (pr1 == "Vikram Vihar") {
+                        $('input[name^="PrioritySecond"]').val("Raksha Bhawan");
+                        $('#PrioritySecond').attr("style", 'color:blue');
+                    }
+                }
+                else {
+                    $('input[name^="PrioritySecond"]').val("");
+                    $('#PrioritySecond').attr("style", "background-color:orange");
+                }
+            })
+            //.change();
+        });
+        $(document).ready(function () {
+            changeAnySplReq();
+        });
+        $('#AnySpecialRequest').change(function () {
+            changeAnySplReq();
+        });
+        function changeAnySplReq() {
+            if ($('#AnySpecialRequest').is(":checked"))
+                $(".dvAnysplreq").show();
+            else
+                $(".dvAnysplreq").hide();
         }
+    </script>
+}

@@ -7,23 +7,32 @@
 
 }
 <style>
-    .modal-header {
-        text-align: center !important;
+    h3 {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .btn {
+        font-size: 1.7em;
+        background-color: #5a0005;
+        color: #fff;
+    }
+
+    .modal-footer {
+        padding-right: 145px;
     }
 </style>
+
 <div class="modal-dialog w-100 mx-auto">
     @using (Html.BeginForm("Login", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @autocomplete = "off" }))
     {
 
         @Html.AntiForgeryToken()
         <div class="modal-content">
-            <div class="modal-header bg-white" style="text-align:center !important">
-                <a href="/" class="modal-title w-100" title="Go to homepage">
-                    <img src="~/images/NDC-Logo1.png" height="80" />
-                </a>
-            </div>
+
             <div class="modal-body">
-                <h3 class="modal-title w-100 mb-4">Sign-In</h3>
+                <h3 class="modal-title w-100 fw-bold " style="color:rgba(220,53,69,1) !important" ;>Sign-In</h3>
+                <p class="text-center mb-4">Please sign in to your account</p>
                 @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count > 0)
                 {
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -36,64 +45,43 @@
 
                 <div class="form-row">
                     <div class="col-md-12">
-                        <div class="position-relative input-group ">
+                        <div class="position-relative input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                             </div>
                             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control fh disable_form_history", @Placeholder = "Username", @arialabel = "Username", @ariadescribedby = "basic-addon1", autocomplete = "off", autocorrect = "off", value = "", oncopy = "return false", onpaste = "return false" })
-                            @*<input type="text" name="UserName" class="form-control" placeholder="Username"  autocomplete="off" autocorrect="off" value="">*@
                             @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                             @Html.HiddenFor(m => m.hdns)
                         </div>
-                        <div class="position-relative input-group ">
+                        <div class="position-relative input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon2"><i class="fa fa-key"></i></span>
                             </div>
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter Password", autocomplete = "off", autocorrect = "off", value = "", oncopy = "return false", onpaste = "return false" })
-                            @*<input type="password" name="Password" class="form-control" placeholder="Enter Password" aria-label="Password" autocomplete="off" autocorrect="off" value="" aria-describedby="basic-addon2">*@
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                             @Html.HiddenFor(m => m.hdks)
                         </div>
-                        <div class="position-relative input-group ">
-                            @*<div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon2"><i class="fa fa-key"></i></span>
-                            </div>*@
+                        <div class="position-relative input-group mb-2">
+
                             @Html.Partial("_Captcha")
                         </div>
-                        @*<div class="position-relative input-group  d-flex justify-content-center alert alert-info">
-                            <div style="margin: auto;">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon2"><i class="fa fa-robot mr-2"></i> <img src="/Captcha/GetCaptchaImage" title="Captcha" class="img-responsive img-thumbnail mr-2" id="img-captcha" /><a class="btn btn-outline-dark" id="arefresh" ><i class="fa fa-recycle"></i></a></span>
-                                </div>
 
-                                <input type="text" class="form-control w-100 align-self-center" name="VfyCaptcha" placeholder="Type the characters shown" required autocomplete="off" autocorrect="off" value="" oncopy="return false" onpaste="return false" />
-                                <p class="text-danger">@ViewBag.CaptchaError</p>
-                            </div>
-                        </div>*@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            @*<button class="btn btn-primary btn-block btn-lg" style="font-size: 1.5em;" type="submit" onclick="Validatepage();">Sign in</button>*@
-                            <button class="btn btn-primary btn-block btn-lg" style="font-size: 1.5em;" type="submit">Sign in</button>
+                            <button class="btn btn-block btn-lg" style="font-size: 1.5em;" type="submit">Sign in</button>
 
                         </div>
                     </div>
                 </div>
-                @*
-                    <div class="position-relative form-check">
-                       <label for="RememberMe">Remember me</label>@Html.CheckBoxFor(m => m.RememberMe)
-                    </div>
-                *@
+           
 
             </div>
-            <div class="modal-footer clearfix bg-white">
-                <div class="">
-                    <a href="/" class="btn-lg btn btn-link"><i class="fa fa-home"></i></a>
-                    <a href="@Url.Action("forgot","auth")" class="btn-lg btn btn-link">Forgot Password Request</a>
+            <div class="modal-footer clearfix bg-white badge text-bg-primary text-wrap pr-20">
+                <div class="icon">
+                    <a href="/" style="color:rgba(220,53,69,1) !important" ;><i class="fa fa-home"></i></a>
+                    <a href="@Url.Action("forgot","auth")" style="color:rgba(220,53,69,1) !important" ;>Forgot Password Request</a>
                 </div>
-                @*<div class="float-right">
-                        <a href="/registration/register" class="btn btn-outline-primary">CLICK HERE FOR NEW REGISTRATION</a>
-                    </div>*@
             </div>
         </div>
     }
@@ -106,12 +94,12 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-    $(function () {
-        document.getElementById("UserName").setAttribute("autocomplete", "off")
-        //$('#CaptchaInputText').keyup(function () {
-        //    this.value = this.value.toUpperCase();
-        //});
-    });
+        $(function () {
+            document.getElementById("UserName").setAttribute("autocomplete", "off")
+            $('#CaptchaInputText').keyup(function () {
+                this.value = this.value.toUpperCase();
+            });
+        });
         $("#arefresh").click(function () {
             resetCaptchaImage();
         });
