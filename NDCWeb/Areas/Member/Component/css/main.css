@@ -1,5 +1,8 @@
-body{
-    color:#000;
+body {
+    color: #000;
+    margin: 0;
+    padding-top: 50px;
+    font-family: Arial, sans-serif;
 }
 .indian-emblem{
     float:left;padding-right:10px;    
@@ -10,9 +13,11 @@ body{
     background: linear-gradient(-145deg, #fff, transparent 60% 40%), linear-gradient(145deg, #fff, transparent 70% 30%),url('images/header.png')left no-repeat;
     background-size: cover;
     padding: 10px 0;
+    margin-left: 115px;
+    margin-top: 80px;
 }
-.logo{
-/*    top:50%;
+.logo {
+    /*    top:50%;
     left:47%;   
     position: absolute;*/
     /*transform: translate(-50%, 0%);*/
@@ -31,27 +36,33 @@ body{
     border-radius: 6px;
     font-weight: 600;
 }
-.top_head{width:100%;float:left;background:#1253ca !important;padding:4px 0; color:#000 !important}
+.top_head {
+    width: 100%;
+    float: left;
+    background: #9b030c !important;
+    padding: 4px 0;
+    color: #000 !important
+}
 .language .form-control{
     border-radius: 16px;
     background-color: transparent !important;
 }
-.navigation-bg{
-    background: #1253ca;
+.navigation-bg {
+    background: #9b030c;
 }
 .sf-menu li a{
     padding: 8px 7px;
     border-left:1px solid #3E70CB
 }
-.sf-menu ul li, .sf-menu ul ul li{
+.sf-menu ul li, .sf-menu ul ul li {
     /* background: #1253ca; */
-    background:  #0c3786
+    background: #9b030c;
 }
 .sf-menu a, .sf-menu li ul li a{
     font-size:100%;
 }
-.sf-menu ul li, .sf-menu ul ul ul li{
-    background:#3E70CB;
+.sf-menu ul li, .sf-menu ul ul ul li {
+    background: #9b030c;
 }
 .sf-arrows .sf-with-ul:after{
     top:50%;
@@ -105,10 +116,10 @@ ul.newsslider a {
 .ticker_section {
     width: 100%;
     display: inline-block;
-    background: #1253ca;
+    background: #9b030c;
     margin-top: 4px;
     padding: 5px 0 5px;
-    color:white;
+    color: white;
     font-weight: 600;
 }
 .latest-news-events {
@@ -159,9 +170,9 @@ font-weight: 700;
     border-bottom:1px solid #fff;margin-bottom: 10px;
 }
 .footer-bottom {
-    background: #04225a !important;
-    border-top: 1px solid #5da6d3;
-  /*  position: fixed;*/
+    background: #9b030c !important;
+    border-top: 1px solid #9b030c;
+    /*  position: fixed;*/
     left: 0;
     bottom: 0;
     width: 100%;

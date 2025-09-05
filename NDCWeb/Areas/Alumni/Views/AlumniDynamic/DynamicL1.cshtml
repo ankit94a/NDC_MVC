@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = "DynamicL1";
 }
+
 <section class="pt-1">
     <div class="container">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb shadow custom-header">
             <li class="breadcrumb-item"><a href='@Url.Action("Index","Home")' class="text-white">Home</a></li>
-            <li class="breadcrumb-item"><a href="#"> @ViewBag.Heading</a></li>
+            <li class="breadcrumb-item"><a href="#" class="text-white"> @ViewBag.Heading</a></li>
         </ol>
     </div>
 </section>
@@ -16,9 +17,6 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="content-area">
-                    @*<div class="text-left">
-                            <h2>@ViewBag.Title1</h2>
-                        </div>*@
                     <div class="clearfix"></div>
                     <div class="field-content">
                         @Html.Raw(ViewBag.Body)

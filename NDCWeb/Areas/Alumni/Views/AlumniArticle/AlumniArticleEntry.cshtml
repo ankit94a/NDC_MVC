@@ -3,46 +3,62 @@
     ViewBag.Title = "Upload Work Items";
     //Layout = "~/Areas/Alumni/Views/Shared/_Layout.cshtml";
 }
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-11">
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
             @using (Html.BeginForm("AlumniArticleEntry", "AlumniArticle", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="card shadow mt-4 mb-4">
-                    <div class="card-header" style="background-color:#fff">
-                        &nbsp;&nbsp;&nbsp;&nbsp;   @ViewBag.Title
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                <div class="card shadow-lg border-0 rounded-3">
+                    <!-- Header -->
+                    <div class="card-header custom-header text-white py-3">
+                        <h5 class="mb-0 fw-bold"> <i class="bi bi-journal-text me-2"></i> Add New </h5>
                     </div>
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label" })
-                                @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.GetAlumniArticleCat, "-- Select --", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                    <!-- Body -->
+                    <div class="card-body px-4 py-4">
+                        <div class="row g-3">
+                            <!-- Category -->
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "form-label fw-semibold" })
+                                @Html.DropDownList("Category",
+                                    (IEnumerable<SelectListItem>)ViewBag.GetAlumniArticleCat,
+                                    "-- Select --",
+                                    new { @class = "form-select shadow-sm" })
+                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger small" })
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="Files" name="Files" class="control-label">Browse</label>
-                                <input id="Files" type="file" name="Files" multiple required class="uploadify-button" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                            <!-- File Upload -->
+                            <div class="col-md-6">
+                                <label for="Files" class="form-label fw-semibold">Upload File(s)</label>
+                                <input id="Files" type="file" name="Files" multiple required class="form-control shadow-sm"
+                                       accept="image/jpeg,image/png,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel" />
+                            </div>
+                            <!-- Description -->
+                            <div class="col-md-12">
+                                <label class="form-label fw-semibold">Description (optional)</label>
+                                @Html.TextAreaFor(model => model.Description,
+                                    new { @class = "form-control shadow-sm editorHtml", rows = "5", placeholder = "Write a short description..." })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger small" })
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Description (if any)</label>
-                                @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
-                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
                     </div>
-                    <div class="card-footer bg-white text-center">
-                        <input type="submit" value="Save" class="btn btn-primary  btn-sm" />
-                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-sm" })
+                    <!-- Footer -->
+                    <div class="card-footer bg-light text-center py-3">
+                        <button type="submit" class="btn btn-danger btn-sm px-4 me-2 shadow-sm">
+                            <i class="bi bi-save me-1"></i> Save
+                        </button>
+                        <a class="btn btn-outline-secondary px-4" href="@Url.Action("Index")">
+                            <i class="bi bi-arrow-left-circle"></i> Back
+                        </a>
                     </div>
                 </div>
             }
         </div>
     </div>
 </div>
+
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
 }

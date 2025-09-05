@@ -1,113 +1,128 @@
 ﻿
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head id="Head1">
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
-    <meta charset="utf-8" />
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>
-        Alumni: National Defence College
-    </title>
-    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="keywords" />
-    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="description" />
-    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="DC.Subject.Keyword" />
-    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="NDC.Description" />
-    <link rel="stylesheet" type="text/css" href="~/Component/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="~/Component/css/index.css" />
-    @*<link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/fontawesome/css/fontawesome.min.css" />*@
-    <!-- Color Theme CSS -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Alumni: National Defence College</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/Component/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Areas/Member/Component/css/style.css" />
+    <link rel="stylesheet" href="~/Areas/Member/Component/css/main.css" />
+    <link rel="stylesheet" href="~/Component/css/index.css" />
     <link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
-
-    @*@Styles.Render("~/Content/css")*@
-
-    @Styles.Render("~/bundles/jquistyle")
-    @Styles.Render("~/bundles/datatable/css")
-    @Scripts.Render("~/bundles/mainjs")
-    @Styles.Render("~/bundles/toastr/css")
-    <style>
-        .sf-menu li {
-            text-transform: uppercase;
-        }
-    </style>
-    <style type="text/css">
-        .menuchang {
-            background-image: url('images/new.gif');
-            background-repeat: no-repeat;
-            padding-right: 5px;
-            background-position: top;
-        }
-
-        .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-            background-color: #0061f1;
-            font-size: 1.3em;
-        }
-
-        .nav-tabs .nav-link {
-            border: 1px solid #c9d9ef;
-            background-color: #eaf8f7;
-        }
-
-        .form-control {
-            font-size: 1.0em;
-        }
-
-        .nav-tabs .nav-link {
-            padding: .8rem 2rem;
-        }
-
-        label {
-            font-weight: 400;
-        }
-
-        table tr th {
-            background-color: #fff;
-            color: #353535;
-            text-align: center;
-        }
-    </style>
+    <link href="~/Component/dataTable4/css/select2.min.css" rel="stylesheet" />
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
 
 <body id="fontSize">
-    @Html.Partial("_Header")
-    <div class="mean-container">
-    </div>
-    @if (ViewBag.SiteMenuItems == null)
-    {
-        @Html.Partial("_UserMenu");
-    }
-    else
-    {
-        @Html.Partial("_StaticMenu");
-
-    }
-    <!-- Menu Part End -->
-    <div class="clearfix">
-    </div>
-
-    <div class="container-fluid">
-        @Html.Partial("_Notifications")
-        @RenderBody()
+    <div class="top-header d-flex justify-content-between align-items-center px-4 py-2 border-bottom">
+        <img class="pull-left" src="/images/1200px-Emblem_of_India.png" height="70" alt="Emblem_of_India">
+        <a href="/" title="NATIONAL DEFENCE COLLEGE" class="fw-bold ND">
+            NATIONAL DEFENCE COLLEGE
+        </a>
+        <img class="pull-left G-logo" src="~/images/G20_logo.jpg" height="80" alt="G20_logo">
+        <div class="logo ps">
+            <h2><strong style="margin-left: 65px;">राष्ट्रीय रक्षा महाविद्यालय</strong></h2>
+            <br /><h2>Ministry of Defence, Government of India</h2>
+        </div>
+        <div class="d-flex align-items-center ms-auto" style="margin-right: 3.4rem !important;">
+            <img class="pull-left" src="/images/NDC-Logo.png" height="70" alt="NDC-Logo" style="margin-right: 50px;">
+            <span class="me-2 ss">Welcome, <strong>ADARSHA VERMA</strong></span>
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-sm btn-danger ms-2">
+                <i class="fa fa-power-off"></i> Log off
+            </a>
+        </div>
     </div>
 
-    @Html.Partial("_Footer");
-    <script src='~/Component/js/font-size.js' type="text/javascript"></script>
-    <script src='~/Component/js/superfish.js' type="text/javascript"></script>
-    <script src='~/Component/js/jquery.meanmenu.js' type="text/javascript"></script>
-    <script src='~/Component/js/custom.js' type="text/javascript"></script>
-  
-   
-    @*@Scripts.Render("~/bundles/datatable")*@
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/custom")
+        @if (ViewBag.SiteMenuItems == null)
+        {
+            @Html.Partial("_UserMenu");
+        }
+        else
+        {
+            <div class="sidebar border-end">
+                <ul class="list-unstyled">
+                    <li><a href="/alumni/"><span><i class="fa fa-home"></i> Home</span></a></li>
+                    <li><a href="/alumni/profile/"><span><i class="fa fa-user"></i> My Profile</span></a></li>
+                    <li><a href="/alumni/alumniconnectwith/mycoursemates"><span><i class="fa fa-users"></i> My Course Members</span></a></li>
+                    <li class="has-sub">
+                        <a href="#"><span><i class="fa fa-link"></i> NDC Connect</span> <i class="fa fa-angle-right arrow"></i></a>
+                        <ul class="list-unstyled">
+                            <li><a href="~/Flipbook/index.html">Alumni News Letter</a></li>
+                            <li><a href="/alumni/participant/library/ndc-publications">NDC Journal</a></li>
+                            <li><a href="/alumni/AlumniArticle/Index">Upload Article</a></li>
+                            <li><a href="/alumni/participant/coffee-table-book">Coffee Table Book</a></li>
+                            <li><a href="/alumni/Home/Memento">Alumni Memento</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/alumni/home/alumnifeedback/"><span><i class="fa fa-comment"></i> Feedback</span></a></li>
+                </ul>
+            </div>
+        }
+        <div class="main-area">
+            <div class="content">
+                @Html.Partial("_Notifications")
+                @RenderBody()
+            </div>
+        </div>
 
-    <script>
-        toastrOptDefault();
-    </script>
-    @RenderSection("scripts", required: false)
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p class="text-center">
+                    <span class="footer-nic">Site is hosted by National Informatics Centre (NIC). Information is provided and updated by National Defence College</span>
+                </p>
+            </div>
+        </footer>
 
+        <!-- Core JS -->
+        <script src="~/Component/js/jquery/jquery-3.7.1.min.js"></script>
+        <script src="~/Component/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Plugins -->
+        <script src="~/Component/js/jquery.flexisel.js"></script>
+        <script src="~/Component/js/jquery.cycle.all.min.js"></script>
+        <script src="~/Component/js/superfish.min.js"></script>
+        <script src="~/Component/js/imagelightbox.min.js"></script>
+        <script src="~/Component/js/jquery.meanmenu.js"></script>
+
+        <!-- Toastr -->
+        <script src="~/Component/js/toastr.min.js"></script>
+        <script src="~/Component/js/toastr-config.js"></script>
+
+        <!-- Custom -->
+        <script src="~/Component/js/custom.js"></script>
+        <script src="~/Component/js/font-size.js"></script>
+        <script src="~/Component/dataTable4/js/select2.min.js"></script>
+        <script src="~/Component/dataTable4/js/jquery.dataTables.min.js"></script>
+
+        <script>
+            document.querySelectorAll(".sidebar .has-sub > a").forEach(menu => {
+                menu.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    let parent = this.parentElement;
+                    document.querySelectorAll(".sidebar .has-sub").forEach(el => {
+                        if (el !== parent) {
+                            el.classList.remove("open");
+                            el.querySelector("ul").style.display = "none";
+                        }
+                    });
+                    let submenu = parent.querySelector("ul");
+                    if (parent.classList.contains("open")) {
+                        submenu.style.display = "none";
+                        parent.classList.remove("open");
+                    } else {
+                        submenu.style.display = "block";
+                        parent.classList.add("open");
+                    }
+                });
+            });
+        </script>
+
+        @RenderSection("scripts", required: false)
 </body>
 </html>

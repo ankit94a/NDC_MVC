@@ -88,10 +88,10 @@
                 </div>
                 <div class="form-row">
                     @Html.Label("Indl Photograph", htmlAttributes: new { @class = "control-label" })
-                    <input id="picfile" type="file" title="Upload Your Photo" required  name="picfile" onchange="imgValidate('picfile', 'MemberImgPath')" class="uploadify-button form-control-file" accept="image/jpg,image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                    <input id="picfile" type="file" title="Upload Your Photo" required name="picfile" onchange="imgValidate('picfile', 'MemberImgPath')" class="uploadify-button form-control-file" accept="image/jpg,image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
                     <p class="text-info">400x400, Max size 250 KB, File Type (.jpg only)</p>
                     @Html.EditorFor(model => model.AlumniImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-                </div> 
+                </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <div class="alert alert-info" role="alert">
@@ -100,29 +100,29 @@
                     </div>
                 </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-12" style="visibility:hidden">
-                                @Html.EditorFor(model => model.RegDate, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
-                                @Html.EditorFor(model => model.Verified, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
-                                @Html.EditorFor(model => model.VerifyDate, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
-                                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center bg-white">
-                        @*<a href="@Url.Action("AlumniProfile", "Profile",new {alumniid= Model.AluminiId })"><b>Update</b></a>*@
-                        <input type="submit" value="Update" class="btn btn-primary" />
-                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                <div class="form-row">
+                    <div class="form-group col-md-12" style="visibility:hidden">
+                        @Html.EditorFor(model => model.RegDate, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                        @Html.EditorFor(model => model.Verified, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                        @Html.EditorFor(model => model.VerifyDate, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                        @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
                     </div>
                 </div>
-
-                }
             </div>
+            <div class="card-footer text-center bg-white">
+                @*<a href="@Url.Action("AlumniProfile", "Profile",new {alumniid= Model.AluminiId })"><b>Update</b></a>*@
+                <input type="submit" value="Update" class="btn btn-primary" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+
+    }
+</div>
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
 
-<script>
+    <script>
     // #region Upload Helper
         function docValidate(fileUploadId, fileLocId) {
             let fileTypes = ['jpg'];
@@ -145,8 +145,24 @@
                 let url = '@Url.Action("DocumentUpload")';
                 uploadFile(fileUploadId, fileLocId, url);
             }
-        }
-        function imgValidate(fileUploadId, fileLocId) {
+    }
+
+            function imgValidate(fileUploadId, fileLocId) {
+                let fileTypes = ['jpg', 'jpeg', 'png'];
+                let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+                let sizeValidate = fileSizeValidation(fileUploadId, 1024); // 1 MB limit
+
+                if (extValidate && sizeValidate) {
+                    let url = '/Alumni/Profile/ImageUpload';
+                    uploadFile(fileUploadId, fileLocId, url);
+                } else {
+                    $('#' + fileLocId).val('');
+                    alert("Invalid file. Please upload a JPG/PNG under 1 MB.");
+                }
+            }
+
+
+        @*function imgValidate(fileUploadId, fileLocId) {
             let fileTypes = ['jpg', 'jpeg', 'png', 'jpg'];
             let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
             let sizeValidate = fileSizeValidation(fileUploadId, 1024);
@@ -157,7 +173,7 @@
             else {
                 $('#' + fileLocId).val('');
             }
-        }
+        }*@
     // #endregion
-</script>
+    </script>
 }

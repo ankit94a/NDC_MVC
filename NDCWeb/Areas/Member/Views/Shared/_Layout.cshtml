@@ -22,36 +22,12 @@
     <link rel="stylesheet" href="/Component/css/gallery/css/jquery.desoslide.min.css">
     <link href="/Component/custom/css/intlTelInput.css" rel="stylesheet" />
     <link href="/Component/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
-    <link href="~/Component/DataTble/datatables.min.css" rel="stylesheet" />
-    @*<link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/fontawesome/css/fontawesome.min.css" />*@
     <!-- Color Theme CSS -->
     <link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
-    @*@Styles.Render("~/Content/css")*@
 
-    @Scripts.Render("~/bundles/mainjs")
-    @Scripts.Render("~/bundles/bootstrap")
-    @*@Scripts.Render("~/bundles/datatables")*@
-    @Styles.Render("~/bundles/jquistyle")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/toastr/js")
-    @*@Scripts.Render("~/bundles/datatables/ButtonJs")*@
-    @Scripts.Render("~/bundles/custom")
-    <script src="~/Component/DataTble/datatables.min.js"></script>
 
-    <script src='/js/jquery.flexisel.js' type="text/javascript"></script>
-    <script src="/js/ace-responsive-menu.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        //$(document).ready(function () {
-        //    $("#respMenu").aceResponsiveMenu({
-        //        resizeWidth: '2000', // Set the same in Media query
-        //        animationSpeed: 'fast', //slow, medium, fast
-        //        accoridonExpAll: false //Expands all the accordion menu on click
-        //    });
-        //});
-        //$(document).ready(function () {
-        //    $('#main-nav nav').meanmenu()
-        //});
-    </script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" />
+    @Styles.Render("~/bundles/toastr/css")
     <style type="text/css">
         .menuchang {
             background-image: url('images/new.gif');
@@ -87,11 +63,123 @@
             color: #353535;
             text-align: center;
         }
+
+        .top-header {
+            background-color: #9b030c;
+            padding: 10px 20px;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            z-index: 1000;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            width: 220px;
+            bottom: 40px;
+            background-color: #9b030c;
+            color: #fff;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+            .sidebar.collapsed {
+                margin-left: -220px; /* hide sidebar */
+            }
+
+        .main-area {
+            margin-left: 220px;
+            margin-top: 50px;
+            transition: all 0.3s ease;
+        }
+
+            .main-area.expanded {
+                margin-left: 0; /* full width when sidebar hidden */
+            }
+
+
+        .sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar li {
+            position: relative;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+            .sidebar a .arrow {
+                transition: transform 0.3s ease;
+                font-size: 12px;
+            }
+
+            .sidebar a:hover {
+                background-color: #b11c1c;
+            }
+
+        .sidebar .has-sub ul {
+            display: none;
+            padding-left: 0;
+            background: #7a020a;
+        }
+
+            .sidebar .has-sub ul li a {
+                font-size: 13px;
+                padding-left: 25px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                background: #7a020a;
+            }
+
+                .sidebar .has-sub ul li a:hover {
+                    background: #a83232;
+                }
+
+        .sidebar .has-sub.open > a .arrow {
+            transform: rotate(90deg);
+        }
+
+        .main-area {
+            margin-left: 220px;
+            margin-top: 50px;
+        }
     </style>
 </head>
 
+
+
+
 <body id="fontSize">
-    @Html.Partial("_Header")
+    @*@Html.Partial("_Header")*@
+
+    <div class="top-header d-flex align-items-center justify-content-between">
+        <div>
+            <button id="sidebarToggle" class="btn btn-sm btn-light me-2">
+                <i class="fa fa-bars"></i>
+            </button>
+            <span>National Defence College</span>
+        </div>
+        <div>
+            <!-- You can keep logout/user menu here if needed -->
+        </div>
+    </div>
     <div class="mean-container">
     </div>
     @if (ViewBag.SiteMenuItems != null)
@@ -101,26 +189,94 @@
     <!-- Menu Part End -->
     <div class="clearfix">
     </div>
-    <div class="container-fluid">
+    <div class="main-area">
         @Html.Partial("_Notifications")
-        @RenderBody()
+
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+
+        @Html.Partial("_Footer")
     </div>
+    <!-- Core JS -->
 
-    @Html.Partial("_Footer")
-    <script src='~/Component/js/font-size.js' type="text/javascript"></script>
-    <script src='~/Component/js/superfish.js' type="text/javascript"></script>
-    <script src='~/Component/js/custom.js' type="text/javascript"></script>
-    @*<script src="~/Component/custom/js/customScript.js" type="text/javascript"></script>*@
+    <script src="~/Component/js/jquery/jquery-3.7.1.min.js"></script>
+    <script src="~/Component/js/bootstrap.bundle.min.js"></script>
 
-    @Scripts.Render("~/bundles/bootstrap")
-        @*@Scripts.Render("~/bundles/datatables")*@
-        @Scripts.Render("~/bundles/jqueryui")
-        @*@Scripts.Render("~/bundles/datatables/ButtonJs")*@
-        @Scripts.Render("~/bundles/custom")
+    <!-- Plugins -->
+    <script src="~/Component/js/jquery.flexisel.js"></script>
+    <script src="~/Component/js/jquery.cycle.all.min.js"></script>
+    <script src="~/Component/js/superfish.min.js"></script>
+    <script src="~/Component/js/imagelightbox.min.js"></script>
+    <script src="~/Component/js/jquery.meanmenu.js"></script>
+
+    <!-- Custom -->
+    <script src="~/Component/js/custom.js"></script>
+    <script src="~/Component/js/font-size.js"></script>
+    <script src="~/Component/dataTable4/js/select2.min.js"></script>
+    <script src="~/Component/dataTable4/js/jquery.dataTables.min.js"></script>
+    <script src="~/Component/js/ace-responsive-menu.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/custom")
+    @Scripts.Render("~/bundles/toastr")
+
 
     <script>
         toastrOptDefault();
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleBtn = document.getElementById("sidebarToggle");
+            const sidebar = document.querySelector(".sidebar");
+            const mainArea = document.querySelector(".main-area");
+
+            // Sidebar collapse/expand
+            if (toggleBtn && sidebar && mainArea) {
+                toggleBtn.addEventListener("click", function () {
+                    sidebar.classList.toggle("collapsed");
+                    mainArea.classList.toggle("expanded");
+                });
+            }
+
+            // Submenu toggle (for NDC Connect etc.)
+            document.querySelectorAll(".sidebar .has-sub > a").forEach(menu => {
+                menu.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    let parent = this.parentElement;
+                    let submenu = parent.querySelector("ul");
+
+                    // Close other submenus
+                    document.querySelectorAll(".sidebar .has-sub").forEach(el => {
+                        if (el !== parent) {
+                            el.classList.remove("open");
+                            let sub = el.querySelector("ul");
+                            if (sub) sub.style.display = "none";
+                        }
+                    });
+
+                    // Toggle this submenu
+                    if (parent.classList.contains("open")) {
+                        submenu.style.display = "none";
+                        parent.classList.remove("open");
+                    } else {
+                        submenu.style.display = "block";
+                        parent.classList.add("open");
+                    }
+                });
+            });
+        });
+    </script>
+
+
     @RenderSection("scripts", required: false)
 
 </body>

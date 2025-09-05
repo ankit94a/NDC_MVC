@@ -8,6 +8,33 @@
     body {
         background-color: #f3fbfa;
     }
+    /* Card 1 - Blue Gradient */
+    .card-1 {
+        /*background: linear-gradient(135deg, #44d4c6, #1a9c90);*/
+        background: #7cd1c9;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .card-2 {
+        background: #fff3d6;
+        color: #333;
+        border-radius: 5px;
+    }
+
+    /* Card 3 - Purple Pastel */
+    .card-3 {
+        background: linear-gradient(135deg, #fbd9f3, #d0279f); 
+        color: #4a004d;
+        border-radius: 5px;
+    }
+
+    .card-4 {
+        background: rgb(252, 232, 247);
+        color: #343232;
+        border-radius: 5px;
+    }
+
 </style>
 
 <link rel="stylesheet" href="/Component/css/gallery/css/animate.min.css" />
@@ -16,31 +43,30 @@
 <link href="/Component/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
 @Scripts.Render("~/bundles/mainjs")
 
-<div class="container mt-4 mb-4">
+@*<div class="mt-4 mb-4">*@
     <div class="row gutters-sm">
-        <div class="col-md-4 ">
-            <div class="card">
+        <div class="col-md-4 mb-3">
+            <div class="card shadow card-1">
                 <div class="d-flex flex-column align-items-center text-center">
                     @if (Request.IsAuthenticated)
                     {
                         using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                         {
                             @Html.AntiForgeryToken()
-                            <img src="@Url.Content(ViewBag.ProfilePic ??  ViewBag.ProfilePic )" alt="@ViewBag.fullname" title="@ViewBag.fullname" class="rounded-circle" width="150">
+                            <img src="@Url.Content(ViewBag.ProfilePic ??  ViewBag.ProfilePic )" alt="@ViewBag.fullname" title="@ViewBag.fullname" class="fa-square" width="150" style="margin-top: 5px;">
                             <div class="mt-3">
                                 <h4>@ViewBag.fullname</h4>
                                 <p class="text-secondary mb-1">@Model.CourseSerNo @Model.NdcEqvCourse </p>
                                 <p class="text-muted font-size-sm"></p>
-
                                 @*@Html.ActionLink("Edit", "AlumniProfile", new { alumniid = Model.AluminiId }, new { @class = "btn btn-outline-primary btn-sm" })*@
                                 @Html.EncodedActionLink("Edit", "AlumniProfile", "Profile", "Alumni", new { alumniid = Model.AluminiId }, new { @class = "btn btn-outline-primary btn-sm" }, "")
-                                <button class="btn btn-outline-primary btn-sm" onclick="javascript: document.getElementById('logoutForm').submit()">Logout </button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="javascript: document.getElementById('logoutForm').submit()">Logout </button>
                             </div>
                         }
                     }
                 </div>
             </div>
-            <div class="card mt-3">
+            <div class="card shadow card-2 mt-3">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                         <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Username</h6>
@@ -48,7 +74,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="card mt-3">
+            <div class="card shadow card-3 mt-3">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                         <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Updated On</h6>
@@ -67,7 +93,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="card ">
+            <div class="card shadow card-4 mb-3">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-3">
@@ -159,5 +185,5 @@
             </div>
         </div>
     </div>
-</div>
+@*</div>*@
 

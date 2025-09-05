@@ -130,8 +130,8 @@ function OnComdtSuccess(response) {
 function fillComdt(comdt) {
     let $comdt = comdt;
     let $comdtDiv = $('.comdtsec');
+    let indx = 0;
     $comdtDiv.empty();
-    let indx = 0; 
     $.each($comdt, function (i, mg) {
         let $file = mg.iMediaFiles;
         $.each($file, function (j, mf) {

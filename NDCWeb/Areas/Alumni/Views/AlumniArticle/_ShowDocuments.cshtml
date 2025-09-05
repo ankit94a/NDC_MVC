@@ -1,9 +1,9 @@
 ﻿@model NDCWeb.Areas.Alumni.View_Models.AlumniArticleIndxVM
 <link href="~/Areas/Admin/Component/css/main.css" rel="stylesheet" />
-<div class="container-fluid">
+<div class="container-fluid pt-3">
     <div class="main-card card">
-        <div class="card-header">
-            <h5 class="card-title">List of Uploads</h5>
+        <div class="card-header custom-header pt-3">
+            <h5 class="card-title text-white">List of Uploads</h5>
         </div>
         <div class="card-body">
             @{
@@ -21,7 +21,7 @@
                                 <img src="@Url.Content(mdfl.FilePath)" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">@mdfl.FileName</p>
-                                    <a href="@Url.Content(mdfl.FilePath)" class="btn btn-primary" download><i class="fa fa-download"></i> Save</a>
+                                    <a href="@Url.Content(mdfl.FilePath)" class="btn btn-danger" download><i class="fa fa-download"></i> Save</a>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                                 </video>
                                 <div class="card-body">
                                     <p class="card-text">@mdfl.FileName</p>
-                                    <a href="@Url.Content(mdfl.FilePath)" class="btn btn-primary" download><i class="fa fa-download"></i> Save</a>
+                                    <a href="@Url.Content(mdfl.FilePath)" class="btn btn-danger" download><i class="fa fa-download"></i> Save</a>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,6 @@
                     <div class="col-4">
                         <div class="card shadow p-3 mb-5 bg-white">
                             <div class="card-img-top embed-responsive embed-responsive-16by9">
-                                @*<iframe class="embed-responsive-item" src="@ViewBag.Url" allowfullscreen></iframe>*@
                                 @Html.Raw(ViewBag.Url)
                             </div>
                         </div>
@@ -84,5 +83,9 @@
             </div>
         </div>
     </div>
-
 </div>
+<style>
+    .custom-header {
+        background: linear-gradient(135deg, #c7151ff7, #600208);
+    }
+</style>

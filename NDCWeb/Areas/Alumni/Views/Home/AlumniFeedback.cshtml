@@ -2,36 +2,41 @@
 @{
     ViewBag.Title = "Alumni Feedback";
 }
-<div class="container">
-    <div class="card shadow">
-        <div class="card-header">&nbsp;&nbsp; Feedback Form</div>
+
+<style>
+    /*.form-control:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 6px rgba(40, 167, 69, 0.4);
+    }*/
+</style>
+
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header custom-header btlr text-white fw-bold py-3">
+            <i class="bi bi-chat-dots-fill"></i> &nbsp; Feedback Form
+        </div>
+
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @*@Html.HiddenFor(model => model.FullName)
-            @Html.HiddenFor(model => model.EmailId)*@
-            @*<div class="form-group col-md-12 form-row required">
-                @Html.LabelFor(model => model.DepartmentSubject, htmlAttributes: new { @class = "control-label" })
-                @Html.DropDownListFor(model => model.DepartmentSubject, (IEnumerable<SelectListItem>)ViewBag.Department, "-- Select --", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DepartmentSubject, "", new { @class = "text-danger" })
-            </div>*@
-            <div class="form-group col-md-12 form-row required">
-                <label class="control-label" for="Comment">Your Feedback (Max character limit 200)</label>
-                @Html.TextAreaFor(model => model.Comment, htmlAttributes: new { @class = "form-control editorHtml", rows = "3", maxlength = "200", autocomplete = "off", autocorrect = "off", value = "" })
-                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger mt-3" })
+            <div class="card-body px-4 py-4">
+                <div class="form-group mb-4">
+                    <label class="form-label fw-semibold" for="Comment">💬 Your Feedback</label>
+                    <small class="text-muted d-block mb-2">(Max 200 characters)</small>
+                    @Html.TextAreaFor(model => model.Comment,
+                        new { @class = "form-control shadow-sm", rows = "3", maxlength = "200", placeholder = "Type your feedback here..." })
+                    @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                </div>
             </div>
-            @*<div class="form-group col-md-12">
-                @Html.Partial("_Captcha")
-            </div>*@
-            <div class="panel-footer bg-white text-center mb-5">
-                <center>
-                    <input type="submit" value="Submit" class="btn btn-primary btn-sm" />
-                    <a href="/alumni/home/" class="btn btn-primary btn-sm">Back</a>
-                </center>
+            <div class="card-footer bg-light text-center btlr">
+                <button type="submit" class="btn btn-danger px-4 me-2 shadow-sm">
+                    <i class="bi bi-send-fill"></i> Submit
+                </button>
+                <a class="btn btn-secondary px-4" href="/alumni/home/">
+                    <i class="bi bi-arrow-left-circle"></i> Back
+                </a>
             </div>
-
         }
     </div>
 </div>

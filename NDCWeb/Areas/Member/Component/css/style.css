@@ -203,6 +203,9 @@ body {
     font-family: Lato-Regular, sans-serif;
     font-weight: 400;
     font-style: normal;
+    margin: 0;
+    padding-top: 50px;
+    font-family: Arial, sans-serif;
 }
 
 ul {
@@ -9366,6 +9369,305 @@ pre code {
     .col-lg-offset-0 {
         margin-left: 0;
     }
+
+
+    /*Kamal Css Stsrt*/
+
+    .top-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        background: #fff url('/images/header.png') center center no-repeat;
+        background-size: cover;
+    }
+
+    .content {
+        margin-top: 60px;
+        padding: 20px;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 100px;
+        left: 0;
+        width: 220px;
+        bottom: 40px;
+        background-color: #9b030c;
+        color: #fff;
+        overflow-y: auto;
+    }
+
+        .sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar li {
+            position: relative;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+            .sidebar a .arrow {
+                transition: transform 0.3s ease;
+                font-size: 12px;
+            }
+
+            .sidebar a:hover {
+                background-color: #b11c1c;
+            }
+
+        .sidebar .has-sub ul {
+            display: none;
+            padding-left: 0;
+            background: #7a020a;
+        }
+
+            .sidebar .has-sub ul li a {
+                font-size: 13px;
+                padding-left: 25px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                background: #7a020a;
+            }
+
+                .sidebar .has-sub ul li a:hover {
+                    background: #a83232;
+                }
+
+        .sidebar .has-sub.open > a .arrow {
+            transform: rotate(90deg);
+        }
+
+    .main-area {
+        margin-left: 220px;
+        margin-top: 50px;
+    }
+
+    .banner {
+        background: url('https://via.placeholder.com/1200x120') no-repeat center center;
+        background-size: cover;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        color: #000;
+    }
+
+        .banner img {
+            height: 60px;
+        }
+
+    .sub-bar {
+        background-color: #9b030c;
+        color: #fff;
+        padding: 8px 20px;
+        font-weight: 500;
+        margin-top: 70px;
+    }
+
+    .content {
+        padding: 20px 40px;
+        background-color: #f9f9f9;
+        min-height: calc(100vh - 250px);
+    }
+    .custom-header {
+        background: linear-gradient(135deg, #c7151ff7, #600208);
+    }
+
+    .hover-row:hover {
+        background: #f5f9ff !important;
+        transform: scale(1.01);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .card-header h5 {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    .table thead th {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+
+    footer {
+        background-color: #9b030c;
+        color: #fff;
+        text-align: center;
+        padding: 8px 0;
+        font-size: 14px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    table tr th {
+        background-color: #fff;
+        color: #353535;
+        text-align: center;
+    }
+
+    .header-banner {
+        width: 100%;
+        float: left;
+        height: 50px;
+        background: linear-gradient(-145deg, #fff, transparent 60% 40%), linear-gradient(145deg, #fff, transparent 70% 30%), url('images/header.png') left no-repeat;
+        background-size: cover;
+        margin-left: 115px;
+        margin-top: 0;
+        padding: 0;
+    }
+    .dashboard-card {
+        background: linear-gradient(135deg, rgb(68, 212, 198), rgb(0, 150, 136));
+        /*background: linear-gradient(135deg, rgb(208, 39, 159), rgb(136, 14, 79));*/
+        border-radius: 12px;
+        padding: 20px;
+        color: #fff;
+    }
+
+    .dashcard {
+        background: linear-gradient(135deg, rgb(217, 237, 248), rgb(100, 181, 246));
+        border-radius: 12px;
+    }
+
+    .carousel-frame {
+        border: 1px solid #ccc; /* thin light border */
+        padding: 5px;
+        border-radius: 6px;
+        margin-top: 10px;
+    }
+    .table-hover-effect {
+        transition: all 0.3s ease-in-out;
+    }
+
+        .table-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+    /* Circle avatar with initials */
+    .default-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: #6c757d;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: bold;
+        margin: 0 auto;
+        text-transform: uppercase;
+    }
+
+    /* Photo styling */
+    .avatar-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .field-content img {
+        border: 1px solid #4c4a4a;
+        border-radius: 5px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .field-content img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+
+    .hover-zoom {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .hover-zoom:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+    .card-text {
+        font-size: 0.85rem;
+    }
+
+    .text-primary {
+        color: #0d6efd !important;
+    }
+
+    .text-success {
+        color: #28a745 !important;
+        font-weight: 600;
+    }
+    .zoom {
+        transition: transform .2s;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+    }
+    .form-control:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 6px rgba(40, 167, 69, 0.4);
+    }
+
+        .zoom:hover {
+            transform: scale(1.5);
+        }
+    .ps {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #343a40;
+        font-weight: bold;
+    }
+    .G-logo {
+        margin-left: 75px;
+    }
+    .ND {
+        color: #343a40;
+        margin-left: 10px;
+        font-size: 15px;
+    }
+    .ss {
+        color: #160d0d;
+        font-size: 15px;
+    }
+    .btlr {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .btrl {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+    }
+    /*Kamal Css End*/
+
 }
 
 /* ===============End Fonts Awesome CSS======== */

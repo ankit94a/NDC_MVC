@@ -3,59 +3,120 @@
 @{
     ViewBag.Title = "List of Uploaded Items";
 }
-<div class="container  card">
-    <div class="main-card  card">
-        <div class="card-header">
-            @ViewBag.Title
-            <a href="@Url.Action("AlumniArticleEntry","AlumniArticle")" class="btn btn-primary btn-sm pull-right">Add New</a>
+
+<div class="container my-4">
+    <div class="card shadow-lg border-0 rounded-3">
+        <!-- Card Header -->
+        <div class="card-header custom-header d-flex justify-content-between align-items-center text-white rounded-top">
+            <h5 class="mb-0 d-flex align-items-center">
+                <i class="fa fa-file-text-o me-2 ms-2"></i> @ViewBag.Title
+            </h5>
+            <div class="d-flex align-items-center">
+                <a href="@Url.Action("AlumniArticleEntry","AlumniArticle")"
+                   class="btn btn-light btn-sm rounded-pill shadow-sm px-3">
+                    <i class="fa fa-plus me-1"></i> Add New
+                </a>
+            </div>
         </div>
+
+        <!-- Card Body -->
         <div class="card-body">
-            <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Category)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Description)
-                        </th>
-                        <th>
-                            View
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle w-100 mb-0" id="dataGrid">
+                    <thead class="table-light text-center">
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Category)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                @*<a class="btn btn-outline-primary" href="@Url.Action("AlumniArticleEdit", new { id = item.ArticleId })"><i class="fa fa-pencil"></i></a>|*@
-                                @Html.EncodedActionLink("", "AlumniArticleEdit", "AlumniArticle", "Alumni", new { Id = item.ArticleId }, new { @class = "btn btn-outline-primary" }, "fa fa-pencil")
-                                @*<span class="badge badge-primary">@Html.DisplayFor(modelItem => item.iAlumniArticleMedias.Count)</span> &nbsp;*@
-                                @*<a class="btn btn-outline-primary" href="@Url.Action("ShowMediaFiles", new { id = item.ArticleId })" target="_blank"><i class="fa fa-eye"></i></a>*@
-                                @Html.EncodedActionLink("", "ShowMediaFiles", "AlumniArticle", "Alumni", new { Id = item.ArticleId }, new { @class = "btn btn-outline-primary" }, "fa fa-eye")
-                            </td>
+                            <th style="width: 25%;">
+                                <i class="fa fa-tag me-1 text-primary"></i>
+                                @Html.DisplayNameFor(model => model.Category)
+                            </th>
+                            <th style="width: 55%;">
+                                <i class="fa fa-align-left me-1 text-success"></i>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th style="width: 20%;">
+                                <i class="fa fa-cogs me-1 text-danger"></i>
+                                Actions
+                            </th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="hover-row">
+                                <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td class="text-center">
+                                    @Html.EncodedActionLink(" Edit", "AlumniArticleEdit", "AlumniArticle", "Alumni",
+                                        new { Id = item.ArticleId }, new { @class = "btn btn-outline-primary btn-sm rounded-pill me-1" }, "fa fa-pencil")
+                                    @Html.EncodedActionLink(" View", "ShowMediaFiles", "AlumniArticle", "Alumni",
+                                        new { Id = item.ArticleId }, new { @class = "btn btn-outline-success btn-sm rounded-pill" }, "fa fa-eye")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-@section Scripts {
-    <script>
-    LoadJDT('#myTable');
 
-    function Delete(id, event) {
-        var TableId = "#myTable";
-        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
-        DeleteJDTRow(id, event, TableId, Jsonurl)
-    }
+@section Scripts {
+    <script type="text/javascript">
+       $(document).ready(function () {
+    LoadJDT('#dataGrid');
+
+          function LoadJDT(TableId) {
+              oTable = $(TableId).DataTable({
+                  "processing": true,
+                  "order": [[0, "desc"]],
+                  "scrollX": false,
+                  "paging": true,
+                  "lengthChange": true,
+                  "searching": true,
+                  "ordering": true,
+                  "info": true,
+                  "autoWidth": false,
+                  "responsive": true,
+                  "language": {
+                  "search": "Search:"
+                  },
+                  "dom": '<"row mb-2"<"col-sm-6"l><"col-sm-6 text-end"f>>' +
+                         'rt' + '<"row mt-2"<"col-sm-6"i><"col-sm-6"p>>'
+              });
+           }
+
+            $(function () {
+      @if (TempData["SuccessMessage"] != null)
+      {
+          <text>
+          Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: '@TempData["SuccessMessage"]',
+              confirmButtonColor: '#3085d6'
+          });
+          </text>
+      }
+
+      @if (TempData["WarningMessage"] != null)
+      {
+          <text>
+          Swal.fire({
+              icon: 'warning',
+              title: 'Warning',
+              text: '@TempData["WarningMessage"]',
+              confirmButtonColor: '#f0ad4e'
+          });
+          </text>
+      }
+  });
+
+
+          function Delete(id, event) {
+              var TableId = "#dataGrid";
+              var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+              DeleteJDTRow(id, event, TableId, Jsonurl)
+          }
+});
     </script>
 }

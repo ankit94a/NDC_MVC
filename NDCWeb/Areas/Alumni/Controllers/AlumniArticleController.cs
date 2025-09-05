@@ -42,7 +42,7 @@ namespace NDCWeb.Areas.Alumni.Controllers
             }
         }
         [EncryptedActionParameter]
-        public ActionResult AlumniArticleEdit(int id)
+		public ActionResult AlumniArticleEdit(int id)
         {
             ViewBag.GetAlumniArticleCat = CustomDropDownList.GetAlumniArticleCategory();
             using (var uow = new UnitOfWork(new NDCWebContext()))
@@ -58,74 +58,146 @@ namespace NDCWeb.Areas.Alumni.Controllers
                 return View(CreateDto);
             }
         }
-        [HttpPost]
-        public ActionResult AlumniArticleEdit(AlumniArticleUpVM objAlumniArticle, HttpPostedFileBase[] Files)
-        {
-            ViewBag.GetAlumniArticleCat = CustomDropDownList.GetAlumniArticleCategory();
-            string path = ServerRootConsts.ALUMNIARTICLE_ROOT;
-
-            //var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".pdf", ".docx", ".docx", ".xlxs", ".xls", ".pptx", ".ppt", ".zip" };
-
-            objAlumniArticle.iAlumniArticleMedias = new List<AlumniArticleMedia>();
-            foreach (var file in Files)
-            {
-                if (file != null && file.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(file.FileName);
-                    Guid guid = Guid.NewGuid();
-                    //Check File
-                    CheckBeforeUpload fs = new CheckBeforeUpload();
-                    fs.filesize = 3000;
-                    string result = fs.UploadFile(file);
-                    if (string.IsNullOrEmpty(result))
-                    {
-                        AlumniArticleMedia objMediaFile = new AlumniArticleMedia()
-                        {
-                            GuId = guid,
-                            FileName = fileName,
-                            Extension = Path.GetExtension(fileName),
-                            FilePath = path + guid + Path.GetExtension(fileName),
-                            ArticleId = objAlumniArticle.ArticleId
-                        };
-
-                        file.SaveAs(Server.MapPath(objMediaFile.FilePath));
-                        objAlumniArticle.iAlumniArticleMedias.Add(objMediaFile);
-                    }
-                    else
-                    {
-                        this.AddNotification(result, NotificationType.WARNING);
-                    }
-
-                }
-            }
-
-            using (var uow = new UnitOfWork(new NDCWebContext()))
-            {
-                if (objAlumniArticle.iAlumniArticleMedias.Count > 0)
-                {
-                    var removeOldItem = uow.AlumniArticleMediaRepo.Find(x => x.ArticleId == objAlumniArticle.ArticleId).ToList();
-                    if (removeOldItem != null)
-                    {
-                        uow.AlumniArticleMediaRepo.RemoveRange(removeOldItem);
-                        uow.Commit();
-                    }
-                }
-                var AlumniArticle = uow.AlumniArticleRepo.GetById(objAlumniArticle.ArticleId);
-                AlumniArticle.Category = objAlumniArticle.Category;
-                AlumniArticle.Description = objAlumniArticle.Description;
-
-                if (objAlumniArticle.iAlumniArticleMedias.Count > 0)
-                {
-                    AlumniArticle.iAlumniArticleMedias = objAlumniArticle.iAlumniArticleMedias;
-                }
-                uow.Commit();
-                this.AddNotification("Record Saved", NotificationType.SUCCESS);
-                return RedirectToAction("Index");
-            }
-        }
 
 
-        public ActionResult AlumniArticleEntry()
+		[HttpPost]
+		public ActionResult AlumniArticleEdit(AlumniArticleUpVM objAlumniArticle, HttpPostedFileBase[] Files)
+		{
+			ViewBag.GetAlumniArticleCat = CustomDropDownList.GetAlumniArticleCategory();
+			string path = ServerRootConsts.ALUMNIARTICLE_ROOT;
+
+			//var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".pdf", ".docx", ".docx", ".xlxs", ".xls", ".pptx", ".ppt", ".zip" };
+
+			objAlumniArticle.iAlumniArticleMedias = new List<AlumniArticleMedia>();
+			foreach (var file in Files)
+			{
+				if (file != null && file.ContentLength > 0)
+				{
+					var fileName = Path.GetFileName(file.FileName);
+					Guid guid = Guid.NewGuid();
+					//Check File
+					CheckBeforeUpload fs = new CheckBeforeUpload();
+					fs.filesize = 3000;
+					string result = fs.UploadFile(file);
+					if (string.IsNullOrEmpty(result))
+					{
+						AlumniArticleMedia objMediaFile = new AlumniArticleMedia()
+						{
+							GuId = guid,
+							FileName = fileName,
+							Extension = Path.GetExtension(fileName),
+							FilePath = path + guid + Path.GetExtension(fileName),
+							ArticleId = objAlumniArticle.ArticleId
+						};
+
+						file.SaveAs(Server.MapPath(objMediaFile.FilePath));
+						objAlumniArticle.iAlumniArticleMedias.Add(objMediaFile);
+					}
+					else
+					{
+						this.AddNotification(result, NotificationType.WARNING);
+					}
+
+				}
+			}
+
+			using (var uow = new UnitOfWork(new NDCWebContext()))
+			{
+				if (objAlumniArticle.iAlumniArticleMedias.Count > 0)
+				{
+					var removeOldItem = uow.AlumniArticleMediaRepo.Find(x => x.ArticleId == objAlumniArticle.ArticleId).ToList();
+					if (removeOldItem != null)
+					{
+						uow.AlumniArticleMediaRepo.RemoveRange(removeOldItem);
+						uow.Commit();
+					}
+				}
+				var AlumniArticle = uow.AlumniArticleRepo.GetById(objAlumniArticle.ArticleId);
+				AlumniArticle.Category = objAlumniArticle.Category;
+				AlumniArticle.Description = objAlumniArticle.Description;
+
+				if (objAlumniArticle.iAlumniArticleMedias.Count > 0)
+				{
+					AlumniArticle.iAlumniArticleMedias = objAlumniArticle.iAlumniArticleMedias;
+				}
+				uow.Commit();
+				this.AddNotification("Record Saved", NotificationType.SUCCESS);
+				return RedirectToAction("Index");
+			}
+		}
+		//      [HttpPost]
+		//      public ActionResult AlumniArticleEdit(AlumniArticleUpVM objAlumniArticle, HttpPostedFileBase[] Files)
+		//      {
+		//          ViewBag.GetAlumniArticleCat = CustomDropDownList.GetAlumniArticleCategory();
+		//          string path = ServerRootConsts.ALUMNIARTICLE_ROOT;
+
+		//          //var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".pdf", ".docx", ".docx", ".xlxs", ".xls", ".pptx", ".ppt", ".zip" };
+
+		//          objAlumniArticle.iAlumniArticleMedias = new List<AlumniArticleMedia>();
+		//          foreach (var file in Files)
+		//          {
+		//              if (file != null && file.ContentLength > 0)
+		//              {
+		//                  var fileName = Path.GetFileName(file.FileName);
+		//                  Guid guid = Guid.NewGuid();
+		//                  //Check File
+		//                  CheckBeforeUpload fs = new CheckBeforeUpload();
+		//                  fs.filesize = 3000;
+		//                  string result = fs.UploadFile(file);
+		//                  if (string.IsNullOrEmpty(result))
+		//                  {
+		//                      AlumniArticleMedia objMediaFile = new AlumniArticleMedia()
+		//                      {
+		//                          GuId = guid,
+		//                          FileName = fileName,
+		//                          Extension = Path.GetExtension(fileName),
+		//                          FilePath = path + guid + Path.GetExtension(fileName),
+		//                          ArticleId = objAlumniArticle.ArticleId
+		//                      };
+
+		//                      file.SaveAs(Server.MapPath(objMediaFile.FilePath));
+		//                      objAlumniArticle.iAlumniArticleMedias.Add(objMediaFile);
+		//                  }
+		//                  else
+		//                  {
+		//                      this.AddNotification(result, NotificationType.WARNING);
+		//                  }
+
+		//              }
+		//          }
+
+		//          using (var uow = new UnitOfWork(new NDCWebContext()))
+		//          {
+		//              if (objAlumniArticle.iAlumniArticleMedias.Count > 0)
+		//              {
+		//                  var removeOldItem = uow.AlumniArticleMediaRepo.Find(x => x.ArticleId == objAlumniArticle.ArticleId).ToList();
+		//                  if (removeOldItem != null)
+		//                  {
+		//                      uow.AlumniArticleMediaRepo.RemoveRange(removeOldItem);
+		//                      uow.Commit();
+		//                  }
+		//              }
+		//              var AlumniArticle = uow.AlumniArticleRepo.GetById(objAlumniArticle.ArticleId);
+		//              AlumniArticle.Category = objAlumniArticle.Category;
+		//              AlumniArticle.Description = objAlumniArticle.Description;
+
+		//              if (objAlumniArticle.iAlumniArticleMedias.Count > 0)
+		//              {
+		//                  AlumniArticle.iAlumniArticleMedias = objAlumniArticle.iAlumniArticleMedias;
+		//              }
+		//		//uow.Commit();
+		//		//this.AddNotification("Record Saved", NotificationType.SUCCESS);
+		//		//return RedirectToAction("Index");
+
+		//		uow.Commit();
+		//		TempData["SuccessMessage"] = "Record Saved Successfully!";
+		//		return RedirectToAction("Index");
+
+		//	}
+		//}
+
+
+		public ActionResult AlumniArticleEntry()
         {
             using (var uow = new UnitOfWork(new NDCWebContext()))
             {
@@ -135,59 +207,60 @@ namespace NDCWeb.Areas.Alumni.Controllers
                 return View(objAlumniArticlevmNew);
             }
         }
-        [HttpPost]
-        public async Task<ActionResult> AlumniArticleEntry(AlumniArticleCrtVM objAlumniArticlevm, HttpPostedFileBase[] Files)
-        {
-            ViewBag.GetAlumniArticleCat = CustomDropDownList.GetAlumniArticleCategory();
-            string path = ServerRootConsts.ALUMNIARTICLE_ROOT;
-            objAlumniArticlevm.iAlumniArticleMedias = new List<AlumniArticleMedia>();
-            foreach (var file in Files)
-            {
-                if (file != null && file.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(file.FileName);
-                    Guid guid = Guid.NewGuid();
+		[HttpPost]
+		public async Task<ActionResult> AlumniArticleEntry(AlumniArticleCrtVM objAlumniArticlevm, HttpPostedFileBase[] Files)
+		{
+			ViewBag.GetAlumniArticleCat = CustomDropDownList.GetAlumniArticleCategory();
+			string path = ServerRootConsts.ALUMNIARTICLE_ROOT;
+			objAlumniArticlevm.iAlumniArticleMedias = new List<AlumniArticleMedia>();
+			foreach (var file in Files)
+			{
+				if (file != null && file.ContentLength > 0)
+				{
+					var fileName = Path.GetFileName(file.FileName);
+					Guid guid = Guid.NewGuid();
 
-                    //Check File
-                    CheckBeforeUpload fs = new CheckBeforeUpload();
-                    fs.filesize = 3000;
-                    string result = fs.UploadFile(file);
-                    if (string.IsNullOrEmpty(result))
-                    {
-                        AlumniArticleMedia objMediaFile = new AlumniArticleMedia()
-                        {
-                            GuId = guid,
-                            FileName = fileName,
-                            Extension = Path.GetExtension(fileName),
-                            FilePath = path + guid + Path.GetExtension(fileName)
-                        };
+					//Check File
+					CheckBeforeUpload fs = new CheckBeforeUpload();
+					fs.filesize = 3000;
+					string result = fs.UploadFile(file);
+					if (string.IsNullOrEmpty(result))
+					{
+						AlumniArticleMedia objMediaFile = new AlumniArticleMedia()
+						{
+							GuId = guid,
+							FileName = fileName,
+							Extension = Path.GetExtension(fileName),
+							FilePath = path + guid + Path.GetExtension(fileName)
+						};
 
-                        file.SaveAs(Server.MapPath(objMediaFile.FilePath));
-                        objAlumniArticlevm.iAlumniArticleMedias.Add(objMediaFile);
-                    }
-                    else
-                    {
-                        this.AddNotification(result, NotificationType.WARNING);
-                    }
+						file.SaveAs(Server.MapPath(objMediaFile.FilePath));
+						objAlumniArticlevm.iAlumniArticleMedias.Add(objMediaFile);
+					}
+					else
+					{
+						this.AddNotification(result, NotificationType.WARNING);
+					}
 
-                }
-            }
+				}
+			}
 
-            using (var uow = new UnitOfWork(new NDCWebContext()))
-            {
-                var config = new MapperConfiguration(cfg =>
-                {
-                    cfg.CreateMap<AlumniArticleCrtVM, AlumniArticle>();
-                });
-                IMapper mapper = config.CreateMapper();
-                AlumniArticle CreateDto = mapper.Map<AlumniArticleCrtVM, AlumniArticle>(objAlumniArticlevm);
-                uow.AlumniArticleRepo.Add(CreateDto);
-                await uow.CommitAsync();
-                this.AddNotification("Record Saved", NotificationType.SUCCESS);
-                return RedirectToAction("Index");
-            }
-        }
-        [HttpPost]
+			using (var uow = new UnitOfWork(new NDCWebContext()))
+			{
+				var config = new MapperConfiguration(cfg =>
+				{
+					cfg.CreateMap<AlumniArticleCrtVM, AlumniArticle>();
+				});
+				IMapper mapper = config.CreateMapper();
+				AlumniArticle CreateDto = mapper.Map<AlumniArticleCrtVM, AlumniArticle>(objAlumniArticlevm);
+				uow.AlumniArticleRepo.Add(CreateDto);
+				await uow.CommitAsync();
+				this.AddNotification("Record Saved", NotificationType.SUCCESS);
+				return RedirectToAction("Index");
+			}
+		}
+
+		[HttpPost]
         public JsonResult DocumentUpload()
         {
             string ROOT_PATH = ServerRootConsts.ALUMNIARTICLE_ROOT;
@@ -235,32 +308,33 @@ namespace NDCWeb.Areas.Alumni.Controllers
                 //return PartialView("_Showmedia", showMediaDto);
             }
         }
-        [HttpPost]
-        public async Task<JsonResult> DeleteOnConfirm(int id)
-        {
-            using (var uow = new UnitOfWork(new NDCWebContext()))
-            {
-                var DeleteItem = await uow.AlumniArticleRepo.GetByIdAsync(id);
-                if (DeleteItem == null)
-                {
-                    return Json(data: "Not Deleted", behavior: JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    foreach (var item in DeleteItem.iAlumniArticleMedias)
-                    {
-                        //String path = Path.Combine(Server.MapPath("~/App_Data/Upload/"), item.GuId + item.Extension);
-                        String path = Server.MapPath(item.FilePath);
-                        if (System.IO.File.Exists(path))
-                        {
-                            System.IO.File.Delete(path);
-                        }
-                    }
-                    uow.AlumniArticleRepo.Remove(DeleteItem);
-                    await uow.CommitAsync();
-                    return Json(data: "Deleted", behavior: JsonRequestBehavior.AllowGet);
-                }
-            }
-        }
-    }
+		[HttpPost]
+		public async Task<JsonResult> DeleteOnConfirm(int id)
+		{
+			using (var uow = new UnitOfWork(new NDCWebContext()))
+			{
+				var deleteItem = await uow.AlumniArticleRepo.GetByIdAsync(id);
+				if (deleteItem == null)
+				{
+					return Json("NotFound", JsonRequestBehavior.AllowGet);
+				}
+
+				// Delete associated files
+				foreach (var item in deleteItem.iAlumniArticleMedias.ToList())
+				{
+					string path = Server.MapPath(item.FilePath);
+					if (System.IO.File.Exists(path))
+					{
+						System.IO.File.Delete(path);
+					}
+				}
+
+				uow.AlumniArticleRepo.Remove(deleteItem);
+				await uow.CommitAsync();
+
+				return Json("Deleted", JsonRequestBehavior.AllowGet);
+			}
+		}
+
+	}
 }

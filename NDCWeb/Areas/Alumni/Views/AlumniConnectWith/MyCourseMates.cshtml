@@ -3,91 +3,133 @@
 @{
     ViewBag.Title = "My Course Members";
 }
-<div class="container mt-4">
-    <div class="panel-heading border-bottom">
-        <h3 class="h3 text-primary">@ViewBag.Title</h3>
-    </div>
-    @using (Html.BeginForm("MyCourseMates", "AlumniConnectWith", FormMethod.Post))
-    {
-        <div class="card-block">
-            <div class='form-group row'>
-                <div class="col-md-8">
-                    <label class="col-form-label">Search Text</label>
-                    <input type="text" name="searchText" placeholder="Search by Name, Email or MobileNo " class="form-control" required />
-                </div>
-                <!--<div class="col-md-3">
-                    <label class="col-form-label">Search Category</label>
-                    <select class="form-control" id="searchBy" required name="searchBy">
-                        <option value="FN">Name</option>
-                        <option value="M">Mobile</option>
-                        <option value="E">Email</option>
-                    </select>-->
-                    @*@Html.DropDownList("searchBy", new List<SelectListItem> { new SelectListItem { Text = "Name", Value = "N" }, new SelectListItem { Text = "Mobile No", Value = "M" }, new SelectListItem { Text = "Email", Value = "E" } }, "--Select--", new { @class = "form-control", @name = "searchBy" })*@
-                <!--</div>-->
-                <div class="col-md-2">
-                    <label class="col-form-label col-md-4">&nbsp;.</label>
-                    <button type="submit" value="OK" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Search </button>
+
+@*<style type="text/css">
+    .table-hover-effect {
+        transition: all 0.3s ease-in-out;
+    }
+        .table-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+    .default-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: #6c757d;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: bold;
+        margin: 0 auto;
+        text-transform: uppercase;
+    }
+
+    .avatar-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+</style>*@
+
+<div class="container">
+    <div class="card shadow-lg border rounded-3">
+        <div class="card-header custom-header fw-bold py-2 border-bottom btlr">
+            <h3 class="h3 text-white ms-3">@ViewBag.Title</h3>
+        </div>
+        @using (Html.BeginForm("MyCourseMates", "AlumniConnectWith", FormMethod.Post))
+        {
+            <div class="card-block">
+                <div class="form-group row align-items-end">
+                    <div class="col-md-8">
+                        <label class="form-label">Search Text</label>
+                        <input type="text" name="searchText" placeholder="Search by Name, Email or Mobile No" class="form-control" required />
+                    </div>
+                    <div class="col-md-4 d-flex">
+                        <button type="submit" value="OK" class="btn btn-danger btn-sm align-self-end ms-2">
+                            <i class="fa fa-search"></i> Search
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-    <div class="card-body">
-        @foreach (var item in Model)
-        {
-            <table class="table table-info">
-                <tr>
-                    <td rowspan="6" width="180">
-                        @if (item.AlumniPhoto != null && item.AlumniPhoto != "#")
-                        {
-                            <img src="@Url.Content(item.AlumniPhoto)" height="120" alt="@item.FirstName @item.Surname" />
-                        }
-                    </td>
-                </tr>
-                <tr>
-                    <td width="180">Full Name</td>
-                    <td>@item.FirstName @item.Surname</td>
-                </tr>
-                <tr>
-                    <td>Country / Service</td>
-                    <td>@item.Country @item.Branch</td>
-                </tr>
-                <tr>
-                    <td>Course, Year</td>
-                    <td>
-                        @if (item.InStepCourseId == null)
-                        {
-                            <span>NDC @item.CourseSerNo @item.NdcEqvCourse (@item.YearDone)</span>
-                        }
-                        else
-                        {
-                            <span>@ViewBag.instepcourse</span>
-                        }
-                                    </td>
-                    @*@item.YearDone @item.CourseYear*@
-                </tr>
-                <tr>
-                    <td> Mobile No</td>
-                    <td> 
-                      @if (!string.IsNullOrEmpty(item.MobileNo))
-                      {
-                         <span>@AESEncrytDecry.MaskMobile(item.MobileNo).ToString()</span>
-                      }                    
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email Id</td>
-                    <td>
-                        @if (!string.IsNullOrEmpty(item.Email))
-                        {
-                           <span>@AESEncrytDecry.MaskEmail(item.Email).ToString()</span>
-                        }
-                    </td>
-                </tr>
-            </table>
-            <br />
+
         }
-    </div>
-    <div class="panel-footer mb-4 text-center">
-        <a href="/alumni/home/" class="btn btn-primary btn-sm"> Back</a>
+        <div class="card-body">
+            @foreach (var item in Model)
+            {
+                <table class="table table-bordered table-striped table-info align-middle shadow table-hover-effect">
+                    <tr>
+                        <td rowspan="6" width="180" class="text-center align-middle">
+                            @if (item.AlumniPhoto != null && item.AlumniPhoto != "#")
+                            {
+                                <img src="@Url.Content(item.AlumniPhoto)" height="120" width="120" alt="@item.FirstName @item.Surname" class="img-thumbnail rounded-circle avatar-img"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+
+                                <!-- Fallback initials (hidden until image fails) -->
+                                <div class="default-avatar" style="display:none;">
+                                    @((!string.IsNullOrEmpty(item.FirstName) ? item.FirstName.Substring(0,1) : ""))
+                                    @((!string.IsNullOrEmpty(item.Surname) ? item.Surname.Substring(0,1) : ""))
+                                </div>
+                            }
+                            else
+                            {
+                                <!-- Direct initials if no image path -->
+                                <div class="default-avatar">
+                                    <img src="~/Component/images/avatars/default-avatar.png" height="120" width="120" alt="No Photo" class="img-thumbnail rounded-circle" />
+                                </div>
+                            }
+                        </td>
+                        <td width="180"><strong>Full Name</strong></td>
+                        <td>@item.FirstName @item.Surname</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Country / Service</strong></td>
+                        <td>@item.Country @item.Branch</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Course, Year</strong></td>
+                        <td>
+                            @if (item.InStepCourseId == null)
+                            {
+                                <span>NDC @item.CourseSerNo @item.NdcEqvCourse (@item.YearDone)</span>
+                            }
+                            else
+                            {
+                                <span>@ViewBag.instepcourse</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobile No</strong></td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.MobileNo))
+                            {
+                                <span>@AESEncrytDecry.MaskMobile(item.MobileNo).ToString()</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email Id</strong></td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.Email))
+                            {
+                                <span>@AESEncrytDecry.MaskEmail(item.Email).ToString()</span>
+                            }
+                        </td>
+                    </tr>
+                </table>
+
+            }
+        </div>
+        <div class="panel-footer mb-4 text-center">
+            <a class="btn btn-secondary px-4 mb-3" href="/alumni/home/">
+                <i class="bi bi-arrow-left-circle"></i> Back
+            </a>
+        </div>
     </div>
 </div>

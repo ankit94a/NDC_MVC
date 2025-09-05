@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = "DynamicPL1";
 }
+
 <section class="">
     <div class="container mt-1">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href='@Url.Action("Index","Home")'>Home</a></li>
-            <li class="breadcrumb-item"><a href="#"> @ViewBag.Heading</a></li>
+        <ol class="breadcrumb shadow custom-header">
+            <li class="breadcrumb-item"><a href='@Url.Action("Index","Home")' class="text-white">Home</a></li>
+            <li class="breadcrumb-item"><a href="#" class="text-white"> @ViewBag.Heading</a></li>
         </ol>
     </div>
 </section>
