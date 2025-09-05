@@ -1,0 +1,54 @@
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csprojAssemblyReference.cache
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.pdb
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.dll
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.pdb
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.dll
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.pdb
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.dll
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.pdb
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.AssemblyReference.cache
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.CoreCompileInputs.cache
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.dll
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.pdb
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.dll
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.pdb
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.dll
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.pdb
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.pdb
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.Common.pdb
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\NTierDGR.Common.dll.config
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\AngleSharp.Css.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\AngleSharp.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Buffers.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Collections.Immutable.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Memory.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Numerics.Vectors.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Text.Encoding.CodePages.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\AngleSharp.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\AngleSharp.Css.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Buffers.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Collections.Immutable.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Memory.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Numerics.Vectors.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Release\System.Text.Encoding.CodePages.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Release\NTierDGR.1E10160B.Up2Date

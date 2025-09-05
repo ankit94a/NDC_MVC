@@ -1,0 +1,33 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CrsMbrFamilyBirthdayAlertVM>
+@{
+    var CURRENTDATE = DateTime.Now.ToString("M");
+}
+<table>
+    <tr class="bg-danger text-white">
+        <td colspan="4"> <span class="card-title"><i class="fa fa-gift"></i> Family Member Birthday</span></td>
+    </tr>
+    <tr>
+        <td>Full Name</td>
+        <td>Relation</td>
+        <td>Member Name</td>
+        <td>Member Birthday</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Relation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <strong>@CURRENTDATE</strong>
+            </td>
+
+        </tr>
+    }
+</table>

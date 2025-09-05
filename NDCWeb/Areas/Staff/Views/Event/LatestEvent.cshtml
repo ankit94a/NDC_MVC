@@ -1,0 +1,46 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.LatestEventVM>
+@{
+    ViewBag.Title = "Latest Event";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+<div class="card shadow mt-4 mb-4">
+    <div class="card-header">
+        <h4 class="text-center"><u><b>@ViewBag.Title</b></u></h4>
+    </div>
+    <div class="card-body">
+        <table class="table w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Event Name
+                    </th>
+                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EventName)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Host/Guest Detail", "LatestEventMembers", new { uId = item.EventId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="card-footer text-center bg-white">
+            @*<button class="btn btn-success btn-sm">Download</button>*@
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        LoadJDT('#myTable');
+
+    </script>
+}

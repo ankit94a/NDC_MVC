@@ -1,0 +1,85 @@
+﻿@model NDCWeb.Areas.Member.View_Models.FeedbackModuleCreateVM
+
+@{
+    ViewBag.Title = "Add Module Feedback";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mb-4 mt-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.SubjectId, (IEnumerable<SelectListItem>)ViewBag.Course, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.CoordChairperson, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CoordChairperson, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CoordChairperson, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <p class="card-title">1.       Lectures (Topics) for Deletion/Addition (Indicate a minimum of two each - one topic for deletion for every topic proposed for addition) </p>
+                    <div class="form-group col-md-12">
+                        <b> <label for="TopicForDelete" class="control-label">Deletion</label></b>
+                        @Html.TextAreaFor(model => model.TopicForDelete, htmlAttributes: new { @class = "form-control editorHtml", rows = "5", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.TopicForDelete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <b> <label for="TopicForAdition" class="control-label">Addition</label></b>
+                        @Html.TextAreaFor(model => model.TopicForAdition, htmlAttributes: new { @class = "form-control editorHtml", rows = "5", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.TopicForAdition, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <b> <label for="Suggestions" class="control-label">2.      Suggestion on books, periodicals, articles and other study materials</label></b>
+                        @Html.TextAreaFor(model => model.Suggestions, htmlAttributes: new { @class = "form-control editorHtml", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.Suggestions, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group  col-md-12">
+                        <b> <label for="SuggestChanges" class="control-label">3.      Suggested changes in framing of IAG Assignments (including changes of IAG Assignments)</label></b>
+                        @Html.TextAreaFor(model => model.SuggestChanges, htmlAttributes: new { @class = "form-control editorHtml", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.SuggestChanges, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <b> <label for="SuggestionOther" class="control-label">4.      Any other Suggestion?</label></b>
+                        @Html.TextAreaFor(model => model.SuggestionOther, htmlAttributes: new { @class = "form-control editorHtml", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.SuggestionOther, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*<div class="form-row">
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.CommentsAndRecomedation, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextAreaFor(model => model.CommentsAndRecomedation, htmlAttributes: new { @class = "form-control editorHtml disabled", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.CommentsAndRecomedation, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            </div>
+            <div class="card-footer">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    @Html.ActionLink("Back to List", "modulefeedback", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

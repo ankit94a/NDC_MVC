@@ -1,0 +1,52 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CountryVisitIndxVM>
+<table id="tblCountryVisit" class="table table-condensed table-bordered">
+    <thead>
+        <tr class="bg-2 text-white">
+            <td colspan="5">Countries Visited</td>
+        </tr>
+        <tr class="bg-light">
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Country)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Visit)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Duration) </td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Purpose) </td>
+            <td>Remove</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Country)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Visit)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Duration)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Purpose)</td>
+                <td>
+                    <button type="button" class="btn btn-transparent text-danger btn-sm" onclick="removeCountryVisit(@item.CountryVisitId, this)"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+        }
+        <tr class="bg-light text-center">
+            <td colspan="5"><a class="btn btn-sm btn-primary text-white" data-toggle="tab" onclick="serviceEditClick('CountryVisitPartial')">Add more</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    function removeCountryVisit(id, event) {
+        $.ajax({
+            type: 'post',
+            url: '/api/courseMembers/CountryVisitDelete/' + id,
+            datatype: 'json',
+            success: function (data, textStatus, xhr) {
+                if (textStatus === 'success') {
+                    $(event).closest("tr").remove();
+                }
+            },
+            error: function () {
+                alert('Operation Failed!')
+            }
+        });
+    }
+</script>
+
+

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<NDCWeb.Areas.Admin.View_Models.StaffMasterIndxVM>
+
+@{
+    ViewBag.Title = "List of Staff";
+}
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Staff (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","StaffMaster")" class="btn-shadow mb-3 mt-0 btn btn-primary">Create Staff</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StaffId)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Rank")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Appointment")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Decoration)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PostingOut)
+                    </th>
+
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StaffId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ranks.RankName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Faculties.FacultyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Decoration)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostingOut)
+                        </td>
+
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.StaffId })"><i class="fa fa-edit"></i></a>
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.StaffId, this)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

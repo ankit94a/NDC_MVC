@@ -1,0 +1,136 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.MenuSortOrderCrtVM
+
+@{
+    ViewBag.Title = "Manage Menu Appearence";
+
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card  card">
+            <div class="card-header heading3">
+                <h4>Manage Menu Appearence</h4>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    <div class="row">
+                        @Html.LabelFor(model => model.MenuArea, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownList("MenuArea", (IEnumerable<SelectListItem>)ViewBag.UrlArea, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MenuArea, "", new { @class = "text-danger" })
+                        </div>
+                        @Html.LabelFor(model => model.ParentId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-4">
+                            @Html.DropDownList("Menu_Id", new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="col-sm-3">
+                                @Html.DropDownList("Menu_Id", (IEnumerable<SelectListItem>)ViewBag.menus, "Select Parent Menu", htmlAttributes: new { @class = "dropdown-toggle-split dropdown-toggle btn btn-warning" })
+                                @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
+                            </div>*@
+                    </div>
+                    <hr />
+                    <div class="col-md-8">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <table id="tblLocations" class="table table-borderless">
+                            @*<thead>
+                                    <tr>
+                                        <th style="visibility:hidden;width:1px">Sr</th>
+                                        <th style="visibility:hidden;width:1px">ID</th>
+                                        <th style="visibility:hidden;width:1px">Location</th>
+                                        <th style="visibility:hidden;width:1px">Preference</th>
+                                    </tr>
+                                </thead>*@
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" value="Update Sorting" class="mb-2 mr-2 btn btn-primary" />
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#MenuArea').change(function () {
+                loadMenus();
+                let tablesTb = $('#tblLocations tbody');
+                tablesTb.empty();
+            });
+        });
+        $(document).ready(function () {
+            $("#Menu_Id").change(function () {
+                GetSortDataTbl();
+            })
+        })
+        function loadMenus() {
+            $('#Menu_Id').empty();
+            $.ajax({
+                type: 'get',
+                url: '/api/menuMasters/GetMenuWithParent/menuArea/' + $('#MenuArea').val(),
+                //url: '@Url.Action("GetParentMenus")',
+                data: { area: $('#MenuArea').val() },
+                datatype: 'json',
+                success: function (menus) {
+                    $.each(menus, function (i, menu) {
+                        $('#Menu_Id').append('<option value="' + menu.Value + '">' + menu.Text + '</option>');
+                    });
+                },
+                error: function () {
+                    alert('Server Not Found');
+                }
+            });
+        }
+        function GetSortDataTbl() {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetMenuSortData")',
+                dataType: "JSON",
+                data: { menuId: $("#Menu_Id").val(), menuArea: $("#MenuArea").val() },
+                success: function (data) {
+                    let tablesTb = $('#tblLocations tbody');
+                    tablesTb.empty();
+                    let a = 0;
+                    $.each(data, function (i, menudt) {
+                        a++;
+                        tablesTb.append('<tr><td style="visibility:hidden;">' + a.toString() + '</td><td style="visibility:hidden;">' + menudt.MenuId + '<input type="hidden;" name="menuIds" value=' + menudt.MenuId + '></input></td><td style="cursor: move;border-style: dotted; !important" class="main-card mb-1 card">' + menudt.MenuName + '</td><td style="visibility:hidden;">' + menudt.SortOrder + '</td></tr>');
+                    });
+                    SortCss();
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve Data.');
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function SortCss() {
+            $("#tblLocations").sortable({
+                //items: 'tr:not(tr:first-child)',
+                items: 'tr:not(thead tr)',
+                cursor: 'pointer',
+                axis: 'y',
+                dropOnEmpty: false,
+                start: function (e, ui) {
+                    ui.item.addClass("selected");
+                },
+                stop: function (e, ui) {
+                    ui.item.removeClass("selected");
+                },
+                receive: function (e, ui) {
+                    $(this).find("tbody").append(ui.item);
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,66 @@
+﻿
+<div class="app-sidebar__inner">
+    <ul class="vertical-nav-menu">
+        <li class="app-sidebar__heading">Dashboards</li>
+        <li>
+            <a href="@Url.Action("Index","AdminHome")" class="mm-active">
+                <i class="metismenu-icon pe-7s-rocket"></i>
+                Admin Dashbord
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="metismenu-icon pe-7s-car"></i>
+                Visitors Registrations
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("ArtistList", "Users")">
+                        <i class="metismenu-icon">
+                        </i>Art Track
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("EntrepreneurList", "Users")">
+                        <i class="metismenu-icon">
+                        </i>Entrepreneurs
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ExpertList", "Users")">
+                        <i class="metismenu-icon">
+                        </i>Experts
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("TalentBlogList", "Users")">
+                        <i class="metismenu-icon">
+                        </i>Talent Blogs
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("videogallery", "Users")">
+                        <i class="metismenu-icon">
+                        </i>Media Entries
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("OrderList", "ProductItem")">
+                        <i class="metismenu-icon">
+                        </i>Demands
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ContactUsList", "Users")">
+                        <i class="metismenu-icon">
+                        </i>Contact Us Feedback
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+

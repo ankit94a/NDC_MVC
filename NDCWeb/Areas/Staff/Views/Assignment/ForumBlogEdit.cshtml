@@ -1,0 +1,74 @@
+﻿@model NDCWeb.Areas.Member.View_Models.ForumBlogUpVM
+
+@{
+    ViewBag.Title = "Edit Work Items";
+}
+<div class="container mt-4">
+    @using (Html.BeginForm("ForumBlogEdit", "Assignment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ForumBlogId)
+            <div class="card mt-4  mb-4">
+                <div class="card-header" style="background-color:#fff">
+                    @ViewBag.Title
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <input type="hidden" name="IsReaded" value="Y" />
+                            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.GetForumBlogCat, "-- Select --", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.StaffId, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("StaffId", (IEnumerable<SelectListItem>)ViewBag.Staff, "-- Select --", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="Files" name="Files" class="control-label">Browse</label>
+                            <div class="col-md-10">
+                                <input id="Files" type="file" name="Files" multiple class="uploadify-button" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Remarks/Comments (if any)</label>
+                            @Html.TextAreaFor(model => model.StaffRemark, htmlAttributes: new { @class = "form-control editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                            @Html.ValidationMessageFor(model => model.StaffRemark, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("Status", (IEnumerable<SelectListItem>)ViewBag.Status, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a class="btn btn-primary" href="@Url.Action("Index")">Back to List</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function docValidateEdit(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx', 'txt', 'xlsx', 'ppt', 'zip'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+        }
+    </script>
+}

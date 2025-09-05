@@ -1,0 +1,19 @@
+﻿
+@model IEnumerable<NDCWeb.Areas.Member.View_Models.MarriageAnniversaryAlertVM>
+
+<table>
+    <tr class="bg-success text-white">
+        <td colspan="4"> <span class="card-title"><i class="fa fa-gift"></i>  Marriage Anniversary</span></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.DOMarriage)
+            </td>*@
+        </tr>
+    }
+</table>

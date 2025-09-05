@@ -1,0 +1,483 @@
+﻿@{
+    ViewBag.Title = "FAQs";
+}
+<style>
+    .field-content img {
+        border: 2px solid #4c4a4a;
+    }
+</style>
+<style>
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+        .active, .accordion:hover {
+            background-color: #ccc;
+            color: #fff;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+    .active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+        .panel table {
+            border: none !important;
+        }
+
+            .panel table tr:nth-child(even) {
+                background: #fff !important;
+                border: none !important;
+            }
+
+        .panel td {
+            border: none !important;
+            font-size: 17px;
+        }
+
+        .panel span {
+            margin-left: 24px
+        }
+</style>
+
+<div id="skipCont" class="wrapper"></div>
+<div class="ndc-bg">
+    @*<section class="wrapper hero-wrapper inner-hero">
+            <img class="img-responsive" src="~/images/banner.jpg">
+        </section>*@
+    <div class="container bg-white">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href='@Url.Action("Index","Home")'>Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">@ViewBag.Title</li>
+                @*<li class="breadcrumb-item"><a href="#">@ViewBag.Heading</a></li>*@
+            </ol>
+        </nav>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="content-area">
+                    @*<div class="text-left">
+                            <h2>@ViewBag.Title1</h2>
+                        </div>*@
+                    <div class="clearfix"></div>
+                    <div class="field-content">
+                        <h2 style="text-align: center; margin-top: -19px">FAQs</h2>
+                        <button class="accordion"><strong>Research Coord</strong> </button>
+                        <div class="panel">
+                            <table>
+                                <tr>
+                                    <td style="width:8%">Q.1</td>
+                                    <td>Can officers apply for a research programmes other than the regular NDC course?</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Ans :
+                                    </td>
+                                    <td>Yes, the NDC conducts a Research Fellowship Programme in coordination with the three Service HQs to ensure synergy between NDC and the three services towards national security and strategy studies. Officers may carry out research at NDC either on posting or on Study leave</td>
+                                <tr>
+                                    <td>
+                                        Q.2
+                                    </td>
+                                    <td>
+                                        What is the number of vacancies for Research Fellowship?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>As authorised, only one officer from each service against a total of three vacancies is allocated for Research Fellowship at NDC.</td>
+                                </tr>
+                                <tr>
+                                    <td>Q.3 </td>
+                                    <td>Who can apply for the fellowship programme?</td>
+                                </tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>Any officer of the rank of Brig/equivalent officer. In the absence of a suitable candidate in this rank, officers of the rank of Colonels/equivalent having propensity for research, by the respective personnel branches of the three services (MS, COP and AOP as applicable).</td>
+                                </tr>
+                                <tr>
+                                    <td>Q.4 </td>
+                                    <td>What is the duration of the fellowship programme?</td>
+                                </tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td> The Research Fellowship is for a period of 12-24 months.</td>
+                                </tr>
+                                <tr>
+                                    <td>Q.5 </td>
+                                    <td> What are the criteria for selection for the fellowship programme?</td>
+                                </tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>The criteria of selection are decided by the respective service HQ, however, the following is mandated:-</td>
+                                </tr>
+                                <tr>
+
+                                    <td></td>
+                                    <td>(a) <span>Preference to be given to NDC alumni. Only in case of non-availability would non-alumni officers be nominated.</span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>(b)<span>Residual service of 3-5 years.</span></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>(c)<span>Any officer of the rank of Brig/equivalent officer. In the absence of a suitable candidate in this rank, officers of the rank of Colonels/equivalent may be considered.</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Q.6 </td>
+                                    <td>When and where to apply?</td>
+                                </tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td> Desirous applicants should apply to respective personnel branches of the three services (MS, COP and AOP as applicable)by 30 Jun for fellowship commencement the following year.</td>
+                                </tr>
+                                <tr>
+                                    <td>Q.7 </td>
+                                    <td>Does the fellowship programme grant an M.Phil/PhD?</td>
+                                </tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td> No</td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <button class="accordion"><strong>Training</strong></button>
+                        <div class="panel">
+                            <table>
+                                <tr>
+                                    <td style="width:8%">Q.1 </td>
+                                    <td> How many courses are conducted at NDC?</td>
+                                </tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>NDC conduct only one course ‘National Security and Strategic Studies’ annually.</td>
+                                </tr>
+                                <tr>
+                                    <td>Q.2 </td>
+                                    <td>Who all are eligible to attend/apply for the course?</td>
+                                </tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>Only serving officers (Brigadier equivalent) from Army, Navy, Air Force and Friendly Foreign Countries & Joint Secretary/Director equivalent officers from Indian Civil Services are eligible for the course.</td>
+                                </tr>
+                                <tr>
+                                    <td>Q.3 </td>
+                                    <td> What is duration of the course?</td>
+                                </tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>47 Weeks.</td>
+                                </tr>
+                                <tr>
+                                    <td>Q.4 </td>
+                                    <td>What is the qualification awarded on completion of the course?</td>
+                                </tr>
+                                <tr><td>Ans :</td><td>On successful completion of the course the members are awarded a parchment and symbol ‘ndc’.</td>
+                            </table>
+                        </div>
+                        <button class="accordion"><strong>IT & Communication</strong></button>
+                        <div class="panel">
+                            <table>
+                                <tr><td style="width:8%">Q.1 <td>How to Register in NDC website?</td></tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>
+                                        Open Url:- https://ndc.nic.in. Click on Course participant login, go to new registration. Fill up the registration form. Login credentials will be shared post verification at College
+                                    </td>
+                                </tr>
+                                <tr><td></td><td>(a)Click on Course participant login, go to new registration.</td></tr>
+                                <tr><td>Q.2 <td>How to login in NDC website?</td></tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>
+                                        There are three type of login available on NDC website.  Members to login as per the applicable
+                                        credentials  Details of  login are as under:-
+                                    </td>
+                                </tr>
+                                <tr><td></td><td>(a)Course participant.</td></tr>
+                                <tr><td></td><td>(b)Faculty & staff.</td></tr>
+                                <tr><td></td><td>(c)Alumni.</td></tr>
+                                <tr><td>Q.3 <td>Are laptops provided to all course members by the college?</td></tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>
+                                        All Course members are issued with laptops for the duration of course only.
+                                        Any course member holding any official laptop from previous offices/ departments will be required to provide its details to the College.
+                                    </td>
+                                </tr>
+                                <tr><td>Q.4 <td>How do I install utility software(s) in the issued laptops?</td></tr>
+                                <tr><td>Ans :</td><td>Laptops are pre-installed with all types of utility software. For installation of any other utility software, course participants are required to bring their laptops to GSO (Systems) Office.</td></tr>
+                                <tr><td>Q.5 <td>Does Course members will be provided with admin rights for installing software’s?</td></tr>
+                                <tr><td>Ans :</td><td>No. For installation of any additional licensed software, a request is to be initiated and post approval at College, the same will be facilitated at College by IT & Comn section.</td></tr>
+                                <tr><td>Q.6 <td>Does the IT Team help to manage IT assets including hardware & software?</td></tr>
+                                <tr><td>Ans :</td><td>Yes, The IT Team takes a proactive approach to manage the IT assets including life cycle of hardware and ensuring updated licensing and patching of all software.</td></tr>
+                                <tr><td>Q.7 <td>Is there a facility to provide Internet and Civil telephone connection?</td></tr>
+                                <tr><td>Ans :</td><td>Yes. Facility can be availed through service providers on payment basis.</td></tr>
+                                <tr><td></td><td>(a) Internet and MTNL landline number will be provided by this college to ITEC Officers. Request can be raised through Raksha Bhawan reception</td></tr>
+                                <tr><td></td><td>(b) Internet with civil telephone by Sanjay Cables.</td></tr>
+                                <tr><td></td><td>(c) FTTH Internet and MTNL connection by Mr. Amit at Vikram Vihar.</td></tr>
+                                <tr><td>Q.8 </td><td>Is there any provision for reimbursement of residential tele and internet bills through College?</td></tr>
+                                <tr><td>Ans :</td><td>Yes. There is provision for reimbursement of residential telephone and internet bills for Indian Army officers only through IT & Comn section.  All other officers are to process their reimbursement telephone & internet bills through respective organisation’s.</td></tr>
+                            </table>
+                        </div>
+                        @*<button class="accordion"><strong>University Division</strong></button>*@
+                        <div class="panel">
+                           @*<table>
+                                <tr><td style="width:8%">Q.1</td><td>Can I apply for M.Phil degree through NDC?</td></tr>
+                                <tr><td>Ans :</td><td>You must be on the posted strength of the NDC or an Alumni.</td></tr>
+                                <tr><td>Q.2</td><td>What is the minimum eligibility for applying M.Phil degree?</td></tr>
+                                <tr><td>Ans :</td><td>You must possess a&nbsp;<strong>Post Graduate Degree&nbsp;</strong>in any discipline with a minimum of 50% marks in aggregate if qualified before 01 Jan 1991 and 55% marks in aggregate if qualified after 01 Jan 1991.</td></tr>
+                                <tr><td>
+                                <tr><td>Q.3</td><td>If I do not have a PG degree in any discipline but I have done a course through Army Higher Command. Am I eligible for applying M. Phil degree?</td></tr></h5>
+                                <tr><td>Ans :</td><td>The following courses are considered equal to PG degree</td></tr>
+                                <tr><td></td><td>(a)<span>Army Higher Command from Army War College.</span></td></tr>
+                                <tr><td></td><td>(b)<span>Navy Higher Command from Naval War College.</span></td></tr>
+                                <tr><td></td><td>(c)<span>Air Force Higher Command from Air Warfare.</span></td></tr>
+                                <tr><td></td><td>(d)<span>HDMC from CDM, Secunderabad.</span></td></tr>
+                                <tr><td></td><td>(e)<span>Foreign Staff Course equivalent to the above-mentioned courses.</span></td></tr>
+                                <tr><td>Q.4</td><td>From which university the M.Phil degree is awarded?</td></tr>
+                                <tr><td>Ans :</td><td>The M. Phil degree awarded from the University of Madras.</td></tr>
+                                <tr><td>Q.5</td><td>Is this M.Phil course considered a regular or part-time course?</td></tr>
+                                <tr><td>Ans :</td><td> The M.Phil course is considered as regular (full time &ndash; One year), which runs concurrently with the NDC course on National Security &amp; Strategic Studies.</td></tr>
+                                <tr><td>Q.6</td><td>What is the fees structure for M.Phil?</td></tr>
+                                <tr><td>Ans :</td><td> The fees charged for the M.Phil Course would be Rs 8000/- for an officer, who has completed his PG from a recognised Indian University. If the officer has completed his PG from a recognised Foreign University than the fee charged would be Rs 15,000/-.</td></tr>
+                                <tr><td>Q.7</td><td>What is the procedure to deposit the fee?</td></tr>
+                                <tr><td>Ans :</td><td>The fee may be paid by cheque (payable at par)/DD in favour of &ldquo;NDC University Division Fund&rdquo; or by cash.</td></tr>
+                                <tr><td>Q.8</td><td>What are the documents that need to be attached with the M.Phil forms?</td></tr>
+                                <tr><td>Ans : </td><td>The following relevant documents are to be attached with the M. Phil forms:-</td></tr>
+                                <tr><td></td><td>(a)<span>Two copies of PG degree and Marks Sheet duly self-attested or equivalent course certificate and marks sheet.</span></td></tr>
+                                <tr><td></td><td>(b)<span>If PG degree and Marks Sheet or equivalent course certificate are in any foreign languages, those should be translated in English and attested by concerned Embassies or competent authority.</span></td></tr>
+                                <tr><td></td><td>(c)<span>Officer who possess equivalent course certificate (e.g. HC/HDMC), should submit two copies of Graduation Degree and marks sheet also.</span></td></tr>
+                                <tr><td></td><td>(d)<span>Two passport size colour photos in civil clothes.</span></td></tr>
+                                <tr><td>Q.9</td><td>What is the syllabus for the M. Phil course?</td></tr>
+                                <tr><td>Ans :</td><td>The syllabus for the M. Phil course are as follows:-</td></tr>
+                                <tr><td></td><td>(a)<span><strong><u>Part I.</u></strong>Examination/submissions on the following subject:-</span></td></tr>
+                                <tr><td></td><td>(i)<span>Paper &ndash; I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (National Security)</span></td></tr>
+                                <tr><td></td><td>(ii)<span>Paper-II&nbsp;&nbsp;&nbsp;&nbsp; (Research Methodology written examination)</span></td></tr>
+                                <tr><td></td><td>(iii)<span>Paper &ndash; III&nbsp;&nbsp;&nbsp; (On are of specialization &ndash; Thesis related submission)</span></td></tr>
+                                <tr><td></td><td>(b)<span><strong><u>Part II.</u></strong> Thesis on the allotted subject. All these are part of the NDC course also.</span></td></tr>
+                                <tr><td>Q.10</td><td>If I have already passed the exam of Research Methodology during the PG from a recognised university then Can I exempted from this paper?</td></tr>
+                                <tr><td>Ans :</td><td>Yes you are exempted from this paper if you have passed and scored 50 % or more in Research Methodology during PG. You need to submit a photocopy of the certificate, which clearly brings out this fact.</td></tr>
+                                <tr><td>Q.11</td><td>May I know the overall marking system of the M.Phil course?</td></tr>
+                                <tr><td>Ans :</td><td>The overall marking system are as follows:-</td></tr>
+                                <tr><td></td><td>(a)<span><strong><u> Part I.</u></strong></span></td></tr>
+                                <tr><td></td><td>(i)<span>Paper I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100 Marks</span></td></tr>
+                                <tr><td></td><td>(ii)<span>Paper II&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100 Marks</span></td></tr>
+                                <tr><td></td><td>(iii)<span>Paper III&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100 Marks</span></td></tr>
+                                <tr><td></td><td>(b)<span><strong><u> Part II (Thesis).</u></strong></span></td></tr>
+                                <tr><td></td><td>(i)<span>Internal Examiner &nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100 Marks</span></td></tr>
+                                <tr><td></td><td>(ii)<span> External Examiner&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100 Marks</span></td></tr>
+                                <tr><td></td><td>___________________________________</td></tr>
+                                <tr><td></td><td> 500 Marks</td></tr>
+                                <tr><td></td><td>___________________________________</td></tr>
+                                <tr><td></td><td><strong><u>Note&nbsp;</u></strong>&nbsp; &nbsp; &nbsp; 400 marks for those officers who have obtained an exemption from Paper-II.</td></tr>
+                                <tr><td>Q.12</td><td>What is the passing percentage for M.Phil?</td></tr>
+                                <tr><td>Ans :</td><td>It is mandatory to score a minimum of 50% marks in each submission (all service papers, research methodology and thesis).</td></tr>
+                                <tr><td>Q.13</td><td>What If I am from a foreign national which does not have 10+2+3+2 = 17 years of study system leading to a post-graduate degree but have secured above 55% in my Master&rsquo;s degree.</td></tr>
+                                <tr><td>Ans :</td><td>Such cases will be sent to Madras University for special sanction. They will be enrolled on the M.Phil programme once Madras University accord permission.</td></tr>
+                                <tr><td>Q.14</td><td>When will be the Convocation for the award of the M.Phil degrees be held?</td></tr>
+                                <tr><td>Ans :</td><td> Convocation normally will be held one year after the completion of the course for the award of M.Phil degrees. For example, for the course passing out in Nov/Dec 2021, the convocation will be held in the first week of Mar 2023.</td></tr>
+                            </table>*@
+                        </div>
+                        <button class="accordion"><strong> Rakshika Ladies Club </strong></button>
+                        <div class="panel">
+                            <table>
+                                <tr><td style="width:8%">Q.1 </td><td>Does NDC runs a ladies club for course member’s wives?</td></tr>
+                                <tr><td>Ans :</td><td>Yes, NDC runs a club of ladies named Rakshika with all the fellow members addressed as Rakshikas.</td></tr>
+                                <tr><td>Q.2 </td><td>Who are the members of Rakshika Ladies Club?</td></tr>
+                                <tr><td>Ans :</td><td>Wives of the Faculty, Staff and Course members automatically become members of the Rakshika Ladies Club the moment their spouses join NDC.  The club implements programmes of educational value, entertainment and community service throughout the year</td></tr>
+                                <tr><td>Q.3 </td><td>What is the structure of Rakshika Committee?</td></tr>
+                                <tr><td>Ans :</td><td>The Executive Committee.</td></tr>
+                                <tr><td></td><td> &nbsp; (a)<span> President Rakshika - The Commandant’s wife by virtue of being the first lady of NDC is President of the Ladies’ Club.</span></td></tr>
+                                <tr><td></td><td> &nbsp; (b)<span> Vice President Rakshika – Wife of senior most SDS (Senior Directing Staff)..</span></td></tr>
+                                <tr><td></td><td> &nbsp; (c)<span> Secretary Rakshika – Wife of Secretary NDC.</span></td></tr>
+                                <tr><td></td><td> &nbsp; (d)<span> Co-opted members - All other FAS-WIVES (Faculty and Staff wives).</span></td></tr>
+                                <tr><td></td><td> &nbsp; (e)<span> Coordinator-in-Charge – Wife of Course Senior.</span></td></tr>
+                                <tr><td></td><td>The Rakshika Committee.</td></tr>
+                                <tr><td></td><td> &nbsp; (a)<span> Editorial Committee Member.</span></td></tr>
+                                <tr><td></td><td> &nbsp; (b)<span> Welfare member (Coordinator).</span></td></tr>
+                                <tr><td></td><td> &nbsp; (c)<span> Area Coordinator Gp-I (Raksha Bhawan).</span></td></tr>
+                                <tr><td></td><td> &nbsp; (d)<span> Area Coordinator Gp-II (Vikram/ Shankar Vihar).</span></td></tr>
+                                <tr><td></td><td> &nbsp; (e)<span> Area Coordinator Gp-III (Combined Rakshikas).</span></td></tr>
+                                <tr><td></td><td> &nbsp; (f)<span> Rakshika Library Coordinator.</span></td></tr>
+                                <tr><td></td><td> &nbsp; (g)<span> Beauty Parlour Coordinator.</span></td></tr>
+                                <tr><td>Q.4 </td><td>What are the various activities planned for Rakshikas throughout the year?</td></tr>
+                                <tr><td>Ans :</td><td> There are many several activities including Rakshika group meets, local city excursion etc planned for Rakshikas throughout the year, for any querry please visit Rakshika activites web page at NDC website.</td></tr>
+                                <tr><td>Q.5 </td><td>Who is coordinator-in-charge?</td></tr>
+                                <tr><td>Ans :</td><td> The Course Senior’s wife would be appointed Coordinator in-charge for all Rakshika activities during the calendar year.  In case of unavailability of the course Senior’s wife, President(R) would nominate a lady from amongst Course Members’ spouses to carry out the duties.</td></tr>
+                                <tr><td>Q.6 </td><td>Is there any community service carryout by Rakshikas?</td></tr>
+                                <tr><td>Ans :</td><td> Yes, “Prerna” is a socio emotional support group for Cancer Patients admitted at Army Hospital R&R.  The volunteers conduct regular visits on every Thursday to the Oncology wards at Army Hospital R&R.  Rakshikas are encouraged to join PRERNA to learn about strength and faith in the healing process.</td></tr>
+                                <tr><td></td><td> &nbsp;(a)<span>Rakshikas on a regular basis organise educational classes to assist the children of domestic help and other needy groups residing inside the accommodation areas of Raksha Bhawan and Vikram/ Shankar Vihar.</span></td></tr>
+                                <tr><td></td><td> &nbsp;(b)<span>Voluntary donation is made on a quarterly basis, in cash and kind to orphanages, animal shelters and relevant social service institutions.</span></td></tr>
+                                <tr><td></td><td> &nbsp;(c)<span>Adult Literacy Classes are conducted within Raksha Bhawan, focusing primarily on Literacy, health and nutrition etc.</span></td></tr>
+                            </table>
+                        </div>
+                        <button class="accordion"><strong>NDC Mess </strong></button>
+                        <div class="panel">
+                            <table>
+                                <tr>
+                                    <td style="width:8%">Q.1 </td>
+                                    <td>Is there an Officer’s Mess in NDC?</td>
+                                </tr>
+                                <tr><td>Ans </td><td>Yes. The NDC Officer’s Mess is located inside the main building of NDC. This Mess is one of its kind, essentially catering for tea, snacks and lunch during all working days. However, Mess does not function on weekends, holidays and term breaks.</td></tr>
+                                <tr><td>Q.2 </td><td>Is the tea, snacks, lunch, etc served at a designated place?</td></tr>
+                                <tr><td>Ans </td><td>Tea, snacks and soup is served in Hunt Longue/ Anchor Bar, whereas the daily lunch is served in the Dining Hall for Guest Speakers and all Members</td></tr>
+                                <tr><td>Q.3 </td><td>Who is/ can be a member of the NDC Mess?</td></tr>
+                                <tr><td>Ans </td><td>The Commandant, Faculty and Staff Officers are automatically members of the NDC Mess upon reporting and until their transfer from NDC. In addition all Course Members of the ensuing course are active member of NDC Mess for the entire duration of the course.</td></tr>
+                                <tr><td>Q.4 </td><td>What is the dress/ uniform for the Mess?</td></tr>
+                                <tr><td>Ans :</td><td>The daily working rig (dress) is only authorised in the Mess premises. Chappals, casual slippers, floaters, snickers, slip-on, sandals, etc are not permitted inside the Mess.</td></tr>
+                                <tr><td>Q.5 </td><td>What are the timing of the Mess?</td></tr>
+                                <tr><td>Ans :</td><td>Timing for daily tea and lunch would be promulgated in Weekly Training Programme. Generally the daily tea/snacks are provided at 1130 hrs and lunch is served between 1300 hrs to 1345 hrs.</td></tr>
+                                <tr><td>Q.6 </td><td>How is the NDC Mess involved in the various social functions undertaken during the course?</td></tr>
+                                <tr><td>Ans :</td><td>All official functions held during the course are either coordinated by the College or by the Course Members. The NDC Mess is only involved in all functions that are officially coordinated by the College.</td></tr>
+                                <tr><td>Q.7 </td><td>Are there any payments involved?</td></tr>
+                                <tr><td>Ans :</td><td>Yes, the Mess is run solely on contribution received from the Members. Monthly Mess Bills are generated by 05th of every month and are placed in the respective lockers of each Course Members.</td></tr>
+                                <tr><td>Q.8 </td><td>Do the members contribute towards the payment of hired Civilian Staff for NDC Mess?</td></tr>
+                                <tr>
+                                    <td>Ans :</td>
+                                    <td>Yes. A nominal subscription and allied charges are levied (through their Mess Bill) to all members for general upkeep and monthly remuneration of the hired Mess Civilian Staff (Cook and Steward only).</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <button class="accordion"><strong> Administration</strong></button>
+                        <div class="panel">
+                            <table>
+                                <tr>
+                                    <td style="width:8%">Q.1 </td>
+                                    <td>What are the timings of College? </td>
+                                </tr>
+                                <tr><td>Ans :</td><td>0900 hrs – 1700 hrs, 5 days a week.</td></tr>
+                                <tr><td>Q.2 </td><td>When is lunch break?</td></tr>
+                                <tr><td>Ans :</td><td>1300 hrs – 1400 hrs.</td></tr>
+                                <tr><td>Q.3 </td><td>How can one get nomination?</td></tr>
+                                <tr><td>Ans :</td><td>Nomination received from respective services & MoD.</td></tr>
+                                <tr><td>Q.4 </td><td>Is I-card necessary to carry?</td></tr>
+                                <tr><td>Ans :</td><td>Indian officers to carry I-Cards & foreign Officers to bring their diplomatic / official passport.</td></tr>
+                                <tr><td>Q.5 </td><td>What is Dress Code of College?</td></tr>
+                                <tr><td>Ans :</td><td>Normal working days:-</td></tr>
+                                <tr><td></td><td> &nbsp; (a)<span> Winter.    Lounge Suit/ Combination. No sweaters are permitted. Ladies to dress suitably.</span></td></tr>
+                                <tr><td></td><td> &nbsp; (b)<span> Summer.    Open collars/ suitable dress for ladies.</span></td></tr>
+                                <tr><td>Q.6 </td><td>Is transport provided to Course Members?</td></tr>
+                                <tr><td>Ans :</td><td>Bus provided to Raksha Bhawan & Vikram Vihar only.</td></tr>
+                                <tr><td>Q.7 </td><td>Who publishes Casualty / Occurrence Reports?</td></tr>
+                                <tr><td>Ans :</td><td>These reports in respect of Course Members will continue to be published by the parent organisation, controlling office or previous unit.</td></tr>
+                                <tr><td>Q.8 </td><td>What are the rules on late arrivals?</td></tr>
+                                <tr><td>Ans :</td><td>Late arrival on exceptional cases only allowed upto 2 weeks.</td></tr>
+                                <tr><td>Q.9 </td><td>What is maximum absence from course permitted?</td></tr>
+                                <tr><td>Ans :</td><td>21 days only.</td></tr>
+                                <tr><td>Q.10 </td><td>Is accommodation available with NDC for course members?</td></tr>
+                                <tr><td>Ans :</td><td>Yes.</td></tr>
+                                <tr><td>Q.11 </td><td>Who all are allotted accommodation?</td></tr>
+                                <tr><td>Ans :</td><td>Service officers and foreign officers under ITEC/SAP program.</td></tr>
+                                <tr><td>Q.12 </td><td>Are Civil Officers allotted accommodation?</td></tr>
+                                <tr><td>Ans :</td><td>No.</td></tr>
+                                <tr><td>Q.13 </td><td>Are service officers posted in Delhi allotted accommodation in NDC?</td></tr>
+                                <tr><td>Ans :</td><td>No, officers posted at Delhi will continue to retain accommodation.</td></tr>
+                                <tr><td>Q.14 </td><td>When will officers come to know of allotment of accommodation?</td></tr>
+                                <tr><td>Ans :</td><td>1 week before commencement of course</td></tr>
+                                <tr><td>Q.15 </td><td>Can we get early allotment?</td></tr>
+                                <tr><td>Ans :</td><td>No.</td></tr>
+                                <tr><td>Q.16 </td><td>Are single officers allotted accommodation?</td></tr>
+                                <tr><td>Ans :</td><td>No.</td></tr>
+                                <tr><td>Q.17 </td><td>When the accommodation needs to be vacated?</td></tr>
+                                <tr><td>Ans :</td><td>Within 7 days of termination of course.</td></tr>
+                                <tr><td>Q.18 </td><td>Can there be extension beyond 7 days in vacation?</td></tr>
+                                <tr><td>Ans :</td><td>No, because accommodation needs to be prepared for the next course.</td></tr>
+                                <tr><td>Q.19 </td><td>Who is responsible for pay & allowances?</td></tr>
+                                <tr><td>Ans :</td><td>Officers will continue to draw pay & allowances from their respective departments.</td></tr>
+                                <tr><td>Q.20 </td><td>What is the budget for the course for civil officers?</td></tr>
+                                <tr><td>Ans :</td><td>Civil officers needs to get budget support from their respective office.</td></tr>
+                                <tr><td>Q.21 </td><td>Is CSD facilities available?</td></tr>
+                                <tr><td>Ans :</td><td>Yes.</td></tr>
+                                <tr><td>Q.22 </td><td>What are medical arrangements for course members?</td></tr>
+                                <tr><td>Ans :</td><td>College has MI room for medical support.</td></tr>
+                                <tr><td>Q.23 </td><td>What is mode of communication for course?</td></tr>
+                                <tr><td>Ans :</td><td>English.</td></tr>
+                                <tr><td>Q.24 </td><td>Who coordinates the training tours?</td></tr>
+                                <tr><td>Ans :</td><td>AA&QMG.</td></tr>
+                                <tr><td>Q.25 </td><td>Is Passport required?</td></tr>
+                                <tr><td>Ans :</td><td>Yes.</td></tr>
+                            </table>
+
+                        </div>
+                        <button class="accordion"><strong> Research And Referral Centre </strong></button>
+                        <div class="panel">
+                            <table>
+                                <tr>
+                                    <td style="width:8%">Q.1 </td>
+                                    <td>What is available in the NDC digital library?</td>
+                                </tr>
+                                <tr><td>Ans :</td><td>The NDC Library unlocks an unsurpassed body of work featuring more than 1200+ Journals and around 6.5 Lakh eBooks on over 950 topics. Comprising10 Databases and E-Resources, 12000 magazines and newspapers from 120 countries in 60 languages, 12 million academic journal articles, conference publications and seminar digests. The NDC Digital Library provides users with access to a wealth of essential knowledge on ‘National Security and Strategy’.</td></tr>
+                                <tr><td>Q.2 </td><td>What are the reference sites available for NDC course officers?</td></tr>
+                                <tr><td>Ans :</td><td>www.ndc.refread.com to access digital content and https://ndclibrary.in to ascertain physical availability of books in NDC Library.</td></tr>
+                                <tr><td>Q.3 </td><td>Do I need to register or sign –in to access the site?</td></tr>
+                                <tr><td>Ans :</td><td>Yes, you have to sign-in to explore all the features of NDC Library. The website portal is www.ndc.refread.com and Log in ids are given to all Course Officers at the start of the course.</td></tr>
+                                <tr><td>Q.4 </td><td>Who do I contact if am having technical problems with my access?</td></tr>
+                                <tr><td>Ans :</td><td>Mr. J.K.Yadav, SLIA- 011 23011065 Ext. 365.</td></tr>
+                                <tr><td>Q.5 </td><td>How do I find articles by a particular author?</td></tr>
+                                <tr><td>Ans :</td><td>You can simply enter the author name into the quick search field. Alternatively, there is a specific field for authors on the advanced search page. When dealing with common names it is advisable to combine this search with another term, such as a word from the article title or publication name</td></tr>
+                                <tr><td>Q.6 </td><td>Can I access NDC Library from my home?</td></tr>
+                                <tr><td>Ans :</td><td>Yes you can access digital resources from anywhere and ‘Refread’ is available on Mobile App too.</td></tr>
+                                <tr><td>Q.7 </td><td>How do I issue and renew books?</td></tr>
+                                <tr><td>Ans :</td><td>Presently you have to be present in Library for issue and return of books with your biometric data.</td></tr>
+                                <tr><td>Q.8 </td><td>What is the loan period and how many books can be issued at a time?</td></tr>
+                                <tr><td>Ans :</td><td>10 books are allowed at a time for loan period of one month.</td></tr>
+                                <tr><td>Q.9 </td><td>How do I print the materials downloaded in library?</td></tr>
+                                <tr><td>Ans :</td><td>NDC Library has facility of Printout and Xerox.</td></tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>

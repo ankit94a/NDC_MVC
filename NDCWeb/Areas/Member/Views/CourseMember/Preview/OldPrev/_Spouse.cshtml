@@ -1,0 +1,66 @@
+﻿@*@model NDCWeb.Areas.Member.View_Models.CrsMbrSpouseChildrenVM*@
+@model NDCWeb.Areas.Member.View_Models.SpouseIndxVM
+
+<div class="card mt-4">
+    <div class="card-header">
+        PARTICULARS OF SPOUSES & CHILDREN
+    </div>
+    <div class="card-body">
+        <a class="btn btn-danger btn-sm float-right" data-toggle="tab" href="#SpousePartial" onclick="displayTab('SpousePartial')">EDIT THIS SECTION</a>
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="8">PARTICULARS OF SPOUSES</td>
+
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseName)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.SpouseName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseBloodGroup) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpouseBloodGroup)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.ContactNo) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.ContactNo)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.DOBirth) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.DOBirth)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Occupation) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Occupation)</td>
+            </tr>
+           
+            
+            <tr class="bg-light">
+                <td colspan="8">
+                    PARTICULARS FOR SOCIAL LIST OF SPOUSE
+                </td>
+            </tr>
+            <tr>
+                <td class="juipfname">Rank</td>
+                <td class="juipfvalue"></td>
+                <td class="juipfname">Nick Name</td>
+                <td class="juipfvalue"></td>
+                <td class="juipfname">Birth Day </td>
+                <td class="juipfvalue"></td>
+                <td class="juipfname">Anniversary </td>
+                <td class="juipfvalue"></td>
+            </tr>
+            <tr class="bg-light">
+                <td class="juipfname">E-Mail</td>
+                <td class="juipfvalue" colspan="3"></td>
+                <td class="juipfname">Contact No</td>
+                <td class="juipfvalue" colspan="3"></td>
+            </tr>
+        </table>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                LANGUAGES KNOWN
+            </div>
+            <div class="card-body">
+                @if (Model.iSpouseLanguages != null)
+                {
+                    @Html.Partial("Preview/_SpouseLanguage", Model.iSpouseLanguages)
+                }
+            </div>
+        </div>
+    </div>
+</div>

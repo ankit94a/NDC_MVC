@@ -1,0 +1,32 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CrsMbrLanguageIndxVM>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            LANGUAGES KNOWN
+        </div>
+        <div class="card-body">
+            <table class="table table-condensed table-bordered table-hover">
+                <thead>
+                    <tr class="bg-light">
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Language)</td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Read)</td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Write)</td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Speak)</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Language)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Read)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Write)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Speak)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+

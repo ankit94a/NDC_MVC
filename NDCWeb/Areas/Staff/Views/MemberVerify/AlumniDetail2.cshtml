@@ -1,0 +1,207 @@
+﻿@model IEnumerable<NDCWeb.View_Models.AlumniDetailVM>
+
+@{
+    ViewBag.Title = "AlumniDetail2";
+}
+
+<h2>AlumniDetail2</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseSerNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NdcEqvCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearDone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceRetd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Decoration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PermanentAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NdcCommunicationAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LandlineNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MobileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FaxNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Spouse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlumniPhoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Verified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appointment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceRank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherService)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsProminent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VerifyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Branch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.CourseSerNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.CourseYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.NdcEqvCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.YearDone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.ServiceRetd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.ServiceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.ServiceNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Decoration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.PermanentAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.NdcCommunicationAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.LandlineNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.MobileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.FaxNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Spouse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.AlumniPhoto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Verified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.IsDelete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Appointment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.ServiceRank)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.OtherService)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.IsProminent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.RegDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.VerifyDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Branch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.OtherInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.UserId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=modelItem.AluminiId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AluminiId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AluminiId })
+        </td>
+    </tr>
+}
+
+</table>

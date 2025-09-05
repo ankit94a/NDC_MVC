@@ -1,0 +1,258 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.ShowCompleteLeaveStatusListVM>
+
+@{
+    ViewBag.Title = "Leave Status";
+}
+<div class="container-fluid mt-1 mb-2">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+        <div >
+            <table class="table table-bordered" id="myTable" style="font-size:12px" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                       <th>
+                            Name
+                        </th>
+                        <th>
+                            Locker No
+                        </th>
+                        <th>
+                            Leave Category
+                        </th>
+                        <th>
+                            Leave Type
+                        </th>
+                        <th>
+                            From Dt
+                        </th>
+                        <th>
+                            To Dt
+                        </th>
+                        <th>
+                            Total Days
+                        </th>
+                        <th>
+                            Prefix From
+                        </th>
+                        <th>
+                            Prefix To
+                        </th>
+                        <th>
+                            Suffix From
+                        </th>
+                        <th>
+                            Suffix To
+                        </th>
+                        <th>
+                            Reason For Leave
+                        </th>
+                        <th>
+                            Address on Leave
+                        </th>
+                        <th>
+                            Tele No
+                        </th>
+                        <th>
+                            Recommend By Embassy
+                        </th>
+                        <th>
+                            AQ Status
+                        </th>
+                        @*<th>
+                            AQ Date
+                        </th>*@
+                        <th>
+                            IAG Status
+                        </th>
+                        @*<th>
+                            IAG Date
+                        </th>*@
+                        <th>
+                            SDS Status
+                        </th>
+                        @*<th>
+                            SDS Date
+                        </th>*@
+                        <th>
+                            Secretary Status
+                        </th>
+                        <th>
+                            Secretary Date
+                        </th>
+                        <th>
+                            Comndt Status
+                        </th>
+                        <th>
+                            Comndt Date
+                        </th>
+                        <th>
+                            Report
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LockerNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveCategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FromDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ToDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalDays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrefixDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrefixToDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuffixDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuffixToDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReasonForLeave)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AddressOnLeave)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeleNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RecommendByEmbassy)
+                            @if (item.DocPath != null)
+                            {
+                                <a href="@Url.Content(item.DocPath)" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                            }
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.AQStatus)
+                        </td>*@
+                    <td>
+
+                        @if (item.AQStatusDate != null)
+                        {
+                            @(item.AQStatus.ToString() == "Recommend" ? "Initiated" : "Not Initiated")
+                            <span>On   <strong><text>@item.AQStatusDate.Value.ToString("dd MMM yyyy")</text></strong></span>
+                        }
+                    </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.IAGStatus)
+                        </td>*@
+                    <td>
+
+                        @if (item.IAGStatusDate != null)
+                        {
+                            @(item.IAGStatus.ToString() == "Recommend" ? "Recommended" : "Not Recommended")
+                            <span>On   <strong><text>@item.IAGStatusDate.Value.ToString("dd MMM yyyy")</text></strong></span>
+                        }
+                    </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.ServiceSDSStatus)
+                        </td>*@
+                    <td>
+
+                        @if (item.ServiceSDSStatusDate != null)
+                        {
+                            @(item.ServiceSDSStatus.ToString() == "Sanction" ? "Sanctioned" : "Not Sanctioned")
+                            <span>On   <strong><text>@item.ServiceSDSStatusDate.Value.ToString("dd MMM yyyy")</text></strong></span>
+                        }
+                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SecretaryStatus)
+                        </td>
+                        <td>
+                            @if (item.SecretaryStatusDate != null)
+                            {
+                                <text>@item.SecretaryStatusDate.Value.ToString("dd MMM yyyy")</text>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ComdtStatus)
+                        </td>
+                        <td>
+                            @if (item.ComdtStatusDate != null)
+                            {
+                                <text>@item.ComdtStatusDate.Value.ToString("dd MMM yyyy")</text>
+                            }
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Open Report
+                                </button>
+                                <div class="dropdown-menu bg-white">
+                                    @*<a class="dropdown-item" href="@Url.Action("IndianCourseParticipantLeaveRpt", "LeaveReport", new { leaveid = item.LeaveId })">Indian Course Participant</a>
+        <a class="dropdown-item" href="@Url.Action("ForeignCourseParticipantLeaveRpt", "LeaveReport", new { leaveid = item.LeaveId })">Foreign Course Participant</a>
+        <a class="dropdown-item" href="@Url.Action("ForeignParticipantStudyTourLeaveRpt", "LeaveReport", new { leaveid = item.LeaveId })">Foreign Participant Study Tour</a>*@
+
+                                    @if (item.ServiceSDSStatus != null)
+                                    {
+                                        if (item.ServiceSDSStatus.ToString() == "Sanction")
+                                        {
+                                            <a class="dropdown-item" href="@Url.Action("GenerateCertificate", "LeaveReport", new { leaveid = item.LeaveId })">Generate Leave Cert.</a>
+                                        }
+                                        if (item.GenerateCertificate == "Generated")
+                                        {
+                                            <a class="dropdown-item" href="@Url.Action("LeaveCertificateRpt", "LeaveReport", new { leaveid = item.LeaveId })">Leave Certificate</a>
+                                            <a class="dropdown-item" href="@Url.Action("LeaveNotingRpt", "LeaveReport", new { leaveid = item.LeaveId })">Leave Noting</a>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            @*<a href="@Url.Action("LeaveIndianCourse", "LeaveReport", new { leaveid = item.LeaveId, type = "1" })">Open</a>*@
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-center">
+            @if (ViewBag.BtnNewLeave != null)
+            {
+                if (ViewBag.BtnNewLeave == "Show")
+                {
+                    @Html.ActionLink("New Leaves", "AddStatusLeaveInfoList", null, new { @class = "btn btn-primary btn-sm" })
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div id="dialog">
+    <div>
+
+    </div>
+    <div>
+        <input type="hidden" name="hdnLeaveId" value="">
+    </div>
+</div>
+<script src="~/Component/js/popper.min.js"></script>
+@*<script src="//cdn.datatables.net/plug-ins/1.10.11/sorting/date-eu.js" type="text/javascript"></script>*@
+@section Scripts{
+    <script>
+        LoadJDT('#myTable');
+        
+    </script>
+
+}

@@ -1,0 +1,129 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.AccomodationIndexVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <p>
+        <a href="@Url.Action("Entry","Accomodation")" class="btn btn-primary btn-sm pull-right">Add New</a>
+    </p>
+    <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    Married Accn Required
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AccomodationDate)
+                </th>
+                <th>
+                    Retaining Accn/Own Arrangement
+                </th>
+                <th>
+                    Preference of Accn, Priority 1
+                </th>
+                <th>
+                    Preference of Accn, Priority 2
+                </th>
+                <th>
+                    Remarks
+                </th>
+                <th>
+                    Document(s)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SignatureDoc)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccomReq)
+                    </td>
+                    <td>
+                        @if (item.AccomodationDate != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.AccomodationDate)
+                        }
+                        else
+                        {
+                            <span>Nil</span>
+                        }
+
+                    </td>
+                    <td>
+                        @if (item.ArrangeType != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.ArrangeType)
+                        }
+                        else
+                        {
+                            <span>Nil</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.PriorityFirst != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.PriorityFirst)
+                        }
+                        else
+                        {
+                            <span>Nil</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.PrioritySecond != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.PrioritySecond)
+                        }
+                        else
+                        {
+                            <span>Nil</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.SpecialRequestWithReason != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.SpecialRequestWithReason)
+                        }
+                        else
+                        {
+                            <span>Nil</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.iAccomodationMedias.Count)
+                        @Html.EncodedActionLink(" View", "ShowMediaFiles", "Accomodation", "member", new { id = item.AccomodationId }, new { @class = "" }, "fa fa-eye")
+                    </td>
+                    <td>
+                        @if (item.SignatureDoc != null && item.SignatureDoc != "")
+                        {
+                            <a href="@Url.Content(item.SignatureDoc)">View</a>
+                        }
+                    </td>
+                    <td width="10%">                     
+                        <a class="btn btn-xs" onclick="Delete(@item.AccomodationId, this)"><i class="fa fa-trash"></i></a>
+                        @Html.EncodedActionLink("", "Print", "Accomodation", "member", new { id = item.AccomodationId }, new { @class = "btn btn-xs" }, "fa fa-print")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

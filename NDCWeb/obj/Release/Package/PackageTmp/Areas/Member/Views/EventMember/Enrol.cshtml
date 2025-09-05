@@ -1,0 +1,90 @@
+﻿@model NDCWeb.Areas.Member.View_Models.EventMemberEnrolVM
+
+@{
+    ViewBag.Title = "Enrol";
+}
+
+<h2>Enrol</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>EventMemberEnrolVM</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.EventId)
+    <div class="form-group">
+        @Html.LabelFor(model => model.AttendType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownListFor(model => model.AttendType, (IEnumerable<SelectListItem>)ViewBag.AttendTypeOpt, "-- Select --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AttendType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AttendSelf, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.AttendSelf, (IEnumerable<SelectListItem>)ViewBag.AttendOpt, "-- Select --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AttendSelf, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AttendSpouse, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.AttendSpouse, (IEnumerable<SelectListItem>)ViewBag.AttendOpt, "-- Select --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AttendSpouse, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DietPrefSelf, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.DietPrefSelf, (IEnumerable<SelectListItem>)ViewBag.DietPrefOpt, "-- Select --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DietPrefSelf, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DietPrefSpouse, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.DietPrefSpouse, (IEnumerable<SelectListItem>)ViewBag.DietPrefOpt, "-- Select --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DietPrefSpouse, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LiquorPref, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.LiquorPref, (IEnumerable<SelectListItem>)ViewBag.LiquorOpt, "-- Select --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LiquorPref, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

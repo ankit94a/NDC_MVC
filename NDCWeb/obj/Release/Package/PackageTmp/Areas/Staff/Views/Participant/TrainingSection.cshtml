@@ -1,0 +1,157 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.TrainingSectionVM
+
+@{
+    ViewBag.Title = "TRAINING SECTION FORM";
+}
+
+<div class="container mt-4">
+    <div id="printDiv">
+        <table>
+            <tr>
+                <td colspan="3" style="text-align:center"><strong><u>FORM</u></strong></td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align:center"><strong><u>TRAINING SECTION</u></strong></td>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td>
+                    Rank and Full Name of Course officers with decoration, Regiment and Service.
+                </td>
+                <td>
+                    <strong><b>@Model.FirstName @Model.MiddleName @Model.Surname</b></strong>
+                </td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>
+                    Height :- Course Officer
+                </td>
+                <td>
+                    <strong><b>@Model.Height (in cm)</b></strong>
+                </td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>Name as you would like to be mentioned in the parchment</td>
+                <td><strong><b>@Model.Surname</b></strong></td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td>For Service officers</td>
+                <td><strong><b>@Model.DOSeniority.ToString("dd MMM yyyy")</b></strong></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>For Civil Services officers</td>
+                <td>
+                    <b>
+                        @if (Model.DOJoining != null)
+                        {@Model.DOJoining.ToString("dd MMM yyyy")}
+                    </b>
+                </td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td>Name of Spouse as you would like to be mentioned in the group photographs :</td>
+                <td><strong><b>@Model.SpouseName</b></strong></td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td>Contact Details :</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    Mobile Number :
+                </td>
+                <td><strong><b>@Model.MobileNo</b></strong></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    Alternate Mobile Number :
+                </td>
+                <td><strong><b>@Model.AlternateMobileNo</b></strong></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    E-mail id :
+                </td>
+                <td><strong><b>@Model.EmailId</b></strong></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                   Alternate E-mail id :
+                </td>
+                <td><strong><b>@Model.AlternateEmailId</b></strong></td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td>For Foreign Course officers only :-</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Passport No. :-</td>
+                <td><strong><b>@Model.MemberPassportNo</b></strong></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Date of Expire of Passport :-</td>
+                <td>
+                    <strong>
+                        <b>
+                            @if (Model.MemberPassportValidUpto != null)
+                            {@Model.MemberPassportValidUpto.Value.ToString("dd MMM yyyy")}
+                        </b>
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>VISA No. :-</td>
+                <td><strong><b>@Model.VisaNo</b></strong></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Date of Expire of VISA :-</td>
+                <td>
+                    <strong>
+                        <b>
+                            @if (Model.VisaValidUpto != null)
+                            {@Model.VisaValidUpto.Value.ToString("dd MMM yyyy")}
+                        </b>
+                    </strong>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel-footer text-center bg-white mt-4">
+        <a href="javascript:void()" class="btn btn-primary btn-sm" onclick=" printdoc();">Print</a>
+        <a href="@Url.Action("ParticipantList")" class="btn btn-primary btn-sm">Back to List</a>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printDiv').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+    </script>
+}

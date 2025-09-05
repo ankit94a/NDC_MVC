@@ -1,0 +1,125 @@
+﻿@using NDCWeb.Models;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>@ViewBag.Title</title>
+    <link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
+
+
+    <link href="~/Areas/Admin/Component/Ntheme/css/styles.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Component/Ntheme/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="~/Areas/Admin/Component/Ntheme/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
+    @Styles.Render("~/bundles/css/jstreecss")
+    @Styles.Render("~/bundles/jquistyle")
+    @Styles.Render("~/bundles/toastr/css")
+    @Styles.Render("~/Content/cmssec")
+    @Styles.Render("~/bundles/datatables/css")
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="~/Areas/Admin/Component/scripts/aes.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Component/scripts/ccryptft.js"></script>
+    <script type="text/javascript" src="~/Areas/Admin/Component/scripts/ccryptimp.js"></script>
+    <style>
+        #myTable tr td {
+            height: 10px !important;
+        }
+
+        .toast {
+            background-color: #030303;
+        }
+
+        .toast-info {
+            background-color: #3276b1;
+        }
+
+        .toast-error {
+            background-color: #bd362f;
+        }
+
+        .toast-success {
+            background-color: #51a351;
+        }
+
+        .toast-warning {
+            background-color: #f89406;
+        }
+    </style>
+
+</head>
+
+<body class="nav-fixed">
+    <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
+        <!-- Sidenav Toggle Button-->
+        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
+        <!-- Navbar Brand-->
+        <!-- * * Tip * * You can use text or an image for your navbar brand.-->
+        <!-- * * * * * * When using an image, we recommend the SVG format.-->
+        <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
+        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="/admin/home/">@ViewBag.Title</a>
+        <ul class="navbar-nav align-items-center ms-auto">
+            <!-- User Dropdown-->
+            <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
+                @Html.Partial("_LoginPartial")
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            @Html.Partial("_UserMenu");
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <header class="mb-1 bg-gradient-primary-to-secondary">
+                    <div class="container-xl px-4">
+                        <div class="text-center">
+                            <h3 class="text-white">@ViewBag.Title</h3>
+                        </div>
+                    </div>
+                </header>
+                <div class="container-xl">
+                    @Html.Partial("_Notifications")
+                    @RenderBody()
+                </div>
+                <!-- Main page content-->
+            </main>
+            <footer class="footer-admin mt-auto footer-light">
+                <div class="container-xl px-4">
+                    <div class="row">
+                        <div class="col-md-6 small">Copyrights © Createch Software Private Limited, India</div>
+                        <div class="col-md-6 text-md-end small">
+                            <a href="#!">Designed for</a>
+                            <a href="#!">National Defence College</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="~/Areas/Admin/Component/Ntheme/js/email-decode.min.js" data-cfasync="false"></script>
+    <script src="~/Areas/Admin/Component/Ntheme/bootstrap%405.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    @Scripts.Render("~/bundles/mainjs")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/datatables")
+    @Scripts.Render("~/bundles/jstree")
+    @Scripts.Render("~/bundles/toastr/js")
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+
+    @Scripts.Render("~/bundles/custom")
+    <script src="~/Areas/Admin/Component/Ntheme/js/scripts.js"></script>
+    @*<script src="~/Areas/Admin/Component/Ntheme/libs/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="~/Areas/Admin/Component/Ntheme/js/datatables/datatables-simple-demo.js"></script>*@
+    @*@Scripts.Render("~/bundles/main")*@
+
+
+    <script>
+        toastrOptDefault();
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

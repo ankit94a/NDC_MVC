@@ -1,0 +1,109 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.SpeakerIndxVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "List of Speakers";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <span class=" pl-2"></span>@ViewBag.Title
+            <span class="pull-right"> <a href="/staff/SpeechEvent/Create/" class="btn btn-outline-primary btn-sm">Add Speech Details</a> &nbsp;&nbsp;</span>
+            <span class="pull-right"> @Html.ActionLink("Add Speaker", "Create", null, new { @class = "btn btn-outline-primary btn-sm" })</span>
+        </div>
+        <div class="card-body">
+            <table class="table w-100" id="myTable" style="border:solid thin; width:1px; ">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PhotoPath)
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.FullName)*@
+                            @Html.DisplayName("Speaker Name")
+                        </th>
+                        @*<th>
+            @Html.DisplayName("Speech Date")
+        </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MobileNo)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Module")
+                        </th>
+                        <th style="width: 100%">
+                            @Html.DisplayName("Topic Name")
+                        </th>
+                        <th style="width: 100%">
+                            Year
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td colspan="1" style="text-align:right"><img src="@Url.Content(item.PhotoPath ?? "#")" class="img-rounded" width="80" /></td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            @*<td>
+            @Html.DisplayFor(modelItem => item.SpeachDate)
+        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                                @*@Html.DisplayFor(modelItem => item.AlternateEmail)*@
+                            </td>
+                            @*<td>
+            @Html.DisplayFor(modelItem => item.AlternateEmail)
+        </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MobileNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Topics.Subjects.SubjectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Topics.TopicName)
+                            </td>
+                            <td>
+
+                                @{
+                                    var year = item.CreatedAt.Value.Year.ToString();
+                                }
+                                <span>@year</span>
+                            </td>
+                            <td>
+                                <a class="text-danger" href="@Url.Content(item.FilePath ?? "#")" title="View Biodata" target="_blank"><i class="fa fa-file-pdf-o"></i> </a> |
+                                @Html.EncodedActionLink("", "Edit", "Speakers", "staff", new { id = item.SpeakerId }, new { @class = "" }, "fa fa-edit")&nbsp;|
+                                @*<a href="@Url.Action("Edit", new { id = item.SpeakerId })"><i class="fa fa-edit"></i> </a> |*@
+                                @*<a href="@Url.Action("Details", new { id = item.SpeakerId })"><i class="fa fa-search"></i> </a> |*@
+                                <button type="button" class="btn btn-transparent btn-xs text-danger" onclick="Delete(@item.SpeakerId, this)"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p>
+
+    </p>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

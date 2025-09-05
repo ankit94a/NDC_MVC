@@ -1,0 +1,348 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CourseFeedbackUpVM
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    .form-group {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eff1f1
+    }
+</style>
+<div class="container pt-2">
+    <div class="card">
+        <div class="card-header text-uppercase h4 text-center border-0 "><u>@ViewBag.Title</u></div>
+        @using (Html.BeginForm())
+        {
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.FeedbackId)
+                <div class="card-body">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <fieldset class="container">
+                        <legend>PART I - TRAINING</legend>
+                        <p class="h4">1. Comments/ Suggestions on Training Syllabus</p>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.ConductOfStudy, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.ConductOfStudy, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.ConductOfStudy, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.SpeakerOnTopicScope, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.SpeakerOnTopicScope, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.SpeakerOnTopicScope, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.CoductOfIAG, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.CoductOfIAG, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.CoductOfIAG, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.ConductOfCDsSGES, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.ConductOfCDsSGES, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.ConductOfCDsSGES, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.InfoCourseLectureSchedule, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.InfoCourseLectureSchedule, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.InfoCourseLectureSchedule, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <p class="h4 border-bottom">2. Comments/ Suqqestions on Infrastructure</p>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.OtherComments, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.OtherComments, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <p class="h4">3. Tours</p>
+                        <p class="h5 border-bottom">Views/ suggestions on timing, duration, coverage and any other comments on following tours during the Course.</p>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.ToursI, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.ToursI, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.ToursI, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="col-form-label-sm ml-3">(b) Foreign Tours</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.VirtualToursI, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.VirtualToursI, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.VirtualToursI, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.VirtualToursII, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.VirtualToursII, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.VirtualToursII, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminTourA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.RadioButtonFor(e => e.AdminTourA, "Y", new { id = "AdminTourA-true" })
+                                @Html.Label("AdminTourA-true", "Yes")
+                                @Html.RadioButtonFor(e => e.AdminTourA, "N", new { id = "AdminTourA-false" })
+                                @Html.Label("AdminTourA-false", "No")
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminTourB, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                <div class="checkbox">
+                                    @Html.RadioButtonFor(e => e.AdminTourB, "Y", new { id = "AdminTourb-true" })
+                                    @Html.Label("AdminTourb-true", "Yes")
+                                    @Html.RadioButtonFor(e => e.AdminTourB, "N", new { id = "AdminTourb-false" })
+                                    @Html.Label("AdminTourb-false", "No")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminTourC, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminTourC, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminTourC, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <fieldset class="container">
+                        <legend>PART ll- ADMINISTRATION AT NDC</legend>
+                        <label class="h4">4. Social Functions</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminSocialFuncA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminSocialFuncA, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminSocialFuncA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminSocialFuncB, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminSocialFuncB, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminSocialFuncB, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="h4">5. Officers' Mess</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminOfficerMessA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminOfficerMessA, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminOfficerMessA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminOfficerMessB, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminOfficerMessB, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminOfficerMessB, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminOfficerMessC, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminOfficerMessC, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminOfficerMessC, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="h4">6. Accounts</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AccountsA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AccountsA, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AccountsA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AccountsB, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AccountsB, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AccountsB, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="h4">7. Transport</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.Transport, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.Transport, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.Transport, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AnyOtherSuggestion, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AnyOtherSuggestion, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AnyOtherSuggestion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="h4 border-bottom">Administration at Nav Raksha Bhawan</label><br />
+                        <label class="h4">8. Reception</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminAccomodationReceptionA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminAccomodationReceptionA, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminAccomodationReceptionA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminAccomodationReceptionB, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminAccomodationReceptionB, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminAccomodationReceptionB, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="h4">9. Gym facilities</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminGym, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminGym, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminGym, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="h4">10. Beauty Parlour</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminBeautyParlour, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminBeautyParlour, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminBeautyParlour, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="h4">11. Rakshika True Value Shop</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AdminShop, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.AdminShop, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.AdminShop, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="h4">12. CSD Facilities</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.CSDFacilities, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.CSDFacilities, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.CSDFacilities, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="container">
+                        <legend>PART III - UNIVERSITY DIVISION</legend>
+                        <label class="h4">13. Thesis</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.UDThesisA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.RadioButtonFor(e => e.UDThesisA, "Y", new { id = "UDThesisA-true" })
+                                @Html.Label("UDThesisA-true", "Yes")
+                                @Html.RadioButtonFor(e => e.UDThesisA, "N", new { id = "UDThesisA-false" })
+                                @Html.Label("UDThesisA-false", "No")
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.UDThesisASugg, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.UDThesisASugg, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.UDThesisASugg, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.UDThesisB, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.RadioButtonFor(e => e.UDThesisB, "Y", new { id = "UDThesisB-true" })
+                                @Html.Label("UDThesisB-true", "Yes")
+                                @Html.RadioButtonFor(e => e.UDThesisB, "N", new { id = "UDThesisB-false" })
+                                @Html.Label("UDThesisB-false", "No")
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.UDThesisBSugg, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.UDThesisBSugg, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.UDThesisBSugg, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.UDThesisC, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.RadioButtonFor(e => e.UDThesisC, "Y", new { id = "UDThesisC-true" })
+                                @Html.Label("UDThesisC-true", "Yes")
+                                @Html.RadioButtonFor(e => e.UDThesisC, "N", new { id = "UDThesisC-false" })
+                                @Html.Label("UDThesisC-false", "No")
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.UDThesisCSugg, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.UDThesisCSugg, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.UDThesisCSugg, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="h4">14. ASAT</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.ASATASuggFeedback, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.ASATASuggFeedback, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.ASATASuggFeedback, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="container">
+                        <legend>PART IV - LIBRARY</legend>
+                        <label class="h4">15. Availability of Reading Resources</label>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.LibraryA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.LibraryA, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.LibraryA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.LibraryB, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.LibraryB, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.LibraryB, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.LibraryC, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.LibraryC, htmlAttributes: new { @class = "form-control form-control-sm editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.LibraryC, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="card-footer bg-white text-center">
+                    @Html.HiddenFor(m => m.IsSubmit) 
+                    @if (!Model.IsSubmit)
+                    {
+                        <button type="submit" name="submitType" value="Save" class="btn btn-primary">Save</button>
+                        <button type="submit" name="submitType" value="Submit" class="btn btn-success">Submit</button>
+                    }
+                    else
+                    {
+                        <h1 class="label-danger text-danger">Feedback submitted. Changes are not permitted.</h1>
+                        @Html.ActionLink("Back to List", "Index")
+                    }
+
+
+                </div>
+
+            </div>
+        }
+    </div>
+</div>

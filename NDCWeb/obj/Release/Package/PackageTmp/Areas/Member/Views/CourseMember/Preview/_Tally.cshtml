@@ -1,0 +1,34 @@
+﻿@*@model NDCWeb.Areas.Member.View_Models.CrsMbrNameTallyVM*@
+@model NDCWeb.Areas.Member.View_Models.TallyDetailIndxVM
+<table class="table table-condensed table-bordered">
+    <tr class="bg-2 text-white">
+        <td colspan="10">Name Tally
+            <a class="btn btn-transparent btn-sm float-right" data-toggle="tab" href="#TallyPartial" onclick="editTab('TallyPartial')"><i class="fa fa-pencil-square text-primary"></i></a>
+        </td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.RankAbbr)</td>
+        <td class="juipfvalue"> @Html.DisplayFor(model => model.RankAbbr)</td>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.PassportName)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.PassportName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.TabName) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.TabName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.NickName) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.NickName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.CountryService) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.CountryService)</td>
+    </tr>
+    <tr class="bg-2 text-white">
+        <td colspan="10">Tele Directory of NDC Course (Current)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.NameORRank) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.NameORRank)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.ResidentialAddress) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.ResidentialAddress)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MobileNo) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MobileNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.TelephoneNo) </td>
+        <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.TelephoneNo)</td>
+    </tr>
+</table>

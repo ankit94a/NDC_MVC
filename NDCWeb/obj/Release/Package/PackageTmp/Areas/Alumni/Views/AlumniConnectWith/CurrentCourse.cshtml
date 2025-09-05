@@ -1,0 +1,41 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CrsMemberPersonalVM>
+@{
+    ViewBag.Title = "Participant of NDC Course";
+}
+<div class="container mt-4">
+    <div class="panel-heading border-bottom">
+        <h3 class="h3 text-primary">Participants of NDC @ViewBag.Course course</h3>
+    </div>
+    <div class="card-body">
+        @foreach (var item in Model)
+        {
+        <table class="table table-info">
+            <tr>
+                <td rowspan="5" width="180">
+                    <img src="@Url.Content(item.MemberImgPath ?? "/Areas/Member/Component/images/avatars/profile-blank.png")" height="120" alt="@item.FirstName @item.Surname">
+                </td>
+            </tr>
+            <tr>
+                <td width="180">Full Name</td>
+                <td>@item.FirstName @item.Surname</td>
+            </tr>
+            <tr>
+                <td>Coutry / Service</td>
+                <td>@item.CitizenshipCountries.CountryName</td>
+            </tr>
+            <tr>
+                <td> Mobile No</td>
+                <td>@item.MobileNo</td>
+            </tr>
+            <tr>
+                <td>Email Id</td>
+                <td>@item.EmailId</td>
+            </tr>
+        </table>
+        <br />
+        }
+    </div>
+    <div class="panel-footer mb-4 text-center">
+        <a href="/alumni/home/" class="btn btn-primary"> Back</a>
+    </div>
+    </div>

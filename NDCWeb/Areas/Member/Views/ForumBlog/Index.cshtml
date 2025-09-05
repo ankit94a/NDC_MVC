@@ -1,0 +1,181 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.ForumBlogIndxVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "List of Uploaded Items";
+}
+@Styles.Render("~/bundles/datatables/ButtonCss")
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+<div class="container  card">
+    <div class="main-card  card">
+        <div class="card-header">
+            @ViewBag.Title
+            <a href="@Url.Action("ForumBlogEntry","ForumBlog")" class="btn btn-primary btn-sm pull-right">Add New</a>
+        </div>
+        <div class="card-body">
+            <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Category)
+                        </th>
+                        <th>
+                            Brief Description
+                        </th>
+                        <th>
+                            Module
+                        </th>
+                        <th>
+                            SDS Comment(s)
+                        </th>
+                        <th>
+                            Log Activity
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>
+                            View
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ForumBlogId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem=>item.Module) @*ADD BY AMITESH*@
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StaffRemark)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MemberRemark)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            @*<td>
+                                    <a class="btn btn-outline-primary" href="@Url.Action("ForumBlogEdit", new { id = item.ForumBlogId })"><i class="fa fa-pencil"></i></a>|
+
+                                    <a class="btn btn-outline-primary" href="@Url.Action("ShowMediaFiles", new { id = item.ForumBlogId })" target="_blank"><i class="fa fa-eye"></i></a>
+                                </td>*@
+                        <td>
+                            @*<a class="btn btn-outline-primary" href="@Url.Action("ForumBlogEdit", new { id = item.ForumBlogId })"><i class="fa fa-pencil"></i></a>*@
+                            @Html.EncodedActionLink("", "ForumBlogEdit", "ForumBlog", "member", new { id = item.ForumBlogId }, new { @class = "btn btn-outline-primary" }, "fa fa-pencil")|
+                            @*<span class="badge badge-primary">@Html.DisplayFor(modelItem => item.iForumBlogMedias.Count)</span> &nbsp;*@
+                            @if (item.Status == "Accept")
+                            {
+                                <a class="btn btn-outline-success" href="void();" target="_blank" title="Your paper has been approved. File is disabled for authenticity." style="pointer-events: none"><i class="fa fa-eye"></i></a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-outline-primary" href="@Url.Action("ShowMediaFiles", new { id = item.ForumBlogId })" target="_blank"><i class="fa fa-eye"></i></a>
+                            }
+                        </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables/ButtonJs")
+    <script>
+        //LoadJDTSorted('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+    <script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            var fileName = 'ONLINE UPLOAD LIST_' + crrtdate;
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                "order": [[0, "desc"]],
+                "columnDefs": [{ "targets": [0], "visible": false, "searchable": false }],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4, 5],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            doc.content.splice(0, 1);
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 13,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'ONLINE UPLOAD LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+                            doc.content[0].layout = objLayout;
+                            doc.content[0].alignment = 'center'
+                        }
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+            oTable.on('order.dt search.dt', function () {
+                oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+            oTable.on('order.dt search.dt', function () {
+                oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                    oTable.cell(cell).invalidate('dom');
+                });
+            }).draw();
+        });
+    </script>
+}

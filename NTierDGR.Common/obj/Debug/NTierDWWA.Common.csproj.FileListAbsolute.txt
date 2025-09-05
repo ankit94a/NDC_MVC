@@ -1,0 +1,6 @@
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDWWA.Common.csprojAssemblyReference.cache
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDWWA.Common.csproj.CoreCompileInputs.cache
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb

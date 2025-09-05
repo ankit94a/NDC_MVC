@@ -1,0 +1,73 @@
+﻿@model IEnumerable<NDCWeb.Areas.Admin.View_Models.AppointmentDetailIndxVM>
+
+@{
+    ViewBag.Title = "List of Appointments";
+}
+
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/datatables.min.css" />*@
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css" />*@
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/datatables.min.css" />*@
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />*@
+<div class="main-card  card">
+    <div class="card-body">
+        <h5 class="card-title">List of Appointment (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","Appointment")" class="btn-shadow  mt-0 btn btn-primary">Create Menu</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AppointmentId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Organisation)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AppointmentId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Appointment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Organisation)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.AppointmentId })"><i class="fa fa-edit"></i></a>
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.AppointmentId, this)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    @*<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/datatables.min.js"></script>*@
+    @*<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>*@
+    @*<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/datatables.min.js"></script>*@
+    @*<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>*@
+    <script>
+        //$(document).ready(function () {
+        //    $('#myTable').DataTable();
+        //});
+
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

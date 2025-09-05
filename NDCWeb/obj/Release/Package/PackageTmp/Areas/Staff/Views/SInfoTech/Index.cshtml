@@ -1,0 +1,128 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.InfoTechCompleteVM>
+@{
+    ViewBag.Title = "IT Equipment Requirements";
+
+}
+<div class="shadow-sm pt-2">
+    <div class="card mb-4">
+        <div class="card-header" style="background-color:#fff">
+            @ViewBag.Title
+            @*<span class="pull-right">@Html.ActionLink("Request for IT Hardware", "create", null, new { @class = "btn btn-primary btn-sm" })</span>*@
+        </div>
+        <div class="card card-body">
+            <table class="table w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th style="vertical-align: top; text-align: justify">
+                            Member Name
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            Department Laptop Make
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            Department Model No
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            Department Serial No.
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            Department Adapter Available
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            Department Bag Available
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            College Laptop Make
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            College Model No
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            College Serial No.
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            College Adapter Available
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            College Bag Available
+                        </th>
+                        <th style="vertical-align: top; text-align: center">
+                            View
+                        </th>
+                        <th style="vertical-align: top; text-align: justify">
+                            Action
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LockerNo) @Html.DisplayFor(modelItem => item.MemberFullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DLaptopMake)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DModelNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DSlNo)
+                            </td>
+                            <td>
+                                @(item.DAdaptor == true ? "Yes": "No")
+                            </td>
+                            <td>
+                                @(item.DBag == true ? "Yes": "No")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CLaptopMake)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CModelNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CSlNo)
+                            </td>
+                            <td>
+                                @(item.CAdaptor == true ? "Yes": "No")
+                            </td>
+                            <td>
+                                @(item.CBag == true ? "Yes": "No")
+                            </td>
+                            <td>
+                                <a href="@Url.Content(item.DeclarationFormDocPath ?? "#")">Declaration_Form</a> |
+                                <br />
+                                <a href="@Url.Content(item.InsuranceReceiptDocPath ?? "#")">Insurance_Receipt</a> |
+                                <br />
+                                <a href="@Url.Content(item.OutsidePermissionDocPath ?? "#")">Outside_Permission</a>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ITId }, new { @class = "btn btn-primary btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function LoadJDTSorted(TableId) {
+            $(document).ready(function () {
+                oTable = $('#myTable' + myTable).DataTable({
+                    "scrollX": true,
+                    "processing": true,
+                    "order": [[0, "desc"]],
+                    "columnDefs": [{ "targets": [0], "visible": true, "searchable": false }]            //"serverSide": true
+                });
+            });
+        }
+    //LoadJDTSorted('#myTable');
+    </script>
+
+}

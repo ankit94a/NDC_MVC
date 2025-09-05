@@ -1,0 +1,79 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.ParticipantIndxVM>
+@{
+    ViewBag.Title = "Participant(s) List";
+}
+<div class="main-card mb-3 mt-2 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Registered Participants (s)</h5>
+        <table class="table w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ServiceNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FatherName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DOBirth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmailId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ServiceNo)
+                        </td>
+                        <td>
+                            <text>@item.FirstName </text><text>@item.Surname </text>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            <text>@item.FatherName </text><text>@item.FatherMiddleName </text><text>@item.FatherSurname </text>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOBirth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MobileNo)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("ParticipantBio", new { id = item.CreatedBy })" class="btn btn-primary btn-sm">Biodata</a>
+                            @*<a href="@Url.Action("TrainingSection", new { id = item.CreatedBy })" class="btn btn-primary btn-sm">Trg List</a>
+                            <a href="@Url.Action("Library", new { id = item.CreatedBy })" class="btn btn-primary btn-sm">Library</a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="card-footer text-center bg-white">
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        LoadJDT('#myTable');
+
+    </script>
+}
+

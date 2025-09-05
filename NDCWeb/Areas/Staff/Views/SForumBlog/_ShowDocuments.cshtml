@@ -1,0 +1,90 @@
+﻿@model NDCWeb.Areas.Member.View_Models.ForumBlogIndxVM
+<link href="~/Areas/Admin/Component/css/main.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="main-card card">
+        <div class="card-header">
+            <h5 class="card-title">List of Uploads</h5>
+        </div>
+        <div class="card-body">
+            @{
+                bool isExists = false;
+            }
+            <div class="row">
+                @foreach (var mdfl in Model.iForumBlogMedias)
+                {
+                    isExists = true;
+
+                    if (mdfl.Extension == ".jpg" || mdfl.Extension == ".png" || mdfl.Extension == ".jpeg")
+                    {
+                        <div class="col-sm-4">
+                            <div class="card mb-2">
+                                <img src="@Url.Content(mdfl.FilePath)" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">@mdfl.FileName</p>
+                                    <a href="@Url.Content(mdfl.FilePath)" class="btn btn-primary" download><i class="fa fa-download"></i> Save</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (mdfl.Extension == ".mp4")
+                    {
+                        <div class="col-sm-4">
+                            <div class="card mb-2">
+                                <video controls="controls" class="card-img-top">
+                                    <source src="@Url.Content(mdfl.FilePath)" type="video/mp4" />
+                                </video>
+                                <div class="card-body">
+                                    <p class="card-text">@mdfl.FileName</p>
+                                    <a href="@Url.Content(mdfl.FilePath)" class="btn btn-primary" download><i class="fa fa-download"></i> Save</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (mdfl.Extension == ".pdf")
+                    {
+                        <div class="col-sm-12">
+                            <script type="text/javascript">
+                                window.location.href = "@Url.Content(mdfl.FilePath)";
+                            </script>
+                        </div>
+                    }
+                    else if (mdfl.Extension == ".doc" || mdfl.Extension == ".docx" || mdfl.Extension == ".ppt" || mdfl.Extension == ".pptx")
+                    {
+                        <div class="col-sm-12">
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=https://ndc.techbrills.com/@Url.Content(mdfl.FilePath)" frameborder="no" style="width:100%;height:800px"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                @if (ViewBag.Url != null)
+                {
+                    <div class="col-4">
+                        <div class="card shadow p-3 mb-5 bg-white">
+                            <div class="card-img-top embed-responsive embed-responsive-16by9">
+                                @*<iframe class="embed-responsive-item" src="@ViewBag.Url" allowfullscreen></iframe>*@
+                                @Html.Raw(ViewBag.Url)
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (!isExists)
+                {
+                    <div class="col-4">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <p class="card-text"><i class="fa fa-warning"></i>  User has not submitted document(s)</p>
+                                <a onclick="JavaScript: window.close();" class="btn btn-primary" download><i class="fa fa-cross"></i> Close</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

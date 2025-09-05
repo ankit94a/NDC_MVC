@@ -1,0 +1,133 @@
+﻿
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCMAssignment" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                ASSIGNMENT/APPOINTMENTS
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <input type="text" name="aaAppointment" id="aaAppointment_1" required title="Enter Appointment" class="form-control" placeholder="Appointment">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="text" name="aaOrganisation" id="aaOrganisation_1" required title="Enter Organisation" class="form-control" placeholder="Organisation">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <input type="text" name="aaDuration" id="aaDuration_1" required title="Enter Duration" class="form-control" placeholder="Duration">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="text" name="aaLocation" id="aaLocation_1" required title="Enter Location" class="form-control" placeholder="Location">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <input type="text" name="aaFrom" id="aaFrom_1" required title="Enter From" class="form-control datepickerJq1" autocomplete="off" placeholder="From">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="text" name="aaTo" id="aaTo_1" required title="Enter To" class="form-control datepickerJq1" autocomplete="off" placeholder="To">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <button type="button" class="add-Appointment btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="remove-Appointment btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div id="new_aa"></div>
+                <input type="hidden" value="1" id="total_aa">
+
+                <div class="form-group text-center">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" id="btnSaveAssignment" value="Submit" onclick="addMemberAssignment()" class="btn btn-primary btn-lg" />
+                        @*<a href="#" class="btn btn-primary btn-lg btnNext">Next</a>
+                        <a href="#" class="btn btn-primary btn-lg btnPrevious">Go Back</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        getDatepickerf1('.datepickerJq1');
+    });
+    // #region Asgnmt Appointments
+    function storeAppointment() {
+        let ttlaa = $('#total_aa').val();
+        let appointments = [];
+        for (i = 1, j = 0; i <= ttlaa; i++ , j++) {
+            appointments[j] = {
+                Appointment: $('#aaAppointment_' + i).val(),
+                Organisation: $('#aaOrganisation_' + i).val(),
+                Duration: $('#aaDuration_' + i).val(),
+                Location: $('#aaLocation_' + i).val(),
+                From: $('#aaFrom_' + i).val(),
+                To: $('#aaTo_' + i).val(),
+            };
+        }
+        return appointments;
+    }
+
+    $('.add-Appointment').on('click', addAppointment);
+    $('.remove-Appointment').on('click', removeAppointment);
+    function addAppointment() {
+        let new_aa_no = parseInt($('#total_aa').val()) + 1;
+        let new_inputAa = `<div id="Appointment_${new_aa_no}" class="form-row">
+                               <div class="form-group col-md-2">
+                                   <input type="text" name="aaAppointment" id="aaAppointment_${new_aa_no}" required title="Enter Appointment" class="form-control" placeholder="Appointment">
+                               </div>
+                               <div class="form-group col-md-2">
+                                   <input type="text" name="aaOrganisation" id="aaOrganisation_${new_aa_no}" required title="Enter Organisation" class="form-control" placeholder="Organisation">
+                               </div>
+                               <div class="form-group col-md-1">
+                                   <input type="text" name="aaDuration" id="aaDuration_${new_aa_no}" required title="Enter Duration" class="form-control" placeholder="Duration">
+                               </div>
+                               <div class="form-group col-md-2">
+                                   <input type="text" name="aaLocation" id="aaLocation_${new_aa_no}" required title="Enter Location" class="form-control" placeholder="Location">
+                               </div>
+                               <div class="form-group col-md-2">
+                                   <input type="text" name="aaFrom" id="aaFrom_${new_aa_no}" required title="Enter From" class="form-control datepickerJq1" autocomplete = "off" placeholder="From">
+                               </div>
+                               <div class="form-group col-md-2">
+                                   <input type="text" name="aaTo" id="aaTo_${new_aa_no}" required title="Enter To" class="form-control datepickerJq1" autocomplete = "off" placeholder="To">
+                               </div>
+                           </div>`
+        $('#new_aa').append(new_inputAa);
+        $('#total_aa').val(new_aa_no);
+        getDatepickerf1('.datepickerJq1');
+    }
+    function removeAppointment() {
+        let last_aa_no = $('#total_aa').val();
+
+        if (last_aa_no > 1) {
+            $('#Appointment_' + last_aa_no).remove();
+            $('#total_aa').val(last_aa_no - 1);
+        }
+    }
+    // #endregion
+
+    function addMemberAssignment() {
+        if ($("#formCMAssignment").valid()) {
+        let assignmentList = storeAppointment();
+        let assignments = JSON.stringify(assignmentList);
+        $.ajax({
+            type: 'post',
+            url: '/api/courseMembers/ImportantAssignment',
+            data: assignments,
+            contentType: "application/json; charset=utf-8",
+            datatype: 'json',
+            success: function (data, textStatus, xhr) {
+                toastr.info(textStatus);
+                //displayTab('ImportantAssignmentPartial');
+                displayTab('ServicePartial');
+            },
+            error: function () {
+                toastr.error('Operation Failed!');
+            }
+        });
+        }
+    }
+</script>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.EventIndexVM>
+@{
+    ViewBag.Title = "Event Board";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4 mb-4">
+    <div class="card-deck">
+        @foreach (var item in Model)
+        {
+            <div class="card">
+                <img class="card-img-top" src="https://briskfridgetruckrentals.com.au/wp-content/uploads/2015/04/formal-event-table-setting.jpg"  alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title">@Html.DisplayFor(modelItem => item.EventName)</h3>
+                    <table>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.EventVenu)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventVenu)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.EventDate)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventDate)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.EventTime)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventTime)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> @Html.DisplayNameFor(model => model.EventDress)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventDress)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Remarks)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventDress)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    @Html.ActionLink("Apply as a Guest", "Enrol", new { attendType = "Guest", eventId = item.EventId }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("I want to Host", "Enrol", new { attendType = "Host", eventId = item.EventId }, new { @class = "btn btn-primary btn-sm" })
+                </div>
+            </div>
+        }
+    </div>
+</div>

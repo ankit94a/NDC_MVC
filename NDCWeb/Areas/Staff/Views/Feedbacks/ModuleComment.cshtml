@@ -1,0 +1,39 @@
+﻿@model NDCWeb.Areas.Member.View_Models.FeedbackModuleUpdateVM
+
+@{
+    ViewBag.Title = "Add / Edit Comments And Recomedation on Module Feedback";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mb-4 mt-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ModuleFeedbackId)
+                @Html.HiddenFor(model => model.Choice)
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.CommentsAndRecomedation, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextAreaFor(model => model.CommentsAndRecomedation, htmlAttributes: new { @class = "form-control editorHtml disabled", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.CommentsAndRecomedation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    @Html.ActionLink("Back to List", "module", new{ category = Model.Choice }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

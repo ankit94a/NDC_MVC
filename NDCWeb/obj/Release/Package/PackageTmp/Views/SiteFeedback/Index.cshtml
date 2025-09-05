@@ -1,0 +1,53 @@
+﻿@model IEnumerable<NDCWeb.View_Models.SiteFeedbackVM>
+
+@{
+    ViewBag.Title = "Valuable Feedbacks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top:25px">
+    
+    <table class="table table-condensed table-success">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Approved)
+                </th>
+                @*<th></th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Approved)
+                    </td>
+                    @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FeedbackId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FeedbackId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FeedbackId })
+                </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

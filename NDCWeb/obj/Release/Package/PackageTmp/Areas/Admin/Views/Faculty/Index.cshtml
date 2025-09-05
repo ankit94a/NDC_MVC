@@ -1,0 +1,72 @@
+﻿@model IEnumerable<NDCWeb.Areas.Admin.View_Models.FacultyIndxVM>
+
+@{
+    ViewBag.Title = "List of Faculty";
+}
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Faculty (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","Faculty")" class="btn-shadow mb-3 mt-0 btn btn-primary">Create Faculty</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FacultyId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FacultyName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Designation)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StaffType)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FacultyId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FacultyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StaffType)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.FacultyId })"><i class="fa fa-edit"></i></a>
+                        <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.FacultyId, this)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

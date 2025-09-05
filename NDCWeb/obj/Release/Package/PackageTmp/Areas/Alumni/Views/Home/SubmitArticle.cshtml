@@ -1,0 +1,41 @@
+﻿@model NDCWeb.Areas.Member.View_Models.ForumBlogCrtVM
+
+@{
+    ViewBag.Title = "Submit Article for Theme";
+}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-9">
+            @using (Html.BeginForm("SubmitArticle", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Category)
+                <div class="card shadow mt-4  mb-4">
+                    <div class="card-header" style="background-color:#fff">
+                        &nbsp;&nbsp;&nbsp;&nbsp;   @ViewBag.Title
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">                           
+                            <div class="form-group col-md-12">
+                                <label for="Files" name="Files" class="control-label">Browse</label>
+                                <input id="Files" type="file" name="Files" multiple required class="uploadify-button"  accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label" for="Description">Remarks/Comments (if any)</label>
+                                @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control editorHtml", rows = "8", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white text-center">
+                        <input type="submit" value="Create" class="btn btn-primary  btn-sm" />
+                        @Html.ActionLink("Back", "Index", new {Controller="home", Action="index" }, new { @class = "btn btn-primary btn-sm" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

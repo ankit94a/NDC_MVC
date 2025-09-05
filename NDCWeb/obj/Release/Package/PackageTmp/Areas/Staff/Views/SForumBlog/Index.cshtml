@@ -1,0 +1,72 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.ForumBlogIndxVM>
+@{
+    ViewBag.Title = "List of Uploaded Items";
+}
+<div class="container mb-3 card">
+    <div class="main-card mb-3 card">
+        <div class="card-header">
+            @ViewBag.Title
+            <a href="@Url.Action("ForumBlogEntry","ForumBlog")" class="btn btn-primary btn-sm pull-right">Add New</a>
+        </div>
+        <div class="card-body">
+            <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            Staff Remark
+                        </th>
+                        <th>
+                            My Comments
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>
+                            View
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StaffRemark)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MemberRemark)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="@Url.Action("ForumBlogEdit", new { id = item.ForumBlogId })"><i class="fa fa-pencil"></i></a> |
+                                @*<span class="badge badge-primary">@Html.DisplayFor(modelItem => item.iForumBlogMedias.Count)</span> &nbsp;*@
+                                <a class="btn btn-outline-primary" href="@Url.Action("ShowMediaFiles", new { id = item.ForumBlogId })" target="_blank"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDTSorted('#myTable');
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

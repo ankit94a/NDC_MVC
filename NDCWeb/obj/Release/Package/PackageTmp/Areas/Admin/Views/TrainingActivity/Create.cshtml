@@ -1,0 +1,75 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.TrainingActivityCrtVM
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="main-card mb-3 card">
+    @using (Html.BeginForm("Create", "TrainingActivity", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="card-body">
+            <h5 class="card-title">Course Training Data</h5>
+            <hr />
+            <div class="form-row mt-4">
+                <div class="form-group col-md-3">
+                    <label for="Files" name="Files" class="control-label">Browse File</label>
+                    <div class="col-md-10">
+                        <input id="Files" type="file" name="Files" multiple class="uploadify-button" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.Module, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.Module, (IEnumerable<SelectListItem>)ViewBag.Module, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Module, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.Activity, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.Activity, (IEnumerable<SelectListItem>)ViewBag.Activity, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Activity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-8">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.FromDate, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.ToDate, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-2">
+                    @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label" })
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Active)
+                        @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center" style="display:block !important">
+            <input type="submit" id="Save" value="Save" class="btn btn-primary btn-md" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-md" })
+        </div>
+    }
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="Head1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+    <meta charset="utf-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        National Defence College
+    </title>
+    @*<meta http-equiv="Content-Security-Policy" content="default-src 'self'">*@
+
+    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="keywords" />
+    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="description" />
+    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="DC.Subject.Keyword" />
+    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="NDC.Description" />
+    <link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
+    <link href="~/Component/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Component/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Component/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/Component/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/Component/css/ndcforms.css" />
+    <!-- Color Theme CSS -->
+
+    <link rel="stylesheet" href="/Component/css/gallery/css/animate.min.css" />
+    <link rel="stylesheet" href="/Component/css/gallery/css/jquery.desoslide.min.css">
+    <link href="/Component/Custom/css/intlTelInput.css" rel="stylesheet" />
+    <link href="/Component/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+    @Styles.Render("~/bundles/jquistyle")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/mainjs")
+
+
+    <link href="~/Component/css/ndcstyle.css" rel="stylesheet" />
+
+</head>
+
+<body id="fontSize">
+    @Html.Partial("_Header")
+    <div class="mean-container">
+    </div>
+
+    @if (ViewBag.SiteMenuItems != null)
+    {
+        @Html.Partial("_UserMenu");
+    }
+    <!-- Menu Part End -->
+    <div class="clearfix">
+    </div>
+    @Html.Partial("_Notifications")
+    @RenderBody()
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <div class="container-fluid">
+                <ul>
+                    <li><a title='Right to Information' href='/content2/footer/right-to-information'>Right to Information</a></li>
+                    <li><a title='Archive Policy' href='/content2/footer/archive-policy'>Archive Policy</a></li>
+                    <li><a title='Web Information Manager' href='/content2/footer/web-information-manager'>Web Information Manager</a></li>
+                    <li><a title='Disclaimer' href='/content2/footer/disclaimer'>Disclaimer</a></li>
+                    <li><a title='Terms & Conditions' href='/content2/footer/terms--conditions'>Terms & Conditions</a></li>
+                    <li><a title='Copyright Policy' href='/content2/footer/copyright-policy'>Copyright Policy</a></li>
+                    <li><a title='Hyperlinking Policy' href='/content2/footer/hyperlinking-policy'>Hyperlinking Policy</a></li>
+                </ul>
+
+                <p class="text-center"><span class="footer-nic">Site is hosted by National Informatics Centre (NIC). Information is provided and updated by National Defence College.</span></p>
+            </div>
+        </div>
+    </footer>
+    <script src='~/Component/js/font-size.js' type="text/javascript"></script>
+    <script src='~/Component/js/superfish.js' type="text/javascript"></script>
+    @*<script src='~/Component/js/styleswitcher.js' type="text/javascript"></script>*@
+    <script src='~/Component/js/jquery.meanmenu.js' type="text/javascript"></script>
+    <script src='~/Component/js/imagelightbox.min.js' type="text/javascript"></script>
+    <script src='~/Component/js/light-box.js' type="text/javascript"></script>
+    <script src='~/Component/js/focus.js' type="text/javascript"></script>
+    <script src='~/Component/js/jquery.flexisel.js' type="text/javascript"></script>
+    <script src='~/Component/js/html5lightbox.js' type="text/javascript"></script>
+    <script src='~/Component/js/custom.js' type="text/javascript"></script>
+    <script src='~/Component/Custom/js/customScript.js' type="text/javascript"></script>
+    <script src='~/Component/js/ace-responsive-menu.js' type="text/javascript"></script>
+    <script src="~/Component/js/newsTicker.js" type="text/javascript"></script>
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/custom")
+    <script src="~/Component/js/ndcv3.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

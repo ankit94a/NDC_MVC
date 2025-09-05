@@ -1,0 +1,645 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CourseFeedbackIndxVM
+@{
+    ViewBag.Title = "Course End Feedback";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/bundles/datatables/ButtonCss")
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+<div class="container pt-2">
+    <div class="card" id="printDiv" style="font-family:Arial; font-size:13px">
+        <style>
+            tr :nth-child(1) {
+                font-weight: bold;
+            }
+        </style>
+        <div class="card-header text-uppercase h4 text-center border-0"><u>@ViewBag.Title</u></div>
+        <div class="card-body">
+            <fieldset class="container p-2">
+
+                <legend>PART I - TRAINING</legend>
+                <p class="h4">1. Comments/ Suggestions on Training Syllabus</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.ConductOfStudy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.ConductOfStudy)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.SpeakerOnTopicScope)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.SpeakerOnTopicScope)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.CoductOfIAG)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.CoductOfIAG)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.ConductOfCDsSGES)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.ConductOfCDsSGES)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.InfoCourseLectureSchedule)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.InfoCourseLectureSchedule)
+                        </td>
+                    </tr>
+                </table>
+                <p class="h4">2. Comments/ Suqqestions on Infrastructure</p>
+                <table class="dl-horizontal">
+
+
+                    @* <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.SuggestionInfraI)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.SuggestionInfraI)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.SuggestionInfraII)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.SuggestionInfraII)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.SuggestionInfraIII)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.SuggestionInfraIII)
+                    </td>
+                </tr>*@
+
+                    <tr>
+                        @*<td>
+                        @Html.DisplayNameFor(model => model.OtherComments)
+                    </td>*@
+
+                        <td colspan="2">
+                            @Html.DisplayFor(model => model.OtherComments)
+                        </td>
+                    </tr>
+                </table>
+                <p class="h4">3. Tours</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td colspan="2">
+                            <p class="">Views/ suggestions on timing, duration, coverage, administration and any other comments on following tours during the Course.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.ToursI)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.ToursI)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><label>(b) Foreign Tours</label><br /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.VirtualToursI)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.VirtualToursI)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.VirtualToursII)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.VirtualToursII)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminTourA)
+                        </td>
+                        <td>
+                            @(Model.AdminTourA == "Y"? "Yes" : "No")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminTourB)
+                        </td>
+
+                        <td>
+                            @(Model.AdminTourB == "Y" ? "Yes" : "No")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminTourC)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminTourC)
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br />
+            <fieldset class="container">
+                <legend>PART ll- ADMINISTRATION AT NDC</legend>
+                <p class="h4">4. Social Functions</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminSocialFuncA)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminSocialFuncA)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminSocialFuncB)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminSocialFuncB)
+                        </td>
+                    </tr>
+                </table>
+                <p class="h4">5. Officers' Mess</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminOfficerMessA)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminOfficerMessA)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminOfficerMessB)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminOfficerMessB)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminOfficerMessC)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminOfficerMessC)
+                        </td>
+                    </tr>
+                </table>
+                <p class="h4">6. Accounts</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AccountsA)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AccountsA)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AccountsB)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AccountsB)
+                        </td>
+                    </tr>
+                </table>
+                <p class="h4">7. Transport</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Transport)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Transport)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AnyOtherSuggestion)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AnyOtherSuggestion)
+                        </td>
+                    </tr>
+                </table>
+
+                <p class="h4">8. Reception</p>
+                <table class="dl-horizontal">
+                    @*<tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminAccomodationA)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AdminAccomodationA)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminAccomodationB)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AdminAccomodationB)
+                    </td>
+                </tr>*@
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminAccomodationReceptionA)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminAccomodationReceptionA)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminAccomodationReceptionB)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminAccomodationReceptionB)
+                        </td>
+                    </tr>
+                </table>
+
+                <p class="h4">9. Gym facilities</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminGym)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminGym)
+                        </td>
+                    </tr>
+                </table>
+
+                <p class="h4">10. Beauty Parlour</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminBeautyParlour)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminBeautyParlour)
+                        </td>
+                    </tr>
+                </table>
+
+                <p class="h4">11. Rakshika True Value Shop</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdminShop)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.AdminShop)
+                        </td>
+                    </tr>
+                </table>
+
+                <p class="h4">12. CSD Facilities</p>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.CSDFacilities)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.CSDFacilities)
+                        </td>
+                    </tr>
+
+                    @*<tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminDomesticHelp)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AdminDomesticHelp)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminA)
+                    </td>
+
+                    <td>
+                        @(Model.AdminA ? "Yes":"No")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.AdminB)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminC)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AdminC)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminD)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AdminD)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminE)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AdminE)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminF)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AdminF)
+                    </td>
+                </tr>*@
+                </table>
+            </fieldset>
+            <br />
+            <fieldset class="container">
+                <legend>PART III - UNIVERSITY DIVISION</legend>
+                <label class="h4">13. Thesis</label>
+                <table class="dl-horizontal">
+                    @*<tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdminG)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AdminG)
+                    </td>
+                </tr>*@
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.UDThesisA)
+                        </td>
+
+                        <td>
+                            @(Model.UDThesisA == "Y" ? "Yes" : "No")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.UDThesisASugg)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.UDThesisASugg)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.UDThesisB)
+                        </td>
+
+                        <td>
+                            @(Model.UDThesisB == "Y" ? "Yes" : "No")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.UDThesisBSugg)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.UDThesisBSugg)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.UDThesisC)
+                        </td>
+
+                        <td>
+                            @(Model.UDThesisC == "Y" ? "Yes" : "No")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.UDThesisCSugg)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.UDThesisCSugg)
+                        </td>
+                    </tr>
+                </table>
+                <label class="h4">14. ASAT</label>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.ASATASuggFeedback)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.ASATASuggFeedback)
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br />
+            <fieldset class="container">
+                <legend>PART IV - LIBRARY</legend>
+                <label class="h4">15. Availability of Reading Resources</label>
+                <table class="dl-horizontal">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.LibraryA)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.LibraryA)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.LibraryB)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.LibraryB)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.LibraryC)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.LibraryC)
+                        </td>
+                    </tr>
+
+                </table>
+            </fieldset>
+            <fieldset class="container">
+                <legend>&nbsp;</legend>
+                <table>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.FullName)
+                        </td>
+
+                        <td>
+                            <b>
+                                @Html.DisplayFor(model => model.FullName)
+                            </b>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+
+                            @Html.DisplayNameFor(model => model.MobileNo)
+
+                        </td>
+
+                        <td>
+                            <b>
+                                @Html.DisplayFor(model => model.MobileNo)
+                            </b>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </td>
+
+                        <td>
+                            <b>
+                                @Html.DisplayFor(model => model.Email)
+                            </b>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+    <div class="panel-footer bg-white text-center mb-4">
+        @Html.ActionLink("Update", "Edit", "CourseFeedback", new { id = Model.FeedbackId }, new { @class = "btn btn-primary btn-sm" })
+        <input type="button" class="btn btn-primary btn-sm" onclick="printdoc()" value="Print" />
+        @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-sm" })*@
+    </div>
+</div>
+@section scripts{
+    <script>
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printDiv').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+    </script>
+}

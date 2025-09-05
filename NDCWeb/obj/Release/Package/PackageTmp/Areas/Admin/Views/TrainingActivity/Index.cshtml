@@ -1,0 +1,91 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.TrainingActivityIndxVM>
+
+@{
+    ViewBag.Title = "Trg Activities";
+}
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">@ViewBag.Title</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create")" class="btn-shadow mb-3 mt-0 btn btn-primary">Create Activity</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Modules")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Category")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        From Date
+                    </th>
+                    <th>
+                        To Date
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Active)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Module)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Activity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @if (item.FromDate != null)
+                            {
+                                @item.FromDate.Value.ToString("dd MMM yyyy");
+                            }
+                        </td>
+                        <td>
+                            @if (item.ToDate != null)
+                            {
+                                @item.ToDate.Value.ToString("dd MMM yyyy");
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+
+                        <td>
+                            <a class="btn btn-outline-primary" href="@Url.Action("ShowMediaFiles", new { id = item.TrainingActivityId })" target="_blank"><i class="fa fa-eye"></i></a> |
+                            <a href="@Url.Action("Edit", new { id = item.TrainingActivityId })"><i class="fa fa-edit"></i></a> |
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.TrainingActivityId, this)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <p>
+
+    </p>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

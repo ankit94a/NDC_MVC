@@ -1,0 +1,124 @@
+﻿@*@model NDCWeb.Areas.Member.View_Models.*@
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCMCountryVisit" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                COUNTRIES VISITED
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Name of Country</Label>
+                        <input type="text" name="cvCountry" id="cvCountry_1" required title="Enter Country" class="form-control" placeholder="Name of Country">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label">Year of Visit</Label>
+                        <input type="text" name="cvVisit" id="cvVisit_1" required title="Enter Visit" class="form-control" placeholder="Year of Visit">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Stay Duration</Label>
+                        <input type="text" name="cvDuration" id="cvDuration_1" required title="Enter Stay Duration" class="form-control" placeholder="Stay Duration">
+                    </div>
+                    @*<div class="form-group col-md-1">
+                            <Label class="control-label"></Label>
+                            <input type="text" name="cvMonth" id="cvMonth_1" class="form-control" placeholder="Month">
+                        </div>*@
+                    <div class="form-group col-md-4">
+                        <Label class="control-label">Purpose</Label>
+                        <input type="text" name="cvPurpose" id="cvPurpose_1" required title="Enter Purpose" class="form-control" placeholder="Purpose">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label pb-1" style="width:100%"></Label>
+                        <button type="button" class="add-CountryVisit btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="remove-CountryVisit btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div id="new_cv" class="form-row"></div>
+                <input type="hidden" value="1" id="total_cv">
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" id="btnSaveCountryVisit" value="Submit" onclick="addMemberCountryVisits()" class="btn btn-primary btn-lg" />
+                        @*<a href="#" class="btn btn-primary btn-lg btnPrevious">Go Back</a>
+                        <a href="#" class="btn btn-primary btn-lg btnNext">Next</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    // #region Country Visit
+    function storeCountryVisit() {
+        let ttlcv = $('#total_cv').val();
+        let countryVisits = [];
+        for (i = 1, j = 0; i <= ttlcv; i++ , j++) {
+            countryVisits[j] = {
+                Country: $('#cvCountry_' + i).val(),
+                Visit: $('#cvVisit_' + i).val(),
+                Duration: $('#cvDuration_' + i).val(),
+                Purpose: $('#cvPurpose_' + i).val(),
+                //Month: $('#cvMonth_' + i).val(),
+            };
+        }
+        return countryVisits;
+    }
+
+    $('.add-CountryVisit').on('click', addCountryVisit);
+    $('.remove-CountryVisit').on('click', removeCountryVisit);
+    function addCountryVisit() {
+        let new_cv_no = parseInt($('#total_cv').val()) + 1;
+        let new_inputCv = `<div id="Country_${new_cv_no}" class="form-row">
+                               <div class="form-group col-md-3">
+                                   <input type="text" name="cvCountry" id="cvCountry_${new_cv_no}" required title="Enter Country" class="form-control" placeholder="Country">
+                               </div>
+                               <div class="form-group col-md-3">
+                                   <input type="text" name="cvVisit" id="cvVisit_${new_cv_no}" required title="Enter Visit" class="form-control" placeholder="Visit">
+                               </div>
+                               <div class="form-group col-md-3">
+                                   <input type="text" name="cvDuration" id="cvDuration_${new_cv_no}" required title="Enter Duration" class="form-control" placeholder="Duration">
+                               </div>
+
+                               <div class="form-group col-md-3">
+                                   <input type="text" name="cvPurpose" id="cvPurpose_${new_cv_no}" required title="Enter Purpose" class="form-control" placeholder="Purpose">
+                               </div>
+                           </div>`
+        $('#new_cv').append(new_inputCv);
+        $('#total_cv').val(new_cv_no);
+    }
+    function removeCountryVisit() {
+        let last_cv_no = $('#total_cv').val();
+
+        if (last_cv_no > 1) {
+            $('#Country_' + last_cv_no).remove();
+            $('#total_cv').val(last_cv_no - 1);
+        }
+    }
+    // #endregion
+
+    function addMemberCountryVisits() {
+        if ($("#formCMCountryVisit").valid()) {
+            let countryVisitList = storeCountryVisit();
+            let countryVisits = JSON.stringify(countryVisitList);
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/CountryVisit',
+                data: countryVisits,
+                contentType: "application/json; charset=utf-8",
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    displayTab('CountryVisitPartial');
+                },
+                error: function () {
+                    alert('Operation Failed!')
+                }
+            });
+        }
+    }
+</script>

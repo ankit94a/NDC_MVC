@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="Head1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+    <meta charset="utf-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        National Defence College
+    </title>
+    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="keywords" />
+    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="description" />
+    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="DC.Subject.Keyword" />
+    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="NDC.Description" />
+    <link rel="stylesheet" type="text/css" href="~/Component/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/main.css" />
+
+    <link rel="stylesheet" href="/Component/css/gallery/css/animate.min.css" />
+    <link rel="stylesheet" href="/Component/css/gallery/css/jquery.desoslide.min.css">
+    <link href="/Component/custom/css/intlTelInput.css" rel="stylesheet" />
+    <link href="/Component/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/Component/DataTble/datatables.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/fontawesome/css/fontawesome.min.css" />*@
+    <!-- Color Theme CSS -->
+    <link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
+    @*@Styles.Render("~/Content/css")*@
+
+    @Scripts.Render("~/bundles/mainjs")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/datatables")*@
+    @Styles.Render("~/bundles/jquistyle")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/toastr/js")
+    @*@Scripts.Render("~/bundles/datatables/ButtonJs")*@
+    @Scripts.Render("~/bundles/custom")
+    <script src="~/Component/DataTble/datatables.min.js"></script>
+
+    <script src='/js/jquery.flexisel.js' type="text/javascript"></script>
+    <script src="/js/ace-responsive-menu.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    $("#respMenu").aceResponsiveMenu({
+        //        resizeWidth: '2000', // Set the same in Media query
+        //        animationSpeed: 'fast', //slow, medium, fast
+        //        accoridonExpAll: false //Expands all the accordion menu on click
+        //    });
+        //});
+        //$(document).ready(function () {
+        //    $('#main-nav nav').meanmenu()
+        //});
+    </script>
+    <style type="text/css">
+        .menuchang {
+            background-image: url('images/new.gif');
+            background-repeat: no-repeat;
+            padding-right: 5px;
+            background-position: top;
+        }
+
+        .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+            background-color: #0061f1;
+            font-size: 1.3em;
+        }
+
+        .nav-tabs .nav-link {
+            border: 1px solid #c9d9ef;
+            background-color: #eaf8f7;
+        }
+
+        .form-control {
+            font-size: 1.0em;
+        }
+
+        .nav-tabs .nav-link {
+            padding: .8rem 2rem;
+        }
+
+        label {
+            font-weight: 400;
+        }
+
+        table tr th {
+            background-color: #fff;
+            color: #353535;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body id="fontSize">
+    @Html.Partial("_Header")
+    <div class="mean-container">
+    </div>
+    @if (ViewBag.SiteMenuItems != null)
+    {
+        @Html.Partial("_UserMenu");
+    }
+    <!-- Menu Part End -->
+    <div class="clearfix">
+    </div>
+    <div class="container-fluid">
+        @Html.Partial("_Notifications")
+        @RenderBody()
+    </div>
+
+    @Html.Partial("_Footer")
+    <script src='~/Component/js/font-size.js' type="text/javascript"></script>
+    <script src='~/Component/js/superfish.js' type="text/javascript"></script>
+    <script src='~/Component/js/custom.js' type="text/javascript"></script>
+    @*<script src="~/Component/custom/js/customScript.js" type="text/javascript"></script>*@
+
+    @Scripts.Render("~/bundles/bootstrap")
+        @*@Scripts.Render("~/bundles/datatables")*@
+        @Scripts.Render("~/bundles/jqueryui")
+        @*@Scripts.Render("~/bundles/datatables/ButtonJs")*@
+        @Scripts.Render("~/bundles/custom")
+
+    <script>
+        toastrOptDefault();
+    </script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.EventIndexVM>
+@{
+    ViewBag.Title = "Event Board";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-2 mb-4">
+    <div class="card-deck">
+        <table>
+            <tr>
+                <th style="vertical-align: middle; white-space: nowrap">Function Name</th>
+                <th style="vertical-align: middle; white-space: nowrap">Venu</th>
+                <th style="vertical-align: middle; white-space: nowrap">Date</th>
+                <th style="vertical-align: middle; white-space: nowrap">Time</th>
+                <th style="vertical-align: middle; white-space: nowrap">Dress Code</th>
+                <th style="vertical-align: middle; white-space: nowrap">Remarks/ Instructions</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td style="vertical-align: middle; white-space: nowrap">@Html.DisplayFor(modelItem => item.EventName)</td>
+            <td>@Html.DisplayFor(modelItem => item.EventVenu)</td>
+            <td>@Html.DisplayFor(modelItem => item.EventDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.EventTime)</td>
+            <td>@Html.DisplayFor(modelItem => item.EventDress)</td>
+            <td>@Html.DisplayFor(modelItem => item.Remarks)</td>
+            <td>@Html.ActionLink("Participate as a Guest/Host", "Participate", new { id = item.EventId }, new { @class = "btn btn-primary btn-sm" })</td>
+        </tr>
+                
+            }
+        </table>
+        </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.CircularIndxVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h3>Circular/Order</h3>
+    <p>
+        @Html.ActionLink("Create New", "CircularEntry")
+    </p>
+    <table class="table w-100" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CircularId)
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Category)*@
+                    Circular/ Order
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CircularId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.iCircularMedias.Count)
+                        @Html.EncodedActionLink("", "ShowMediaFiles", "Circular", "staff", new { id = item.CircularId }, new { @class = "" }, "fa fa-eye", "_blank") |
+                        @Html.EncodedActionLink("", "CircularEdit", "Circular", "staff", new { id = item.CircularId }, new { @class = "" }, "fa fa-edit") |
+                        @*<a href="@Url.Action("ShowMediaFiles", new { id = item.CircularId })" target="_blank"><i class="fa fa-eye"></i></a> |
+                        <a href="@Url.Action("CircularEdit", new { id=item.CircularId })"><i class="fa fa-edit"></i></a>|*@
+                        <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.CircularId, this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script>
+        LoadJDTSorted('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

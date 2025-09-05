@@ -1,0 +1,220 @@
+﻿html, body {
+    font-size: 100%;
+}
+
+.footer-bottom {
+    background: #04225a !important;
+    border-top: 1px solid #5da6d3;
+    /*position: fixed;*/
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.floathome {
+    position: fixed;
+    min-width: 150px;
+    height: fit-content;
+    top: 97px;
+    right: 0px;
+    background-color: #ff0000;
+    color: #FFF;
+    text-align: center;
+    /*box-shadow: 2px 2px 3px #999;*/
+    font-size: .99em;
+    z-index: 101;
+    text-align: left;
+    padding: 8px;
+}
+
+    .floathome .list-group-item {
+        background-color: transparent;
+        border-top: 0px solid #ddd;
+        border-radius: 0;
+        color: #fff;
+    }
+
+    .floathome a {
+        color: #fff !important;
+    }
+
+    .floathome div {
+        position: fixed;
+        width: 10px;
+        height: fit-content;
+        right: 0px;
+        background-color: #6e0808;
+        z-index: 101;
+    }
+
+.innews {
+    height: 12em;
+    overflow-y: scroll;
+    overflow: hidden;
+}
+
+.c1News {
+    padding-right: 3px !important;
+    padding-left: 6px !important;
+}
+
+.c2News {
+    height: 304px;
+    overflow: hidden;
+}
+
+.c3Carousel {
+    padding-right: 3px;
+    padding-left: 6px;
+}
+
+.c4Comdt {
+    padding-right: 3px !important;
+    padding-left: 6px !important;
+}
+
+.c5Comdt {
+    /*padding-bottom: 34px;*/
+    background-color: #5da6d3 !important
+}
+
+.c6Comdt {
+    color: #fff !important
+}
+
+.c7News {
+    padding: 0 20px;
+}
+
+.c8Upcoming {
+    padding-right: 3px !important;
+    padding-left: 6px !important;
+}
+
+.c9Upcoming {
+    height: 180px;
+    overflow: hidden;
+}
+.c10Upcoming {
+    top: -10px
+}
+c11LastMonth {
+    height: 8em;
+    overflow: hidden;
+}
+c12Welcome {
+    padding-right: 3px;
+    padding-left: 6px;
+}
+.site-intro {
+    padding: 0.3333em;
+    height: 511px;
+}
+.c14LatestNews {
+    padding-right: 3px !important;
+    padding-left: 6px !important;
+}
+.c15NdcinNews {
+    height: 14em;
+    overflow-y: scroll;
+    overflow: hidden;
+}
+.c16NdcinNews {
+    color: #fff;
+    margin-left: 24px
+}
+.c17Master {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+    color: white;
+    border: 1px solid white;
+}
+.c18Master {
+    font-size: inherit !important
+}
+.c19Master {
+    font-style: italic;
+}
+/*Registration Page*/
+.ui-dialog .ui-dialog-titlebar {
+    border: 1px solid #dddddd;
+    background: #2697cd;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.btn {
+    border-radius: 0px !important;
+}
+
+.btn-block {
+    margin-bottom: 5px !important;
+}
+
+.ui-dialog-titlebar-close {
+    visibility: hidden;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: none;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    text-align: center; /* left/center/right */
+}
+
+    .ui-dialog .ui-dialog-buttonpane button {
+        width: 200px;
+        background-color: #0094ff;
+        color: white;
+    }
+
+.c20RegBg {
+    background-image: url('/Component/css/images/bg_01.jpg');
+}
+
+/*Course Registration*/
+.ui-dialog .ui-dialog-titlebar {
+    border: 1px solid #dddddd;
+    background: #2697cd;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.btn {
+    border-radius: 0px !important;
+}
+
+.btn-block {
+    margin-bottom: 5px !important;
+}
+
+.ui-dialog-titlebar-close {
+    visibility: hidden;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: none;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    text-align: center; /* left/center/right */
+}
+
+    .ui-dialog .ui-dialog-buttonpane button {
+        width: 200px;
+        background-color: #0094ff;
+        color: white;
+    }
+
+.contact2-form-title {
+    text-decoration: underline;
+}
+.latest-news-events h3 {
+    margin-top: 3px;
+    color: white;
+    font-size: 1.3em;
+    font-weight: 700;
+}

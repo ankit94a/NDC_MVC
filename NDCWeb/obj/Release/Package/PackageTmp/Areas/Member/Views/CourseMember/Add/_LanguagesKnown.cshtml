@@ -1,0 +1,138 @@
+﻿
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCMLanguage" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                LANGUAGES KNOWN
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <Label class="control-label">Language</Label>
+                        <input type="text" name="laLanguage" id="laLanguage_1" required title="Enter Language" class="form-control" placeholder="Language">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label pb-4" style="width:100%"></Label>
+                        <label>
+                            Read
+                            <input type="checkbox" name="laRead" id="laRead_1" class="custom-checkbox">
+                        </label>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label pb-4" style="width:100%"></Label>
+                        <label>
+                            Write
+                            <input type="checkbox" name="laWrite" id="laWrite_1" class="custom-checkbox">
+                        </label>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label pb-4" style="width:100%"></Label>
+                        <label>
+                            Speak
+                            <input type="checkbox" name="laSpeak" id="laSpeak_1" class="custom-checkbox">
+                        </label>
+                    </div>
+                    @*<div class="form-group col-md-3">
+                        <Label class="control-label">Qualification</Label>
+                        <input type="text" name="laQualification" id="laQualification_1" required title="Enter Qualification" class="form-control" placeholder="Qualification">
+                    </div>*@
+                    <div class="form-group col-md-2">
+                        <Label class="control-label pb-3" style="width:100%"></Label>
+                        <button type="button" class="add-Language btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="remove-Language btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div id="new_la"></div>
+                <input type="hidden" value="1" id="total_la">
+
+                <div class="form-group mt-4 text-center">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" id="btnSaveMemberLanguage" value="Submit" onclick="addMemberLanguage()" class="btn btn-primary btn-lg" />
+                        @*<a href="#" class="btn btn-primary btn-lg btnNext">Next</a>
+                        <a href="#" class="btn btn-primary btn-lg btnPrevious">Go Back</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    // #region Language
+    function storeLanguage() {
+        let ttlla = $('#total_la').val();
+        let languages = [];
+        for (i = 1, j = 0; i <= ttlla; i++ , j++) {
+            languages[j] = {
+                Language: $('#laLanguage_' + i).val(),
+                Read: document.getElementById('laRead_' + i).checked,
+                Write: document.getElementById('laWrite_' + i).checked,
+                Speak: document.getElementById('laSpeak_' + i).checked,
+                //Qualification: $('#laQualification_' + i).val(),
+            };
+        }
+        return languages;
+    }
+
+    $('.add-Language').on('click', addLanguage);
+    $('.remove-Language').on('click', removeLanguage);
+    function addLanguage() {
+        let new_la_no = parseInt($('#total_la').val()) + 1;
+        let new_inputLa = `<div id="Language_${new_la_no}" class="form-row">
+                                           <div class="form-group col-md-4">
+                                               <input type="text" name="laLanguage" id="laLanguage_${new_la_no}" required title="Enter Language" class="form-control" placeholder="Language">
+                                           </div>
+                                           <div class="form-group col-md-1">
+                                               <label>Read
+                                               <input type="checkbox" name="laRead" id="laRead_${new_la_no}" class="custom-checkbox"></label>
+                                           </div>
+                                           <div class="form-group col-md-1">
+                                               <label>Write
+                                               <input type="checkbox" name="laWrite" id="laWrite_${new_la_no}" class="custom-checkbox"></label>
+                                           </div>
+                                           <div class="form-group col-md-1">
+                                               <label>Speak
+                                               <input type="checkbox" name="laSpeak" id="laSpeak_${new_la_no}" class="custom-checkbox"></label>
+                                           </div>
+                                       </div>`
+        $('#new_la').append(new_inputLa);
+        $('#total_la').val(new_la_no);
+    }
+    function removeLanguage() {
+        let last_la_no = $('#total_la').val();
+
+        if (last_la_no > 1) {
+            $('#Language_' + last_la_no).remove();
+            $('#total_la').val(last_la_no - 1);
+        }
+    }
+    // #endregion
+    //<div class="form-group col-md-3">
+    //    <input type="text" name="laQualification" id="laQualification_${new_la_no}" required title="Enter Qualification" class="form-control" placeholder="Qualification">
+    //</div>
+    function addMemberLanguage() {
+        if ($("#formCMLanguage").valid()) {
+        let languageList = storeLanguage();
+        let languages = JSON.stringify(languageList);
+        $.ajax({
+            type: 'post',
+            url: '/api/courseMembers/LanguageKnown',
+            data: languages,
+            contentType: "application/json; charset=utf-8",
+            datatype: 'json',
+            success: function (data, textStatus, xhr) {
+                toastr.info(textStatus);
+                //displayTab('LanguagesKnownPartial');
+                displayTab('ServicePartial');
+            },
+            error: function () {
+                toastr.error('Operation Failed!');
+            }
+        });
+        }
+    }
+</script>

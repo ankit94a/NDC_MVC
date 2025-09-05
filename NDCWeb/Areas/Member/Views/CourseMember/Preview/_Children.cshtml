@@ -1,0 +1,123 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.ChildrenIndxVM>
+<table class="table table-condensed table-bordered">
+    <tr class="bg-2 text-white">
+        <td colspan="8" class="h4">Children Details
+            <a class="btn btn-transparent btn-sm float-right" data-toggle="tab" href="#ChildrenPartial" onclick="displayTab('ChildrenPartial')"><i class="fa fa-pencil-square text-primary"></i></a>
+        </td>
+    </tr>
+</table>
+<div class="card-deck mb-4">
+    @foreach (var item in Model)
+    {
+        <div class="card mt-4  bg-white">
+            <div class="card-header">
+                &nbsp;Name of Child :  @item.ChildName
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <tr class="bg-2 text-white">
+                        <td colspan="2">Basic Details</td>
+                    </tr>
+                    <tr>
+                        <td class="juipfname" width="30%">DOB & Gender </td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.ChildDOBirth), @item.ChildGender
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td class="juipfname" width="40%">Contact No & Occupation (if any)</td>
+                        <td class="juipfvalue">@item.ChildContactNo, @Html.DisplayFor(modelItem => item.ChildOccupation)</td>
+                    </tr>
+                    <tr>
+                        <td class="juipfname">Living with you</td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.ChildStayWithMember)</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr class="bg-2 text-white">
+                        <td colspan="4">Passport Details</td>
+                    </tr>
+
+                    <tr>
+                        <td class="juipfname" width="30%">Passport No</td>
+                        <td class="juipfvalue" width="40%">@item.ChildPassportNo</td>
+                        <td rowspan="3" class="juipfvalue text-center">
+                            @if (item.ChildPassportImgPath != null && item.ChildPassportImgPath != "#")
+                            {
+                            <a href="@Url.Content(item.ChildPassportImgPath ?? "#")" target="_blank">
+                                <img src="@Url.Content(item.ChildPassportImgPath ?? "#")" class="img-thumbnail" width="80" /><br />
+                            </a>
+                            }
+                            else
+                            {
+                                @: <b>N/A</b>
+                            }
+                            
+                        </td>
+                        <td rowspan="3" class="juipfvalue text-center">
+                            @if (item.ChildPassportBackImgPath != null && item.ChildPassportBackImgPath != "#")
+                            {
+                                <a href="@Url.Content(item.ChildPassportBackImgPath ?? "#")" target="_blank">
+                                    <img src="@Url.Content(item.ChildPassportBackImgPath ?? "#")" class="img-thumbnail" width="80" /><br />
+                                </a>
+                            }
+                            else
+                            {
+                                @: <b>N/A</b>
+                            }
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="juipfname">Date of Issue</td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.ChildPassportIssueDate)</td>
+                    </tr>
+                    <tr>
+                        <td class="juipfname">Validity & Type of Passport</td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.ChildPassportValidUpto), @item.ChildPassportType</td>
+                    </tr>
+                    <tr>
+                        <td class="juipfname">Passport Issuing Country</td>
+                        <td class="juipfvalue">@item.ChildPassportCountryIssued</td>
+                        <td class="juipfname text-center">Front Image</td>
+                        <td class="juipfname text-center">Back Image</td>
+                </table>
+                <table>
+                    <tr class="bg-2 text-white">
+                        <td colspan="3">Visa Details</td>
+                    </tr>
+
+                    <tr>
+                        <td class="juipfname" width="30%">Visa No</td>
+                        <td class="juipfvalue" width="40%">@item.ChildVisaNo</td>
+                        <td rowspan="2" class="juipfvalue text-center">
+                            @if (item.ChildVisaPath != null && item.ChildVisaPath != "#")
+                            {
+                                <a href="@Url.Content(item.ChildVisaPath ?? "#")" target="_blank">
+                                    <img src="@Url.Content(item.ChildVisaPath ?? "#")" class="img-thumbnail" width="80" /><br />
+                                </a>
+                            }
+                            else
+                            {
+                                @: <b>N/A</b>
+                            }
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="juipfname">Date of Issue</td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.ChildVisaIssueDate)</td>
+                    </tr>
+                    <tr>
+                        <td class="juipfname">Valid Upto</td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.ChildVisaValidUpto)</td>
+                        <td class="juipfname text-center">Visa Image</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+
+

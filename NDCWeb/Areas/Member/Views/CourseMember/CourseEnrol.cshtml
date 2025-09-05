@@ -1,0 +1,471 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CourseMemberCrtVM
+@{
+    ViewBag.Title = "Create /Update Profile";
+}
+
+<style>
+    .required::before {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+
+    .card-footer a {
+        color: white;
+    }
+
+    .card {
+        margin-top: 10px;
+    }
+
+    .card-header {
+        padding-left: 0.75em !important;
+    }
+
+    .nav-tabs .nav-link.disabled {
+        color: #6c757d;
+        /*background-color: transparent;*/
+        border-color: #6c757d;
+    }
+
+    .jui-btn {
+        border-radius: 0px !important;
+    }
+
+    .custom-control-lg .custom-control-label::before,
+    .custom-control-lg .custom-control-label::after {
+        top: 0.1rem !important;
+        left: -2rem !important;
+        width: 1.25rem !important;
+        height: 1.25rem !important;
+    }
+
+    .custom-control-lg .custom-control-label {
+        margin-left: 0.5rem !important;
+        font-size: 1rem !important;
+    }
+
+    .nav-tabs .nav-link {
+        padding: .8rem .8rem;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: black;
+        z-index: 99;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        min-height: 100%;
+        width: 100%;
+    }
+
+    .loading {
+        font-family: Arial;
+        font-size: 10pt;
+        border: 5px solid #67CFF5;
+        width: 200px;
+        height: 100px;
+        display: none;
+        position: fixed;
+        background-color: White;
+        z-index: 999;
+    }
+
+    #loader {
+        border: 12px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 12px solid #444444;
+        width: 70px;
+        height: 70px;
+        animation: spin 1s linear infinite;
+    }
+
+    @@keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .center {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .blink_me {
+        animation: blinker 1s linear infinite;
+        color:red;
+    }
+
+    @@keyframes blinker {
+        50% {
+            opacity: 0;
+        }
+    }
+</style>
+<div class="clearfix pt-2"></div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card">
+        <div class="card-header">
+            @*@Html.ValidationSummary(true, "", new { @class = "text-danger", @id = "myForm" })*@
+            <label class="label blink_me pull-right">Please keep saving your form. Session will expire in 20 minutes.</label>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#PersonalDetailPartial" role="tab" aria-controls="nav-profile" aria-selected="true"><span class="badge badge-success">1</span> Personal Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" id="nav-service-tab" data-toggle="tab" href="#ServicePartial" role="tab" aria-controls="nav-service" aria-selected="false"><span class="badge badge-success">2</span> Service Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" id="nav-spousechild-tab" data-toggle="tab" href="#SpousePartial" role="tab" aria-controls="nav-spousechild" aria-selected="false"><span class="badge badge-success">3</span> Spouse Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" id="nav-child-tab" data-toggle="tab" href="#ChildrenPartial" role="tab" aria-controls="nav-child" aria-selected="false"><span class="badge badge-success">4</span> Children Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" id="nav-tally-tab" data-toggle="tab" href="#TallyPartial" role="tab" aria-controls="nav-tally" aria-selected="false"><span class="badge badge-success">5</span> College Administration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" id="nav-account-tab" data-toggle="tab" href="#AccountInfoPartial" role="tab" aria-controls="nav-account" aria-selected="false"><span class="badge badge-success">6</span> Accounts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" id="nav-allpreview-tab" data-toggle="tab" href="#MemberCompletePreviewPartial" role="tab" aria-controls="nav-account" aria-selected="false"><span class="badge badge-success">7</span> Preview</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="PersonalDetailPartial" role="tabpanel" aria-labelledby="nav-profile-tab">
+                </div>
+
+                <div class="tab-pane fade" id="ServicePartial" role="tabpanel" aria-labelledby="nav-service-tab">
+                </div>
+
+                <div class="tab-pane fade" id="SpousePartial" role="tabpanel" aria-labelledby="nav-spousechild-tab">
+                </div>
+                <div class="tab-pane fade" id="ChildrenPartial" role="tabpanel" aria-labelledby="nav-child-tab">
+                </div>
+
+                <div class="tab-pane fade" id="TallyPartial" role="tabpanel" aria-labelledby="nav-tally-tab">
+                </div>
+                <div class="tab-pane fade" id="AccountInfoPartial" role="tabpanel" aria-labelledby="nav-account-tab">
+                </div>
+                <div class="tab-pane fade" id="MemberCompletePreviewPartial" role="tabpanel" aria-labelledby="nav-allpreview-tab">
+                </div>
+
+                <div id="dialog" style="display: none">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loader" class="center"></div>
+    <div class="loading" align="center">
+        Loading. Please wait.<br />
+        <br />
+        <img src="/images/preloader.gif" alt="" />
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/daterange")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            displayTab('PersonalDetailPartial')
+
+            $('.btnNext').click(function () {
+                $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+            });
+
+            $('.btnPrevious').click(function () {
+                $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+            });
+        });
+
+    // #region Upload Helper
+        function imgValidate(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg', 'jpeg', 'png'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 250);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("ImageUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+            else {
+                $('#' + fileLocId).val('');
+            }
+        }
+        function docValidate(fileUploadId, fileLocId) {
+            let fileTypes = ['pdf', 'doc', 'docx', 'txt', 'xlsx', 'ppt', 'zip'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+            else {
+                $('#' + fileLocId).val('');
+            }
+        }
+
+        function imgValidateEdit(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg', 'jpeg', 'png'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 250);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("ImageUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+        }
+        function docValidateEdit(fileUploadId, fileLocId) {
+            let fileTypes = ['pdf', 'doc', 'docx', 'txt', 'xlsx', 'ppt', 'zip'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+        }
+    // #endregion
+    </script>
+
+    <script>
+        // #region Tab Operation
+
+        function addTab(tabId) {
+            $.ajax({
+                url: '/Member/CourseMember/' + tabId,
+                data: { mode: 'A' },
+                success: function (response) {
+                    if (response === null || response === "") {
+                        toastr.error('Server Not Found! Please refresh page');
+                    }
+                    $('#' + tabId).empty();
+                    $('#' + tabId).append(response);
+                },
+                error: function () {
+                    toastr.error('Server Not Found! Please refresh page')
+                }
+            });
+        }
+
+        function editTab(tabId) {
+            $.ajax({
+                url: '/Member/CourseMember/' + tabId,
+                data: { mode: 'E' },
+                success: function (response) {
+                    if (response === null || response === "") {
+                        toastr.error('Server Not Found! Please refresh page');
+                    }
+                    $('#' + tabId).empty();
+                    $('#' + tabId).append(response);
+                },
+                error: function () {
+                    toastr.error('Server Not Found! Please refresh page')
+                }
+            });
+        }
+
+        function displayTab(tabId) {
+            $.ajax({
+                url: '/Member/CourseMember/' + tabId,
+                success: function (response) {
+                    if (response === null || response === "") {
+                        toastr.error('Server Not Found! Please refresh page');
+                    }
+                    $('#' + tabId).empty();
+                    $('#' + tabId).append(response);
+                },
+                error: function () {
+                    toastr.error('Server Not Found! Please refresh page')
+                }
+            });
+        }
+        function childTab(tabId, mode, childId = 0) {
+            $.ajax({
+                url: '/Member/CourseMember/' + tabId,
+                data: { mode: mode, childId: childId },
+                success: function (response) {
+                    if (response === null || response === "") {
+                        toastr.error('Server Not Found! Please refresh page');
+                    }
+                    $('#' + tabId).empty();
+                    $('#' + tabId).append(response);
+                }
+            });
+        }
+
+        function getddlCountryName($ddlSelector) {
+            $($ddlSelector).empty();
+            $.ajax({
+                type: 'get',
+                url: '/api/countrystatecity/GetCountriesNameDDL',
+                datatype: 'json',
+                success: function (countries) {
+                    $($ddlSelector).append('<option disabled selected>--Select--</option>');
+                    $.each(countries, function (i, country) {
+                        $($ddlSelector).append('<option value="' + country.Value + '">' + country.Text + '</option>');
+                    });
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+
+        // #endregion
+
+        function serviceEditClick(actionMethod, actionMode) {
+            //let tabId = $(e).attr("href").substr(1);
+            var link = document.getElementById("nav-allpreview-tab");
+            link.setAttribute('class', 'nav-item nav-link');
+            link.setAttribute('aria-selected', "false");
+            let tabId = 'ServicePartial';
+            let action = actionMethod;
+            let mode = actionMode || 'A';
+            $.ajax({
+                url: '/Member/CourseMember/' + action,
+                data: { mode: mode },
+                type: "get",
+                dataType: "html",
+                success: function (response) {
+                    if (response === null || response === "") {
+                        toastr.error('Server Not Found! Please refresh page');
+                    }
+                    $('#' + tabId).empty();
+                    $('#' + tabId).append(response);
+                }
+            })
+            $(this).tab('show')
+        }
+
+        function multipleTabEditClick(currentTabId, actionMethod, actionMode) {
+            //let tabId = $(e).attr("href").substr(1);
+            var link = document.getElementById("nav-allpreview-tab");
+            link.setAttribute('class', 'nav-item nav-link');
+            link.setAttribute('aria-selected', "false");
+            let tabId = currentTabId;
+            let action = actionMethod;
+            let mode = actionMode || 'A';
+            $.ajax({
+                url: '/Member/CourseMember/' + action,
+                data: { mode: mode },
+                type: "get",
+                dataType: "html",
+                success: function (response) {
+                    if (response === null || response === "") {
+                        toastr.error('Server Not Found! Please refresh page');
+                    }
+                    $('#' + tabId).empty();
+                    $('#' + tabId).append(response);
+                }
+            })
+            $(this).tab('show')
+        }
+
+        function previewEditClick(tabLinkId, tabId) {
+            //$('#' + tabLinkId).click();
+            editTab(tabId);
+        }
+
+        $('#myTab a').click(function (e) {
+            showLoader();
+            //e.preventDefault()
+            let tabId = $(this).attr("href").substr(1);
+            $.ajax({
+                url: '/Member/CourseMember/' + tabId,
+                //cache: false,
+                type: "get",
+                dataType: "html",
+                success: function (response) {
+                    if (response === null || response === "") {
+                        toastr.error('Server Not Found! Please refresh page');
+                    }
+                    $('#' + tabId).empty();
+                    $('#' + tabId).append(response);
+                    hideLoader();
+                },
+                error: function () {
+                    toastr.error('Server Not Found! Please refresh page');
+                }
+            })
+            $(this).tab('show')
+        });
+
+        function getDatepickerf1($txtboxDate) {
+            $($txtboxDate).datepicker({
+                dateFormat: "dd M yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+10"
+            });
+        }
+        function getDatepickerSetMin($txtboxDate, minDate) {
+            $($txtboxDate).datepicker({
+                dateFormat: "dd M yy",
+                minDate: minDate,
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+        }
+        function getDatepickerSetMax($txtboxDate, maxDate) {
+            $($txtboxDate).datepicker({
+                dateFormat: "dd M yy",
+                maxDate: maxDate,
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+        }
+
+        //$(".nav-tabs li").click(function () {
+        //    var pageId = $(this).data('ref');
+        //    $.ajax({
+        //        url: '/Member/Panel/' + pageId,
+        //        //data: { pageId: pageId },
+        //        success: function (response) {
+        //            //$('#nav-home').replaceWith(response);
+        //            $('#' + pageId).empty();
+        //            $('#' + pageId).append(response);
+        //        }
+        //    });
+        //});
+    </script>
+
+    <script>
+        // #region Page Loader
+        loadLoader();
+        function loadLoader() {
+            document.onreadystatechange = function () {
+                if (document.readyState !== "complete") {
+                    document.querySelector("body").style.visibility = "hidden";
+                    document.querySelector("#loader").style.visibility = "visible";
+                } else {
+                    //document.querySelector("#loader").style.display = "none";
+                    document.querySelector("#loader").style.visibility = "hidden";
+                    document.querySelector("body").style.visibility = "visible";
+                }
+            };
+        }
+        function showLoader() {
+            document.querySelector("body").style.visibility = "hidden";
+            document.querySelector("#loader").style.visibility = "visible";
+        }
+        function hideLoader() {
+            document.querySelector("#loader").style.visibility = "hidden";
+            //document.querySelector("#loader").style.display = "none";
+            document.querySelector("body").style.visibility = "visible";
+        }
+        // #endregion
+    </script>
+}

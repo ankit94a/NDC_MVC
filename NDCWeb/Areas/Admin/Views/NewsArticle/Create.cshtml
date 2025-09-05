@@ -1,0 +1,92 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.NewsArticleCrtVM
+
+@{
+    ViewBag.Title = "Create Article";
+}
+
+<div class="main-card  card">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.Title</h5>
+            <hr />
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.NewsCategory, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-2">
+                    @Html.EnumDropDownListFor(model => model.NewsCategory, "-- Select --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NewsCategory, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.DisplayArea, htmlAttributes: new { @class = "col-sm-1 col-form-label" })
+                <div class="col-md-2">
+                    @Html.EnumDropDownListFor(model => model.DisplayArea, "-- Select --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DisplayArea, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.Headline, htmlAttributes: new { @class = "col-sm-1 col-form-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Headline, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Headline, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                @Html.LabelFor(model => model.ArticleUrl, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.ArticleUrl, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.ArticleUrl, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.PublishDate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control datepickerCss1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.ArchiveDate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.ArchiveDate, new { htmlAttributes = new { @class = "form-control datepickerCss1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.ArchiveDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="custom-checkbox custom-control">
+                    @Html.EditorFor(model => model.Highlight, new { htmlAttributes = new { @class = "col-sm-1 custom-control-input" } })
+                    @Html.LabelFor(model => model.Highlight, htmlAttributes: new { @class = "custom-control-label col-md-12" })
+                    @Html.ValidationMessageFor(model => model.Highlight, "", new { @class = "text-danger" })
+                </div>
+                <div class="custom-checkbox custom-control">
+                    @Html.EditorFor(model => model.Archive, new { htmlAttributes = new { @class = "col-sm-1 custom-control-input" } })
+                    @Html.LabelFor(model => model.Archive, htmlAttributes: new { @class = "custom-control-label" })
+                    @Html.ValidationMessageFor(model => model.Archive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <input type="submit" value="Save" class="mb-2 mr-2 btn btn-primary" />
+            <a href="/admin/newsarticle/" class="mb-2 mr-2 btn btn-primary">Back</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '#Description',
+            mode: "textareas",
+            invalid_elements: "script",
+            height: 400,
+            //width: 600,
+            plugins: "code,autolink,image,imagetools,media,link,lists,pagebreak,style,table,advhr,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template, wordcount, advlist, autosave, visualblocks",
+            images_reuse_filename: true,
+            image_title: true,
+            images_upload_url: '@Url.Action("ImageUpload")',
+            relative_urls: false,
+        });
+    </script>
+}

@@ -1,0 +1,291 @@
+﻿@using Microsoft.AspNet.Identity;
+
+
+    <div class="container">
+        <nav class="">
+            <ul class='clearfix sf-menu' id='example'>
+                <li><a title='Home' href='/Staff/'><i class='fa fa-home'></i></a></li>
+                <li class='has-sub'>
+                    <a title='My Profile' href='/staff/profile' class='has-sub'>My Profile</a>
+                    <ul>
+                        <li><a href='/staff/MessBill/StaffBillDetail'>Mess Bill Detail</a></li>
+                    </ul>
+                </li>
+                <li class='has-sub'>
+                    <a title='My Course' href='#' class='has-sub'>Course</a>
+                    <ul>
+                        <li><a href="/staff/emp/course/course-handbook">Course Handbook</a></li>
+                        <li class="has-sub">
+                            <a href="#">Training Content</a>
+                            <ul>
+                                <li class="has-sub">
+                                    <a href="/member/underconstruction/">Modules</a>
+                                    <ul>
+                                        <li><a href="/staff/trainingactivity/moduleCategory/module/uiis">UIIS</a></li>
+                                        <li><a href="/staff/trainingactivity/moduleCategory/module/esst">ESST</a></li>
+                                        <li><a href="/staff/trainingactivity/moduleCategory/module/ise">ISE</a></li>
+                                        <li><a href="/staff/trainingactivity/moduleCategory/module/isn">ISN</a></li>
+                                        <li><a href="/staff/trainingactivity/moduleCategory/module/gi">GI</a></li>
+                                        <li><a href="/staff/trainingactivity/moduleCategory/module/ssns">SSNS</a></li>
+                                        <li><a href="/staff/trainingactivity/moduleCategory/module/dimc">DIMC</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="/staff/emp/training-content/sge">SGE</a>
+                                    <ul>
+                                        <li>
+                                            <a href="/#/">SGE-I</a>
+                                            <ul>
+                                                <li><a href="/staff/emp/sge-i/sge-i-brief">SGE-I Brief</a></li>
+                                                <li><a href="/staff/emp/sge-i/sge-i-mentors-expert-biodata">SGE-I Mentors/Expert Biodata</a></li>
+                                                <li><a href="/staff/emp/sge-i/sge-i-settings">SGE-I Settings</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="/#/">SGE-II</a>
+                                            <ul>
+                                                <li><a href="/writereaddata/media/files/2024/Oct/3d23e929-cd2a-48ed-a161-6d592caf5967.pdf">SGE-II Brief</a></li>
+                                                <li><a href="/writereaddata/media/files/2024/Oct/e53081af-badc-43eb-96d0-a4d3719c0342.pdf">sge-II Programme</a></li>
+                                                <li><a href="/writereaddata/media/files/2024/Oct/e3dd977e-03b9-4964-a267-c0e66f2566e4.pdf">Syndicate List</a></li>
+                                                <li><a href="/staff/emp/sge-ii/mentors-expert-biodata">Mentors/Expert Biodata</a></li>
+                                                <li><a href="/staff/emp/sge-ii/settings">Settings</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="/staff/emp/training-content/ndc-seminar">NDC Seminar</a>
+                                    <ul>
+                                        <li><a href="/staff/emp/ndc-seminar/seminar-brief">Seminar Brief</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="/staff/emp/training-content/media-capsule">Strategic Communication Workshop</a>
+                                    <ul>
+                                        <li><a href="/staff/emp/strategic-communication-workshop/expert-biodata">Expert Biodata</a></li>
+                                        <li><a href="/staff/emp/strategic-communication-workshop/whites">Whites</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="/staff/emp/training-content/strategic-leadership-capsule">Strategic Leadership Capsule</a>
+                                    <ul>
+                                        <li><a href="/staff/emp/strategic-leadership-capsule/slc-brief">SLC Brief</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="/staff/emp/training-content/defence-procurement--manufacturing-capsule">Defence Procurement & Manufacturing capsule</a>
+                                    @*<ul>
+                                        <li><a href="/staff/emp/strategic-leadership-capsule/slc-brief">SLC Brief</a></li>
+                                    </ul>*@
+                                </li>
+                                <li class="has-sub">
+                                    <a href="/staff/emp/training-content/asat">ASAT</a>
+                                    <ul>
+                                        <li><a href="/writereaddata/media/files/2024/Dec/474d4e52-79ea-496a-84cd-2cdb5137a1fa.pdf">ASAT Guidelines</a></li>
+                                        @*<li><a href="/writereaddata/media/files/2024/Aug/08e00905-e652-4888-8480-2f2c8a6f10f5.pdf">ASAT-II Guidelines</a></li>
+                                        <li><a href="/staff/emp/asat/sample-asat-paper">Sample ASAT Paper</a></li>*@
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">IAG</a>
+                                    <ul>
+                                        <li><a href="/writereaddata/media/files/2024/Dec/f6e6fdf3-3853-4b30-a0e7-4651be2d83db.pdf">IAG Guidelines</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="/staff/emp/course/mphil-phd-guidelines">MPhil/PhD Guidelines</a></li>
+                        <li><a href="/staff/emp/course/thesis-guidelines">Thesis Guidelines</a></li>
+                        <li class="has-sub">
+                            <a href="/staff/emp/course/iag-paper-guiding-notes">IAG Paper Guiding Notes</a>
+                            <ul>
+                                <li><a href="/staff/emp/iag-paper-guiding-notes/sample-iag-paper">Sample IAG Paper</a></li>
+                                <li><a href="/staff/emp/iag-paper-guiding-notes/sop-on-iag-paper">SOP on IAG Paper</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a href="/staff/emp/course/tour-report-samples">Tour Report Samples</a>
+                            <ul>
+                                <li class="has-sub">
+                                    <a href="/staff/emp/tour-report-samples/domestic-tour">Domestic Tour</a>
+                                    <ul>
+                                        <li><a href="/staff/emp/domestic-tour/sample-paper-esst">Sample Paper ESST</a></li>
+                                        <li><a href="/staff/emp/domestic-tour/sample-paper-spst">Sample Paper SPST</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="#">Foreign Tour</a>
+                                    <ul>
+                                        <li><a href="/staff/emp/foreign-tour/sample-paper-fcst">Sample Paper FCST</a></li>
+                                        <li><a href="/staff/emp/foreign-tour/sample-paper-snst">Sample Paper SNST</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="/staff/emp/course/training-calendar">Training Calendar</a></li>
+                        <li class='has-sub'>
+                            <a href='#'>Master Panel</a>
+                            <ul>
+                                <li class='has-sub'>
+                                    <a href='#'>Subject</a>
+                                    <ul>
+                                        <li><a href='/staff/subjectmaster/create/'>Create</a></li>
+                                        <li><a href='/staff/subjectmaster/index/'>View/Edit</a></li>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'>
+                                    <a href='#'>Topic</a>
+                                    <ul>
+                                        <li><a href='/staff/topicmaster/create/'>Create</a></li>
+                                        <li><a href='/staff/topicmaster/index/'>View/Edit</a></li>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'>
+                                    <a href='#'>Speaker</a>
+                                    <ul>
+                                        <li><a href='/staff/speakers/create/'>Create</a></li>
+                                        <li><a href='/staff/speakers/index/'>View/Edit</a></li>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'>
+                                    <a href='#'>Speech</a>
+                                    <ul>
+                                        <li><a href='/staff/speechevent/create/'>Create</a></li>
+                                        <li><a href='/staff/speechevent/index/'>View</a></li>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'>
+                                    <a href='#'>Training Program</a>
+                                    <ul>
+                                        <li><a href='/Admin/MediaGallery/Edit/181'>Update</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                @* <li><a href='/staff/CourseStaff/CourseHandbook/'>Course Handbook </a></li>*@
+                @*<li><a href='/staff/emp/course/course-handbook/'>Course Handbook </a></li>
+        <li><a href='/staff/CourseStaff/TrainingCalendar/'>Training Calendar</a></li>
+
+        <li><a href='/staff/CourseStaff/IAGPaperGuidline/'>IAG Papers Guiding Notes</a></li>
+        <li><a href='/staff/CourseStaff/ThesisGuidline/'>Thesis Guiding Notes</a></li>
+        <li class='has-sub'>
+            <a href='/staff/underconstruction/'>Tour Report Samples</a>
+            <ul>
+                <li><a href='/staff/underconstruction/'>Domestic Tour</a></li>
+                <li><a href='/staff/underconstruction/'>Foreign Tour</a></li>
+                <li><a href='/staff/underconstruction/'>Service Tour</a></li>
+            </ul>
+        </li>*@
+                <li class='has-sub'>
+                    <a title='About NDC' href='/staff/underconstruction/' class='has-sub'>Feedback</a>
+                    <ul>
+                        <li class='has-sub'>
+                            <a href='/staff/feedbacks/SpeechEventList'>Speaker Feedback</a>
+                            <ul>
+                                <li><a href="/staff/feedbacks/index/uiis">UIIS</a></li>
+                                <li><a href="/staff/feedbacks/index/esst">ESST</a></li>
+                                <li><a href="/staff/feedbacks/index/ise">ISE</a></li>
+                                <li><a href="/staff/feedbacks/index/isn">ISN</a></li>
+                                <li><a href="/staff/feedbacks/index/gist">GIST</a></li>
+                                @*<li><a href="/staff/feedbacks/index/gi">GI</a></li>*@
+                                @*<li><a href="/staff/feedbacks/index/ssns">SSNS</a></li>*@
+                                <li><a href="/staff/feedbacks/index/sdim">SDIM</a></li>
+                                <li><a href="/staff/feedbacks/index/scrn">SCRN</a></li>
+                                <li><a href="/staff/feedbacks/index/sge-i">SGE-I</a></li>
+                                <li><a href="/staff/feedbacks/index/sge-ii">SGE-II</a></li>
+                                <li><a href="/staff/feedbacks/index/media-seminar">Media Seminar</a></li>
+                                <li><a href="/staff/feedbacks/index/sdim">SDIM</a></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'>
+                            <a href='/staff/feedbacks/module'>Module Feedback</a>
+                            <ul>
+                                <li><a href="/staff/feedbacks/module/uiis">UIIS</a></li>
+                                <li><a href="/staff/feedbacks/module/esst">ESST</a></li>
+                                <li><a href="/staff/feedbacks/module/ise">ISE</a></li>
+                                <li><a href="/staff/feedbacks/module/isn">ISN</a></li>
+                                <li><a href="/staff/feedbacks/module/gi">GIST</a></li>
+                                <li><a href="/staff/feedbacks/module/ssns">SSNS</a></li>
+                                <li><a href="/staff/feedbacks/index/dimc">DIMC</a></li>
+                            </ul>
+                        </li>
+                        <li><a href='/staff/feedbacks/course'>Course End Feedback</a></li>
+                    </ul>
+                </li>
+                <li class='has-sub'>
+                    <a href='#'>Online Uploads</a>
+                    <ul>
+                        <li><a href='/staff/assignment/index/asat'>ASAT</a></li>
+                        <li><a href='/staff/assignment/index/thesis'>Thesis</a></li>
+                        <li><a href='/staff/assignment/index/iag papers'>IAG Papers</a></li>
+                        <li><a href='/staff/assignment/index/other inputs'>Misc</a></li>
+                    </ul>
+                </li>
+
+                @*<li class='selected'><a href='/staff/participant/participantlist/'>Participant Details</a></li>*@
+                @*<li class='has-sub'>
+            <a title='Library' href='#' class='has-sub'>Library</a>
+            <ul>
+                <li><a href="http://www.ndclibrary.in/">e-Resources</a></li>
+                <li><a href="https://ndc.refread.com/#/login">Refread</a></li>
+                <li><a href="/staff/library/">Life Memberships</a></li>
+                <li><a href="/staff/CourseStaff/NdcPublications">NDC Publications</a></li>
+                <li><a href="/staff/underconstruction/">Archive Journals</a></li>
+                <li><a href="/staff/CourseStaff/OpacLib">OPAC</a></li>
+            </ul>
+        </li>*@
+                <li><a href='/staff/trainingactivity/'>Training Activities</a></li>
+                <li><a href="/staff/circular/circularentry/">Upload Circulars</a></li>
+
+                @*<li class='has-sub'>
+            <a href='#'>Master Data</a>
+            <ul>
+                <li class='has-sub'>
+                    <a href='#'>Module</a>
+                    <ul>
+                        <li><a href='/staff/subjectmaster/create/'>Create</a></li>
+                        <li><a href='/staff/subjectmaster/index/'>View/Edit</a></li>
+                    </ul>
+                </li>
+                <li class='has-sub'>
+                    <a href='#'>Topic</a>
+                    <ul>
+                        <li><a href='/staff/topicmaster/create/'>Create</a></li>
+                        <li><a href='/staff/topicmaster/index/'>View/Edit</a></li>
+                    </ul>
+                </li>
+                <li class='has-sub'>
+                    <a href='#'>Speaker</a>
+                    <ul>
+                        <li><a href='/staff/speakers/create/'>Create</a></li>
+                        <li><a href='/staff/speakers/index/'>View/Edit</a></li>
+                    </ul>
+                </li>
+                <li class='has-sub'>
+                    <a href='#'>Speech</a>
+                    <ul>
+                        <li><a href='/staff/speechevent/create/'>Create</a></li>
+                        <li><a href='/staff/speechevent/index/'>View</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>*@
+                <li><a href='/staff/profile/changeuserpassword/'>Change Password</a></li>
+                @*<li>
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="javascript: document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out" title="Log out"></i> Log Out </a>
+                }
+            }
+        </li>*@
+            </ul>
+        </nav>
+    </div>

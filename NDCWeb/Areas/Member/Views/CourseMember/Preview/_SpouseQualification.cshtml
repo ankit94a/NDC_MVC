@@ -1,0 +1,25 @@
+﻿@model IEnumerable<NDCWeb.Models.SpouseQualification>
+<table class="table table-condensed table-bordered">
+    <thead>
+        <tr class="bg-light">
+            <td class="juipfname">Course Name</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.AcademicAchievement)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Division)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Institute)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.ProfessionalEdu)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.AcademicAchievement)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Division)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Institute)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

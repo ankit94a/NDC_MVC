@@ -1,0 +1,65 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.RankMasterCrtVM
+
+@{
+    ViewBag.Title = "Create Rank";
+}
+
+<div class="main-card mb-3 card">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="card-body">
+        <h5 class="card-title">Create Rank (s)</h5>
+        <hr />
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.Service, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-4">
+                @Html.DropDownList("Service", (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Service, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.RankName, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.RankName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RankName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.Seniority, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Seniority, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Seniority, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.ForParticipant, htmlAttributes: new { @class = "col-sm-7 control-label" })
+            <div class="col-md-1">
+                <div class="custom-checkbox">
+                    @Html.EditorFor(model => model.ForParticipant)
+                    @Html.ValidationMessageFor(model => model.ForParticipant, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <Label class="col-sm-3 control-label">Required for Course Participants</Label>
+            <div class="col-md-1">
+                <div class="custom-checkbox">
+                    @Html.EditorFor(model => model.ForParticipant)
+                    @Html.ValidationMessageFor(model => model.ForParticipant, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="mb-2 mr-2 btn btn-primary" />
+                <a href="@Url.Action("Index")" class="mb-2 mr-2 btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,147 @@
+﻿@model NDCWeb.Areas.Member.View_Models.ArrivalDetailIndxVM
+@{
+    ViewBag.Title = "Arrival Detail";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<div class="container mb-4 mt-4" >
+    <div class="card" id='docPrint'>
+        <div class="card-header">
+            Arrival Details
+        </div>
+        <div class="card-body">
+            <div class="shadow p-3 mb-5 bg-white rounded" id="printDv">
+                <div class="row p-4">
+                    <div class="col-md-12 text-center">
+                        <p class="float-right">Form-V</p><br />
+                        <img src="/images/NDC-Logo.png" width="80" />
+                        <br />
+                        <h5><u>ARRIVAL DETAILS</u></h5>
+                    </div>
+
+                    <table class="table table-light">
+                        <tr>
+                            <td>Full Name</td>
+                            <td><b>@Model.FullName</b></td>
+                        </tr>
+                        <tr>
+                            <td>1. Arrival at:</td>
+                            <td><b> @Model.ArrivaAt</b></td>
+                        </tr>
+                        <tr>
+                            <td>2. Date: </td>
+                            <td><b> @Model.ArrivalDate.ToString("dd MMM yyyy")</b></td>
+                        </tr>
+                        <tr>
+                            <td>3.	Time:</td>
+                            <td><b>   @Model.ArrivalTime.ToString(@"hh\:mm")</b></td>
+                        </tr>
+                        <tr>
+                            <td> 4. Mode of Arrival:</td>
+                            <td><b>   @Model.ArrivalMode</b></td>
+                        </tr>
+                    </table>
+
+                    <div class="col-md-12">
+                        <!--Main Data-->
+                        <h5><u>5.	Persons Accompanied:</u></h5>
+                        <div class="table-responsive">
+                            @if (Model.iArrivalAccompanied != null)
+                            {
+                                <table class="table table-bordered table-info">
+                                    <thead>
+                                        <tr>
+                                            <th>Name (Full)</th>
+                                            <th>Age</th>
+                                            <th>Relation</th>
+                                            <th>Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="new_pg" class="bg-white">
+                                        @foreach (var item in Model.iArrivalAccompanied)
+                                        {
+                                            <tr>
+                                                <td>@item.FullName</td>
+                                                <td>@item.Age</td>
+                                                <td>@item.Relation</td>
+                                                <td>@item.Remarks</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                        <h5><u>6.	Meals Required:</u></h5>
+                        <div class="table-responsive">
+                            @if (Model.iArrivalMeals != null)
+                            {
+                                <table class="table table-bordered table-info">
+                                    <thead>
+                                        <tr>
+                                            <th>Date from</th>
+                                            <th>Date to</th>
+                                            <th>Breakfast</th>
+                                            <th>Lunch</th>
+                                            <th>Dinner</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="new_pg" class="bg-white">
+                                        @foreach (var item in Model.iArrivalMeals)
+                                        {
+                                        <tr>
+                                            <td>@item.Date.ToString("dd MMM yyyy")</td>
+                                            <td>@item.Date.ToString("dd MMM yyyy")</td>
+                                            <td>@(item.Breakfast== true ? "Yes" : "No")</td>
+                                            <td>@(item.Lunch== true ? "Yes" : "No")</td>
+                                            <td>@(item.Dinner== true ? "Yes" : "No")</td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                        <div class="card mt-4">
+                            <div class="card-header" style="background-color:#fff">
+                                <span class="font-weight-bold" style="color:red">Important</span>
+                            </div>
+                            <div class="card-body text-justify">
+                                <p id="passport_instruction_indian">
+                                    <u><b>Mess Detachment</b></u><br />
+                                    In order to facilitate smooth settling down the NDC Mess operates a detachment for residents of Raksha Bhawan (RB) and Vikram Vihar (VV), for a week at the begining of the Course.
+                                    Depending upon the allotment of accommodation, the detachment details from interested Course Members is sought.
+                                </p>
+                                @*<p class="font-weight-bold" style="color:red">
+                                    Please provide RT PCR test of persons accompanying on arrival.
+                                </p>*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer text-center">
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.ArrivalId }, new { @class = "btn btn-primary" })*@
+        <a href="" class="btn btn-primary" onclick="printdoc()">Print</a>
+    </div>
+</div>
+<script>
+    function printdoc() {
+        var mywindow = window.open('', 'PRINT', 'height=700,width=900');
+        mywindow.document.write('<html><head>');
+        mywindow.document.write("<link href='/Component/css/bootstrap.min.css' rel='stylesheet'/>")
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(document.getElementById('docPrint').innerHTML);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+
+        setTimeout(function () {
+            mywindow.print();
+            mywindow.close();
+        }, 1000)
+        return true;
+    }
+</script>

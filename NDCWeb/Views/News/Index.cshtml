@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NDCWeb.View_Models.NewsBulletinVM>
+
+@{
+    ViewBag.Title = "Article List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="ndc-bg">
+    <div class="container bg-white">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href='@Url.Action("Index","Home")'>Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">@ViewBag.Title </li>
+            </ol>
+        </nav>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="content-area">
+                    <div class="clearfix"></div>
+                    <div class="field-content">
+                        @foreach (var item in Model)
+                        {
+                            <h3>@Html.DisplayFor(modelItem => item.Headline)</h3>
+                            @Html.ActionLink("Details", "Article", new { id = item.NewsArticleId })
+                            <dl>
+                                <dt>Date</dt>
+                                <dd>@Html.DisplayFor(modelItem => item.PublishDate)</dd>
+
+                                <dt>Category</dt>
+                                <dd>@Html.DisplayFor(modelItem => item.NewsCategory)</dd>
+                            </dl>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

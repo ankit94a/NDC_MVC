@@ -1,0 +1,53 @@
+﻿@model NDCWeb.Areas.Alumni.View_Models.AlumniArticleIndxVM
+@using NDCWeb.Infrastructure.Constants;
+@{
+    int hiddenFileId = 0;
+    int cnt = 1;
+}
+<link href="~/Component/css/bootstrap.min.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            Files
+        </div>
+        <div class="card-body">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>SNo</td>
+                        <td>File</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var mdfl in Model.iAlumniArticleMedias)
+                    {
+                        hiddenFileId++;
+                        <tr valign="bottom">
+                            <td class="listHeader">@cnt</td>
+                            <td class="listHeader"><a href="@Url.Content(mdfl.FilePath)" target="_blank">@mdfl.FileName</a></td>
+                        </tr>
+                        cnt++;
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<script src="~/Component/js/jquery.js"></script>
+<script>
+    function copyToClipboard(hiddenFileId) {
+        var copyFilePath = document.getElementById(hiddenFileId);
+        copyFilePath.select();
+        document.execCommand("copy");
+    }
+
+    $(document).ready(function () {
+        $('input[type="button"]').click(function () {
+            $(this).addClass("btn btn-success btn-sm mb-2");
+            $(this).val("Copied");
+        });
+
+    });
+</script>

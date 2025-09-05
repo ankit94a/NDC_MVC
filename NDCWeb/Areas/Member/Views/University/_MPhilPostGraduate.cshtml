@@ -1,0 +1,32 @@
+﻿@model IEnumerable<NDCWeb.Models.MPhilPostGraduate>
+<table class="table table-bordered table-info">
+    <thead>
+        <tr>
+            <th rowspan="2">Regn No</th>
+            <th rowspan="2">Month & Year of Passing</th>
+            <th rowspan="2">Title of the Paper</th>
+            <th colspan="2">Marks Awarded</th>
+            <th colspan="2">Max Marks</th>
+        </tr>
+        <tr>
+            <th>IA<small> (Internal Assessment)</small></th>
+            <th>UE<small> (University Examination)</small></th>
+            <th>IA<small> (Internal Assessment)</small></th>
+            <th>UE<small> (University Examination)</small></th>
+        </tr>
+    </thead>
+    <tbody id="new_pg" class="bg-white">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.RegnNo)</td>
+                <td>@Html.DisplayFor(modelItem => item.MonthYearPass)</td>
+                <td>@Html.DisplayFor(modelItem => item.PaperTitle)</td>
+                <td>@Html.DisplayFor(modelItem => item.AwardedIA)</td>
+                <td>@Html.DisplayFor(modelItem => item.AwardedUE)</td>
+                <td>@Html.DisplayFor(modelItem => item.MaxIA)</td>
+                <td>@Html.DisplayFor(modelItem => item.MaxUE)</td>
+            </tr>
+        }
+    </tbody>
+</table>

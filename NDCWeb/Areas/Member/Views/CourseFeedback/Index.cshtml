@@ -1,0 +1,343 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CourseFeedbackIndxVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ConductOfStudy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpeakerOnTopicScope)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoductOfIAG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConductOfCDsSGES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InfoCourseLectureSchedule)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuggestionInfraI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuggestionInfraII)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuggestionInfraIII)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToursI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TourIDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VirtualToursI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VirtualToursIDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VirtualToursII)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VirtualToursIIDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminTourA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminTourB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminTourC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminSocialFuncA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminSocialFuncB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminOfficerMessA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminOfficerMessB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminOfficerMessC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountsA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountsB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Transport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnyOtherSuggestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminAccomodationA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminAccomodationB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminAccomodationReceptionA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminAccomodationReceptionB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminGym)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminBeautyParlour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminShop)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CSDFacilities)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminDomesticHelp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UDThesisA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UDThesisASugg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UDThesisB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UDThesisBSugg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UDThesisC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UDThesisCSugg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LibraryA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LibraryB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LibraryC)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConductOfStudy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpeakerOnTopicScope)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoductOfIAG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConductOfCDsSGES)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InfoCourseLectureSchedule)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuggestionInfraI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuggestionInfraII)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuggestionInfraIII)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtherComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToursI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TourIDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VirtualToursI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VirtualToursIDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VirtualToursII)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VirtualToursIIDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminTourA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminTourB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminTourC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminSocialFuncA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminSocialFuncB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminOfficerMessA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminOfficerMessB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminOfficerMessC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountsA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountsB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Transport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnyOtherSuggestion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminAccomodationA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminAccomodationB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminAccomodationReceptionA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminAccomodationReceptionB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminGym)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminBeautyParlour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminShop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CSDFacilities)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminDomesticHelp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UDThesisA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UDThesisASugg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UDThesisB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UDThesisBSugg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UDThesisC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UDThesisCSugg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LibraryA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LibraryB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LibraryC)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FeedbackId }) |
+                @*@Html.ActionLink("Details", "detail", new { id = item.CreatedBy }) |*@
+                @Html.EncodedActionLink("Details", "Detail", "CourseFeedback", "member", new { id = item.CreatedBy }, new { @class = "" }, "")
+                |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FeedbackId })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Alumni Newsletter";
+}
+<style>
+    .page {
+        // margin-top: 60px;
+        text-align: right;
+        margin-right: 22px;
+        font-size: large;
+    }
+</style>
+<div class="container mb-3 card">
+    <div class="main-card mb-3 card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+        <div id="Flipbook">
+            <div style="background-color: #ecd8d8; text-align: center">
+                @*<h1><span style="font-style:oblique;color:deeppink">NDC Alumni Newsletter</span></h1>*@
+                @*<h3>NDC Alumni Newsletter : November 2021</h3><br />*@
+                <img src="/Component/images/FristF.PNG" style="height:510px; width:500px;margin-top:10px" />
+                <p class="page"><br /><br />Page 1</p>
+                
+            </div>
+            <div style="background-color:antiquewhite;text-align: center">
+                @*<h1> Second Page</h1>*@
+                <img src="~/Component/images/SecondF.PNG" style="height: 510px; width: 500px; margin-top: 10px" />
+                <p class="page"><br /><br />Page 2</p>
+            </div>
+            <div style="background-color:antiquewhite;text-align: center">
+                @*<h1> Third Page</h1>*@
+                <img src="~/Component/images/ThirdF.PNG" style="height: 510px; width: 500px; margin-top: 10px" />
+                <p class="page"><br /><br /> Page 3</p>
+            </div>
+            <div style="background-color:antiquewhite;text-align: center">
+                @*<h1> Fourth Page</h1>*@
+                <img src="~/Component/images/Capture1.PNG" style="height: 510px; width: 500px; margin-top: 10px" />
+                <p class="page"><br /><br /> Page 4</p>
+            </div>
+            <div style="background-color:antiquewhite;text-align: center">
+                @*<h1> Last Page</h1>*@
+                <img src="~/Component/images/Capture2.PNG" style="height: 510px; width: 500px; margin-top: 10px" />
+                <p class="page"><br /><br />Page 5</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@*https://view.officeapps.live.com/op/embed.aspx?src=https://ndc.nic.in/writereaddata/media/files/2021/Oct/Trial-pages.pptx*@
+@section Scripts {
+
+    <script type="text/javascript" src="~/Component/js/turn.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+    @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
+        <style>
+             #Flipbook {
+                 width: 800px;
+                 height: 400px;
+             }
+
+                 #Flipbook .turn-page {
+                     background-color: #ccc;
+                 }
+         </style>*@
+
+    <script>
+        $("#Flipbook").turn(
+            {
+                width: 1100,
+                height: 600,
+                page: 1,
+                autocentre: true,
+               /* duration: 500,*/
+                readonly: true,
+                gradients: true,
+                acceleration: true,
+                display: 'double',
+                /*elevation: 50,*/
+            });
+        $(document).keydown(function (e) {
+            if (e.keydown == 37)
+                $('#Flipbook').turn('previous');
+            else (e.keydown == 39)
+            $('#Flipbook').turn('next');
+        });
+        
+
+    </script>
+}
+
+

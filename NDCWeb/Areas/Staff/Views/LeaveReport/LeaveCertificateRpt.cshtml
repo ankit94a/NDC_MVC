@@ -1,0 +1,94 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.ShowLeaveCertificateRptVM
+
+@{
+    ViewBag.Title = "Leave Certificate Rpt";
+}
+<div class="container mt-4" >
+    <div id="printDiv" class="card shadow" style="padding:60px">
+        <table class="table table-borderless" style="border:0" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td colspan="4" class="text-uppercase">
+                    <p style="text-align: center;"><span style="text-decoration: underline;"><strong>Leave Certificate</strong></span></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    1. @Model.FullName, @Model.CountryName 62nd NDC Course at National Defence College, 6, Tees January Marg, New Delhi-110011, has been granted @Model.TotalDays days @Model.LeaveType from @Model.FromDate.ToString("dd MMM yy") to @Model.ToDate.ToString("dd MMM yy")
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    2. Contact details of the officer are as under:-
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="padding-left:100px;">
+                    @Model.AddressOnLeave ,
+                    @Model.TeleNo
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>National Defence College</p>
+                    <p>(Ministry of Defence)</p>
+                    <p>6, Tees January Marg</p>
+                    <p>New Delhi-110011</p>
+                </td>
+                <td></td>
+                <td colspan="2">
+                    <p>(@Model.AQName)</p>
+                    <p>Lt Col</p>
+                    <p>AA & QMG, NDC</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p>1043/NDC/Sectt/Leave/62</p>
+                    <p>
+                        Dated:
+                        @if (Model.ServiceSDSStatusDate != null)
+                        {
+                            <b><text>@Model.ServiceSDSStatusDate.Value.ToString("dd MMM yyyy")</text></b>
+                        }
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p>Distribution</p>
+                    <p>1. Officers concerned (Locker No- @Model.LockerNo)</p>
+                    <p>2. NDC Officer Mess</p>
+                    <p>3. DS Coord</p>
+                    <p>4. Personal File</p>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="panel-footer text-center bg-white mt-4">
+        <a href="javascript:void()" class="btn btn-primary btn-sm" onclick=" printdoc();">Print</a>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printDiv').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+    </script>
+}
+
+

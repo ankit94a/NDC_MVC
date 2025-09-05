@@ -1,0 +1,307 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\areas\\member\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|D:\\Codebase\\NDCWeb_Live\\NDCWeb\\ndcweb\\areas\\member\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\areas\\staff\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\staff\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\areas\\member\\views\\shared\\_notifications.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\views\\shared\\_notifications.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\areas\\member\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|D:\\Codebase\\NDCWeb_Live\\NDCWeb\\ndcweb\\areas\\staff\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\staff\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\areas\\staff\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\staff\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|D:\\Codebase\\NDCWeb_Live\\NDCWeb\\ndcweb\\areas\\member\\controllers\\leavecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\controllers\\leavecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\areas\\member\\views\\leave\\individualleaveentry.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\views\\leave\\individualleaveentry.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\infrastructure\\constants\\customdropdownlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\infrastructure\\constants\\customdropdownlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\models\\leave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\models\\leave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\areas\\member\\view_models\\leavevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\view_models\\leavevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\areas\\member\\views\\coursemember\\edit\\_accountinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\views\\coursemember\\edit\\_accountinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|d:\\codebase\\ndcweb_live\\ndcweb\\ndcweb\\areas\\member\\views\\leave\\individualforeignleaveentry.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\views\\leave\\individualforeignleaveentry.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|D:\\Codebase\\NDCWeb_Live\\NDCWeb\\ndcweb\\persistence\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\persistence\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|D:\\Codebase\\NDCWeb_Live\\NDCWeb\\ndcweb\\areas\\staff\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\staff\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|D:\\Codebase\\NDCWeb_Live\\NDCWeb\\ndcweb\\areas\\member\\views\\leave\\individualleavelist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{13ABE043-D727-41CE-9B88-A003436FA6DA}|NDCWeb\\NDCWeb.csproj|solutionrelative:ndcweb\\areas\\member\\views\\leave\\individualleavelist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IndividualLeaveList.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualLeaveList.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualLeaveList.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualLeaveList.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualLeaveList.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-02T11:37:13.933Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Staff\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Staff\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Staff\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Staff\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAG4BAAAAAAAAAADgv44BAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T11:37:01.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Notifications.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Shared\\_Notifications.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\Views\\Shared\\_Notifications.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Shared\\_Notifications.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\Views\\Shared\\_Notifications.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T11:33:10.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T11:32:52.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAABUBAAAAAAAAAADgvzEBAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T11:19:27.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IndividualLeaveEntry.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualLeaveEntry.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualLeaveEntry.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualLeaveEntry.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualLeaveEntry.cshtml",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAwwAYBAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T06:50:26.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LeaveController.cs",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Controllers\\LeaveController.cs",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\Controllers\\LeaveController.cs",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Controllers\\LeaveController.cs",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\Controllers\\LeaveController.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAhwG8AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T11:37:08.207Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IndividualForeignLeaveEntry.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualForeignLeaveEntry.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualForeignLeaveEntry.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualForeignLeaveEntry.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\Views\\Leave\\IndividualForeignLeaveEntry.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T06:50:31.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAiwDYAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T11:33:52.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LeaveVM.cs",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\View_Models\\LeaveVM.cs",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\View_Models\\LeaveVM.cs",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\View_Models\\LeaveVM.cs",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\View_Models\\LeaveVM.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwBoAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T06:59:20.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Staff\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Staff\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Staff\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "NDCWeb\\Areas\\Staff\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAPgAAAAAAAAAAAAAwBsBAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T11:20:29.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Staff\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Staff\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Staff\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Staff\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAAAI4AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-03T10:47:07.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CustomDropDownList.cs",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Infrastructure\\Constants\\CustomDropDownList.cs",
+              "RelativeDocumentMoniker": "NDCWeb\\Infrastructure\\Constants\\CustomDropDownList.cs",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Infrastructure\\Constants\\CustomDropDownList.cs",
+              "RelativeToolTip": "NDCWeb\\Infrastructure\\Constants\\CustomDropDownList.cs",
+              "ViewState": "AgIAALAAAAAAAAAAAADwv8MAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T07:02:51.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_AccountInfo.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\CourseMember\\Edit\\_AccountInfo.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Member\\Views\\CourseMember\\Edit\\_AccountInfo.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Member\\Views\\CourseMember\\Edit\\_AccountInfo.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Member\\Views\\CourseMember\\Edit\\_AccountInfo.cshtml",
+              "ViewState": "AgIAABoAAAAAAAAAAAAgwDEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T08:17:19.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Leave.cs",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Models\\Leave.cs",
+              "RelativeDocumentMoniker": "NDCWeb\\Models\\Leave.cs",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Models\\Leave.cs",
+              "RelativeToolTip": "NDCWeb\\Models\\Leave.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T09:25:11.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "_Header.cshtml",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Staff\\Views\\Shared\\_Header.cshtml",
+              "RelativeDocumentMoniker": "NDCWeb\\Areas\\Staff\\Views\\Shared\\_Header.cshtml",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Areas\\Staff\\Views\\Shared\\_Header.cshtml",
+              "RelativeToolTip": "NDCWeb\\Areas\\Staff\\Views\\Shared\\_Header.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-03T07:31:17.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Persistence\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "NDCWeb\\Persistence\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\Codebase\\NDCWeb_Live\\NDCWeb\\NDCWeb\\Persistence\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "NDCWeb\\Persistence\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T11:06:40.31Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+﻿@model NDCWeb.Areas.Member.View_Models.PassportDetailIndxVM
+<div class="card">
+    <div class="card-header">
+        PASSPORT DETAILS
+    </div>
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="8">PASSPORT (SELF)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.HoldingPassport)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.HoldingPassport)</td>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.MemberPassportNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportNo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPassportIssueDate) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportIssueDate)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPassportValidUpto) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportValidUpto)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">FULL NAME </td>
+                <td class="juipfvalue"></td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPassportType) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportType)</td>
+                <td class="juipfname">PASSPORT FILE </td>
+                <td class="juipfvalue" colspan="3"><img src="@Url.Content(Model.MemberPassportImgPath)" class="img-thumbnail" width="120" /></td>
+
+            </tr>
+            <tr class="bg-light">
+                <td colspan="8">PASSPORT DETAILS OF SPOUSE</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportNo) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportNo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportIssueDate) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportIssueDate)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportValidUpto) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportValidUpto)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportType) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportType)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">FULL NAME </td>
+                <td class="juipfvalue"></td>
+                <td class="juipfname">Passport images (Front and Back) </td>
+                <td class="juipfvalue" colspan="5"><img src="@Url.Content(Model.SpousePassportImgPath)" class="img-thumbnail" width="120" /></td>
+            </tr>
+        </table>
+
+        <div class="card">
+            <div class="card-header">
+                PASSPORT DETAILS OF CHILDREN
+            </div>
+            <div class="card-body">
+                @{ Html.RenderAction("PassportChildrenPartial"); }
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious">Previous</a>
+        <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" id="btnEdit" onclick="editTab('PassportPartial')">Edit</a>
+        <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext">Next</a>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.btnNext').click(function () {
+            $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+    });
+</script>
+
+

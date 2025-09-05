@@ -1,0 +1,251 @@
+﻿@{
+    ViewBag.Title = "National Defence College";
+}
+<section class="banner_bg pt20">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="whats-new-section">
+                    <span class="title">
+                        Whats New
+                    </span>
+                    <div class="what-news-wrapper">
+                        <ul class="newsslider" style="height: 304px; overflow: hidden;">
+                            @foreach (var item in ViewBag.WhatsNew)
+                            {
+                                if (item.Highlight == true)
+                                {
+                                    <li><img src="/images/new.gif"> <a href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a> </li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class=view-footer>
+                        <a href="#">Read all</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class='item active'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/1_2.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/6.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/1_5.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/1_3.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/1_4.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/1_1.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/1.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/5.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/3.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/7.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/8.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <img class="img-responsive" src='/WriteReadData/Banner/2020/Aug/9.jpg' alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>National Defence College</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="text-center res-shadow"><img src="/images/shadow-banner.png" alt="" title=""></div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="pm-section text-center" style="padding-bottom: 6px;">
+                    <a href="/about/from-commandants-desk/air-marshal-d-choudhury-avsm-vm-vsm--commandant-ndc">
+                        <img src="https://ndc.nic.in/assets/images/Choudhury.jpg" alt="Commandant NDC" title="Commandant NDC">
+                        <p class="pm-name"><b>Air Marshal D Choudhury<br /> AVSM VM VSM</b></p>
+                        <p style="margin-bottom: 17px;">Commandant NDC</p>
+                    </a>
+                    <ul>
+                        <li><a title='Profile' href='/about/from-commandants-desk/messages'>Commandant's Desk</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="ticker_section">
+    <div class="container">
+        <marquee class="scroll-text">
+            @foreach (var item in ViewBag.Flash)
+            {
+                if (item.Highlight == true)
+                {
+                    <a class="btn-link" style="color:#fff;" href="/Registration/Register"><img src="/images/new.gif"> NDC 61<sup>st</sup> Course Registration <span class="glyphicon glyphicon-forward" style="padding:0 20px"></span> </a>
+                    <a class="btn-link" style="color:#fff;" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })"><img src="/images/new.gif">  @Html.Raw(@item.Headline)</a><span class="glyphicon glyphicon-forward" style="padding:0 20px"></span>
+                }
+                else
+                {
+                    <a class="btn-link" style="color:#fff;" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a><span class="glyphicon glyphicon-forward" style="padding:0 20px"></span>
+                }
+            }
+        </marquee>
+    </div>
+</div>
+<section class="site-intro-wrapper mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="latest-news-events">
+                    <span class="title">
+                        Upcoming Events
+                    </span>
+                    <div class="what-news-wrapper">
+                        <ul class="upcomingslide" style="height: 180px; overflow: hidden;">
+                            @foreach (var item in ViewBag.Upcoming)
+                            {
+                                if (item.Highlight == true)
+                                {
+                                    <li>
+                                        <a class="btn-link" style="color:#fff;" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })"><img src="/images/new.gif">  @Html.Raw(@item.Headline)</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a class="btn-link" style="color:#fff;" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="previous-month">
+                    <span class="title">
+                        Last Months Highlights
+                    </span>
+                    <div class="what-news-wrapper">
+                        <ul class="" style="overflow: hidden;">
+                            <li>COVID-19 Lecture </li>
+                            <li>Community Service </li>
+                            <li>Seminar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="site-intro" style="padding:1.3333em">
+                    <img class="img-responsive" src="/images/welcome-to-ndc.jpg">
+                    <h4>
+                        WELCOME TO NATIONAL DEFENCE COLLEGE
+                    </h4>
+                    <p>
+                        The National Defence College (NDC) was inaugurated on April 27, 1960 by Pandit Jawaharlal Nehru, the first Prime Minister of Independent India.
+                        <!-- <button class="cbtn-sm btn-1">Learn more</button>   -->
+                        <div class="dropdown">
+                            <button class="cbtn-sm btn-1 dropdown-toggle" type="button" data-toggle="dropdown">
+                                Learn more
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/content2/learn-more/aim-of-ndc">Aim</a></li>
+                                <li><a href="/content2/learn-more/role-of-ndc">Role</a></li>
+                                <li><a href="/content2/learn-more/vision-mission-of-ndc">Vision/Mission</a></li>
+                            </ul>
+                        </div>
+                    </p>
+                    <!--NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned "the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare". Today, NDC continues to provide future decision-makers with the necessary skills and background for filling senior positions in national security and associated fields.-->
+                    <!-- <a href="About.html" class="btn btn-primary">Learn more</a> -->
+
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="course" style="margin-top: 10px;">
+                    <h3>Login</h3>
+                    <!-- <div class="list-group list-group-flush"> -->
+                    <!-- <button class="cbtn btn-1" onclick="window.location='Prospective.html';">Prospective Participant</button>   -->
+                    <button class="cbtn btn-1" onclick="window.location='/member/';">Course Participant</button>
+                    <button class="cbtn btn-1" onclick="window.location='/staff/';">Faculty & Staff</button>
+                    <button class="cbtn btn-1" onclick="window.location='/alumni/';">Alumni</button>
+                    <!-- <a href='Signin.html' class="btn btn-danger btn-block btn-lg">Participants</a>
+                    <a href='AlumniHome.html' class="list-group-item-action btn btn-danger btn-block btn-lg">Alumni</a>
+                    <a href='FacultyHome.html' class="list-group-item-action btn btn-danger btn-block btn-lg">Faculty & Staff</a> -->
+                    <!-- </div> -->
+                    <!-- <button class="btn btn-danger btn-lg">Participants</button><hr />
+                    <button class="btn btn-block btn-lg" style="margin:0px;white-space: normal !important;">Nomination Letter for &#13;&#10; Civil Service Officers</button> -->
+
+                </div>
+                <div class="ndc-in-news">
+                    <h3 class="title">NDC in News</h3>
+                    <div class="text-center">
+                        <img src="/images/newspaper.png" width=96>
+                    </div>
+                    <button class="btn btn-block btn-primary btn-lg" style="margin:0 0 10px 0;" onclick="window.location='/sitefeedback/feedback';">Feedback</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

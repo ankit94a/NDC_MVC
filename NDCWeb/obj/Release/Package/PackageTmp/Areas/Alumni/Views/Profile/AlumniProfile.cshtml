@@ -1,0 +1,163 @@
+﻿@model NDCWeb.View_Models.AlumniUpVM
+
+@{
+    ViewBag.Title = "Alumni Profile";
+    Layout = "~/Areas/Alumni/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container shadow-sm mt-4">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.AluminiId)
+        <div class="card">
+            <div class="card-header bg-white">
+                <h4>@ViewBag.Title </h4>
+            </div>
+            <div class="card-body">
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label">Service</label>
+                        @Html.DropDownList("ServiceId", (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ServiceId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.ServiceRank, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.ServiceRank, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ServiceRank, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.CourseYear, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CourseYear, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.CourseSerNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CourseSerNo, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.NdcEqvCourse, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.NdcEqvCourse, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.YearDone, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.YearDone, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.ServiceRetd, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.ServiceRetd, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.Branch, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.PermanentAddress, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.PermanentAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.NdcCommunicationAddress, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.NdcCommunicationAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-row">
+                    @Html.Label("Indl Photograph", htmlAttributes: new { @class = "control-label" })
+                    <input id="picfile" type="file" title="Upload Your Photo" required  name="picfile" onchange="imgValidate('picfile', 'MemberImgPath')" class="uploadify-button form-control-file" accept="image/jpg,image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                    <p class="text-info">400x400, Max size 250 KB, File Type (.jpg only)</p>
+                    @Html.EditorFor(model => model.AlumniImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                </div> 
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="alert alert-info" role="alert">
+                            Photo is Mandatory to Upload
+                        </div>
+                    </div>
+                </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12" style="visibility:hidden">
+                                @Html.EditorFor(model => model.RegDate, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                                @Html.EditorFor(model => model.Verified, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                                @Html.EditorFor(model => model.VerifyDate, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @type = "hidden" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center bg-white">
+                        @*<a href="@Url.Action("AlumniProfile", "Profile",new {alumniid= Model.AluminiId })"><b>Update</b></a>*@
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+
+                }
+            </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    // #region Upload Helper
+        function docValidate(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+            else {
+                $('#' + fileLocId).val('');
+            }
+        }
+
+        function docValidateEdit(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+        }
+        function imgValidate(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg', 'jpeg', 'png', 'jpg'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("ImageUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+            else {
+                $('#' + fileLocId).val('');
+            }
+        }
+    // #endregion
+</script>
+}

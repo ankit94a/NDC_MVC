@@ -1,0 +1,67 @@
+﻿<style type="text/css">
+    .menuchang {
+        background-image: url('images/new.gif');
+        background-repeat: no-repeat;
+        padding-right: 5px;
+        background-position: top;
+    }
+
+    .sf-menu li a {
+       /* padding: 8px 16px !important;*/
+        border-left: 1px solid #3E70CB
+    }
+</style>
+
+<style>
+    .sf-menu {
+        width: 100%;
+        text-transform:uppercase;
+    }
+
+        .sf-menu > li {
+            display: inline-block;
+            float: none;
+        }
+</style>
+
+<div id="main-nav" class="navigation-bg" style="display: none;">
+    @if (ViewBag.SiteMenuStaffType != null)
+    {
+        if (ViewBag.SiteMenuStaffType.ToString().ToUpper() == "AQ")
+        {
+            @Html.Partial("UserMenu/_AQMenu");
+        }
+        else if (ViewBag.SiteMenuStaffType.ToString().ToUpper() == "DS (COORD)")
+        {
+            @Html.Partial("UserMenu/_DSMenu");
+        }
+        else if (ViewBag.SiteMenuStaffType.ToString().ToUpper() == "JDS (R&R)")
+        {
+            @Html.Partial("UserMenu/_JDSRMenu");
+        }
+        else if (ViewBag.SiteMenuStaffType.ToString().ToUpper() == "JDS (ADM)")
+        {
+            @Html.Partial("UserMenu/_JDSADMMenu");
+        }
+        else if (ViewBag.SiteMenuStaffType.ToString().ToUpper() == "SECRETARY")
+        {
+            @Html.Partial("UserMenu/_SECYMenu");
+        }
+        else if (ViewBag.SiteMenuStaffType.ToString().ToUpper() == "COMDT")
+        {
+            @Html.Partial("UserMenu/_COMDTMenu");
+        }
+        else if (ViewBag.SiteMenuStaffType.ToString().ToUpper() == "GSO (SYS)")
+        {
+            @Html.Partial("UserMenu/_GSOMenu");
+        }
+        else if (ViewBag.SiteMenuStaffType.ToString().ToUpper() == "SDS")
+        {
+            @Html.Partial("UserMenu/_SDSMenu");
+        }
+        else
+        {
+            @Html.Partial("UserMenu/_OtherMenu");
+        }
+    }
+</div>

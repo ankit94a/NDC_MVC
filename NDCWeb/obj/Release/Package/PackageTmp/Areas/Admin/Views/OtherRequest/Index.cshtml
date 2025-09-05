@@ -1,0 +1,77 @@
+﻿@model IEnumerable<NDCWeb.Areas.Admin.View_Models.OtherRequestVM>
+
+@{
+    ViewBag.Title = "List of Forgot Password Request.";
+}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <table class="table w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RequestDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LockerNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MobileNo)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OtherRequestId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequestDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LockerNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MobileNo)
+                        </td>
+                        <td>
+                            @if (!item.Status)
+                            {
+                                <input type="button" id='ts-@item.OtherRequestId' class="btn btn-info" onclick='Update(@item.OtherRequestId)' value="Approve Request" />
+
+                            }
+                            else
+                            {
+                                <input type="button" id="ts-@item.OtherRequestId" class="btn btn-success" value="Approved" />
+                            }
+                            <a href="@Url.Action("Reject", "OtherRequest", new { Id = item.OtherRequestId })" title="Reject Action" class="btn btn-danger">Reject</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var TableId = "#myTable";
+        LoadJDTSorted(TableId);
+        function Update(id, event) {           
+            var Jsonurl = '@Url.Action("UpdateApproved")';
+            UpdateJDTRow(id, event, TableId, Jsonurl);
+    }
+    </script>
+}

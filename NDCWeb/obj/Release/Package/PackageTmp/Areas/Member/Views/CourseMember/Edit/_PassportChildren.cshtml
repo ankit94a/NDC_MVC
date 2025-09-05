@@ -1,0 +1,181 @@
+﻿@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formPassportChild" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+    <div class="card mt-4">
+        <div class="card-header" style="background-color:#fff">
+            PASSPORT DETAILS OF CHILDREN
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <Label class="control-label">Passport No</Label>
+                    <input type="text" name="chPPassportNo" id="chPPassportNo_1" required title="Enter Child Passport No" class="form-control" placeholder="Passport No">
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Date of Issue</Label>
+                    <input type="text" name="chPIssueDate" id="chPIssueDate_1" required title="Enter Child Date of Issue" class="form-control datepickerJq1" autocomplete="off" placeholder="Issue Date">
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Valid Upto</Label>
+                    <input type="text" name="chPValidUpto" id="chPValidUpto_1" required title="Enter Child Valid Upto" class="form-control datepickerJq1" autocomplete="off" placeholder="Valid Upto">
+                </div>
+                <div class="form-group col-md-3">
+                    <Label class="control-label">Full Name</Label>
+                    <input type="text" name="chPFullName" id="chPFullName_1" required title="Enter Child Full Name" class="form-control" autocomplete="off" placeholder="Full Name">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Passport Type</label>
+                    <select class="form-control" id="chPPassportType_1" required title="Enter Child Passport Type">
+                        <option disabled selected>--Select--</option>
+                        <option value="Diplomatic">Diplomatic</option>
+                        <option value="Official">Official</option>
+                        <option value="Service">Service</option>
+                        <option value="Personal">Personal</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <Label class="control-label">Country</Label>
+                    <input type="text" name="chPCountry" id="chPCountry_1" required title="Enter Country Name" class="form-control" autocomplete="off" placeholder="Country Name">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Upload passport image (Front)</label>
+                    <input id="chPPassportPicfile_1" type="file" required title="Upload Child Passport Images" name="chPPassportPicfile" onchange="imgValidate('chPPassportPicfile_1', 'hdnChildPImgPath_1')" class="uploadify-button form-control-file" accept="image/jpeg,image/png"  />
+                    <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                    <input type="hidden" value="#" id="hdnChildPImgPath_1">
+                    @*@Html.EditorFor(model => model.MemberImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })*@
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Upload passport image (Back)</label>
+                    <input id="chPPassportPicfileBack_1" type="file" required title="Upload Child Passport Images" name="chPPassportPicfileBack" onchange="imgValidate('chPPassportPicfileBack_1', 'hdnChildPImgPath_1')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                    <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                    <input type="hidden" value="#" id="hdnChildPBackImgPath_1">
+                    @*@Html.EditorFor(model => model.MemberImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })*@
+                </div>
+            </div>
+            <div id="new_chP"></div>
+            <input type="hidden" value="1" id="total_chP">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <Label class="control-label" style="width:100%">Add/Remove</Label>
+                    <button type="button" class="add-ChildPassport btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i>Add</button>
+                    <button type="button" class="remove-ChildPassport btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i>Remove</button>
+                </div>
+            </div>
+        </div>
+        
+            <div class="card-footer text-center">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Submit" onclick="addPassportChildren()" class="btn btn-primary btn-sm" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script>
+    $(document).ready(function () {
+        getDatepickerf1('.datepickerJq1');
+    });
+    // #region children
+    function storeChildPassport() {
+        let ttlla = $('#total_chP').val();
+        let childrenPassport = [];
+        for (i = 1, j = 0; i <= ttlla; i++ , j++) {
+            childrenPassport[j] = {
+                PassportNo: $('#chPPassportNo_' + i).val(),
+                PassportIssueDate: $('#chPIssueDate_' + i).val(),
+                PassportValidUpto: $('#chPValidUpto_' + i).val(),
+                PassportType: $('#chPPassportType_' + i).val(),
+                PassportImgPath: $('#hdnChildPImgPath_' + i).val() || '#',
+                PassportId: $('#hdnPassportId').val(),
+            };
+        }
+        return childrenPassport;
+    }
+
+    $('.add-ChildPassport').on('click', addChildPassport);
+    $('.remove-ChildPassport').on('click', removeChildPassport);
+    function addChildPassport() {
+        let new_la_no = parseInt($('#total_chP').val()) + 1;
+        let new_inputLa = `<div id="ChildPassport_${new_la_no}" class="form-row">
+                               <div class="form-group col-md-3">
+                                   <Label class="control-label">Passport No</Label>
+                                   <input type="text" name="chPPassportNo" id="chPPassportNo_${new_la_no}" required title="Enter Child Passport No" class="form-control" placeholder="Passport No">
+                               </div>
+                               <div class="form-group col-md-2">
+                                   <Label class="control-label">Date of Issue</Label>
+                                   <input type="text" name="chPIssueDate" id="chPIssueDate_${new_la_no}" required title="Enter Child Date of Issue" class="form-control datepickerJq1" autocomplete = "off" placeholder="Issue Date">
+                               </div>
+                               <div class="form-group col-md-2">
+                                   <Label class="control-label">Valid Upto</Label>
+                                   <input type="text" name="chPValidUpto" id="chPValidUpto_${new_la_no}" required title="Enter Child Valid Upto" class="form-control datepickerJq1" autocomplete = "off" placeholder="Valid Upto">
+                               </div>
+                               <div class="form-group col-md-3">
+                                   <Label class="control-label">Full Name</Label>
+                                   <input type="text" name="chPFullName" id="chPFullName_${new_la_no}" required title="Enter Child Full Name" class="form-control" autocomplete = "off" placeholder="Full Name">
+                               </div>
+                               <div class="form-group col-md-2">
+                                   <label>Passport Type</label>
+                                   <select class="form-control" id="chPPassportType_${new_la_no}" required title="Enter Child Passport Type">
+                                       <option disabled selected>--Select--</option>
+                                       <option value="Diplomatic">Diplomatic</option>
+                                       <option value="Official">Official</option>
+                                       <option value="Service">Service</option>
+                                       <option value="Personal">Personal</option>
+                                   </select>
+                               </div>
+                                <div class="form-group col-md-3">
+                                   <Label class="control-label">Country</Label>
+                                   <input type="text" name="chPCountry" id="chPCountry_${new_la_no}" required title="Enter Country Name" class="form-control" autocomplete = "off" placeholder="Country Name">
+                               </div>
+                               <div class="form-group col-md-4">
+                                   <label>Upload passport image (Front)</label>
+                                   <input id="chPPassportPicfile_${new_la_no}" type="file" required title="Upload Child Passport Images" name="chPPassportPicfile" onchange="imgValidate('chPPassportPicfile_${new_la_no}', 'hdnChildPImgPath_${new_la_no}')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                                   <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                                   <input type="hidden" value="#" id="hdnChildPImgPath_${new_la_no}">
+                               </div>
+                                <div class="form-group col-md-4">
+                                   <label>Upload passport image (Back)</label>
+                                   <input id="chPPassportPicfileBack_${new_la_no}" type="file" required title="Upload Child Passport Images" name="chPPassportPicfileBack" onchange="imgValidate('chPPassportPicfileBack_${new_la_no}', 'hdnChildPImgPath_${new_la_no}')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                                   <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                                   <input type="hidden" value="#" id="hdnChildPBackImgPath_${new_la_no}">
+                               </div>
+                           </div>`
+        $('#new_chP').append(new_inputLa);
+        $('#total_chP').val(new_la_no);
+        getDatepickerf1('.datepickerJq1');
+    }
+    function removeChildPassport() {
+        let last_la_no = $('#total_chP').val();
+
+        if (last_la_no > 1) {
+            $('#ChildPassport_' + last_la_no).remove();
+            $('#total_chP').val(last_la_no - 1);
+        }
+    }
+    // #endregion
+
+    function addPassportChildren() {
+        if ($("#formPassportChild").valid()) {
+            let childrenPassportList = storeChildPassport();
+            let childrenPassport = JSON.stringify(childrenPassportList);
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/ChildrenPassport',
+                data: childrenPassport,
+                contentType: "application/json; charset=utf-8",
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    displayTab('PassportPartial');
+                },
+                error: function () {
+                    alert('Operation Failed!')
+                }
+            });
+        }
+    }
+</script>

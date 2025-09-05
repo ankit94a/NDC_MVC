@@ -1,0 +1,180 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.LockerAllotmentEditVM>
+@{
+    ViewBag.Title = "Update Locker No";
+}
+
+<style type="text/css">
+    .Pager span {
+        text-align: center;
+        color: #333;
+        display: inline-block;
+        width: 20px;
+        background-color: #B8DBFD;
+        margin-right: 3px;
+        line-height: 150%;
+        border: 1px solid #B8DBFD;
+    }
+
+    .Pager a {
+        text-align: center;
+        display: inline-block;
+        width: 20px;
+        background-color: #ccc;
+        color: #333;
+        border: 1px solid #ccc;
+        margin-right: 3px;
+        line-height: 150%;
+        text-decoration: none;
+    }
+</style>
+
+<div class="container mt-4 mb-4">
+    <div class="card shadow">
+        @*<div class="card-header">
+            <span class="pl-2">@ViewBag.Title</span>
+            <a href="@Url.Action("LockerAllotment")"><i class="btn btn-primary btn-sm pull-right">New Participant Allotment</i></a>
+        </div>*@
+        <div class="card-body">
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">Course </label>
+                <div class="col-sm-2">
+                    @Html.DropDownList("CourseId", (IEnumerable<SelectListItem>)ViewBag.Courses, "Select Course", htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="col-sm-6"></div>
+                <div class="col-sm-2">
+                    <a href="~/staff/participant/lockerallotmentprint/" class="btn btn-primary">View to Print</a>
+                </div>
+            </div>
+            <table class="table w-100 text-left" id="tblLocker">
+                <thead class="">
+                    <tr>
+                        <th style="vertical-align: middle; white-space: nowrap; width:10%">SNo.</th>
+                        <th style="vertical-align: middle; white-space: nowrap">Rank & Name</th>
+                        <th style="vertical-align: middle; white-space: nowrap">Locker No</th>
+                        <th style="vertical-align: middle; white-space: nowrap">Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="Pager"></div>
+        </div>
+        @*<div class="card-footer">
+                <button type="button" class="btn btn-primary btn-sm" onclick="updateLockerAllotment(LockerAllotmentId, this)">Update</button>
+            </div>*@
+    </div>
+</div>
+@*<button type="button" class="btn btn-transparent red btn-xs" onclick="updateLockerAllotment(LockerAllotmentId, this)"><i class="fa fa-pencil"></i></button>*@
+@section Scripts{
+    <script src="~/Scripts/ASPSnippets_Pager.min.js"></script>
+    <script>
+        $(function () {
+             $('#CourseId').val('65');
+            getLockerAllotmentEdit(1);
+        });
+
+        $("body").on("click", ".Pager .page", function () {
+            getLockerAllotmentEdit(parseInt($(this).attr('page')));
+        });
+
+        //$(document).ready(function () {
+        //    getLockerAllotmentAdd(1);
+        //});
+
+        $('#CourseId').change(function () {
+            getLockerAllotmentEdit(1);
+        });
+        function getLockerAllotmentEdit(pageIndex) {
+            //let e = document.getElementById("CourseId");
+            //let courseid = Number(e.options[e.selectedIndex].value) || 1;
+            let courseid = Number($('#CourseId').find(":selected").val()) || 61;
+
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("LoadLockerAllotmentEdit")',
+                data: { pageIndex: pageIndex, courseId: courseid },
+                datatype: 'json',
+                success: successLockerAllotment,
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+        function successLockerAllotment(response) {
+            let pagingParam = response.pagingParam;
+            fillLockerAllotment(response);
+
+            $(".Pager").ASPSnippets_Pager({
+                ActiveCssClass: "current",
+                PagerCssClass: "pager",
+                PageIndex: pagingParam.PageIndex,
+                PageSize: pagingParam.PageSize,
+                RecordCount: pagingParam.RecordCount
+            });
+        };
+        function fillLockerAllotment(data) {
+            let $tbody = $('#tblLocker tbody');
+            $tbody.empty();
+            let lockerAllotments = data.lockerAllotments;
+
+            //let iagList = data.iagList;
+            //let sdsList = data.sdsList;
+
+            //const ddlIAG = iagList.map(n => `<option value="${n.Value}">${n.Text}</option>`).join('');
+            //const ddlSDS = sdsList.map(n => `<option value="${n.Value}">${n.Text}</option>`).join('');
+
+            $.each(lockerAllotments, function (i, lockerAllotment) {
+                $tbody.append(`
+                    <tr>
+                        <td style="text-align:center">${i + 1}<input type="hidden" name="hdnLockerAllotmentId" value="${lockerAllotment.LockerAllotmentId}"></td>
+                        <td>${lockerAllotment.FullName}<input type="hidden" name="hdnCourseMemberId" value="${lockerAllotment.CourseMemberId}"></td>
+                        <td style="text-align:center"><input type="text" id="LockerNo_${i}" name="lockerNo" value="${lockerAllotment.LockerNo}"/></td>
+                        <td style="text-align:center"><button type="button" class="btn btn-primary btn-sm" onclick="updateLockerAllotment(${lockerAllotment.LockerAllotmentId}, this)">Update</button></td>
+                    </tr>
+                `);
+                //$('#ddliag_' + i).val(lockerAllotment.IAG);
+                //$('#ddlsds_' + i).val(lockerAllotment.SDSId);
+            });
+        }
+        //<tr>
+        //    <td>${i + 1}<input type="hidden" name="hdnLockerAllotmentId" value="${lockerAllotment.LockerAllotmentId}"></td>
+        //        <td>${lockerAllotment.FullName}<input type="hidden" name="hdnCourseMemberId" value="${lockerAllotment.CourseMemberId}"></td>
+        //            <td><input type="text" id="LockerNo_${i}" name="lockerNo" value="${lockerAllotment.LockerNo}" /></td>
+        //            <td><select id="ddliag_${i}" name="ddl_iag">${ddlIAG}</select></td>
+        //            <td><select id="ddlsds_${i}" name="ddl_sds">${ddlSDS}</select></td>
+        //            <td><input type="text" id="RolesAssign_${i}" name="RolesAssign" value="${lockerAllotment.RolesAssign}" /></td>
+        //            <td><button type="button" class="btn btn-primary btn-sm" onclick="updateLockerAllotment(${lockerAllotment.LockerAllotmentId}, this)">Update</button></td>
+        //            </tr>
+        function updateLockerAllotment(id, e) {
+            debugger
+            let uptype = 'AQ';
+            let lockerAllotment = storeLockerAllotment(id, e);
+            $.ajax({
+                type: 'post',
+                url: '/api/staffMasterApi/LockerAllotmentEdit/locker/' + id + '/uptype/' + uptype,
+                data: lockerAllotment,
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    toastr.info(textStatus);
+                    getLockerAllotmentEdit(1);
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+        function storeLockerAllotment(id, e) {
+            let row = $(e).closest("tr");
+            let lockerAllotment = {
+                LockerAllotmentId:id,
+                FullName: '',
+                CourseMemberId: row.find('input[name="hdnCourseMemberId"]').val(),
+                LockerNo: row.find('input[name="lockerNo"]').val(),
+                //IAG: row.find('select[name="ddl_iag"] option:selected').val(),
+                //SDSId: row.find('select[name="ddl_sds"] option:selected').val(),
+                //RolesAssign: row.find('input[name="RolesAssign"]').val(),
+            };
+            return lockerAllotment;
+        }
+
+    </script>
+}

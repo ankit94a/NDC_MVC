@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.MessBillReadVM>
+@{
+    ViewBag.Title = "StaffBillDetail";
+}
+
+<div class="container">
+    <br /><br />
+    <table style="text-align:center">
+        <tr>
+            <td>
+                <h3><span style="color:blue;">Bill Detail</span></h3>
+            </td>
+        </tr>
+    </table>
+    <br /><br />
+    @foreach (var item in Model)
+    {
+        <table>
+            <tr>
+                <td colspan="5">Bill Month : @item.BillMonth</td>
+            </tr>
+            <tr>
+                <td>Arrear : @item.Arrear </td>
+                <td>
+                    Wine : @item.Wine
+                </td>
+                <td>Bus Fund : @item.BusFund </td>
+                <td>Canteen Smart Card : @item.CanteenSmartCard </td>
+            </tr>
+            <tr>
+                <td>Extra : @item.Extra</td>
+                <td>Mess Subs : @item.MessSubs</td>
+                <td>Alumni Dinner : @item.AlumniDinner </td>
+                <td>Total: @item.Total</td>
+            </tr>
+            <tr>
+                <td>Messing : @item.Messing</td>
+                <td>Rakshika : @item.Rakshika</td>
+                <td>PLD : @item.PLD</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tea : @item.Tea</td>
+                <td>NDC Journal : @item.NDCJournal</td>
+                <td>Corpus Fund : @item.Corpusfund </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Table Money : @item.TableMoney</td>
+                <td>RB : @item.RB</td>
+                <td>Breakup Party : @item.BreakupParty</td>
+                <td></td>
+            </tr>
+        </table>
+
+    }
+</div>

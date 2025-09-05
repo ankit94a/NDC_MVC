@@ -1,0 +1,49 @@
+﻿@*@model NDCWeb.Areas.Member.View_Models.CrsMbrAddressIndxVM*@
+@model NDCWeb.Areas.Member.View_Models.CrsMbrAddressIndxVM
+
+<div class="card mt-4">
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="8">CURRENT ADDRESSES</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.CurrentAddress)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.CurrentAddress)</td>
+            </tr>
+            <tr>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.CurrentTelephone)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.CurrentTelephone)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.CurrentFax) </td>
+                <td class="juipfvalue" colspan="2">@Html.DisplayFor(model => model.CurrentFax)</td>
+            </tr>
+            <tr class="bg-light">
+                <td colspan="6">PERMANENT ADDRESSES</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.PermanentAddress)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.PermanentAddress)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.City)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.City)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.ZipCode)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.ZipCode)</td>
+                <td class="juipfname"> State</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.States.StateName)</td>
+            </tr>
+            <tr>
+                <td class="juipfname"> Country</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.States.Countries.CountryName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.PermanentTelephone) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.PermanentTelephone)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.PermanentFax) </td>
+                <td class="juipfvalue" colspan="2">@Html.DisplayFor(model => model.PermanentFax)</td>
+            </tr>
+        </table>
+        <div class="panel-footer">
+            <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" data-toggle="tab" href="#AddressPartial" onclick="editTab('AddressPartial')">Edit</a>
+        </div>
+    </div>
+
+</div>
+
+

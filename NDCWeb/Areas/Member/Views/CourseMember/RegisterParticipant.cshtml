@@ -1,0 +1,127 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CourseRegisterIndxVM>
+
+@{
+    ViewBag.Title = "List of Register Participants";
+}
+
+<div class="main-card  card">
+    <div class="card-body">
+        <h5 class="card-title">List of Register Participants (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","MenuItemMaster")" class="btn-shadow  mt-0 btn btn-primary">Create Menu</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmailId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ranks.Service)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ranks.RankName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Registered On")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Verified On")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Profile")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Delete")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Status")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ranks.Service)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ranks.RankName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.MobileNo)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VerifyDate)
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="verifyMember(@item.CourseRegisterId, this)">Verify</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.CourseRegisterId, this)"><i class="fa fa-trash"></i></button>
+                        </td>
+                        <td>
+                        </td>
+
+                        @*<td>
+                                <a href="@Url.Action("Edit", new { id = item.MenuId })"><i class="fa fa-edit"></i></a>
+                                <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.MenuId, this)"><i class="fa fa-trash"></i></button>
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+        }
+
+        function verifyMember(id, event) {
+            let row = event.parentNode.parentNode;
+            let member = {
+                UserName: row.cells[0].innerHTML.trim(),
+                FName: row.cells[3].innerHTML.trim(),
+                Email: row.cells[0].innerHTML.trim(),
+                PhoneNumber: row.cells[4].innerHTML.trim(),
+            }
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("VerifyMember","Account", new { Area = "Admin" })',
+                data: { regId: id, member: member },
+                datatype: 'json',
+                success: function (data) {
+                    alert(data);
+                    //alert(xhr.getResponseHeader('location'));
+                },
+                error: function () {
+                    alert('Server Not Found!')
+                }
+            })
+        }
+
+    </script>
+}
+

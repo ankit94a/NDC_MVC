@@ -1,0 +1,11 @@
+﻿@using NDCWeb.Infrastructure.Helpers.Menu;
+@using NDCWeb.View_Models;
+
+<div id="main-nav" class="navigation-bg">
+    <nav>
+        <div class="container">
+            @Html.SiteMenuAsUnorderedList(ViewBag.SiteMenuItems as List<MenuControlVM>)
+        </div>
+    </nav>
+</div>
+

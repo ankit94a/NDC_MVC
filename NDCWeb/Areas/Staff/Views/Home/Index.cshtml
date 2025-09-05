@@ -1,0 +1,554 @@
+﻿@using Microsoft.AspNet.Identity
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+
+    int cnta = 0;
+    int courseId = 65;
+}
+<style>
+    .sf-menu li {
+        text-transform: uppercase;
+    }
+    .pdf-container {
+        width: 98%;
+        height: 120vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .pdf-container embed {
+            width: 100%;
+            height: 100%;
+        }
+
+    .pdf-container2 {
+        width: 99%;
+        height: 40vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .pdf-container2 embed {
+            width: 100%;
+            height: 100%;
+        }
+</style>
+<div class="container-fluid mt-4 mb-4">
+    <div class="row gutters-sm">
+        <div class="col-md-3">
+            <div class="pcard text-center bg-white">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        string Appt = ViewBag.Appointment;
+                        if (Appt == "Comdt")
+                        {
+                            Appt = "Commandant";
+                        }
+                        <img src="@Url.Content(ViewBag.ProfilePic ?? "Component/images/avatars/avatar.png")" alt="@ViewBag.fullname" title="@ViewBag.fullname">
+                        <div class="pcard-container text-center">
+                            <h4 class=card-title><b>@ViewBag.fullname</b></h4>
+                            <p><i class="fa fa-circle text-success"></i> @Appt</p>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"> Log off</a>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="list-group shadow-sm" style="clear:both">
+
+                @if (ViewBag.StaffType != null)
+                {
+                    if (ViewBag.StaffType == 15)//"AQ"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a class="btn-link list-group-item" href="@Url.Action("ArrivalAll", "Participant")">Arrival Detail</a>
+                        <a class="btn-link list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">Leave History</a>
+                        <a class="btn-link list-group-item" href="~/staff/participant/CrsMbrRoleAssignment/">Role Assignment</a>
+                        <a class="btn-link list-group-item" href="~/staff/instepcourse/index/">In-Step Course</a>
+                        @*<a href="/staff/CourseStaff/faq" class="list-group-item">FAQs</a>
+                            <a href="~/staff/memberverify/participants/" class="list-group-item">Participant Verification</a>
+                <a href="~/staff/participant/participantlist/" class="list-group-item">Participants List</a>
+                <a href="~/staff/participant/lockerallotment" class="list-group-item">Locker Allotment</a>*@
+                    }
+                    else if (ViewBag.StaffType == 2 || ViewBag.StaffType == 3 || ViewBag.StaffType == 4 || ViewBag.StaffType == 5 || ViewBag.StaffType == 6 || ViewBag.StaffType == 7 || ViewBag.StaffType == 8 || ViewBag.StaffType == 9 || ViewBag.StaffType == 23)//"SDS"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a class="list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">Leave History</a>
+                    }
+                    else if (ViewBag.StaffType == 11)//"DS (Coord)"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a href="~/staff/participant/participantlist/" class="list-group-item">View Participants</a>
+                        <a href="~/staff/participant/CrsMbrRoleAssignment/" class="list-group-item">Role Assignment</a>
+                        <a href="~/staff/speakers/" class="list-group-item">Speaker Biodata</a>
+                        <a class="btn-link list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">Leave History</a>
+                    }
+                    else if (ViewBag.StaffType == 13)//"JDS (R&R)"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a href="~/staff/library/" class="list-group-item">Library Application</a>
+                        <a href="~/staff/participant/participantlist/" class="list-group-item">View Participants</a>
+                    }
+                    else if (ViewBag.StaffType == 14)//"JDS (ADM)"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a class="btn-link list-group-item" href="~/staff/event/">Create Party/Function</a>
+                        <a class="btn-link list-group-item" href="@Url.Action("LatestEvent", "Event")">Latest Event</a>
+                        <a class="btn-link list-group-item" href="@Url.Action("ArrivalAll", "Participant")">Arrival Detail</a>
+                        <a class="btn-link list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">Leave History</a>
+                    }
+                    else if (ViewBag.StaffType == 24)//"(Consultant 1)"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a href="~/staff/memberverify/alumnilist/" class="list-group-item">Alumni List <span class="badge badge-danger">Unverified - @ViewBag.UnverifiedCount</span></a>
+                        <a href="~/Staff/AlumniMaster/AlumniFeedBack" class="list-group-item">Alumni Feedback List<span class="badge badge-danger">Total Feedback - @ViewBag.FeedbackCount</span></a>
+                        <a href="~/Staff/AlumniArticleAll/Index" class="list-group-item">Alumni Articles List<span class="badge badge-danger">Total Article - @ViewBag.ArticleCount</span></a>
+                        <a class="btn-link list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">Leave History</a>
+                    }
+                    else if (ViewBag.StaffType == 17)//"OIC (Archive)"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a href="~/staff/memberverify/alumnilist/" class="list-group-item">Alumni List <span class="badge badge-danger">Unverified - @ViewBag.UnverifiedCount</span></a>
+                        <a href="~/Staff/AlumniMaster/AlumniFeedBack" class="list-group-item">Alumni Feedback List<span class="badge badge-danger">Total Feedback - @ViewBag.FeedbackCount</span></a>
+                        <a href="~/Staff/AlumniArticleAll/Index" class="list-group-item">Alumni Articles List<span class="badge badge-danger">Total Article - @ViewBag.ArticleCount</span></a>
+                        <a href="~/staff/memberverify/InStepCourse/" class="list-group-item">In-Step Alumni <span class="badge badge-danger">Unverified - @ViewBag.UnverifiedInStepCount</span></a>
+                    }
+                    else if (ViewBag.StaffType == 18)//"OIC (Univ Div)"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a href="~/staff/universitydiv/mphil" class="list-group-item">MPhil Application</a>
+                        <a href="~/staff/universitydiv/mumphil" class="list-group-item">MPhil Degree Application</a>
+                    }
+                    else if (ViewBag.StaffType == 16)//"GSO (Sys)"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a href="~/staff/SInfoTech/index" class="list-group-item">IT Equipment Requirements</a>
+                        <a href="~/staff/MiscRequirementAll/index" class="list-group-item">Tele. & Internet Requisition</a>
+                    }
+                    else if (ViewBag.StaffType == 10)//"Secretary"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a href="~/staff/memberverify/alumnilist/" class="list-group-item">Alumni List</a> @*<span class="badge badge-danger">Unverified - @ViewBag.UnverifiedCount</span>*@
+                        <a href="~/Staff/AlumniMaster/AlumniFeedBack" class="list-group-item">Alumni Feedback List</a> @*<span class="badge badge-danger">Unverified - @ViewBag.FeedbackCount</span>*@
+                        <a class="list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">Leave History</a>
+                    }
+                    else if (ViewBag.StaffType == 2)//"Comdt"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a class="list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">Leave History</a>
+                    }
+                    else if (ViewBag.StaffType == 12) //"Research coord"
+                    {
+                        <h4 class="list-group-item active">TASKS</h4>
+                        <a href="~/staff/participant/participantlist/" class="list-group-item">View Participants</a>
+                    }
+                }
+            </div>
+            <!--Leave-->
+            @if (ViewBag.StaffType != null)
+            {
+                if (ViewBag.StaffType == 15 || ViewBag.StaffType == 11 || ViewBag.StaffType == 14)//"AQ"
+                {
+                    <div class="card shadow-sm" style="clear:both; padding:2px">
+                        @{ Html.RenderAction("GetLeaveData"); }
+
+
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-md-6">
+            <div class="calendarr">
+                @if (ViewBag.WeeklyTrainingProgramme != null)
+                {
+                    string path = ViewBag.WeeklyTrainingProgramme;
+                    path = path.Replace("~", "");
+                    <div class="pdf-container">
+                        <embed src="@path" type="application/pdf">
+                    </div>
+                    @*<iframe src="https://view.officeapps.live.com/op/embed.aspx?src=https://ndc.nic.in/@path" frameborder="no" style="width:100%;height:800px"></iframe>*@
+
+                }
+                <h4 class="text-center">Weekly Training Programme</h4>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="calendarr">
+
+                @if (ViewBag.TrainingCalendar != null)
+                {
+                    string path = ViewBag.TrainingCalendar;
+                    path = path.Replace("~", "");
+                    <div class="pdf-container2">
+                        <embed src="@path" type="application/pdf">
+                    </div>
+                    @*<iframe id="btp" src="https://view.officeapps.live.com/op/embed.aspx?src=https://ndc.nic.in/@path" frameborder="no" style="width:100%;height:400px"></iframe>*@
+                }
+                <h4 class="text-center">Block Training Programme</h4>
+            </div>
+            <div class="card shadow">
+                <div class="card-header text-danger">
+                    &nbsp;&nbsp; <i class="fa fa-bell"></i> Alerts
+                </div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            @if (ViewBag.StaffType != null)//"DS (Coord)"-11 and all other SDS
+                            {
+                                if ((ViewBag.StaffType == 3 || ViewBag.StaffType == 4 || ViewBag.StaffType == 5 || ViewBag.StaffType == 6 || ViewBag.StaffType == 7 || ViewBag.StaffType == 8 || ViewBag.StaffType == 9 || ViewBag.StaffType == 23 || ViewBag.StaffType == 24) && Convert.ToString(ViewBag.OnlineUpld) != "0")
+                                {
+                                    <td>
+                                        @*@{ Html.RenderAction("OnlineUploadsAlert"); }*@
+                                        <a class="btn-link list-group-item" href="@Url.Action("Index", "Assignment")">
+                                            <img src="/images/new.gif" style="text-align:left; padding-left:0"> Online Uploads <span class="badge badge-danger">@ViewBag.OnlineUploadPndngCount</span>
+                                        </a>
+                                    </td>
+
+                                <tr>
+                                    <td>
+                                        <a class="btn-link list-group-item" href="@Url.Action("SpeechEventList", "feedbacks")">
+                                            <img src="/images/new.gif" style="text-align:left"> Speaker Feedback <span class="badge badge-danger">@ViewBag.SpeakerFBCount</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a class="btn-link list-group-item" href="@Url.Action("module", "feedbacks")">
+                                            <img src="/images/new.gif" style="text-align:left"> Module Feedback <span class="badge badge-danger">@ViewBag.ModuleFBCount</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a class="btn-link list-group-item" href="@Url.Action("course", "feedbacks")">
+                                            <img src="/images/new.gif" style="text-align:left"> Course End Feedback <span class="badge badge-danger">@ViewBag.CourseEndFBCount</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                            </tr>
+                            @if (ViewBag.StaffType != null)
+                            {
+                                if (ViewBag.StaffType == 10)//"Secy"
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("SpeechEventList", "feedbacks")">
+                                                <img src="/images/new.gif" style="text-align:left"> Speaker Feedback <span class="badge badge-danger">@ViewBag.SpeakerFBCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("module", "feedbacks")">
+                                                <img src="/images/new.gif" style="text-align:left"> Module Feedback <span class="badge badge-danger">@ViewBag.ModuleFBCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("course", "feedbacks")">
+                                                <img src="/images/new.gif" style="text-align:left"> Course End Feedback <span class="badge badge-danger">@ViewBag.CourseEndFBCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @if (ViewBag.StaffType != null)
+                            {
+                                if (ViewBag.StaffType == 2)//"Comdt"
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("SpeechEventList", "feedbacks")">
+                                                <img src="/images/new.gif" style="text-align:left"> Speaker Feedback <span class="badge badge-danger">@ViewBag.SpeakerFBCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("module", "feedbacks")">
+                                                <img src="/images/new.gif" style="text-align:left"> Module Feedback <span class="badge badge-danger">@ViewBag.ModuleFBCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("course", "feedbacks")">
+                                                <img src="/images/new.gif" style="text-align:left"> Course End Feedback <span class="badge badge-danger">@ViewBag.CourseEndFBCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @if (ViewBag.StaffType != null)
+                            {
+                                if (ViewBag.StaffType == 11)//"DS (Coord)"
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("Index", "Assignment")">
+                                                <img src="/images/new.gif" style="text-align:left; padding-left:0"> Online Uploads <span class="badge badge-danger">@ViewBag.OnlineUploadPndngCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("SpeechEventList", "feedbacks")">
+                                                <img src="/images/new.gif" style="text-align:left"> Speaker Feedback <span class="badge badge-danger">@ViewBag.SpeakerFBCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("module", "feedbacks")">
+                                                <img src="/images/new.gif" style="text-align:left"> Module Feedback <span class="badge badge-danger">@ViewBag.ModuleFBCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("course", "feedbacks")">
+                                                <img src="/images/new.gif" style="text-align:left"> Course End Feedback <span class="badge badge-danger">@ViewBag.CourseEndFBCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @if (ViewBag.StaffType != null)
+                            {
+                                if (ViewBag.StaffType == 14)//"JDS (ADM)"
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("LatestEvent", "Event")">
+                                                <img src="/images/new.gif" style="text-align:left"> Event/Function Notifications <span class="badge badge-danger">@ViewBag.EventCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @if (ViewBag.StaffType != null)
+                            {
+                                if (ViewBag.StaffType == 13)//"JDS (R&R)"
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("Index", "Library")">
+                                                <img src="/images/new.gif" style="text-align:left"> Life Membership Notification&nbsp;<span class="badge badge-danger">@ViewBag.LifeMemCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @if (ViewBag.StaffType != null)
+                            {
+                                if (ViewBag.StaffType == 16)//"GSO (Sys)"
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("index", "SInfoTech")">
+                                                <img src="/images/new.gif" style="text-align:left"> IT Eqpt Req. Notification<span class="badge badge-danger">@ViewBag.ItEqptReqCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("index", "MiscRequirementAll")">
+                                                <img src="/images/new.gif" style="text-align:left"> Tele. & Internet Notification<span class="badge badge-danger">@ViewBag.InternetReqCount</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @if (ViewBag.StaffType != null)
+                            {
+                                if (ViewBag.StaffType == 18)//"Univ Div"
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("mphil", "universitydiv")">
+                                                <img src="/images/new.gif" style="text-align:left"> Total MPhil Application<span class="badge badge-danger">@ViewBag.MPhilApp</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("mumphil", "universitydiv")">
+                                                <img src="/images/new.gif" style="text-align:left"> Total MPhil Degree<span class="badge badge-danger">@ViewBag.MPhilDegree</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            <tr>
+                                @if (ViewBag.StaffType != null)
+                                {
+                                    if ((ViewBag.StaffType == 15) && ViewBag.UnverifiedMbrCount > 0)//"AQ"
+                                    {
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("ParticipantsPending", "memberverify")">
+                                                <img src="/images/new.gif" style="text-align:left"> Verification Pending <span class="badge badge-danger"> @ViewBag.UnverifiedMbrCount</span>
+                                            </a>
+                                        </td>
+                                    }
+                                }
+                            </tr>
+                            <tr>
+                                @if (ViewBag.ActiveLeave != null && ViewBag.ActiveLeave > 0)
+                                {
+                                    <td>
+                                        <a class="btn-link list-group-item" href="@Url.Action("AddStatusLeaveInfoList", "StaffLeaveInfo")">
+                                            <img src="/images/new.gif" style="text-align:left">Leave Notifications <span class="badge badge-danger">@ViewBag.ActiveLeave</span>
+                                        </a>
+                                    </td>
+                                }
+                                @if (ViewBag.SanctionActiveLeave != null && ViewBag.SanctionActiveLeave > 0)
+                                {
+                                    <td>
+                                        <a class="btn-link list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">
+                                            <img src="/images/new.gif" style="text-align:left"> Leave Sanctined <span class="badge badge-danger">@ViewBag.SanctionActiveLeave</span>
+                                        </a>
+                                    </td>
+                                }
+
+                                @if (ViewBag.StaffType != null)
+                                {
+                                    if (ViewBag.GenCirculars > 0)
+                                    {
+                                        <td>
+                                            <a class="btn-link list-group-item" href="@Url.Action("Index", "Circular")">
+                                                <img src="/images/new.gif">  Order / Circular Notifications
+                                                <span class="badge badge-danger">@ViewBag.GenCirculars</span>
+                                            </a>
+                                        </td>
+                                    }
+
+                                }
+                            </tr>
+                            <tr>
+                                @if (ViewBag.StaffType != null)
+                                {
+                                    if ((ViewBag.StaffType == 15))//"AQ"
+                                    {
+                                        if (@ViewBag.GenCertPending > 0)
+                                        {
+                                            <td>
+                                                <a class="btn-link list-group-item" href="@Url.Action("ShowGenerateLeaveCertList", "StaffLeaveInfo")">
+                                                    <img src="/images/new.gif" style="text-align:left"> Generate Leave Certificate <span class="badge badge-danger"> @ViewBag.GenCertPending</span>
+                                                </a>
+                                            </td>
+                                        }
+                                    }
+                                }
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header text-info">
+                        &nbsp;&nbsp; <i class="fa fa-paper-plane"></i> Notifications
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            @{ cnta = 0; }
+                            @foreach (var item in ViewBag.Flash)
+                            {
+                                cnta++;
+                                string text = item.Headline;
+                                if (item.Highlight == true)
+                                {
+
+                                    <tr>
+                                        @*<td class="text-center">@cnta</td>*@
+                                        <td>
+                                            @*<a class="btn-link" href="@Url.Action("article", "home", new { id = item.NewsArticleId })">  @Html.Raw(@item.Headline)</a>*@
+
+                                            @Html.EncodedActionLink(text, "article", "home", "staff", new { id = item.NewsArticleId }, new { @class = "btn-link" }, "")
+
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        @*<td>@cnta</td>*@
+                                        <td>
+                                            @*<a class="btn-link" href="@Url.Action("article", "home", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a>*@
+                                            @Html.EncodedActionLink(text, "article", "home", "staff", new { id = item.NewsArticleId }, new { @class = "btn-link" }, "fa fa-bell")
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header text-primary">
+                        &nbsp;&nbsp; <i class="fa fa-calendar"></i> Socials
+                    </div>
+                    <div class="card-body">
+                        @{ Html.RenderAction("BirthdayAlert"); }
+                        <hr />
+                        @{ Html.RenderAction("FamilyBirthdayAlert"); }
+                        <hr />
+                        @{ Html.RenderAction("MarriageAnniversaryAlert"); }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            background-color: #f3fbfa;
+        }
+
+        tr :nth-child(1) {
+            font-weight: bold;
+        }
+
+        td {
+            padding: 3px 3px !important;
+        }
+    </style>
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+                var d = new Date(), n = d.getMonth();
+                $('#month option:eq(' + n + ')').prop('selected', true);
+                GetBirthday($('#month').val());
+                $('#btnsubmit').click(function () {
+                    GetBirthday($('#month').val());
+                });
+            });
+            function GetBirthday(month) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("BirthdayAlert")',
+                    dataType: "JSON",
+                    data: { month: month },
+                    success: function (data) {
+                        var trHTML = '';
+                        $.each(data, function (i, item) {
+                            trHTML += '<tr><td style="width:20%">' + item.DOB + '</td><td>' + item.FullName + '</td></tr>';
+                        });
+                        $('#records_table').empty().append(trHTML);
+
+                    },
+                    error: function (ex) {
+                        alert('Server Not Found');
+                    }
+                });
+            }
+        </script>
+        <script src="~/Component/js/carousel.js"></script>
+       
+    }

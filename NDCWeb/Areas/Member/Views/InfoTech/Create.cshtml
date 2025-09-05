@@ -1,0 +1,353 @@
+﻿@model NDCWeb.Areas.Member.View_Models.InfoTechCrtVM
+
+@{
+    ViewBag.Title = "IT and Communication Format";
+    //Layout = null;
+}
+<link href="~/Component/cmsupify/uploadify.css" rel="stylesheet" />
+<div class="container shadow-sm pt-2">
+    @using (Html.BeginForm("Create", "InfoTech", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="card">
+            <div class="card-header" style="margin-left: 12px;">
+                <h4>@ViewBag.Title </h4>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="rank">Rank</label>
+                        @if (ViewBag.Rank != null)
+                        {
+                            <input type="text" class="form-control" id="rank" placeholder="Rank" value="@ViewBag.Rank" readonly>
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" id="rank" placeholder="Rank" readonly>
+                        }
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="fullname">Full Name with Decorations</label>
+                        <input type="text" class="form-control" id="fullname" placeholder="Full Name with Decorations" value="@ViewBag.FullName" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label>Are you in Possession of official Laptop from previous Department/Organization?</label>
+                        <div class="form-inline">
+                            <label class="containerchk col-md-1">
+                                Yes @Html.RadioButtonFor(model => model.LaptopFromDepartment, true, new { id = "laptopFromDepartment-true" })
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="containerchk col-md-1">
+                                No @Html.RadioButtonFor(model => model.LaptopFromDepartment, false, new { id = "laptopFromDepartment-false" })
+                                <span class="checkmark"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.LaptopFromDepartment, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row" id="dvDepta">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.DLaptopMake, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.DLaptopMake, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DLaptopMake, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        @Html.LabelFor(model => model.DModelNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.DModelNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DModelNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        @Html.LabelFor(model => model.DSlNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.DSlNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DSlNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="DAdaptor" style="padding-left:180px">&nbsp;</label>
+                        @Html.EditorFor(model => model.DAdaptor, new { htmlAttributes = new { @class = "custom-checkbox" } })
+                        @Html.LabelFor(model => model.DAdaptor, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="DBag" style="padding-left:180px">&nbsp;</label>
+                        @Html.EditorFor(model => model.DBag, new { htmlAttributes = new { @class = "custom-checkbox" } })
+                        @Html.LabelFor(model => model.DBag, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label>Do you require laptop for the duration of the course from College?  </label>
+                        <div class="form-inline">
+                            <label class="containerchk col-md-1">
+                                Yes @Html.RadioButtonFor(model => model.LaptopFromCollege, true, new { id = "laptopFromCollege-true" })
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="containerchk col-md-1">
+                                No @Html.RadioButtonFor(model => model.LaptopFromCollege, false, new { id = "laptopFromCollege-false" })
+                                <span class="checkmark"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.LaptopFromCollege, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row" id="dvClg">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.CLaptopMake, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CLaptopMake, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @*@Html.ValidationMessageFor(model => model.CLaptopMake, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-md-2">
+                        @Html.LabelFor(model => model.CModelNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CModelNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @*@Html.ValidationMessageFor(model => model.CModelNo, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-md-2">
+                        @Html.LabelFor(model => model.CSlNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CSlNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @*@Html.ValidationMessageFor(model => model.CSlNo, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="DBag" style="padding-left:180px">&nbsp;</label>
+                        @Html.EditorFor(model => model.CAdaptor, new { htmlAttributes = new { @class = "custom-checkbox", @readonly = "readonly" } })
+                        @Html.LabelFor(model => model.CAdaptor, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="DBag" style="padding-left:180px">&nbsp;</label>
+                        @Html.EditorFor(model => model.CBag, new { htmlAttributes = new { @class = "custom-checkbox", @readonly = "readonly" } })
+                        @Html.LabelFor(model => model.CBag, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4 mb-4">
+            <!--<div class="card-header" style="margin-left: 12px;">
+                <b>Upload (Signed and scanned copy)</b>
+            </div>-->
+            <div class="card-body">
+                <!--<p class="text-danger">Max size 250 KB, File Type (.pdf, .jpg, .jpeg, .png)</p>-->
+                <div class="form-row">
+                    <!--<div class="form-group col-md-4">
+                        <label>Declaration Form</label>
+                        <input id="declarationFormfile" type="file" required name="declarationFormfile" onchange="docValidate('declarationFormfile', 'DeclarationFormDocPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                        <p class="text-info">(Ink signed copy is to be handed over after reporting)</p>
+                        @*@Html.EditorFor(model => model.DeclarationFormDocPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })*@
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Insurance receipt of laptop during course</label>
+                        <input id="insuranceReceiptfile" type="file" required name="insuranceReceiptfile" onchange="docValidate('insuranceReceiptfile', 'InsuranceReceiptDocPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                        <p class="text-info">(Cost is to be bourne by the student officer)</p>
+                        @*@Html.EditorFor(model => model.InsuranceReceiptDocPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })*@
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Permission to carry laptop outside NDC Premises</label>
+                        <input id="outsidePermissionfile" type="file" required name="outsidePermissionfile" onchange="docValidate('outsidePermissionfile', 'OutsidePermissionDocPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                        <p class="text-info">Proforma download and upload post approval (Admin)</p>
+                        @*@Html.EditorFor(model => model.OutsidePermissionDocPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })*@
+                    </div>-->
+                    <div class="form-group col-md-12">
+                        <input name="decdeclations" id="decdeclations" type="checkbox" required />
+                        <label for="decdeclations"><b>Declaration:-</b> I agree with all terms and conditions and will comply with HQ IDS Cyberb guidelines.</label>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer mb-4 text-center">
+                <button type="submit" id="btnSave" value="Submit" class="btn btn-primary btn-sm">Submit</button>
+               @*@Html.ActionLink("View Filled Form", "index", null, new { @class = "btn btn-primary btn-sm" })*@
+            </div>
+        </div>
+    }
+</div>
+<div id="dialog" style="display: none">
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $("#laptopFromDepartment-true").prop("checked", true);
+        $("#laptopFromCollege-false").prop("checked", true);
+        $("#dvClg").hide();
+    });
+    $('#laptopFromDepartment-true').change(function () {
+        changeLaptopFromDepartment();
+    });
+    $('#laptopFromDepartment-false').change(function () {
+        changeLaptopFromDepartment();
+    });
+    function changeLaptopFromDepartment() {
+        if ($('#laptopFromDepartment-true').is(":checked")) {
+            $("#dvDepta").show();
+            $("#dvClg").hide();
+            //$("#laptopFromCollege-true").prop("checked", false);
+            //$("#laptopFromCollege-false").prop("checked", true);
+        }
+        else {
+            $("#dvDepta").hide();
+            //$("#dvClg").show();
+            $("#dvClg").hide();
+            //$("#laptopFromCollege-true").prop("checked", true);
+            //$("#laptopFromCollege-false").prop("checked", false);
+        }
+    }
+    $('#laptopFromCollege-true').change(function () {
+        changeLaptopFromCollege();
+    });
+    $('#laptopFromCollege-false').change(function () {
+        changeLaptopFromCollege();
+    });
+    function changeLaptopFromCollege() {
+        if ($('#laptopFromCollege-true').is(":checked")) {
+            //$("#dvClg").show();
+            //$("#dvDepta").hide();
+            //$("#laptopFromDepartment-true").prop("checked", false);
+            //$("#laptopFromDepartment-false").prop("checked", true);
+            $("#dvClg").hide();
+            $("#dvDepta").show()
+        }
+        else {
+            $("#dvClg").hide();
+            //$("#dvDepta").show();
+            //$("#laptopFromDepartment-true").prop("checked", true);
+            //$("#laptopFromDepartment-false").prop("checked", false);
+        }
+    }
+</script>
+
+<script>
+        function fillMPhilIT() {
+            let MPhilIT = {
+                LaptopFromDepartment: document.getElementById("LaptopFromDepartment").checked,
+                //DLaptopMake: $("#DLaptopMake").val(),
+                //DModelNo: $("#DModelNo").val(),
+                //DSlNo: $("#DSlNo").val(),
+                //DAdaptor: document.getElementById("DAdaptor").checked,
+                //DBag: document.getElementById("DBag").checked,
+                LaptopFromCollege: document.getElementById("LaptopFromCollege").checked,
+                //CLaptopMake: $("#CLaptopMake").val(),
+                //CModelNo: $("#CModelNo").val(),
+                //CSlNo: $("#CSlNo").val(),
+                //CAdaptor: document.getElementById("CAdaptor").checked,
+                //CBag: document.getElementById("CBag").checked,
+                DeclarationFormDocPath: $("#DeclarationFormDocPath").val() || '#',
+                InsuranceReceiptDocPath: $("#InsuranceReceiptDocPath").val() || '#',
+                OutsidePermissionDocPath: $("#OutsidePermissionDocPath").val() || '#',
+            }
+            if ($('#laptopFromDepartment-true').is(":checked")) {
+                MPhilIT.DLaptopMake = $("#DLaptopMake").val();
+                MPhilIT.DModelNo = $("#DModelNo").val();
+                MPhilIT.DSlNo = $("#DSlNo").val();
+                MPhilIT.DAdaptor = document.getElementById("DAdaptor").checked;
+                MPhilIT.DBag = document.getElementById("DBag").checked;
+            }
+            if ($('#laptopFromCollege-true').is(":checked")) {
+                MPhilIT.CLaptopMake = $("#CLaptopMake").val();
+                MPhilIT.CModelNo = $("#CModelNo").val();
+                MPhilIT.CSlNo = $("#CSlNo").val();
+                MPhilIT.CAdaptor = document.getElementById("CAdaptor").checked;
+                MPhilIT.CBag = document.getElementById("CBag").checked;
+            }
+            return MPhilIT;
+        }
+
+        function addMPhilIT() {
+            if ($("form").valid()) {
+                let MPhilIT = fillMPhilIT();
+                $.ajax({
+                    type: 'post',
+                    url: '/api/mphilMembers/IT',
+                    data: MPhilIT,
+                    datatype: 'json',
+                    success: function (data, textStatus, xhr) {
+                        //alert("success");
+                        alert(textStatus);
+                        //alert(xhr.getResponseHeader('location'));
+                    },
+                    error: function () {
+                        alert('Operation Failed!');
+                    }
+                });
+            }
+        }
+
+        // #region Upload Helper
+        function docValidate(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg', 'jpeg', 'png','pdf', 'doc', 'docx', 'txt', 'xlsx', 'ppt'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+            else {
+                $('#' + fileLocId).val('');
+            }
+        }
+
+        function docValidateEdit(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx', 'txt', 'xlsx', 'ppt'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+        }
+    // #endregion
+</script>
+
+    <script>
+        function viewAck() {
+            let MPhilIT = fillMPhilIT();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ITACK")',
+                data: { modal: MPhilIT },
+                //contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $('#dialog').html(response);
+                    $('#dialog').dialog('open');
+                },
+                failure: function (response) {
+                    alert('Operation Failed!');
+                },
+                error: function (response) {
+                    alert('Server Not Found!');
+                }
+            });
+        }
+
+        $(function () {
+            $("#dialog").dialog({
+                title: 'IT Section Requirements',
+                autoOpen: false,
+                //maxWidth: 800,
+                //maxHeight: 700,
+                width: 900,
+                height: 700,
+                modal: true,
+                buttons: {
+                    Ok: function () {
+                        //Add();
+                        $("[id*=btnSave]").click();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                close: function () {
+                }
+            });
+        });
+        function AcceptTermAndcondition() {
+            if ($("#decdeclations").is(':checked')) {
+                return true;
+            }
+            else {
+                alert("Please accept term and condition");
+                return false;
+            }
+        }
+    </script>
+}

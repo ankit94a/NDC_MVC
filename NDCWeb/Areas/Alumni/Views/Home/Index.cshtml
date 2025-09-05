@@ -1,0 +1,166 @@
+﻿@model NDCWeb.View_Models.AlumniIndxVM
+
+@{
+    ViewBag.Title = "Alumni Home Page";
+    Layout = "~/Areas/Alumni/Views/Shared/_Layout.cshtml";
+
+    int cnt = 0;
+}
+
+<div class="container-fluid mt-4 mb-4">
+    <div class="row gutters-sm">
+        <div class="col-md-3">
+            <div class="card shadow text-center bg-white">
+                <div class="d-flex flex-column align-items-center text-center">
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            if (Model.AlumniPhoto != null && Model.AlumniPhoto != "#")
+                            {
+                                <img src="@Url.Content(Model.AlumniPhoto)" alt="@ViewBag.fullname" title="@ViewBag.fullname" class="rounded-circle" width="150">
+                            }
+
+                            <div class="pcard-container text-center">
+                                <h4 class=card-title><b>@Model.ServiceRank @Model.FirstName @Model.Surname</b></h4>
+                                <p> COURSE @Model.CourseSerNo @Model.NdcEqvCourse <i class="fa fa-circle text-success"></i> YEAR @Model.YearDone </p>
+                                <p> @Model.Country @Model.Branch</p>
+
+                                <a href="@Url.Action("ChangeUserPassword", "home")" class="btn btn-outline-danger btn-sm">Change Password</a>
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-outline-danger btn-sm"> Log off</a>
+                            </div>
+                            <input type="hidden" id="hfcourseID" value="@ViewBag.CourseId" />
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner homeSliderCls">
+
+                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            @*<div class="calendarr">
+                    @if (ViewBag.WeeklyTrainingProgramme != null)
+                    {
+                        <a href="@ViewBag.WeeklyTrainingProgramme" target="_blank"> <img src="@ViewBag.WeeklyTrainingProgramme" class="img-fluid" /> </a>
+                    }
+                    <h4 class="text-center">Block Training Programme</h4>
+                </div>*@
+
+            <div class="card shadow">
+                <div class="card-header text-danger">
+                    &nbsp;&nbsp; <i class="fa fa-bell"></i> Notifications
+                </div>
+                <div class="card-body">
+                    <table>
+                        @{ cnt = 0; }
+                        @foreach (var item in ViewBag.Flash)
+                        {
+                            cnt++;
+
+                            if (item.Highlight == true)
+                            {
+                                <tr>
+                                    <td class="text-center">@cnt</td>
+                                    <td>
+                                        <a class="btn-link" href="@Url.Action("article", "home", new { id = item.NewsArticleId })">  @Html.Raw(@item.Headline)</a>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>@cnt</td>
+                                    <td>
+                                        <a class="btn-link" href="@Url.Action("article", "home", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<style>
+    tr :nth-child(1) {
+        font-weight: bold;
+    }
+
+    td {
+        padding: 3px 3px !important;
+    }
+</style>
+@section scripts{
+    <script src="~/Component/js/carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            var cid = $('#hfcourseID').val();
+            getHomeSlider(cid);
+
+        });
+        function getHomeSlider(courseid) {
+            $.ajax({
+                type: "get",
+                url: '/api/home/AlumniGetPhohtoSlider/category/' + courseid,
+                dataType: "json",
+                success: OnHomeSliderSuccess,
+                error: function () {
+                    alert('Server Not Found');
+                }
+            });
+        };
+        function OnHomeSliderSuccess(response) {
+            let gallery = response;
+            fillHomeSlider(gallery);
+        };
+        function fillHomeSlider(gallery) {
+            let $gallery = gallery;
+            let $gallryDiv = $('.homeSliderCls');
+            $gallryDiv.empty();
+            let indx = 0;
+            $.each($gallery, function (i, mg) {
+                let $file = mg.iMediaFiles;
+                //let mgPublishDate = getIntToDateFormat(mg.PublishDate); <p>${mg.Description}</p>
+                let active = 'active';
+                $.each($file, function (j, mf) {
+                    var mfPath = (mf.FilePath).replace("~", "");
+                    if (indx === 0) { active = 'active'; } else { active = ''; }
+                    $gallryDiv.append(`
+                                        <div class='item ${active}'>
+                                            <img class="img-responsive" src="${mfPath}" alt='Banner' title='Banner'>
+                                            <div class='carousel-caption'>
+
+                                            </div>
+                                        </div>
+                                        `);
+                    indx++;
+                });
+            });
+        }
+    </script>
+
+}

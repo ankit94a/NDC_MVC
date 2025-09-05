@@ -1,0 +1,126 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.AQLeaveInfoListVM>
+@{
+    ViewBag.Title = "Course Participant Leave Info";
+}
+<div class="container-fluid mt-4 mb-4">
+    <div class="card shadow-sm">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="card-header">
+                <h4>@ViewBag.Title</h4>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            LeaveCategory
+                        </th>
+                        <th>
+                            LeaveType
+                        </th>
+                        <th>
+                            FromDate
+                        </th>
+                        <th>
+                            ToDate
+                        </th>
+                        <th>
+                            TotalDays
+                        </th>
+                        <th>
+                            PrefixDate
+                        </th>
+                        <th>
+                            Suffix Date
+                        </th>
+                        <th>
+                            Reason For Leave
+                        </th>
+                        <th>
+                            Address On Leave
+                        </th>
+                        <th>
+                            Tele No
+                        </th>
+                        <th>
+                            Recommend By Embassy
+                        </th>
+                        <th>
+                            AQ Status
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LeaveCategory)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LeaveType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FromDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ToDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalDays)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrefixDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SuffixDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReasonForLeave)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AddressOnLeave)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TeleNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RecommendByEmbassy)
+                            </td>
+                            <td>
+                                @Html.DropDownList("StaffStatus", (IEnumerable<SelectListItem>)ViewBag.Status, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-transparent red btn-xs" onclick="updateStatus(@item.LeaveId, this)"><i class="fa fa-pencil"></i></button>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        }
+        </div>
+    </div>
+                @section Scripts{
+                    <script>
+        function updateStatus(leaveid, e) {
+            let row = $(e).closest("tr");
+            let aqStatus = row.find('select[name="StaffStatus"] option:selected').val();
+
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("AqLeaveStatusUpdate")',
+                data: { leaveId: leaveid, status: aqStatus },
+                datatype: 'json',
+                success: function () {
+                    alert('Save');
+                },
+                error: function () {
+                    alert('Server Not Found');
+                }
+            });
+        }
+
+                    </script>
+                }

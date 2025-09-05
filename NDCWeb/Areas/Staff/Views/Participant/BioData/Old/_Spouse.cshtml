@@ -1,0 +1,93 @@
+﻿@*@model NDCWeb.Areas.Member.View_Models.CrsMbrSpouseChildrenVM*@
+@model NDCWeb.Areas.Member.View_Models.SpouseIndxVM
+
+<div class="card mt-4">
+    <div class="card-header">
+        PARTICULARS OF SPOUSES & CHILDREN
+    </div>
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="8">PARTICULARS OF SPOUSES</td>
+
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseName)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.SpouseName)</td>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.Relation)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Relation)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.BloodGroup) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.BloodGroup)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.ContactNo) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.ContactNo)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.EmailId) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.EmailId)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.FoodPreference) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.FoodPreference)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.DOBirth) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.DOBirth)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Occupation) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Occupation)</td>
+            </tr>
+
+            <tr>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Biography) </td>
+                <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.Biography)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Qualification) </td>
+                <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.Qualification)</td>
+            </tr>
+
+
+            <tr class="bg-light">
+                <td colspan="8">
+                    PARTICULARS FOR SOCIAL LIST OF SPOUSE
+                </td>
+            </tr>
+            <tr>
+                <td class="juipfname">Rank</td>
+                <td class="juipfvalue"></td>
+                <td class="juipfname">Nick Name</td>
+                <td class="juipfvalue"></td>
+                <td class="juipfname">Birth Day </td>
+                <td class="juipfvalue"></td>
+                <td class="juipfname">Anniversary </td>
+                <td class="juipfvalue"></td>
+            </tr>
+            <tr class="bg-light">
+                <td class="juipfname">E-Mail</td>
+                <td class="juipfvalue" colspan="3"></td>
+                <td class="juipfname">Contact No</td>
+                <td class="juipfvalue" colspan="3"></td>
+            </tr>
+        </table>
+
+
+        <div class="card mt-4">
+            <div class="card-header">
+                CHILDREN DETAILS
+            </div>
+            <div class="card-body">
+                @if (Model.iSpouseChildrens != null)
+                {
+                    @Html.Partial("BioData/_SpouseChildren", Model.iSpouseChildrens)
+                }
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                LANGUAGES KNOWN
+            </div>
+            <div class="card-body">
+                @if (Model.iSpouseLanguages != null)
+                {
+                    @Html.Partial("BioData/_SpouseLanguage", Model.iSpouseLanguages)
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,199 @@
+﻿@model NDCWeb.Areas.Member.View_Models.AccountInfoUpVM
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCMAccountInfo" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.AccInfoId, new { @id = "hdnAccInfoId" })
+    <div class="card mt-4">
+        <div class="card-header">
+            Bank Account Details (For Indian & Foreign Officers)
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.AccountNo, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.AccountNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AccountNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.AccountType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.IFSC, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.IFSC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IFSC, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.MICR, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.MICR, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MICR, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="passbookPicfile" class=" required">Upload Image of Passbook or Cancelled Cheque: </label>
+                    <input id="passbookPicfile" type="file" name="passbookPicfile" onchange="imgValidate('passbookPicfile', 'PassbookPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                    <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                    @Html.EditorFor(model => model.PassbookPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                </div>
+                <div class="form-group col-md-7">
+                    @Html.LabelFor(model => model.NameAndAddressOfBanker, htmlAttributes: new { @class = "control-label required" })
+                    @Html.TextAreaFor(model => model.NameAndAddressOfBanker, htmlAttributes: new { @class = "form-control editorHtml", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
+                    @Html.ValidationMessageFor(model => model.NameAndAddressOfBanker, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-row text-info">
+                <p>
+                    <b>Note:</b> Indian Bank Account will be opened for Foreign Course Participants on arrival.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-2">
+        <div class="card-header">
+            PAO Details (Indian Army & Navy Officers only)
+        </div>
+        <div class="card-body text-justify">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.CDAAcNo, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.CDAAcNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CDAAcNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    @Html.LabelFor(model => model.BasicPay, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.BasicPay, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BasicPay, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    @Html.LabelFor(model => model.MSP, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.MSP, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MSP, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.PayLevel, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.PayLevel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PayLevel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-10">
+                    @Html.LabelFor(model => model.AddressOfPayAc, htmlAttributes: new { @class = "control-label required" })
+                    @Html.TextAreaFor(model => model.AddressOfPayAc, htmlAttributes: new { @class = "form-control editorHtml", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
+                    @Html.ValidationMessageFor(model => model.AddressOfPayAc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.NodalOfficeName, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.NodalOfficeName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NodalOfficeName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.NodalOfficeContactNo, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.NodalOfficeContactNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NodalOfficeContactNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.NodalOfficeEmail, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.NodalOfficeEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NodalOfficeEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="card-header">
+            PAO Details (Civil Service only)
+        </div>
+        <div class="card-body text-justify">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.CivilServiceAcNo, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.CivilServiceAcNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CivilServiceAcNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-8">
+                    @Html.LabelFor(model => model.CivilServiceAddressOfPayAc, htmlAttributes: new { @class = "control-label required" })
+                    @Html.TextAreaFor(model => model.CivilServiceAddressOfPayAc, htmlAttributes: new { @class = "form-control editorHtml", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
+                    @Html.ValidationMessageFor(model => model.CivilServiceAddressOfPayAc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.CivilServiceNodalOfficeName, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.CivilServiceNodalOfficeName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CivilServiceNodalOfficeName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.CivilServiceNodalOfficeContactNo, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.CivilServiceNodalOfficeContactNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CivilServiceNodalOfficeContactNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.CivilServiceNodalOfficeEmail, htmlAttributes: new { @class = "control-label required" })
+                    @Html.EditorFor(model => model.CivilServiceNodalOfficeEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CivilServiceNodalOfficeEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer bg-white text-center">
+            <input type="button" id="btnSaveAccount" value="Save" onclick="editAccountInfo()" class="btn btn-primary btn-sm" />
+        </div>
+    </div>
+</div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    function fillAccountInfo() {       
+        let accountInfo = {
+            AccountNo: $("#AccountNo").val(),
+            AccountType: $("#AccountType").val(),
+            IFSC: $("#IFSC").val(),
+            MICR: $("#MICR").val(),
+            PassbookPath: $("#PassbookPath").val() || '#',
+            NameAndAddressOfBanker: $("#NameAndAddressOfBanker").val(),
+            CDAAcNo: $("#CDAAcNo").val(),
+            BasicPay: $("#BasicPay").val(),
+            MSP: $("#MSP").val(),
+            PayLevel: $("#PayLevel").val(),
+            AddressOfPayAc: $("#AddressOfPayAc").val(),
+            NodalOfficeName: $("#NodalOfficeName").val(),
+            NodalOfficeContactNo: $("#NodalOfficeContactNo").val(),
+
+            NodalOfficeEmail: $("#NodalOfficeEmail").val(),
+            CivilServiceAcNo: $("#CivilServiceAcNo").val(),
+            CivilServiceAddressOfPayAc: $("#CivilServiceAddressOfPayAc").val(),
+            CivilServiceNodalOfficeName: $("#CivilServiceNodalOfficeName").val(),
+            CivilServiceNodalOfficeContactNo: $("#CivilServiceNodalOfficeContactNo").val(),
+            CivilServiceNodalOfficeEmail: $("#CivilServiceNodalOfficeEmail").val()
+        }
+        return accountInfo;
+    }
+
+    function editAccountInfo() {
+        if ($("#formCMAccountInfo").valid()) {
+            let AccInfoId = $('#hdnAccInfoId').val();
+            let accountInfo = fillAccountInfo();
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/AccountInfoEdit/' + AccInfoId,
+                data: accountInfo,
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    toastr.info(textStatus);
+                    displayTab('AccountInfoPartial');
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+    }
+</script>

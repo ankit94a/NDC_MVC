@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "UpdateBillStatus";
+}
+@Styles.Render("~/bundles/datatables/ButtonCss")
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+
+<div class="card-body">
+    <table class="table text-left" id="tblBill" style="width: 70%; margin-left: 200px; margin-right: 290px;">
+        <thead class="">
+            <tr>
+                <th style="vertical-align: middle; white-space: nowrap; width:10%">SNo.</th>
+                <th style="vertical-align: middle; white-space: nowrap">Full Name</th>
+                <th style="vertical-align: middle; white-space: nowrap">Arrear </th>
+                <th style="vertical-align: middle; white-space: nowrap">Total </th>
+                <th style="vertical-align: middle; white-space: nowrap">Bill Month </th>
+                <th style="vertical-align: middle; white-space: nowrap">Status </th>
+                <th style="vertical-align: middle; white-space: nowrap">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+@section Scripts{
+    <script src="~/Scripts/ASPSnippets_Pager.min.js"></script>
+    <script>
+        $(function () {
+
+             $('#CourseId').val('62');
+            getBillDeatilEdit(1);
+        });
+
+        $("body").on("click", ".Pager .page", function () {
+            getBillDeatilEdit(parseInt($(this).attr('page')));
+        });
+
+        //$(document).ready(function () {
+        //    getLockerAllotmentAdd(1);
+        //});
+
+        $('#CourseId').change(function () {
+            getBillDeatilEdit(1);
+        });
+        function getBillDeatilEdit(pageIndex) {
+
+            //let e = document.getElementById("CourseId");
+            //let courseid = Number(e.options[e.selectedIndex].value) || 1;
+            let courseid = Number($('#CourseId').find(":selected").val()) || 62;
+
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("LoadBillDetailEdit")',
+                data: { pageIndex: pageIndex, courseId: courseid },
+                datatype: 'json',
+                success: successBillDetail,
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+        function successBillDetail(response) {
+
+            let pagingParam = response.pagingParam;
+            fillBillDetail(response);
+
+            //$(".Pager").ASPSnippets_Pager({
+            //    ActiveCssClass: "current",
+            //    PagerCssClass: "pager",
+            //    PageIndex: pagingParam.PageIndex,
+            //    PageSize: pagingParam.PageSize,
+            //    RecordCount: pagingParam.RecordCount
+            //});
+        };
+        function fillBillDetail(data) {
+            let $tbody = $('#tblBill tbody');
+            $tbody.empty();
+            let BillDetail = data.BillDetail;
+
+            $.each(BillDetail, function (i, BillDetails) {
+                $tbody.append(`
+                    <tr>
+                        <td>${i + 1}</td>  /*<input type="hidden" name="hdnMessBillId" value="${BillDetails.MessBillId}">*/
+                        <td>${BillDetails.FullName}<input style="width: 120%" type="hidden" name="hdnMessBillId" value="${BillDetails.MessBillId}"></td>
+                        <td>${BillDetails.Arrear}</td>
+                        <td>${BillDetails.Total}</td>
+                        <td>${BillDetails.BillMonth}</td>
+                        <td>  @Html.DropDownList("DropdownlistName",
+                              new SelectList(new List<SelectListItem> {
+                              new SelectListItem { Text = "Paid", Value = "Paid"},
+                              new SelectListItem { Text = "Not Paid", Value = "NotPaid"},
+                              new SelectListItem { Text = "Add To Next month", Value = "AddToNextmonth"},
+                              new SelectListItem { Text = "Cash", Value = "Cash"},
+                              new SelectListItem { Text = "Card", Value = "Card"}
+                                 }, "Value", "Text"),
+                            "Select status",
+                             new { @class = "form-control" }) </td> 
+                        <td><button type="button" class="btn btn-primary btn-sm" onclick="updateMessBill(${BillDetails.MessBillId}, this)">Update</button></td>
+                    </tr>
+                `);
+
+            });
+            loadBillSuggestion();
+        }
+        function updateMessBill(id, e) {
+            debugger
+            let uptype = 'JDSADM';
+            let MessBill = storeMessBill(id, e);
+            $.ajax({
+                type: 'post',
+                url: '/api/staffMasterApi/MessBillEdit/BillId/' + id + '/uptype/' + uptype,
+                data: MessBill,
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    toastr.info(textStatus);
+                    getBillDeatilEdit(1);
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+        function storeMessBill(id, e) {
+            debugger
+            let row = $(e).closest("tr");
+            let MessBill = {
+                MessBillId:id,
+                PayStatus: row.find('select[name="DropdownlistName"] option:selected').val(), 
+            };
+            return MessBill;
+        }
+
+        function loadBillSuggestion() {
+            $("input[name='BillAssign']").autocomplete({
+                source: ["Paid", "Not Paid", "Add to Next Month"],
+                minLength: 0
+            }).focus(function () {
+                $(this).autocomplete('search', "")
+            });
+        }
+    </script>
+}
+
+

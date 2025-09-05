@@ -1,0 +1,487 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.MessBillReadVM>
+@{
+    ViewBag.Title = "Course member Mess Bill ";
+}
+@Styles.Render("~/bundles/datatables/ButtonCss")
+@*<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />*@
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+
+
+
+<div class="main-card  mt-2 card">
+
+    <div class="card-body" id="divndccourse" style="overflow : scroll">
+
+        <h5 class="card-title">Course Participants</h5>
+        <div class="form-group row" style="margin-left:600px">
+            <label class="col-sm-2 col-form-label">Month </label>
+            <div class="col-sm-2">
+                <input type="text" name="pgMonthYearPass" id="pgMonthYearPass_1" class="form-control monthPicker" placeholder="MMM/YYYY" autocomplete="off"> 
+                <span id="lblError" style="color:red"></span>
+
+            </div>
+            <div class="col-sm-4" style="text-align:right">   <a href="/staff/MessBill/UpdateBillStatus"><i class="btn btn-primary">Update Payment status </i></a></div>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        SNo.
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </th>
+                    <!--<th style="vertical-align: middle; white-space: nowrap" >
+                    Locker No-->
+                    @*@Html.DisplayNameFor(model => model.Gender)*@
+                    <!--</th>-->
+
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Arrear
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Extra
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Messing
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Tea
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Table<br /> Money
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Wine
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Mess<br /> Subs
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Rakshika
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        NDC<br /> Journal
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        RB
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Bus Fund
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Alumni<br /> Dinner
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        PLD
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap; width:60px">
+                        62 Corpus <br />fund
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap; width: 60px">
+                        Breakup <br />Party
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap; width: 60px">
+                        Canteen<br /> Smart<br /> Card
+                    </th>
+                    <th>
+                        @Html.CheckBox("CheckAll", false, new { id = "select_all" })
+
+                    </th>
+
+                    <th style="vertical-align: middle; white-space: nowrap; width: 120px">
+                        Total
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{
+                    int sno = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align:center">
+                            @{ sno++; }
+                            @sno
+                            @*@Html.DisplayFor(modelItem => item.ServiceNo)*@
+                        </td>
+                        <td>
+                            @*<text>@item.FirstName </text>
+                                <text>@item.Surname </text>*@
+                            <text>@item.FullName</text>
+                            <input type="hidden" id="Name" name="FullName" value="@item.FullName" />
+                            <input type="hidden" id="CreatedBy" name="Created" value="@item.MemberStaffId" />
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.LockerNo)
+                                <input type="hidden" id="LockerNo" name="Lockerno" value="@item.LockerNo" />
+                            </td>*@
+
+                        <td width="4%">
+                            <input type="text" name="Arrear" class="form-control" value="@item.Total" style="width:85px" />
+                        </td>
+                        <td>
+                            <input type="text" name="Extra" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="Messing" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="Tea" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="TableMoney" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="Wine" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="MessSubs" class="form-control" value="1000" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="Rakshika" value="250" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="NDCJournal" value="280" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="RB" value="1000" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="BusFund" value="1500" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="AlumniDinner" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="PLD" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="Corpusfund" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="BreakupParty" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="text" name="CanteenSmartCard" class="form-control" style="width:60px" />
+                        </td>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>
+                            <input type="text" name="total" id="Total" style="width: 100px; height: 35px" class="expenses_sum" readonly="readonly" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+        <div class="card-footer">
+            <input type="button" id="btnSaveMessBill" value="Save"  class="btn btn-primary btn-sm" />
+        </div>
+        <!--<div class="card-footer text-center bg-white">-->
+        @*<button class="btn btn-success btn-sm">Download</button>*@
+        <!--</div>-->
+    </div>
+
+
+</div>
+@section Scripts {
+    <script src="~/Scripts/ASPSnippets_Pager.min.js"></script>
+    @Scripts.Render("~/bundles/datatables/ButtonJs")
+    @*<script>
+            LoadJDT('#myTable');
+        </script>*@
+    <script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            var fileName = 'Mess Bill PARTICIPANTS LIST_' + crrtdate;
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        //exportOptions: { columns: [0, 1, 2, 5] },
+                        exportOptions: {
+                            //columns: [0, 1, 2, 4, 5, 6, 7, 8],
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        //title:'JOBS OPPORTUNITIES FOR OFFICERS',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            doc.content.splice(0, 1);
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 14,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'REGISTERED PARTICIPANTS LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+                            doc.content[0].layout = objLayout;
+                            doc.content[0].alignment = 'center'
+                        }
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+            //oTable.on('order.dt search.dt', function () {
+            //    oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            //        cell.innerHTML = i + 1;
+            //    });
+            //}).draw();
+            //oTable.on('order.dt search.dt', function () {
+            //    oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            //        cell.innerHTML = i + 1;
+            //        oTable.cell(cell).invalidate('dom');
+            //    });
+            //}).draw();
+        });
+        $(document).ready(function () {
+            try {
+                $("input[type='text']").each(function () {
+                    $(this).attr("autocomplete", "off");
+                });
+            }
+            catch (e) { }
+
+            $("#rank").hide();
+            $("#divforeigncourse").toggle();
+        });
+
+        $(document).ready(function () {
+            $(".monthPicker").datepicker({
+                dateFormat: 'mm-yy',
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+
+                onClose: function (dateText, inst) {
+                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).val($.datepicker.formatDate('M/yy', new Date(year, month, 1)));
+                }
+            });
+
+            $(".monthPicker").focus(function () {
+                $(".ui-datepicker-calendar").hide();
+                $("#ui-datepicker-div").position({
+                    my: "center top",
+                    at: "center bottom",
+                    of: $(this)
+                });
+            });
+        });
+
+        $("input[name=rdcat]").on("change", function () {
+            $("#divforeigncourse").toggle();
+            $("#divndccourse").toggle();
+
+        });
+
+        function saveMessBill() {
+            let MessBillList = storeMessBill();
+            let MessBills = JSON.stringify(MessBillList);
+            $.ajax({
+                type: 'post',
+                url: '/api/staffMasterApi/MessBillAdd',
+                data: MessBills,
+                contentType: "application/json; charset=utf-8",
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    toastr.info(textStatus);
+                   // getMessBillAdd(1);
+                },
+                error: function () {
+                    alert('Operation Failed!');
+                }
+            });
+        }
+        function storeMessBill() {
+            let MessBills = [];
+            var monthYear = document.getElementById("pgMonthYearPass_1").value;
+            $("#myTable TBODY TR").each(function () {
+
+                let row = $(this);
+                var $self = $(this);
+                if ($self.find(':checkbox').is(':checked')) {
+                    var total = 0;
+                    let MessBill = {
+                        FullName: row.find('input[name="FullName"]').val(),
+                        //FullName: row.find("TD").eq(1).html(),
+                        MemberStaffId: row.find('input[name="Created"]').val(),
+                        Arrear: row.find('input[name="Arrear"]').val(),
+                        Extra: row.find('input[name="Extra"]').val(),
+                        Messing: row.find('input[name="Messing"]').val(),
+                        Tea: row.find('input[name="Tea"]').val(),
+                        TableMoney: row.find('input[name="TableMoney"]').val(),
+                        Wine: row.find('input[name="Wine"]').val(),
+                        MessSubs: row.find('input[name="MessSubs"]').val(),
+                        Rakshika: row.find('input[name="Rakshika"]').val(),
+                        NDCJournal: row.find('input[name="NDCJournal"]').val(),
+                        RB: row.find('input[name="RB"]').val(),
+                        BusFund: row.find('input[name="BusFund"]').val(),
+                        AlumniDinner: row.find('input[name="AlumniDinner"]').val(),
+                        PLD: row.find('input[name="PLD"]').val(),
+                        Corpusfund: row.find('input[name="Corpusfund"]').val(),
+                        BreakupParty: row.find('input[name="BreakupParty"]').val(),
+                        CanteenSmartCard: row.find('input[name="CanteenSmartCard"]').val(),
+                        Total: row.find('input[name="total"]').val(),
+                        BillMonth: monthYear,
+                    };
+                    MessBills.push(MessBill);
+                }
+            });
+
+            return MessBills;
+
+        }
+
+        $(document).ready(function () {
+
+            $(".form-control:not(#Total)").each(function () {
+                $(this).keyup(function () {
+                   // calculateSum();
+                    sum($(this).parents("tr"));
+                });
+            });
+
+        });
+        function sum(parent) {
+            var sum = 0;
+            $(parent).find(".form-control").each(function () {
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    sum += parseFloat(this.value);
+                }
+            });
+            $(parent).find(".expenses_sum").val(sum.toFixed(2));
+        }
+        function calculateSum() {
+            var sum = 0;
+
+            $(".form-control:not(#Total)").each(function () {
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    sum += parseFloat(this.value);
+                }
+            });
+            document.getElementById('Total').value = sum.toFixed(2);
+
+        }
+         $("body").on("click", ".Pager .page", function () {
+             getMessBillAdd(parseInt($(this).attr('page')));
+        });
+        $('#CourseId').change(function () {
+            getMessBillAdd(1);
+        });
+    function getMessBillAdd(pageIndex) {
+            //let e = document.getElementById("CourseId");
+            let courseid = Number($('#CourseId').find(":selected").val()) || 61;  //Number(e.options[e.selectedIndex].value) || 1;
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("LoadLockerAllotmentAdd")',
+                data: { pageIndex: pageIndex, courseId: courseid },
+                datatype: 'json',
+                success: successMessBill,
+                error: function () {
+                    alert('Operation Failed!');
+                }
+            });
+        }
+    function successMessBill(response) {
+            let pagingParam = response.pagingParam;
+            fillMessBill(response);
+
+            //$(".Pager").ASPSnippets_Pager({
+            //    ActiveCssClass: "current",
+            //    PagerCssClass: "pager",
+            //    PageIndex: pagingParam.PageIndex,
+            //    PageSize: pagingParam.PageSize,
+            //    RecordCount: pagingParam.RecordCount
+            //});
+    };
+    function fillMessBill(data) {
+        let $tbody = $('#myTable tbody');
+        $tbody.empty();
+        let participants = data.participants;
+
+
+
+        $.each(participants, function (i, participant) {
+            $tbody.append(`
+                    <tr>
+                        <td>${i + 1}<input type="hidden" name="hdnCourseMemberId" value="${participant.CourseMemberId}"></td>
+                        <td>${participant.FullName}</td>
+                        <td><input class='form-control-sm' type="text" id="LockerNo_${i}" name="lockerNo" value=""/></td>
+
+
+                    </tr>
+                `);
+        });
+    }
+
+    </script>
+    <script type="text/javascript">
+        $('#select_all').click(function () {
+            var chk = $(this).is(':checked');
+            var cnt = $('input[type=checkbox]', "#myTable").length;
+            $('input[type=checkbox]', "#myTable").each(function () {
+                if (chk) {
+                    $(this).attr('checked', 'checked');
+                }
+                else {
+                    $(this).removeAttr('checked');
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnSaveMessBill").click(function () {
+                if ($("#pgMonthYearPass_1").val() == "") {
+                    alert("Please Select Month and Year !!");
+                    return false;
+                }
+                else {
+                    saveMessBill();
+                }
+                
+            });
+        });
+    </script>
+}
+

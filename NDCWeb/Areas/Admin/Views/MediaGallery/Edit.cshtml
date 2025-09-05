@@ -1,0 +1,279 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.MediaGalleryUpVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="main-card  card">
+    @using (Html.BeginForm("Edit", "MediaGallery", FormMethod.Post, new { id = "formMediaGallery", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.MediaGalleryId)
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="card-body">
+        <h5 class="card-title">Create Menu Item (s)</h5>
+        <hr />
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.MediaCategoryId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.DropDownList("MediaCategoryId", (IEnumerable<SelectListItem>)ViewBag.MediaCategories, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MediaCategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div><div class="position-relative row form-group">
+            @Html.LabelFor(model => model.Caption, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Caption, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Caption, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.PublishDate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control datepickerCss1", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.ArchiveDate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArchiveDate, new { htmlAttributes = new { @class = "form-control datepickerCss1", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.ArchiveDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.MediaType, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-2">
+                @Html.EnumDropDownListFor(model => model.MediaType, "-- Select --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MediaType, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="custom-checkbox custom-control">
+                @Html.EditorFor(model => model.Archive, new { htmlAttributes = new { @class = "col-sm-3 custom-control-input" } })
+                @Html.LabelFor(model => model.Archive, htmlAttributes: new { @class = "custom-control-label" })
+                @Html.ValidationMessageFor(model => model.Archive, "", new { @class = "text-danger" })
+            </div>
+            
+        </div>
+        @*<div class="position-relative row form-group">
+            <label for="Files" name="Files" class="col-sm-2 col-form-label">Browse</label>
+            <div class="col-md-10">
+                <input id="Files" type="file" name="Files" multiple class="uploadify-button" onchange="docValidate('Files')" />
+                <span id="lberr" class="text-danger"></span>
+            </div>
+        </div>*@
+    <div class="card mt-2">
+        <div class="card-header" style="background-color:#fff">
+            FILE UPLOADER
+        </div>
+        <div class="card-body">
+            <div class="custom-checkbox custom-control">
+                @Html.EditorFor(model => model.OverWriteFile, new { htmlAttributes = new { @class = "col-sm-3 custom-control-input" } })
+                @Html.LabelFor(model => model.OverWriteFile, htmlAttributes: new { @class = "custom-control-label" })
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Browse</label>
+                    <input type="file" name="Mediafile" id="mediafile_1" onchange="docValidateEdit('mediafile_1', '1')" class="uploadify-button form-control-file" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                    <p class="text-info">Max size should not be more than 5mb</p>
+                    <input type="hidden" value="#" id="hdnMediafilePath_1">
+                    <input type="hidden" id="hdnGuId_1">
+                    <input type="hidden" id="hdnMedCatId_1">
+                    <input type="hidden" value="" id="hdnFileName_1">
+                    <input type="hidden" value="" id="hdnExtension_1">
+                    <input type="hidden" value="#" id="hdnFilePath_1">
+                </div>
+                <div class="form-group col-md-6">
+                    <Label class="control-label">Description</Label>
+                    <input type="text" name="FileDescription" id="fileDescription_1" title="Enter Description" class="form-control" placeholder="Description">
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label pb-1" style="width:100%"></Label>
+                    <button type="button" class="add-MediaFile btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="remove-MediaFile btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i></button>
+                </div>
+
+            </div>
+            <div id="new_mf"></div>
+            <input type="hidden" value="1" id="total_mf">
+        </div>
+    </div>
+        <br />
+        <div class="position-relative row form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Update" onclick="editMediaGallery()" class="mb-2 mr-2 btn btn-primary" />
+            </div>
+        </div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+// #region MediaFile
+    function storeMediaFile() {
+        let ttlrows = $('#total_mf').val();
+        let mediaFiles = [];
+        for (i = 1, j = 0; i <= ttlrows; i++, j++) {
+            let mfilePath = $('#hdnFilePath_' + i).val() || '#';
+            if (mfilePath != '#') {
+                mediaFiles[j] = {
+                    GuId: $('#hdnGuId_' + i).val(),
+                    FileName: $('#hdnFileName_' + i).val(),
+                    Extension: $('#hdnExtension_' + i).val(),
+                    FilePath: $('#hdnFilePath_' + i).val(),
+                    MediaGalleryId: $("#MediaGalleryId").val(),
+                    FileDescription: $('#fileDescription_' + i).val(),
+                    MediaCategoryId: $('#hdnMedCatId_' + i).val(),
+                };
+            }
+        }
+        return mediaFiles;
+    }
+
+    $('.add-MediaFile').on('click', addMediaFile);
+    $('.remove-MediaFile').on('click', removeMediaFile);
+    function addMediaFile() {
+        let new_row_no = parseInt($('#total_mf').val()) + 1;
+        let new_row_inputs = `<div id="medFile_${new_row_no}" class="form-row">
+                                <div class="form-group col-md-4">
+                                    <input type="file" name="Mediafile" id="mediafile_${new_row_no}" onchange="docValidateEdit('mediafile_${new_row_no}', '${new_row_no}')" class="uploadify-button form-control-file" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                                    <input type="hidden" value="#" id="hdnMediafilePath_${new_row_no}">
+                                    <input type="hidden" id="hdnGuId_${new_row_no}">
+                                    <input type="hidden" id="hdnMedCatId_${new_row_no}">
+                                    <input type="hidden" value="" id="hdnFileName_${new_row_no}">
+                                    <input type="hidden" value="" id="hdnExtension_${new_row_no}">
+                                    <input type="hidden" value="#" id="hdnFilePath_${new_row_no}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="text" name="FileDescription" id="fileDescription_${new_row_no}" title="Enter Description" class="form-control" placeholder="Description">
+                                </div>
+                            </div>`
+        $('#new_mf').append(new_row_inputs);
+        $('#total_mf').val(new_row_no);
+    }
+    function removeMediaFile() {
+        let last_row_no = $('#total_mf').val();
+
+        if (last_row_no > 1) {
+            $('#medFile_' + last_row_no).remove();
+            $('#total_mf').val(last_row_no - 1);
+        }
+    }
+    // #endregion
+
+    function fillMediaGalleryDetail() {
+        let mediaGallery = {
+            MediaGalleryId: $("#MediaGalleryId").val(),
+            MediaType: $("#MediaType").val(),
+            Caption: $("#Caption").val(),
+            Description: $("#Description").val(),
+            Archive: $("#Archive").is(":checked"),
+            PublishDate: $("#PublishDate").val(),
+            ArchiveDate: $("#ArchiveDate").val(),
+            //UserRole: 'Admin',
+            MediaCategoryId: $("#MediaCategoryId").val(),
+            OverWriteFile: $("#OverWriteFile").is(":checked"),
+            iMediaFiles: storeMediaFile(),
+        }
+        return mediaGallery;
+    }
+
+    function editMediaGallery() {
+        if ($("#formMediaGallery").valid()) {
+            let mediaGallery = fillMediaGalleryDetail();
+
+            $.ajax({
+                type: 'post',
+                url: '/api/mediamasters/MediaGalleryEdit/' + $("#MediaGalleryId").val(),
+                data: mediaGallery,
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    toastr.info(textStatus);
+                    window.location.href = '/Admin/MediaGallery/Index';
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            })
+        }
+    }
+
+    // #region Upload Helper
+    function docValidateEdit(fileUploadId, rowNo) {
+        let fileTypes = ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx', 'txt', 'xlsx', 'xls', 'ppt'];
+        let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+        let sizeValidate = fileSizeValidation(fileUploadId, 5120);
+        if (extValidate == true && sizeValidate == true) {
+            uploadMediaFile(fileUploadId, rowNo);
+        }
+        else {
+            $('#hdnFilePath_' + rowNo).val('');
+        }
+    }
+    function uploadMediaFile(fileUploadId, rowNo) {
+        if (window.FormData !== undefined) {
+            let fileUpload = $('#' + fileUploadId).get(0);
+            let files = fileUpload.files;
+
+            let fileData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                url: '@Url.Action("DocumentUpload")',
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (response) {
+                    if (response.status == 1) {
+                        let mfile = response.mediaFile;
+                        $('#hdnGuId_' + rowNo).val(mfile.GuId);
+                        $('#hdnFileName_' + rowNo).val(mfile.FileName);
+                        $('#hdnExtension_' + rowNo).val(mfile.Extension);
+                        $('#hdnFilePath_' + rowNo).val(mfile.FilePath);
+                        $('#hdnMedCatId_' + rowNo).val(mfile.MediaCategoryId);
+                        toastr.success(response.message);
+                    }
+                    else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function (err) {
+                    toastr.error('Server Not Found!');
+                }
+            });
+        } else {
+            toastr.error("FormData is not supported.");
+        }
+    }
+    // #endregion
+</script>
+    <script>
+        // #region Upload Helper
+
+        function docValidate(fileUploadId) {
+            let fileTypes = ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx', 'txt', 'xlsx', 'ppt', 'zip'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 5120);
+            if (extValidate == true && sizeValidate == true) {
+
+                $("#lberr").html("")
+                return true;
+            }
+            else {
+                $("#lberr").html("The file you are trying to upload contains invalid content or size.")
+            }
+        }
+    </script>
+}
+

@@ -1,0 +1,84 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CourseRegisterAckVM
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title bg-danger text-center"><u>Please Review your Details Before Submit</u></h4>
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+            <table class="table table-condensed table-bordered table-hover">
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <h4>
+                            <u>Contact Details</u>
+                        </h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.EmailId)</td>
+                    <td class="juipfvalue"> @Html.DisplayFor(model => model.EmailId)</td>
+                    <td class="juipfname"> @Html.DisplayNameFor(model => model.MobileNo)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(model => model.MobileNo)</td>
+                    <td class="juipfname"> @Html.DisplayNameFor(model => model.WhatsappNo)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(model => model.WhatsappNo)</td>
+                </tr>
+
+                <tr>
+                    <td colspan="6" class="text-center"><h4><u>Personal Details</u></h4></td>
+                </tr>
+                <tr>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.FirstName)</td>
+                    <td class="juipfvalue"> @Html.DisplayFor(model => model.FirstName)</td>
+                    <td class="juipfname"> @Html.DisplayNameFor(model => model.MiddleName)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(model => model.MiddleName)</td>
+                    <td class="juipfname"> @Html.DisplayNameFor(model => model.LastName)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(model => model.LastName)</td>
+                </tr>
+                <tr>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.Honour)</td>
+                    <td class="juipfvalue"> @Html.DisplayFor(model => model.Honour)</td>
+                    <td class="juipfname"> @Html.DisplayNameFor(model => model.DOBirth)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(model => model.DOBirth)</td>
+                    <td class="juipfname"> @Html.DisplayNameFor(model => model.Gender)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(model => model.Gender)</td>
+                </tr>
+                <tr>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.Ranks.Service)</td>
+                    <td class="juipfvalue"> @Html.DisplayFor(model => model.RankService)</td>
+                    <td class="juipfname"> @Html.DisplayNameFor(model => model.RankId)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(model => model.RankName)</td>
+                    <td class="juipfname"> @Html.DisplayNameFor(model => model.Branch)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(model => model.Branch)</td>
+                </tr>
+                <tr>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.DOCommissioning)</td>
+                    <td class="juipfvalue"> @Html.DisplayFor(model => model.DOCommissioning)</td>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.SeniorityYear)</td>
+                    <td class="juipfvalue" colspan="3"> @Html.DisplayFor(model => model.SeniorityYear)</td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-center"><h4><u>Appointment(Present, for Indian Officers Only)</u></h4></td>
+                </tr>
+                <tr>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.ApptDesignation)</td>
+                    <td class="juipfvalue"> @Html.DisplayFor(model => model.ApptDesignation)</td>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.ApptOrganisation)</td>
+                    <td class="juipfvalue"> @Html.DisplayFor(model => model.ApptOrganisation)</td>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.ApptLocation)</td>
+                    <td class="juipfvalue"> @Html.DisplayFor(model => model.ApptLocation)</td>
+                </tr>
+            </table>
+        </p>
+        @*<div class="card-footer text-center text-white">
+            <button class="btn btn-success">SUBMIT</button>
+            <button class="btn btn-danger text-white" data-dismiss="modal" id="closebtn" aria-hidden="true">EDIT</button>
+        </div>*@
+    </div>
+</div>
+@*<script>
+    $(document).ready(function () {
+        $('#closebtn').click(function () {
+            $('#dialog').dialog('close');
+            return false;
+        });
+    });
+</script>*@

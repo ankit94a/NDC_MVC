@@ -1,0 +1,221 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.ParticipantIndxVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Participant(s) List";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+    var baseUrl = Url.Action("CourseParticipantList", "Participant", new { id = "P8" });
+
+}
+@Styles.Render("~/bundles/datatables/ButtonCss")
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+
+<div class="main-card mb-3 mt-2 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Registered Participants (s)</h5>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Course </label>
+            <div class="col-sm-2">
+                @Html.DropDownList("CourseId", (IEnumerable<SelectListItem>)ViewBag.Courses, "Select Course", htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-sm-1">
+                <a id="actionLink" class="btn btn-primary" href="@baseUrl">Go</a>
+            </div>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        SNo.
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        Locker No
+                        @*@Html.DisplayNameFor(model => model.Gender)*@
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.FatherName)
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.DOBirth)
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.EmailId)
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.AlternateMobileNo)
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.AlternateEmailId)
+                    </th>
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.MemberPassportNo)
+                    </th>
+
+                    <th style="vertical-align: middle; white-space: nowrap">View</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int sno = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align:center">
+                            @{ sno++; }
+                            @sno
+                            @*@Html.DisplayFor(modelItem => item.ServiceNo)*@
+                        </td>
+                        <td>
+                            <text>@item.FirstName </text>
+                            <text>@item.Surname </text>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LockerNo)
+                        </td>
+                        <td>
+                            <text>@item.FatherName </text>
+                            <text>@item.FatherMiddleName </text>
+                            <text>@item.FatherSurname </text>
+                        </td>
+                        <td width="8%">
+                            @Html.DisplayFor(modelItem => item.DOBirth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MobileNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AlternateMobileNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AlternateEmailId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MemberPassportNo)
+                        </td>
+                        <td width="13%">
+                            @Html.EncodedActionLink("Biodata", "ParticipantBio", "Participant", "staff", new { id = item.CreatedBy }, new { @class = "btn btn-outline-primary btn-sm" }, "")&nbsp;
+                            @Html.EncodedActionLink("Trg List", "TrainingSection", "Participant", "staff", new { id = item.CreatedBy }, new { @class = "btn btn-outline-primary btn-sm" }, "")&nbsp;
+                            @Html.EncodedActionLink("Acomdtn", "AccomodationPrint", "Participant", "staff", new { id = item.CreatedBy }, new { @class = "btn btn-outline-primary btn-sm" }, "")
+                            @*<a href="@Url.Action("ParticipantBio", new { id = item.CreatedBy })" class="btn btn-primary btn-sm">Biodata</a>&nbsp;*@
+                            @*<a href="@Url.Action("TrainingSection", new { id = item.CreatedBy })" class="btn btn-primary btn-sm">Trg List</a>*@
+                            @*<a href="@Url.Action("AccomodationPrint", new { id = item.CreatedBy })" class="btn btn-primary btn-sm mt-2">Acomdtn</a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!--<div class="card-footer text-center bg-white">-->
+        @*<button class="btn btn-success btn-sm">Download</button>*@
+        <!--</div>-->
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables/ButtonJs")
+    @*<script>
+            LoadJDT('#myTable');
+        </script>*@
+
+<script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            var fileName = 'REGISTERED PARTICIPANTS LIST_' + crrtdate;
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7,8,9]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        //exportOptions: { columns: [0, 1, 2, 5] },
+                        exportOptions: {
+                            //columns: [0, 1, 2, 4, 5, 6, 7, 8],
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7,8,9],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        //title:'JOBS OPPORTUNITIES FOR OFFICERS',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            doc.content.splice(0, 1);
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 14,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'REGISTERED PARTICIPANTS LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+                            doc.content[0].layout = objLayout;
+                            doc.content[0].alignment = 'center'
+                        }
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+            //oTable.on('order.dt search.dt', function () {
+            //    oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            //        cell.innerHTML = i + 1;
+            //    });
+            //}).draw();
+            //oTable.on('order.dt search.dt', function () {
+            //    oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            //        cell.innerHTML = i + 1;
+            //        oTable.cell(cell).invalidate('dom');
+            //    });
+            //}).draw();
+
+            //Drop Down List and URL
+
+        });
+
+
+ document.addEventListener('DOMContentLoaded', function () {
+     const courseDropdown = document.getElementById('CourseId');
+     const actionLink = document.getElementById('actionLink');
+     const baseUrl = '@Url.Action("CourseParticipantList", "Participant", new { id = "P8" })';
+     courseDropdown.addEventListener('change', function () {
+         const selectedCourseId = courseDropdown.value;
+         const updatedUrl = baseUrl.replace('P8', selectedCourseId);
+         actionLink.href = updatedUrl;
+         //console.log("Updated URL:", updatedUrl);
+     });
+ });
+</script>
+}

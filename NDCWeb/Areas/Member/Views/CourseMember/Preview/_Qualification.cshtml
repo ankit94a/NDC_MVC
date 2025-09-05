@@ -1,0 +1,26 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CrsMbrQualificationIndxVM>
+<table class="">
+    <tr class="bg-2 text-white">
+        <td colspan="6">Qualifications
+            <a class="btn btn-transparent btn-sm float-right" data-toggle="tab" href="#ServicePartial" onclick="serviceEditClick('QualificationPartial')"><i class="fa fa-pencil-square text-primary"></i></a>
+        </td>
+    </tr>
+    <tr class="bg-light">
+        <td class="juipfname">@Html.DisplayNameFor(model => model.Course)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.QualificationType)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.Year) </td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.Location) </td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.Country) </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Course)</td>
+            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.QualificationType)</td>
+            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Year)</td>
+            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Location)</td>
+            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Country)</td>
+
+        </tr>
+    }
+</table>

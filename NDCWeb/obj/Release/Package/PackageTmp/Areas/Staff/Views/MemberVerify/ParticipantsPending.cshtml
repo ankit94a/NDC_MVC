@@ -1,0 +1,279 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CourseRegisterAlertVM>
+@{
+    ViewBag.Title = "List of Registered Participants";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+@*@Styles.Render("~/bundles/datatables/ButtonCss")*@
+@*<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />*@
+
+
+
+
+<div class="main-card mb-3 mt-2 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Registered Participants (s)</h5>
+        @*<div class="pull-right">
+                <a href="@Url.Action("Create","MenuItemMaster")" class="btn-shadow mb-3 mt-0 btn btn-primary">Create Menu</a>
+            </div>*@
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>S NO.</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmailId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ranks.Service)
+                    </th>
+                    <th>
+                        Rank
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Registered On")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Verified On")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Action")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Status")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Delete")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int sno = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align:center">
+                            @{ sno++; }
+                            @sno
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ranks.Service)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ranks.RankName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.MiddleName) @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.MobileNo)
+                        </th>
+                        <td>
+                            @if (item.CreateOn != null)
+                            {
+                                <text>@item.CreateOn.ToString("dd MMM yyyy")</text>
+                            }
+                        </td>
+                        <td>
+                            @if (item.VerifyDate != null)
+                            {
+                                <text>@item.VerifyDate.Value.ToString("dd MMM yyyy")</text>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Approved == true)
+                            {
+                                <button type="button" class="btn btn-success btn-sm" onclick="resetMemberPswrd(@item.CourseRegisterId)">Reset_Login</button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-warning btn-sm w-100" onclick="verifyMember(@item.CourseRegisterId, this)">Verify</button>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Approved == true)
+                            {
+                                <label class="badge badge-success">Verified</label>
+                            }
+                            else
+                            {
+                                <label class="badge badge-danger">Pending</label>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Approved == false)
+                            {
+                                <button type="button" class="btn btn-transparent text-danger btn-xs" onclick="Delete(@item.CourseRegisterId, this)"><i class="fa fa-trash red"></i></button>
+                            }
+                        </td>
+
+
+                        @*<td>
+                                <a href="@Url.Action("Edit", new { id = item.MenuId })"><i class="fa fa-edit"></i></a>
+                                <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.MenuId, this)"><i class="fa fa-trash"></i></button>
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/datatables/ButtonJs")*@
+
+    <script>
+        var token = $('input[name="__RequestVerificationToken"]').val();
+      /*  LoadJDT('#myTable');*/
+        function Delete(id, event) {
+            var TableId = "#myTable";
+            var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+            DeleteJDTRow(id, event, TableId, Jsonurl)
+        }
+        function resetMemberPswrd(memberRegId) {
+            alert(token);
+            $.ajax({
+                type: 'post',
+                data: { memberRegId: memberRegId, __RequestVerificationToken: token },
+                url: '@Url.Action("ResetLoginUser")',
+                success: function (data) {
+                    toastr.info(data);
+                },
+                error: function () {
+                    toastr.error('Server Not Found!');
+                }
+            });
+        }
+        function verifyMember(id, event) {
+            let row = event.parentNode.parentNode;
+            let member = {
+                UserName: row.cells[1].innerHTML.trim(),
+                FName: row.cells[4].innerHTML.trim(),
+                Email: row.cells[1].innerHTML.trim(),
+                PhoneNumber: row.cells[5].innerHTML.trim(),
+            }
+            //var token = $('input[name="__RequestVerificationToken"]').val();
+            $.ajax({
+                url: '@Url.Action("VerifyMember","Account", new { Area = "Admin" })',
+                type: 'POST',
+                data: {
+                    regId: id,
+                    member: member,
+                    __RequestVerificationToken: token
+                },
+                //data: { regId: id, member: member },
+
+                /*   datatype: 'json',*/
+                success: function (data) {
+                    toastr.info(data);
+                    //alert(xhr.getResponseHeader('location'));
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+            return false;
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            var fileName = 'REGISTERED PARTICIPANTS LIST_' + crrtdate;
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                //"order": [[ 1, 'asc' ]],
+                dom: 'Bfrtip',
+                buttons: [
+                    //{
+                    //    extend: 'excelHtml5',
+                    //    text: '<i class="fa fa-file-excel-o"> ExcelDwn</i>',
+                    //    exportOptions: {
+                    //        modifier: {selected:true},
+                    //        columns: ':visible'
+                    //        //columns: [ 0, 1, 2, 5 ]
+                    //    }
+                    //},
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 9]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        //exportOptions: { columns: [0, 1, 2, 5] },
+                        exportOptions: {
+                            //columns: [0, 1, 2, 4, 5, 6, 7, 8],
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 9],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        //title:'JOBS OPPORTUNITIES FOR OFFICERS',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            doc.content.splice(0, 1);
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 13,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'REGISTERED PARTICIPANTS LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+                            doc.content[0].layout = objLayout;
+                            doc.content[0].alignment = 'center'
+                        }
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+            //oTable.on('order.dt search.dt', function () {
+            //    oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            //        cell.innerHTML = i + 1;
+            //    });
+            //}).draw();
+            //oTable.on('order.dt search.dt', function () {
+            //    oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            //        cell.innerHTML = i + 1;
+            //        oTable.cell(cell).invalidate('dom');
+            //    });
+            //}).draw();
+        });
+    </script>
+}

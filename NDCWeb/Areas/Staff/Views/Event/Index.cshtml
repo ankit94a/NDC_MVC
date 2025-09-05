@@ -1,0 +1,93 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.EventIndexVM>
+
+@{
+    ViewBag.Title = "List of Events";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+            <span class="pull-right"> @Html.ActionLink("Create New Event", "Create", null, new { @class = "btn btn-primary btn-sm" })</span>
+        </div>
+        <div class="card-body">
+            <table class="table w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th style="vertical-align: middle; white-space: nowrap">
+                            Name of Event
+                            @*@Html.DisplayNameFor(model => model.EventName)*@
+                        </th>
+                        <th style="vertical-align: middle; white-space: nowrap">
+                            @Html.DisplayNameFor(model => model.EventVenu)
+                        </th>
+                        <th style="vertical-align: middle; white-space: nowrap">
+                            Date
+                            @*@Html.DisplayNameFor(model => model.EventDate)*@
+                        </th>
+                        <th style="vertical-align: middle; white-space: nowrap">
+                            Time
+                            @*@Html.DisplayNameFor(model => model.EventTime)*@
+                        </th>
+                        <th style="vertical-align: middle; white-space: nowrap">
+                            @Html.DisplayNameFor(model => model.EventDress)
+                        </th>
+                        <th style="vertical-align: middle; white-space: nowrap">
+                            @Html.DisplayNameFor(model => model.Remarks)
+                        </th>
+                        <th style="vertical-align: middle; white-space: nowrap">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.EventTime != null)
+                        {
+                            DateTime times1 = Convert.ToDateTime(item.EventTime);
+                            string times = times1.ToString("hh:mm");
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventVenu)
+                            </td>
+                            <td style="vertical-align: middle; white-space: nowrap">
+                                @Html.DisplayFor(modelItem => item.EventDate)
+                            </td>
+                            <td style="vertical-align: middle; white-space: nowrap">
+                                @Html.DisplayFor(modelItem => times)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventDress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Remarks)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = item.EventId })"><i class="fa fa-edit"></i></a>
+                                <a onclick="Delete(@item.EventId, this)"><i class="fa fa-trash text-danger"></i></a>
+                            </td>
+                        </tr>
+                            }
+                        }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <p>
+
+    </p>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

@@ -1,0 +1,150 @@
+﻿@model IEnumerable<NDCWeb.View_Models.HomeBannerSliderVM>
+@using NDCWeb.Infrastructure.Constants;
+@{
+    ViewBag.Title = "Index";
+ }
+<style>
+    .list-groups {
+        max-height: 300px;
+        margin-bottom: 10px;
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
+<div class="container pt-2">
+    <div class="card">
+        <div class="card-header">&nbsp;&nbsp; Photo Gallery</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-groups eventCls">
+                    </div>
+                </div>
+                <div class="col-md-9 shadow">
+                    <div class="row galleryCls">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Component/js/carousel.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            getGalleryEvent();
+            //getImageGallery();
+        });
+        function getGalleryEvent() {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetGalleryEvent")',
+                data: [],
+                dataType: "json",
+                success: OnEventSuccess,
+                error: function () {
+                    alert('Server Not Found');
+                }
+            });
+        };
+        function getImageGallery(mediaGalleryId) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetImageGallery")',
+                data: { mediaGalleryId: mediaGalleryId },
+                dataType: "json",
+                success: OnGallerySuccess,
+                error: function (response) {
+                    alert('Server Not Found');
+                }
+            });
+        };
+        function OnEventSuccess(response) {
+            let galleryEvents = response.galleryEvents;
+            fillEvent(galleryEvents);
+        };
+        function OnGallerySuccess(response) {
+            let gallery = response.gallery;
+            fillGallery(gallery);
+        };
+        function fillEvent(galleryEvents) {
+            let $galleryEvents = galleryEvents;
+            let $eventDiv = $('.eventCls');
+            $eventDiv.empty();
+            $eventDiv.append(`<ul class="list-group"><li class="list-group-item active">Events</li>`);
+            $.each($galleryEvents, function (i, event) {
+                var mfPath = (event.FilePath).replace("~", "");
+                $eventDiv.append(`
+                            <li class="list-group-item small"><a href="javascript:void();" onclick="getImageGallery(${event.MediaGalleryId})" class="list-group-item-action small">
+                            <img src="/component/images/pict-folder.png" alt="" title="" width=32px height=32px>  ${event.Caption}</a></li>
+                        `);
+            });
+        }
+        function fillGallery(gallery) {
+            let $gallery = gallery;
+            let $gallryDiv = $('.galleryCls');
+            let $galleryIndex = $('.galleryIndexCls');
+            $galleryIndex.empty();
+            $gallryDiv.empty();
+            $.each($gallery, function (i, mg) {
+                let $file = mg.iMediaFiles;
+                //let mgPublishDate = getIntToDateFormat(mg.PublishDate);
+                let active = 'active';
+                $.each($file, function (i, mf) {
+                    let mfPath = (mf.FilePath).replace("~", "");
+                    $gallryDiv.append(`<div class="col-md-4"><a href='${mfPath}' target='_blank'><img onclick="window.open(this.src)" class="img-fluid img-thumbnail mb-2" src="${mfPath}" alt="Card image cap"> </a> </div>`);                    
+                });
+            });
+        }
+    </script>
+
+    @*<script>
+    $(document).ready(function () {
+        getHomeSlider();
+    });
+    function getHomeSlider() {
+        $.ajax({
+            type: "get",
+            //url: '/api/home/GetBannerSlider/category/Main Home Page Banner' ,
+            url: '@Url.Action("GeImageGalleryForMember")',
+            dataType: "json",
+            success: OnHomeSliderSuccess,
+            error: function () {
+                alert('Server Not Found');
+            }
+        });
+    };
+    function OnHomeSliderSuccess(response) {
+        let gallery = response;
+        fillGallerySlider(gallery);
+    };
+    function fillGallerySlider(gallery) {
+        let $gallery = gallery;
+        let $gallryDiv = $('.homeSliderCls');
+        $gallryDiv.empty();
+        let indx = 0;
+        $.each($gallery, function (i, mg) {
+            let $file = mg.iMediaFiles;
+            //let mgPublishDate = getIntToDateFormat(mg.PublishDate);
+            let active = 'active';
+            $.each($file, function (j, mf) {
+                var mfPath = (mf.FilePath).replace("~", "");
+                if (indx === 0) { active = 'active'; } else { active = ''; }
+                $gallryDiv.append(`
+                        <div class='item ${active}'>
+                            <img class="img-responsive" src="${mfPath}" alt='Banner' title='Banner'>
+                            <div class='carousel-caption'>
+                                <p>${mg.Description}</p>
+                            </div>
+                        </div>
+                        `);
+                indx++;
+            });
+        });
+    }
+    </script>*@
+}
+
+

@@ -1,0 +1,547 @@
+﻿@model NDCWeb.Areas.Member.View_Models.SpouseCrtVM
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCMSpouse" }))
+{
+    <style>
+        .validation-summary-valid {
+            display: none;
+        }
+
+        .required::before {
+            content: "*";
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+    @Html.AntiForgeryToken()
+
+    <div class="card mt-4">
+        <div class="card-header" style="background-color:#fff">
+            PARTICULAR
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Name</Label>
+                    @Html.EditorFor(model => model.SpouseName, new { htmlAttributes = new { @class = "form-control required" } })
+                    @Html.ValidationMessageFor(model => model.SpouseName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-1">
+                    <Label class="control-label required">Blood Group</Label>
+                    @Html.DropDownListFor(model => model.SpouseBloodGroup, (IEnumerable<SelectListItem>)ViewBag.BloodGroup, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SpouseBloodGroup, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label required">Contact No</Label>
+                    @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
+                    @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label required">Date of Birth</Label>
+                    @Html.EditorFor(model => model.SpouseDOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.SpouseDOBirth, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Occupation</Label>
+                    @Html.EditorFor(model => model.Occupation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Occupation, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    <Label class="control-label">Spouse staying with officer during course?</Label>
+                    @Html.EditorFor(model => model.SpouseStay, new { htmlAttributes = new { @class = "custom-checkbox" } })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header" style="background-color:#fff">
+            PASSPORT DETAIL (to be filled by Foreign Officers only)
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label class="control-label"><b>Are you holding any Passport</b></label>
+                    <div class="form-inline">
+                        <label class="containerchk col-md-1">
+                            Yes @Html.RadioButtonFor(model => model.HoldingPassport, "Yes", new { id = "spousepassport-true" })
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="containerchk col-md-1">
+                            No @Html.RadioButtonFor(model => model.HoldingPassport, "No", new { id = "spousepassport-false" })
+                            <span class="checkmark"></span>
+                        </label>
+                        @Html.ValidationMessageFor(model => model.HoldingPassport, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="dvspousepassportSelf">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Passport No</Label>
+                        @Html.EditorFor(model => model.SpousePassportNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SpousePassportNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Passport Name</Label>
+                        @Html.EditorFor(model => model.SpousePassportName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SpousePassportName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Date of Issue</Label>
+                        @Html.EditorFor(model => model.SpousePassportIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.SpousePassportIssueDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Valid Upto</Label>
+                        @Html.EditorFor(model => model.SpousePassportValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.SpousePassportValidUpto, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="citizencountry">Passport Type</label>
+                        @Html.DropDownListFor(model => model.SpousePassportType, (IEnumerable<SelectListItem>)ViewBag.PassportType, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SpousePassportType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="citizencountry">Country that issued your passport</label>
+                        @Html.DropDownListFor(model => model.SpousePassportCountryIssued, (IEnumerable<SelectListItem>)ViewBag.ddlCountry, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SpousePassportCountryIssued, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="passport_self">Upload passport image (Front)</label>
+                        <input id="spousePassportPicfile" type="file" title="Upload Your Spouse Passport" name="spousePassportPicfile" onchange="imgValidateEdit('spousePassportPicfile', 'SpousePassportImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                        <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                        @Html.EditorFor(model => model.SpousePassportImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="passport_self">Upload passport image (Back)</label>
+                        <input id="spousePassportBackPicfile" type="file" title="Upload Your Spouse Passport" name="spousePassportBackPicfile" onchange="imgValidateEdit('spousePassportBackPicfile', 'SpousePassportBackImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                        <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                        @Html.EditorFor(model => model.SpousePassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header" style="background-color:#fff">
+            VISA DETAIL
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <Label class="control-label">Visa No</Label>
+                    @Html.EditorFor(model => model.SpouseVisaNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SpouseVisaNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Date of Issue</Label>
+                    @Html.EditorFor(model => model.SpouseVisaIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.SpouseVisaIssueDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Valid Upto</Label>
+                    @Html.EditorFor(model => model.SpouseVisaValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.SpouseVisaValidUpto, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Upload Visa images (Front and Back) </label>
+                    <input id="spouseVisaPicfile" type="file" title="Upload Your Visa" name="selfFRROPicfile" onchange="imgValidateEdit('spouseVisaPicfile', 'SpouseVisaPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                    <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                    @Html.EditorFor(model => model.SpouseVisaPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                </div>
+            </div>
+        </div>
+        <div class="card-header" style="background-color:#fff">
+            FRRO DETAIL (to be filled by Foreign Officers only)
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <Label class="control-label">FRRO No</Label>
+                    @Html.EditorFor(model => model.SpouseFRRONo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SpouseFRRONo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Date of Issue</Label>
+                    @Html.EditorFor(model => model.SpouseFRROIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.SpouseFRROIssueDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Valid Upto</Label>
+                    @Html.EditorFor(model => model.SpouseFRROValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.SpouseFRROValidUpto, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Upload FRRO Images: </label>
+                    <input id="spouseFRROPicfile" type="file" title="Upload Your Spouse FRRO" name="spouseFRROPicfile" onchange="imgValidateEdit('spouseFRROPicfile', 'SpouseFRROPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                    <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                    @Html.EditorFor(model => model.SpouseFRROPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-4">
+        <div class="card-header" style="background-color:#fff">
+            QUALIFICATION
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <Label class="control-label">Higher education</Label>
+                    @Html.EditorFor(model => model.EduHigher, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.EduHigher, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Subject</Label>
+                    @Html.EditorFor(model => model.EduSubject, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.EduSubject, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Grade/Division</Label>
+                    @Html.EditorFor(model => model.EduDivision, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.EduDivision, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="form-group col-md-3">
+                    <Label class="control-label">Board/University</Label>
+                    @Html.EditorFor(model => model.EduUniversity, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.EduUniversity, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <input type="text" name="quSProfessionalEdu" id="quSProfessionalEdu_1" class="form-control" placeholder="Professional Qualification">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="text" name="quSAcademicAchievement" id="quSAcademicAchievement_1" class="form-control" placeholder="Academic Achievement">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="text" name="quSDivision" id="quSDivision_1" class="form-control" placeholder="Grade/Division">
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" name="quSInstitute" id="quSInstitute_1" class="form-control" placeholder="Institute">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button type="button" class="add-SpouseQualification btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="remove-SpouseQualification btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i> </button>
+                </div>
+
+            </div>
+            <div id="new_quS"></div>
+            <input type="hidden" value="1" id="total_quS">
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header" style="background-color:#fff">
+            LANGUAGE KNOWN
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <Label class="control-label">Language</Label>
+                    <input type="text" name="laSLanguage" id="laSLanguage_1" class="form-control" placeholder="Language">
+                </div>
+                <div class="form-group col-md-1">
+                    <Label class="control-label pb-4" style="width:100%"></Label>
+                    <label>
+                        Read
+                        <input type="checkbox" name="laSRead" id="laSRead_1" class="custom-checkbox">
+                    </label>
+                </div>
+                <div class="form-group col-md-1">
+                    <Label class="control-label pb-4" style="width:100%"></Label>
+                    <label>
+                        Write
+                        <input type="checkbox" name="laSWrite" id="laSWrite_1" class="custom-checkbox">
+                    </label>
+                </div>
+                <div class="form-group col-md-1">
+                    <Label class="control-label pb-4" style="width:100%"></Label>
+                    <label>
+                        Speak
+                        <input type="checkbox" name="laSSpeak" id="laSSpeak_1" class="custom-checkbox">
+                    </label>
+                </div>
+                @*<div class="form-group col-md-3">
+                        <Label class="control-label">Qualification</Label>
+                        <input type="text" name="laSQualification" id="laSQualification_1" required title="Enter Qualification" class="form-control" placeholder="Qualification">
+                    </div>*@
+                <div class="form-group col-md-2">
+                    <Label class="control-label pb-3" style="width:100%"></Label>
+                    <button type="button" class="add-SpouseLanguage btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="remove-SpouseLanguage btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div id="new_laS"></div>
+            <input type="hidden" value="1" id="total_laS">
+        </div>
+    </div>
+
+    <div class="form-group mt-4 text-center">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" id="btnSaveSpouse" value="Submit" onclick="addSpouse()" class="btn btn-primary btn-lg" />
+            @*<input type="submit" value="Create" class="btn btn-default" />
+                <a href="#" class="btn btn-primary btn-lg btnPrevious">Go Back</a>
+                <button id="btnSave" onclick="SpouseAdd(this)" class="btn btn-default">Save</button>
+                <a href="#" class="btn btn-primary btn-lg btnNext">Next</a>*@
+        </div>
+    </div>
+    <div class="card-header">
+        @Html.ValidationSummary(false, "Please fix the following error and then submit the form:-", new { @class = "text-danger" })
+    </div>
+
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    $(document).ready(function () {
+        getDatepickerf1('.datepickerJq1');
+    });
+    // #region children
+    function storeChildrenDtl() {
+        let ttlla = $('#total_chS').val();
+        let children = [];
+        for (i = 1, j = 0; i <= ttlla; i++, j++) {
+            children[j] = {
+                ChildName: $('#chSName_' + i).val(),
+                SpouseDOBirth: $('#chSSpouseDOBirth_' + i).val(),
+                Gender: $('#chSGender_' + i).val(),
+                Occupation: $('#chSOccupation_' + i).val(),
+                StayWithMember: $('#chSStayWithMember_' + i).val(),
+            };
+        }
+        return children;
+    }
+
+    $('.add-ChildrenDtl').on('click', addChildrenDtl);
+    $('.remove-ChildrenDtl').on('click', removeChildrenDtl);
+    function addChildrenDtl() {
+        let new_la_no = parseInt($('#total_chS').val()) + 1;
+        let new_inputLa = `<div id="ChildDtl_${new_la_no}" class="form-row">
+                                <div class="form-group col-md-3">
+                                    <Label class="control-label">Name</Label>
+                                    <input type="text" id="chSName_${new_la_no}" required title="Enter Child Name" class="form-control" placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <Label class="control-label">DOB</Label>
+                                    <input type="text" id="chSSpouseDOBirth_${new_la_no}" required title="Enter Child Birth" class="form-control datepickerJq1" autocomplete = "off" placeholder="Age">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <Label class="control-label">Gender</Label>
+                                    <select id="chSGender_${new_la_no}" required title="Enter Child Gender" class="form-control">
+                                        <option disabled selected>--Select--</option>
+                                        <option value="MALE">Male</option>
+                                        <option value="FEMALE">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <Label class="control-label">Occupation</Label>
+                                    <input type="text" id="chSOccupation_${new_la_no}" required title="Enter Child Occupation" class="form-control" placeholder="Occupation">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <Label class="control-label">Living With You?</Label>
+                                    <select id="chSStayWithMember_${new_la_no}" required title="Enter Living With You" class="form-control">
+                                        <option disabled selected>--Select--</option>
+                                        <option value="YES">Yes</option>
+                                        <option value="NO">No</option>
+                                    </select>
+                                </div>
+                           </div>`
+        $('#new_chS').append(new_inputLa);
+        $('#total_chS').val(new_la_no);
+        getDatepickerf1('.datepickerJq1');
+    }
+    function removeChildrenDtl() {
+        let last_la_no = $('#total_chS').val();
+
+        if (last_la_no > 1) {
+            $('#ChildDtl_' + last_la_no).remove();
+            $('#total_chS').val(last_la_no - 1);
+        }
+    }
+    // #endregion
+
+    // #region Language
+    function storeSpouseLanguage() {
+        let ttlla = $('#total_laS').val();
+        let languages = [];
+        for (i = 1, j = 0; i <= ttlla; i++, j++) {
+            languages[j] = {
+                Language: $('#laSLanguage_' + i).val(),
+                Read: document.getElementById('laSRead_' + i).checked,
+                Write: document.getElementById('laSWrite_' + i).checked,
+                Speak: document.getElementById('laSSpeak_' + i).checked,
+                //Qualification: $('#laSQualification_' + i).val(),
+            };
+        }
+        return languages;
+    }
+
+    $('.add-SpouseLanguage').on('click', addSpouseLanguage);
+    $('.remove-SpouseLanguage').on('click', removeSpouseLanguage);
+    function addSpouseLanguage() {
+        let new_la_no = parseInt($('#total_laS').val()) + 1;
+        let new_inputLa = `<div id="Language_${new_la_no}" class="form-row">
+                               <div class="form-group col-md-4">
+                                   <input type="text" name="laSLanguage" id="laSLanguage_${new_la_no}" class="form-control" placeholder="Language">
+                               </div>
+                               <div class="form-group col-md-1">
+                                   <label>Read
+                                   <input type="checkbox" name="laSRead" id="laSRead_${new_la_no}" class="custom-checkbox"></label>
+                               </div>
+                               <div class="form-group col-md-1">
+                                   <label>Write
+                                   <input type="checkbox" name="laSWrite" id="laSWrite_${new_la_no}" class="custom-checkbox"></label>
+                               </div>
+                               <div class="form-group col-md-1">
+                                   <label>Speak
+                                   <input type="checkbox" name="laSSpeak" id="laSSpeak_${new_la_no}" class="custom-checkbox"></label>
+                               </div>
+
+                           </div>`
+        $('#new_laS').append(new_inputLa);
+        $('#total_laS').val(new_la_no);
+    }
+    function removeSpouseLanguage() {
+        let last_la_no = $('#total_laS').val();
+
+        if (last_la_no > 1) {
+            $('#Language_' + last_la_no).remove();
+            $('#total_laS').val(last_la_no - 1);
+        }
+    }
+    // #endregion
+
+    // #region Qualification
+    function storeSpouseQualification() {
+        let ttlrows = $('#total_quS').val();
+        let qualifications = [];
+        for (i = 1, j = 0; i <= ttlrows; i++, j++) {
+            qualifications[j] = {
+                ProfessionalEdu: $('#quSProfessionalEdu_' + i).val(),
+                AcademicAchievement: $('#quSAcademicAchievement_' + i).val(),
+                Division: $('#quSDivision_' + i).val(),
+                Institute: $('#quSInstitute_' + i).val(),
+            };
+        }
+        return qualifications;
+    }
+    $('.add-SpouseQualification').on('click', addSpouseQualification);
+    $('.remove-SpouseQualification').on('click', removeQualification);
+    function addSpouseQualification() {
+        let new_row_no = parseInt($('#total_quS').val()) + 1;
+        let new_row_inputs = `<div id="SpouseQualification_${new_row_no}" class="form-row">
+                               <div class="form-group col-md-3">
+                                   <input type="text" name="quSProfessionalEdu" id="quSProfessionalEdu_${new_row_no}" class="form-control" placeholder="Professional Qualification">
+                               </div>
+                               <div class="form-group col-md-2">
+                                   <input type="text" name="quSAcademicAchievement" id="quSAcademicAchievement_${new_row_no}" class="form-control" placeholder="Academic Achievement">
+                               </div>
+                               <div class="form-group col-md-2">
+                                   <input type="text" name="quSDivision" id="quSDivision_${new_row_no}" class="form-control" placeholder="Grade/Division">
+                               </div>
+                               <div class="form-group col-md-3">
+                                   <input type="text" name="quSInstitute" id="quSInstitute_${new_row_no}" class="form-control" placeholder="Institute">
+                               </div>
+                           </div>`
+        $('#new_quS').append(new_row_inputs);
+        $('#total_quS').val(new_row_no);
+    }
+    function removeQualification() {
+        let last_row_no = $('#total_quS').val();
+        if (last_row_no > 1) {
+            $('#SpouseQualification_' + last_row_no).remove();
+            $('#total_quS').val(last_row_no - 1);
+        }
+    }
+    // #endregion
+
+    function fillSpouse() {
+        let spouse = {
+            SpouseName: $("#SpouseName").val(),
+            SpouseBloodGroup: $("#SpouseBloodGroup").val(),
+            ContactNo: $("#ContactNo").val(),
+            SpouseDOBirth: $("#SpouseDOBirth").val(),
+            Occupation: $("#Occupation").val(),
+            SpouseStay: $("#SpouseStay").val(),
+            //EmailId: $("#EmailId").val(),
+            //FoodPreference: $("#FoodPreference").val(),
+            //Qualification: $("#Qualification").val(),
+            EduHigher: $("#EduHigher").val(),
+            EduSubject: $("#EduSubject").val(),
+            EduDivision: $("#EduDivision").val(),
+            EduUniversity: $("#EduUniversity").val(),
+
+            HoldingPassport: $('input[name="HoldingPassport"]:checked').val(),
+            SpousePassportNo: $("#SpousePassportNo").val(),
+            SpousePassportName: $("#SpousePassportName").val(),
+            SpousePassportIssueDate: $("#SpousePassportIssueDate").val(),
+            SpousePassportValidUpto: $("#SpousePassportValidUpto").val(),
+            SpousePassportType: $("#SpousePassportType").val(),
+            SpousePassportCountryIssued: $("#SpousePassportCountryIssued").val(),
+            SpousePassportImgPath: $("#SpousePassportImgPath").val(),
+            SpousePassportBackImgPath: $("#SpousePassportBackImgPath").val(),
+
+            SpouseVisaNo: $("#SpouseVisaNo").val(),
+            SpouseVisaIssueDate: $("#SpouseVisaIssueDate").val(),
+            SpouseVisaValidUpto: $("#SpouseVisaValidUpto").val(),
+            SpouseVisaPath: $("#SpouseVisaPath").val(),
+            SpouseFRRONo: $("#SpouseFRRONo").val(),
+            SpouseFRROIssueDate: $("#SpouseFRROIssueDate").val(),
+            SpouseFRROValidUpto: $("#SpouseFRROValidUpto").val(),
+            SpouseFRROPath: $("#SpouseFRROPath").val(),
+
+            //iSpouseChildrens: storeChildrenDtl(),
+            iSpouseLanguages: storeSpouseLanguage(),
+            iSpouseQualifications: storeSpouseQualification(),
+        }
+        return spouse;
+    }
+    function addSpouse() {
+        //e.preventDefault();
+        if ($("#formCMSpouse").valid()) {
+            let spouse = fillSpouse();
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/Spouse',
+                data: spouse,
+                datatype: 'json',
+                success: function (data, textStatus, jqXHR) {
+                    toastr.info(textStatus);
+                    displayTab('SpousePartial');
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+    }
+    // #region Spouse Passport
+    $(document).ready(function () {
+        changespousepassport();
+    });
+    $('#spousepassport-true').change(function () {
+        changespousepassport();
+    });
+    $('#spousepassport-false').change(function () {
+        changespousepassport();
+    });
+    function changespousepassport() {
+        if ($('#spousepassport-true').is(":checked"))
+            $(".dvspousepassportSelf").show();
+        else
+            $(".dvspousepassportSelf").hide();
+    }
+    // #endregion
+</script>
+
+
+

@@ -1,0 +1,216 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.ShowSpeechFeedbackSummaryVM
+@{
+    ViewBag.Title = "Daily Feedback Summary";
+    int countSno = 0;
+}
+@Styles.Render("~/bundles/datatables/ButtonCss")
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+
+<div class="container mt-4 shadow text-left">
+    <div id="printDiv" style="font-family:Arial; font-size:14px">
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>@Model.SpeechDate.ToString("dd MMM yyyy")</td>
+            </tr>
+            <tr>
+                <td>Subject</td>
+                <td>@Model.SubjectName</td>
+            </tr>
+            <tr>
+                <td>Topic</td>
+                <td>@Model.TopicName</td>
+            </tr>
+            <tr>
+                <td>Speaker</td>
+                <td>@Model.FullName</td>
+            </tr>
+        </table>
+        <hr />
+        <input type="button" onclick="tableToExcel('myTable', 'W3C Example Table')" value="Export to Excel">
+        <table class="table table-info text-left" id="myTable">
+            <thead>
+                <tr>
+                    <th>SNo.</th>
+                    <th>Name</th>
+                    <th>Quality</th>
+                    <th>Recommend</th>
+                    <th>
+                        Have You Attend This Lecture
+                    </th>
+                    <th>Any Other Suggestion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.iSpeechFeedbackVM)
+                {
+
+                    <tr>
+                        <td>@{ countSno++; } @countSno.ToString()</td>
+                        <td>@item.MemberFullName</td>
+                        <td>
+                            @if (item.QualityTalk == "1")
+                            {
+                                <span>Poor</span>
+                            }
+                            else if (item.QualityTalk == "2")
+                            {
+                                <span>Average</span>
+                            }
+                            else if (item.QualityTalk == "3")
+                            {
+                                <span>Very Good</span>
+                            }
+                            else if (item.QualityTalk == "4")
+                            {
+                                <span>Excellent</span>
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (item.RecomendForNextCourse == "N")
+                                {
+                                    <span>No</span>
+                                }
+                                else if (item.RecomendForNextCourse == "Y")
+                                {
+                                    <span>Yes</span>
+                                }
+                                else
+                                {
+                                    <span></span>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (item.LectureAttend == "N")
+                                {
+                                    <span>No</span>
+                                }
+                                else if (item.LectureAttend == "Y")
+                                {
+                                    <span>Yes</span>
+                                }
+                                else
+                                {
+                                    <span></span>
+                                }
+                            }
+                        </td>
+                        <td>@item.Suggetions</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <h3>Grading</h3>
+        <table class="table table-info text-left">
+            <tr>
+                <th>Excellent</th>
+                <th>Very Good</th>
+                <th>Average</th>
+                <th>Poor</th>
+            </tr>
+            <tr>
+                <td>@Model.Excellent</td>
+                <td>@Model.VeryGood</td>
+                <td>@Model.Average</td>
+                <td>@Model.Poor</td>
+            </tr>
+        </table>
+        <br />
+        <hr />
+        <h3>
+            Recommendation
+        </h3>
+        <table class="table table-info text-left">
+            <tr>
+                <th>Yes</th>
+                <th>No</th>
+            </tr>
+            <tr>
+                <td>@Model.Recommend</td>
+                <td>@Model.NotRecommend</td>
+            </tr>
+        </table>
+        @*<table style="width:40%;">
+            <tr>
+                <td>Excellent</td>
+                <td>@Model.Excellent</td>
+            </tr>
+            <tr>
+                <td>Very Good</td>
+                <td>@Model.VeryGood</td>
+            </tr>
+            <tr>
+                <td>Average</td>
+                <td>@Model.Average</td>
+            </tr>
+            <tr>
+                <td>Poor</td>
+                <td>@Model.Poor</td>
+            </tr>
+        </table>
+        <br />
+        <hr />
+        <h3>
+            Recommendation
+        </h3>
+        <table style="width:40%">
+            <tr>
+                <td>Yes</td>
+                <td>@Model.Recommend</td>
+            </tr>
+            <tr>
+                <td>No</td>
+                <td>@Model.NotRecommend</td>
+            </tr>
+        </table>*@
+        <br />
+        <hr />
+    </div>
+    <div class="card-footer text-center">
+        <input type="button" class="btn btn-primary btn-sm" onclick="printdoc()" value="Print" />
+        <a href="/staff/feedbacks/SpeechEventList" class="btn btn-primary btn-sm">Back</a>
+    </div>
+    <br />
+    <br />
+
+</div>
+
+@section scripts{
+    <script>
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printDiv').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+    </script>
+    <script type="text/javascript">
+        var tableToExcel = (function () {
+            var uri = 'data:application/vnd.ms-excel;base64,'
+                , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+                , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+                , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+            return function (table, name) {
+                if (!table.nodeType) table = document.getElementById(table)
+                var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+                window.location.href = uri + base64(format(template, ctx))
+            }
+        })()
+    </script>
+}

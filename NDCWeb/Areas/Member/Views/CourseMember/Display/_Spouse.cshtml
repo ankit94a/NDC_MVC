@@ -1,0 +1,164 @@
+﻿@model NDCWeb.Areas.Member.View_Models.SpouseIndxVM
+
+<table class="table table-condensed table-bordered">
+    <tr class="bg-2 text-white">
+        <td colspan="8">Spouse Details</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseName)</td>
+        <td class="juipfvalue"> @Html.DisplayFor(model => model.SpouseName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseBloodGroup) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.SpouseBloodGroup)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseDOBirth) </td>
+        <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.SpouseDOBirth)</td>
+
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.ContactNo) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.ContactNo)</td>
+        <td class="juipfname">Spouse staying with officer during course </td>
+        <td class="juipfvalue" colspan="5">@Html.DisplayFor(model => model.SpouseStay)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.Occupation) </td>
+        <td class="juipfvalue" colspan="7">@Html.DisplayFor(model => model.Occupation)</td>
+    </tr>
+    <tr class="bg-2 text-white">
+        <td colspan="8">Highest Qualification</td>
+    </tr>
+    <tr>
+        <td class="juipfname">Qualification </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.EduHigher)</td>
+        <td class="juipfname">Subject of Specification </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.EduSubject)</td>
+        <td class="juipfname">% / Grade/ Division</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.EduDivision)</td>
+        <td class="juipfname">Board/University</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.EduUniversity)</td>
+    </tr>
+    <tr class="bg-2 text-white">
+        <td colspan="8">Professional Qualification(s)</td>
+    </tr>
+    <tr>
+        <td colspan="8">
+            @{ Html.RenderAction("SpouseQualificationPartial"); }
+        </td>
+    </tr>
+    <tr class="bg-2 text-white">
+        <td colspan="8">Laguages Known</td>
+    </tr>
+    <tr>
+        <td colspan="8">
+            @{ Html.RenderAction("SpouseLanguagePartial"); }
+        </td>
+
+    </tr>
+    @if (Model.HoldingPassport == "Yes")
+    {
+        <tr class="bg-2 text-white">
+            <td colspan="8">
+                Passport Details
+            </td>
+        </tr>
+        <tr>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportNo) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportNo)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportIssueDate) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportIssueDate)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportValidUpto) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportValidUpto)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportType) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportType)</td>
+        </tr>
+        <tr>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportName) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportName)</td>
+            <td class="juipfname">Passport File</td>
+            <td>
+                @if (Model.SpousePassportImgPath != null && Model.SpousePassportImgPath != "#")
+                {
+                    <a href="@Url.Content(Model.SpousePassportImgPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> Front</a>
+                }
+                else
+                {
+                    @: Front-Side <b>N/A</b>
+                }
+                |
+                @if (Model.SpousePassportBackImgPath != null && Model.SpousePassportBackImgPath != "#")
+                {
+                    <a href="@Url.Content(Model.SpousePassportBackImgPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> Back</a>
+                }
+                else
+                {
+                    @: Back-Side <b>N/A</b>
+                }
+            </td>
+        </tr>
+    }
+    <tr class="bg-2 text-white">
+        <td colspan="8">
+            Visa Details
+        </td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseVisaNo) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.SpouseVisaNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseVisaIssueDate) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.SpouseVisaIssueDate)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseVisaValidUpto) </td>
+        <td class="juipfvalue" colspan="1">@Html.DisplayFor(model => model.SpouseVisaValidUpto)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseVisaPath) </td>
+        <td class="juipfvalue">
+            @if (Model.SpouseVisaPath != null && Model.SpouseVisaPath != "#")
+            {
+                <a href="@Url.Content(Model.SpouseVisaPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> Visa</a>
+            }
+            else
+            {
+                <b>N/A</b>
+            }
+        </td>
+    </tr>
+    <tr class="bg-2 text-white">
+        <td colspan="8">
+            FRRO Details
+        </td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseFRRONo) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.SpouseFRRONo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseFRROIssueDate) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.SpouseFRROIssueDate)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseFRROValidUpto) </td>
+        <td class="juipfvalue" colspan="1">@Html.DisplayFor(model => model.SpouseFRROValidUpto)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseFRROPath) </td>
+        <td class="juipfvalue">
+            @if (Model.SpouseFRROPath != null && Model.SpouseFRROPath != "#")
+            {
+                <a href="@Url.Content(Model.SpouseFRROPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> FRRRO</a>
+            }
+            else
+            {
+                <b>N/A</b>
+            }
+
+        </td>
+    </tr>
+</table>
+<div class="panel-footer text-white">
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious">Previous</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" id="btnEdit" onclick="editTab('SpousePartial')">Edit</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext">Next</a>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.btnNext').click(function () {
+            $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+    });
+</script>

@@ -1,0 +1,13 @@
+﻿
+@model IEnumerable<NDCWeb.Areas.Staff.View_Models.CalendarLeaveInfoListVM>
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.FullName @item.TotalDays days @item.LeaveType @item.Start_Date  to  @item.End_Date
+        </tr>
+    }
+</table>
+

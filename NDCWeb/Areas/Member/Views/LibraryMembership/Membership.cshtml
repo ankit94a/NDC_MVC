@@ -1,0 +1,115 @@
+﻿@model NDCWeb.Areas.Member.View_Models.LibraryMembershipIndxVM
+
+@{
+    ViewBag.Title = "LIBRARY MEMBERSHIP FOR COURSE PARTICIPANTS";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<div class="container shadow pt-2 mb-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>@ViewBag.Title </h4>
+        </div>
+        <style>
+            tr :nth-child(1) {
+                font-weight: bold;
+            }
+        </style>
+        <div class="card-body" id="DivIdToPrint">
+            <p class="info text-justify border-bottom bg-light">
+                R&R Centre is fully automated. The physical printed resources of Library are managed through library management software named KOHA. Books are issued to Course
+                Participants through Biometric Device. The Officers are supposed to fill up the following details before commencing of the Course:
+            </p>
+            <table>
+                <tr>
+                    <td>
+                        (i)   @Html.DisplayNameFor(model => model.LockerNo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.LockerNo)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        (ii)   @Html.DisplayNameFor(model => model.MemberName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.MemberName)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        (iii)   @Html.DisplayNameFor(model => model.Designation)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Designation)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        (iv)   @Html.DisplayNameFor(model => model.Address)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Address)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        (v)    @Html.DisplayNameFor(model => model.MobileNo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.MobileNo)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        (vi)   @Html.DisplayNameFor(model => model.EmailId)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.EmailId)
+                    </td>
+                </tr>
+            </table>
+            <p class="info text-justify bg-light">
+                This membership is only for this Course period. Course Officers desirous to continue the membership after the Course have to take the Life Membership by filling a membership form (available at NDC Potal) along with one time payment of Rs. 5000/ (Refundable).
+            </p>
+        </div>
+
+        <div class="card-footer text-center bg-white">
+            <a class="btn btn-primary btn-sm text-white" onclick="printdoc();"><i class="fa fa-print"></i>  Print</a>
+            @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-sm" })*@
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href = '/Areas/Staff/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Staff/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Staff/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('DivIdToPrint').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+    </script>
+
+}

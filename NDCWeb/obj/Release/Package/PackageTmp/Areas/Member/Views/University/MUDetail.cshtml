@@ -1,0 +1,315 @@
+﻿@model NDCWeb.Areas.Member.View_Models.MphilDegreeIndxVM
+@{
+    ViewBag.Title = "APPLICATION FOR REGISTRATION FOR THE M.Phil. DEGREE COURSE";
+}
+<div class="container shadow pt-2 pb-5">
+    <div class="card" id="printDiv">
+        <style>
+            tr :nth-child(1) {
+                font-weight: bold;
+                width:60%
+            }
+        </style>
+        <div class="card-header text-uppercase h4 text-center border-0"><u>UNIVERSITY OF MADRAS<br />@ViewBag.Title</u></div>
+        <div class="card-body">
+            <table class="dl-horizontal">
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.YearOfAdmission)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.YearOfAdmission)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NameOfApplicant)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NameOfApplicant)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NameOfSupervisor)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NameOfSupervisor)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.DOB)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.DOB)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.POB)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.POB)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Age)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Age)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Gender)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Community)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Community)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Occupation)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Occupation)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Address)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.StudyMode)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.StudyMode)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NameOfExam)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NameOfExam)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.RegisterNoMonthYear)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.RegisterNoMonthYear)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.MonthAndYearOfDegree)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.MonthAndYearOfDegree)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.DegreeCollegeName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.DegreeCollegeName)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NoAndDateOfEligibilityCert)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NoAndDateOfEligibilityCert)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AffiliateCollege)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AffiliateCollege)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.IsRecognisedForMphil)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.IsRecognisedForMphil)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ObtainedApproval)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.ObtainedApproval)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NoAndDateOfApproval)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NoAndDateOfApproval)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NameDesignationOfSupervisor)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NameDesignationOfSupervisor)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.IsSupervisorRecognisedForCourse)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.IsSupervisorRecognisedForCourse)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.SupervisorSignPath)
+                    </td>
+
+                    <td>
+                        <img src="@Url.Content(Model.SupervisorSignPath)" width="120" height="120" class="border-dark" />
+                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.HoDSignPath)
+                    </td>
+
+                    <td>
+                        @*@Html.DisplayFor(model => model.HoDSignPath)*@
+                        <img src="@Url.Content(Model.HoDSignPath)" width="120" height="120" class="border-dark" />
+                    </td>
+                </tr>
+            </table>
+            <div class="row">
+                <div class="col-md-7">
+                    <br />
+                    <br />
+                    Station : ... @Html.DisplayFor(model => model.PlaceOfApplication)
+                </div>
+                <div class="col-md-5">
+                    <br />
+                    <br />
+                    _______________________________________________<br />
+                    Signature of the Applicant
+                </div>
+                <div class="col-md-12">
+                    Date : @Html.DisplayFor(model => model.DateOfApplication)
+                </div>
+                <div class="col-md-7">
+                    <br />
+                    <br />
+                    Signature of the Head of the Institution<br />
+                    (Where the Candidate is working as a teacher)
+                </div>
+                <div class="col-md-5">
+                    <br />
+                    <br />
+                    Signature of Head of the Institution/ College of the Department of the University (Where the candidate propose to undergo the Course)
+                </div>
+                <div class="col-md-12">
+                    <br />
+                    <br />
+                    <p><b><u>Note</u></b>-Applications which are submitted though the Heads of the Departments and the institutiorn where candidates propose to undergo the course and which do not bear the signature of the supervisor under whom the candidates propose to undergo, will not be considered.</p>
+                </div>
+                </div>
+            </div>
+        <div class="panel-footer bg-white text-center mb-4">
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.MPhilDegreeId }) |*@
+            <input type="button" class="btn btn-primary btn-sm" onclick="printdoc()" value="Print" />
+            @Html.ActionLink("Back", "Index", new { controller = "Home"}, new { @class = "btn btn-primary btn-sm" })
+        </div>
+    </div>
+   </div>
+    @section scripts{
+        <script>
+            function printdoc() {
+                var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+                mywindow.document.write('<html><head>');
+                mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+                mywindow.document.write('</head><body >');
+                mywindow.document.write(document.getElementById('printDiv').innerHTML);
+                mywindow.document.write('</body></html>');
+
+                mywindow.document.close(); // necessary for IE >= 10
+                mywindow.focus(); // necessary for IE >= 10*/
+
+                setTimeout(function () {
+                    mywindow.print();
+                    mywindow.close();
+                }, 1000)
+                return true;
+            }
+        </script>
+    }

@@ -1,0 +1,172 @@
+﻿@*@model IEnumerable<NDCWeb.Areas.Staff.View_Models.ShowSpeechFeedbackNotingVM>*@
+
+@{
+    ViewBag.Title = "ShowSpeechFeedbackNoting";
+    int countSno = 0;
+}
+<div class="container">
+    <div class="card-header">
+        <a href="/staff/feedbacks/SpeechEventList" class="btn btn-primary btn-sm pull-right mt-4">Back</a>
+        <h4 style="text-align:center;" class="mt-4"><u>Show Speech Feedback Noting</u></h4>
+
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="col-form-label">Subject</label>
+                    @Html.DropDownList("Subject", (IEnumerable<SelectListItem>)ViewBag.Subject, "-- Select --", htmlAttributes: new { @class = "form-control", @required = "required" })
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label">From Date</label>
+                    <input type="text" id="fromDate" name="fromDate" class="form-control datepickerJq1" title="Enter From Date" autocomplete="off" required />
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label">To Date</label>
+                    <input type="text" id="toDate" name="toDate" class="form-control datepickerJq1" title="Enter To Date" autocomplete="off" required />
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-form-label"></label><br /><p></p>
+                    <button type="button" class="btn btn-primary" onclick="searchSpeechFeedbackNoting()"><i class="fa fa-search"></i>Search</button>
+                </div>
+            </div>
+        }
+        <div class="container mt-4 shadow text-left">
+            <div >
+                <div class="mt-2">
+                    <br />
+                    <p>
+                        Feedback on speaker for the period  <b>From: <span id="spnFromdate"></span> - To: <span id="spnTodate"></span></b> in respect of <b>"<span id="spnSubject"></span>"</b> is placed opposite for perusal and reamrk please.
+                    </p>
+                </div>
+                    <div id="printDiv">
+                        <br />
+                    <table class="table table-info text-left" id="fdbkNoting">
+                        <thead>
+                            <tr>
+                                <th>SNO.</th>
+                                <th>Speaker</th>
+                                <th>No Of Inputs</th>
+                                <th>Excellent</th>
+                                <th>Very Good</th>
+                                <th>Average</th>
+                                <th>Poor</th>
+                                <th>Recommend</th>
+                                <th>Not Recommend</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*@foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@{ countSno++; } @countSno.ToString()</td>
+                                    <td>@item.SpeakerName</td>
+                                    <td>@item.NoOfInput</td>
+                                    <td>@item.Excellent</td>
+                                    <td>@item.VeryGood</td>
+                                    <td>@item.Good</td>
+                                    <td>@item.Poor</td>
+                                    <td>@item.Recommend</td>
+                                    <td>@item.NotRecommend</td>
+                                </tr>
+                                }*@
+                        </tbody>
+                    </table>
+                    <br />
+                </div>
+                <br />
+                <hr />
+            </div>
+            <div class="card-footer text-center">
+                <input type="button" class="btn btn-primary btn-sm" onclick="printdoc()" value="Print" />
+                @*<a href="" class="btn btn-primary btn-sm" onclick="printdoc()">Print</a>*@
+                <a href="/staff/feedbacks/SpeechEventList" class="btn btn-primary btn-sm">Back</a>
+            </div>
+            <br />
+            <br />
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            loadSpeechFeedbackNoting();
+        });
+        function searchSpeechFeedbackNoting() {
+            if ($("form").valid()) {
+                loadSpeechFeedbackNoting();
+            }
+        }
+        function loadSpeechFeedbackNoting() {
+            let subjectId = $("#Subject").val() || 1;
+            let fromDate = $("#fromDate").val() || null;
+            let toDate = $("#toDate").val() || null;
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("LoadSpeechFeedbackNoting")',
+                //data: JSON.stringify(courseMember),
+                data: { subjectId: subjectId, fromDate: fromDate, toDate: toDate },
+                datatype: 'json',
+                success: function (data) {
+                    if ($("#Subject option:selected").text() == "-- Select --") {
+                        $('#spnSubject').text("");
+                    }
+                    else {
+                        $('#spnSubject').text($("#Subject option:selected").text());
+                    }
+                    $('#spnFromdate').text($("#fromDate").val());
+                    $('#spnTodate').text($("#toDate").val());
+                    let $tbody = $('#fdbkNoting tbody');
+                    $tbody.empty();
+                    $.each(data, function (i, fdbk) {
+                        $tbody.append(`
+                         <tr>
+                             <td>${(i+1)}</td>
+                             <td>${fdbk.SpeakerName}</td>
+                             <td>${fdbk.NoOfInput}</td>
+                             <td>${fdbk.Excellent} %</td>
+                             <td>${fdbk.VeryGood} %</td>
+                             <td>${fdbk.Good} %</td>
+                             <td>${fdbk.Poor} %</td>
+                             <td>${fdbk.Recommend} %</td>
+                             <td>${fdbk.NotRecommend} %</td>
+                         </tr>
+                        `);
+                    });
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+       
+    </script>
+    <script>
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printDiv').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+    </script>
+}

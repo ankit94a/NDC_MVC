@@ -1,0 +1,45 @@
+﻿@*@model NDCWeb.Areas.Member.View_Models.CrsMbrAccountInfoVM*@
+@model NDCWeb.Areas.Member.View_Models.AccountInfoIndxVM
+<table class="table table-condensed table-bordered">
+    <tr class="bg-2 text-white">
+        <td colspan="8">
+            Bank Account Details (For Indian & Foreign Officers)
+            <a class="btn btn-transparent btn-sm float-right" data-toggle="tab" href="#AccountInfoPartial" onclick="editTab('AccountInfoPartial')"><i class="fa fa-pencil-square text-primary"></i></a>
+        </td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.AccountNo)</td>
+        <td class="juipfvalue"> @Html.DisplayFor(model => model.AccountNo)</td>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.AccountType)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.AccountType)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.IFSC) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.IFSC)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MICR) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MICR)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.NameAndAddressOfBanker) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.NameAndAddressOfBanker)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.PassbookPath)</td>
+        <td class="juipfvalue" colspan="4"><a href="@Url.Content(Model.PassbookPath ?? "#")">Cancelled Cheque</a></td>
+    </tr>
+    <tr class="bg-2 text-white">
+        <td colspan="8">PAO Details (Indian Army & Navy Officers only)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.CDAAcNo) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.CDAAcNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.BasicPay)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.BasicPay)</td>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.MSP)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MSP)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.PayLevel) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.PayLevel)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.AddressOfPayAc)</td>
+        <td class="juipfvalue" colspan="7">@Html.DisplayFor(model => model.AddressOfPayAc)</td>
+    </tr>
+</table>
+
+

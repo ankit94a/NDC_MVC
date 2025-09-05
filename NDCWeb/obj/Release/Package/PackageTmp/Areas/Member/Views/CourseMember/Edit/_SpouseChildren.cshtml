@@ -1,0 +1,148 @@
+﻿@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCMSpouseChild" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                CHILDREN DETAILS
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Name</Label>
+                        <input type="text" name="chSName" id="chSName_1" required title="Enter Child Name" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label">DOB</Label>
+                        <input type="text" name="chSDOBirth" id="chSDOBirth_1" required title="Enter Child Birth" class="form-control datepickerJq1" autocomplete="off" placeholder="DOB">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label">Gender</Label>
+                        <select id="chSGender_1" required title="Enter Child Gender" class="form-control">
+                            <option disabled selected>--Select--</option>
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Occupation</Label>
+                        <input type="text" name="chSOccupation" id="chSOccupation_1" required title="Enter Child Occupation" class="form-control" placeholder="Occupation">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Living With You?</Label>
+                        <select id="chSStayWithMember_1" name="chSStayWithMember" required title="Enter Living With You" class="form-control">
+                            <option disabled selected>--Select--</option>
+                            <option value="YES">Yes</option>
+                            <option value="NO">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label" style="width:100%">Add/Remove</Label>
+                        <button type="button" class="add-ChildrenDtl btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="remove-ChildrenDtl btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div id="new_chS"></div>
+                <input type="hidden" value="1" id="total_chS">
+
+                <div class="form-group mt-4 text-center">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Submit" onclick="addSpouseChildren()" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        getDatepickerf1('.datepickerJq1');
+    });
+    // #region children
+    function storeChildrenDtl() {
+        let ttlla = $('#total_chS').val();
+        let children = [];
+        for (i = 1, j = 0; i <= ttlla; i++ , j++) {
+            children[j] = {
+                ChildName: $('#chSName_' + i).val(),
+                DOBirth: $('#chSDOBirth_' + i).val(),
+                Gender: $('#chSGender_' + i).val(),
+                Occupation: $('#chSOccupation_' + i).val(),
+                StayWithMember: $('#chSStayWithMember_' + i).val(),
+                SpouseId: $('#hdnSpouseId').val(),
+            };
+        }
+        return children;
+    }
+
+    $('.add-ChildrenDtl').on('click', addChildrenDtl);
+    $('.remove-ChildrenDtl').on('click', removeChildrenDtl);
+    function addChildrenDtl() {
+        let new_la_no = parseInt($('#total_chS').val()) + 1;
+        let new_inputLa = `<div id="ChildDtl_${new_la_no}" class="form-row">
+                                <div class="form-group col-md-3">
+                                    <Label class="control-label">Name</Label>
+                                    <input type="text" id="chSName_${new_la_no}" required title="Enter Child Name" class="form-control" placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <Label class="control-label">DOB</Label>
+                                    <input type="text" id="chSDOBirth_${new_la_no}" required title="Enter Child Birth" class="form-control datepickerJq1" autocomplete = "off" placeholder="Age">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <Label class="control-label">Gender</Label>
+                                    <select id="chSGender_${new_la_no}" required title="Enter Child Gender" class="form-control">
+                                        <option disabled selected>--Select--</option>
+                                        <option value="MALE">Male</option>
+                                        <option value="FEMALE">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <Label class="control-label">Occupation</Label>
+                                    <input type="text" id="chSOccupation_${new_la_no}" required title="Enter Child Occupation" class="form-control" placeholder="Occupation">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <Label class="control-label">Living With You?</Label>
+                                    <select id="chSStayWithMember_${new_la_no}" required title="Enter Living With You" class="form-control">
+                                        <option disabled selected>--Select--</option>
+                                        <option value="YES">Yes</option>
+                                        <option value="NO">No</option>
+                                    </select>
+                                </div>
+                           </div>`
+        $('#new_chS').append(new_inputLa);
+        $('#total_chS').val(new_la_no);
+        getDatepickerf1('.datepickerJq1');
+    }
+    function removeChildrenDtl() {
+        let last_la_no = $('#total_chS').val();
+
+        if (last_la_no > 1) {
+            $('#ChildDtl_' + last_la_no).remove();
+            $('#total_chS').val(last_la_no - 1);
+        }
+    }
+    // #endregion
+
+    function addSpouseChildren() {
+        if ($("#formCMSpouseChild").valid()) {
+            let childrenList = storeChildrenDtl();
+            let children = JSON.stringify(childrenList);
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/SpouseChildren',
+                data: children,
+                contentType: "application/json; charset=utf-8",
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    displayTab('SpousePartial');
+                },
+                error: function () {
+                    alert('Operation Failed!')
+                }
+            });
+        }
+    }
+</script>

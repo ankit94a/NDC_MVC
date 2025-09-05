@@ -1,0 +1,81 @@
+﻿@model NDCWeb.Areas.Member.View_Models.LibraryMembershipCrtVM
+@{
+    ViewBag.Title = "LIBRARY MEMBERSHIP FOR COURSE PARTICIPANTS";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Component/cmsupify/uploadify.css" rel="stylesheet" />
+<div class="container shadow pt-2">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card col-md-9">
+            <div class="card-header" style="background-color:#fff">
+                <h4>@ViewBag.Title </h4>
+            </div>
+            <div class="card-body">
+                <p class="info text-justify border-bottom bg-light">
+                    R&R Centre is fully automated. The physical printed resources of Library are managed through library management software named KOHA. Books are issued to Course
+                    Participants through Biometric Device. The Officers are supposed to fill up the following details before commencing of the Course:
+                </p>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        @Html.LabelFor(model => model.LockerNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.LockerNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LockerNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        @Html.LabelFor(model => model.MemberName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.MemberName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MemberName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextAreaFor(model => model.Address, htmlAttributes: new { @class = "form-control editorHtml", rows = "5", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-8">
+                        @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <p class="info text-justify bg-light">
+                            This membership is only for this Course period. Course Officers desirous to continue the membership after the Course have to take the Life Membership by filling a membership form (available at NDC Potal) along with one time payment of Rs. 5000/ (Refundable).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center bg-white">
+                <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+                @*@Html.ActionLink("Back to List", "Index", null, new {@class ="btn btn-primary btn-sm" })*@
+            </div>
+        </div>
+    }
+</div>
+
+<div id="dialog" style="display: none">
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

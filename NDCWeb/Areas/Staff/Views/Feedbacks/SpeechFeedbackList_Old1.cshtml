@@ -1,0 +1,95 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.FeedbackSpeakerIndexVM>
+
+@{
+    ViewBag.Title = "Member's Feedback on Speech ";
+
+}
+
+<div class="container pt-2">
+    <div class="card mb-4">
+        <div class="card-header" style="background-color:#fff">
+            @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <table class="table" id="myTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Speech On Date")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Subject")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Topic")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Speaker")
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.QualityTalk)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RecomendForNextCourse)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Suggetions)
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.SpeechEvents.SpeechDate.ToString("dd MMM yyyy")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpeechEvents.Speakers.Topics.Subjects.SubjectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpeechEvents.Speakers.Topics.TopicName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpeechEvents.Speakers.FullName)
+                            </td>
+                            <td>
+                                @if (item.QualityTalk == "1")
+                                {
+                                    <span>Poor</span>
+                                }
+                                else if (item.QualityTalk == "2")
+                                {
+                                    <span>Average</span>
+                                }
+                                else if (item.QualityTalk == "3")
+                                {
+                                    <span>Very Good</span>
+                                }
+                                else if (item.QualityTalk == "4")
+                                {
+                                    <span>Excellent</span>
+                                }
+                            </td>
+                            <td>
+                                @(item.RecomendForNextCourse ? "Yes":"No")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Suggetions)
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        LoadJDT('#myTable');
+    </script>
+}

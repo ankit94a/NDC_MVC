@@ -1,0 +1,129 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.CircularCrtVM
+
+@{
+    ViewBag.Title = "CircularEntry";
+}
+
+<div class="container mt-4">
+    @using (Html.BeginForm("CircularEntry", "Circular", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="card mt-4  mb-4">
+                <div class="card-header" style="background-color:#fff">
+                    Circular(s) / Order(s)
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label" })
+                                @*@Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.GetCircularCat, "-- Select --", htmlAttributes: new { @class = "form-control", @disabled = "Disabled" })*@
+                                @Html.DropDownListFor(model => model.Category, (IEnumerable<SelectListItem>)ViewBag.GetCircularCat, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="Files" name="Files" class="control-label">Browse</label>
+                                <div class="col-md-10">
+                                    <input id="Files" type="file" name="Files" required multiple class="uploadify-button" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control editorHtml", rows = "5", autocomplete = "off", autocorrect = "off", value = "" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th> S.No. </th>
+                                        <th style="display:none;">  </th>
+                                        <th> Community </th>
+                                        <th> <input type="checkbox" name="chkShowAll" /> Show </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    
+                </div>
+                <div class="card-footer bg-white text-center">
+                    <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-sm" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            $('input[name="chkShowAll"]').click(function () {
+                $('input[name="selChkShow"]').not(this).prop('checked', this.checked);
+            });
+        });
+
+        $(document).ready(function () {
+            loadMenus();
+        })
+        function loadMenus() {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetCommunityList")',
+                dataType: "JSON",
+                data: { OrderId: 0 },
+                //data: { roleId: $("#RoleId").val() },
+                success: function (data) {
+                    var tableTb = $('#myTable tbody');
+                    tableTb.empty();
+                    if (data.flag == 0) {
+                        return;
+                    }
+                    var a = 0;
+                    $.each(data.menus, function (i, menudt) {
+                        var readchk = "";
+                        if (menudt.Show == true) {
+                            readchk = "checked";
+                        }
+                        a++;
+                        //tableTb.append('<tr><td>' + a.toString() + '</td> <td style="display:none;"><input type="checkbox" name="selChkbxMenuIds" value="' + menudt.MenuId + '" checked/></td> <td>' + menudt.MenuName + '</td> <td><input type="checkbox" name="selChkRead" value="' + menudt.MenuId + '" '+readchk+' /></td> <td><input type="checkbox" name="selChkWrite" value="' + menudt.MenuId + '" '+writechk+' /></td></tr>');
+                        tableTb.append(`
+                                <tr><td>${a.toString()}</td>
+                                    <td style="display:none;"><input type="checkbox" name="selChkbxDesignationId" value="${menudt.DesignationId}" checked/></td>
+                                    <td>${menudt.Designation}</td>
+                                    <td><input type="checkbox" name="selChkShow" value="${menudt.DesignationId}" ${readchk} /></td>
+                                </tr>
+                                `);
+                    })
+                },
+                error: function (ex) {
+                    alert('Something wents wrong!');
+                }
+            });
+        }
+        //$(document).ready(function () {
+        //    var table = $('#myTable').DataTable({
+        //        'responsive': true,
+        //        "columnDefs": [
+        //            { "visible": false, "targets": 1 },
+        //            { 'orderable': false, "targets": [0,1] }
+        //        ]
+        //    });
+        //});
+    </script>
+}
+
+
+
+

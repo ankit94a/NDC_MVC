@@ -1,0 +1,139 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CrsMemberPersonalIndxVM
+<div class="card mt-4">
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-hover">
+            <tr>
+                <td><img src="@Url.Content(Model.MemberImgPath)" class="img-thumbnail" width="120" /></td>
+                <td colspan="4" class="text-center">
+                    <img src="/images/NDC-Logo.png" width="80" /><br />
+                    <h4>
+                        <u>PERSONAL DETAILS</u>
+                    </h4>
+                </td>
+                <td colspan="2"><img src="@Url.Content(Model.JointImgPath)" class="img-thumbnail" width="120" /></td>
+            </tr>
+            <tr>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.FirstName)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.FirstName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MiddleName) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MiddleName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Surname)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Surname)</td>
+            </tr>
+            <tr>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.FatherName)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.FatherName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.FatherMiddleName) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.FatherMiddleName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.FatherSurname)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.FatherSurname)</td>
+            </tr>
+            <tr>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.MotherName)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MotherName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MotherMiddleName) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MotherMiddleName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MotherSurname)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MotherSurname)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.NickName)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.NickName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MobileNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MobileNo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.AlternateMobileNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.AlternateMobileNo)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.IndentificationMark)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.IndentificationMark)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.EmailId)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.EmailId) </td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.AlternateEmailId)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.AlternateEmailId)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.DOBirth)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.DOBirth)</td>
+                <td class="juipfname">Marital Status</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MaritalStatus)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.DOMarriage)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.DOMarriage)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">Gender</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Gender)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.BloodGroup)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.BloodGroup)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Height)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Height)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">CitizenshipCountry</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.CitizenshipCountries.CountryName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.VoterIdNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.VoterIdNo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.PANCardNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.PANCardNo)</td>
+            </tr>
+            <tr class="bg-2 text-white">
+                <td colspan="6"><b>Address for Communication</b></td>
+                @Html.DisplayFor(model => model.CommunicationAddress)
+            </tr>
+            <tr>
+                <td class="juipfname">Flat/House/Door No.</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeHouseNo)</td>
+                <td class="juipfname">Name of Premises/Building</td>
+                <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.OfficePremisesName)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">Area/Localitry/Post Office</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeArea)</td>
+                <td class="juipfname">Road/Street/Lane</td>
+                <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.OfficeStreet)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">Town/city/District</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeCity)</td>
+                <td class="juipfname">State/Union Territory</td>
+                <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.OfficeStates.StateName)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">Country</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeStates.Countries.CountryName)</td>
+                <td class="juipfname">Pin/Zip</td>
+                <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.OfficeZipCode)</td>
+            </tr>
+            <tr class="bg-2 text-white">
+                <td colspan="6"><b>Bigraphical Sketch</b></td>
+            </tr>
+            <tr>
+                <td class="juipfvalue" colspan="6">@Html.DisplayFor(model => model.BioSketch)</td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+    function testClick() {
+        $('#nav-home-tab').click();
+        editTab('PersonalDetailPartial');
+    //$('#nav-home-tab').click(function (e) {
+    //        //e.preventDefault()
+    //        let tabId = $(this).attr("href").substr(1);
+    //        $.ajax({
+    //            url: '/Member/CourseMember/' + tabId,
+    //            //cache: false,
+    //            type: "get",
+    //            dataType: "html",
+    //            success: function (response) {
+    //                $('#' + tabId).empty();
+    //                $('#' + tabId).append(response);
+    //            }
+    //        })
+    //        $(this).tab('show')
+    //    });
+    }
+</script>

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<NDCWeb.Models.FeedbackModule>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container pt-2">
+    <div class="card mb-4">
+        <div class="card-header">
+            @ViewBag.Title
+            <span class="pull-right">@Html.ActionLink("New Feedback", "addmodulefeedback", null, new { @class = "btn btn-primary btn-sm" })</span>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubjectId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CoordChairperson)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TopicForDelete)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TopicForAdition)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Suggestions)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SuggestChanges)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SuggestionOther)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CommentsAndRecomedation)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subjects.SubjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CoordChairperson)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TopicForDelete)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TopicForAdition)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Suggestions)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuggestChanges)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuggestionOther)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CommentsAndRecomedation)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ModuleFeedbackId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ModuleFeedbackId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ModuleFeedbackId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+</div>

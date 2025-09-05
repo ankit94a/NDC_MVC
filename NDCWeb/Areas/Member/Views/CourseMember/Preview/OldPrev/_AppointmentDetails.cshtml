@@ -1,0 +1,57 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CrsMbrAppointmentVM
+<div class="card mt-4">
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="5">APPOINTMENT DETAILS (PRESENT)</td>
+                @*<td><a class="btn btn-danger btn-sm" data-toggle="tab" href="#AppointmentPartial" onclick="editTab('AppointmentPartial')">EDIT THIS SECTION</a></td>*@
+                <td><a class="btn btn-danger btn-sm float-right" data-toggle="tab" href="#ServicePartial" onclick="serviceEditClick('AppointmentPartial', 'E')">EDIT THIS SECTION</a></td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Designation)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.Designation)</td>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.Organisation)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Organisation)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Location) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Location)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Ranks.RankName)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Ranks.RankName)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Service)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Service)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Branch)</td>
+                <td class="juipfvalue" colspan="2">@Html.DisplayFor(model => model.Branch)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.ServiceNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.ServiceNo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.DOJoining)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.DOJoining)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.DOSeniority)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.DOSeniority)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    //function testclick(e) {
+    //    //let tabId = $(e).attr("href").substr(1);
+    //    var link = document.getElementById("nav-allpreview-tab");
+    //    link.setAttribute('class', 'nav-item nav-link');
+    //    link.setAttribute('aria-selected', "false");
+    //    let tabId = 'AppointmentPartial';
+    //    $.ajax({
+    //        url: '/Member/CourseMember/' + tabId,
+    //        data: { mode: 'E' },
+    //        type: "get",
+    //        dataType: "html",
+    //        success: function (response) {
+    //            $('#' + tabId).empty();
+    //            $('#' + tabId).append(response);
+    //        }
+    //    })
+    //    $(this).tab('show')
+    //}
+</script>

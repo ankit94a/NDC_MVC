@@ -1,0 +1,185 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CrsMbrAppointmentCrtVM
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCMAppointment" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="card mt-4">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Branch of Service</label>
+                        @Html.DropDownListFor(model => model.Service, (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                        @Html.ValidationMessageFor(model => model.Service, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.ServiceNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.ServiceNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ServiceNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Rank/Status</label>
+                        @Html.DropDownList("RankId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                        @Html.ValidationMessageFor(model => model.RankId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Branch</label>
+                        @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" for="DOJoining">Date of Joining/ Commissioning</label>
+                        @Html.EditorFor(model => model.DOJoining, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.DOJoining, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.DOSeniority, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.DOSeniority, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.DOSeniority, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="card-header" style="background-color:#fff">
+                Present Appointment Details
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.Organisation, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Organisation, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Organisation, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @disabled = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label"><b>Are you working as DA/MA?</b></label>
+                        <div class="form-inline">
+                            <label class="containerchk col-md-1">
+                                Yes @Html.RadioButtonFor(model => model.WorkingAsDAMA, "Yes", new { id = "workingasdama-true" })
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="containerchk col-md-1">
+                                No @Html.RadioButtonFor(model => model.WorkingAsDAMA, "No", new { id = "workingasdama-false" })
+                                <span class="checkmark"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.WorkingAsDAMA, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 dvDaMa">
+                        @Html.LabelFor(model => model.WorkingAsDAMADetails, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.WorkingAsDAMADetails, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.WorkingAsDAMADetails, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center bg-white">
+                <input type="button" id="btnSave" value="Save" onclick="appointmentAdd()" class="btn btn-primary btn-lg" />
+            </div>
+            <div class="card-header">
+                @Html.ValidationSummary(false, "Please fix the following error and then submit the form:-", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $('#Service').val('@Model.Service');
+        getDatepickerf1('.datepickerJq1');
+
+        if ('@ViewData["SelectedRank"]' != null) {
+            bindrank();
+        }
+        $("#Service").change(function () {
+            $("#RankId").empty();
+            bindrank();
+        });
+    });
+    function fillAppointment() {
+        let appointment = {
+            Designation: $("#Designation").val(),
+            Organisation: $("#Organisation").val(),
+            Location: $("#Location").val(),
+
+            DOJoining: $("#DOJoining").val(),
+            DOSeniority: $("#DOSeniority").val(),
+            ServiceNo: $("#ServiceNo").val(),
+            Branch: $("#Branch").val(),
+            Service: $("#Service").val(),
+            RankId: $("#RankId").val(),
+
+            WorkingAsDAMA: $('input[name="WorkingAsDAMA"]:checked').val(),
+            WorkingAsDAMADetails: $("#WorkingAsDAMADetails").val(),
+        }
+        return appointment;
+    }
+
+    function appointmentAdd() {
+        if ($("#formCMAppointment").valid()) {
+            let appointment = fillAppointment();
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/Appointment',
+                data: appointment,
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    toastr.info(textStatus);
+                    //displayTab('AppointmentPartial');
+                    displayTab('ServicePartial');
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+    }
+
+    function bindrank() {
+        $.ajax({
+            type: 'get',
+            url: '/api/rankMasters/GetRanks/service/' + $('#Service').val(),
+            datatype: 'json',
+            success: function (ranks) {
+                $.each(ranks, function (i, rank) {
+                    $('#RankId').append('<option value="' + rank.Value + '">' + rank.Text + '</option>');
+                });
+                if ('@ViewData["SelectedRank"]' != 0) {
+                    $("#RankId").val('@ViewData["SelectedRank"]');
+                }
+            },
+            error: function () {
+                toastr.error('Operation Failed!');
+            }
+        });
+    }
+
+    //DA MA
+    $(document).ready(function () {
+        changeDAMA();
+    });
+    $('#workingasdama-true').change(function () {
+        changeDAMA();
+    });
+    $('#workingasdama-false').change(function () {
+        changeDAMA();
+    });
+    function changeDAMA() {
+        if ($('#workingasdama-true').is(":checked"))
+            $(".dvDaMa").show();
+        else
+            $(".dvDaMa").hide();
+    }
+    // #endregion
+</script>

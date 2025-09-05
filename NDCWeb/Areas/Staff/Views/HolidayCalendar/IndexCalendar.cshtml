@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "";
+}
+
+<h2></h2>
+<div id="calendar"></div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><span id="eventTitle"></span></h4>
+            </div>
+            <div class="modal-body  ml-2">
+                <p id="pDetails"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f3fbfa;
+    }
+
+    tr :nth-child(1) {
+        font-weight: bold;
+    }
+
+    td {
+        padding: 3px 3px !important;
+    }
+
+    .fc-center h2 {
+        font-size: 1.88em !important;
+        margin-top: 0.5em !important;
+        font-weight: 400 !important;
+    }
+
+    a.fc-more {
+        color: red !important;
+    }
+
+    .fc-event {
+        position: relative;
+        display: block;
+        font-size: 0.1em;
+        line-height: 1.3;
+        border-radius: 3px;
+        border: 1px solid #3a87ad;
+        font-weight: 400;
+    }
+
+    td.fc-other-month {
+        visibility: hidden;
+    }
+</style>
+
+
+@section scripts{
+    @*<script src="~/Component/js/carousel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>*@
+    <script>
+        $(document).ready(function () {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                url: "/HolidayCalendar/GetHolidayCalendra",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            HolidayType: v.HolidayType,
+                            description: v.Description,
+                            start: moment(v.StartDate),
+                            end: moment(v.EndDate),
+                            color: v.ColorCode,
+                            allDay: 'false',
+                        });
+                    })
+
+                    GenerateCalender(events);
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+
+            function GenerateCalender(events) {
+                $('#calendar').fullCalendar('destroy');
+                $('#calendar').fullCalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: ''
+                    },
+                    eventLimit: false,
+                    eventColor: '#FFFFFF',
+                    events: events,
+                    eventClick: function (calEvent, jsEvent, view) {
+                        $('#myModal #eventTitle').text(calEvent.HolidayType);
+                        $('#myModal #pDetails').empty().html(calEvent.description);
+                        $('#myModal').modal();
+                    },
+                    eventRender: function (event, element, view) {
+                        if (event.start.month() !== view.intervalStart.month()) { return false; }
+                    }, 
+                })
+            }
+        })
+    </script>
+}

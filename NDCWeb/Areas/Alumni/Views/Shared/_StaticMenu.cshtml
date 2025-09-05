@@ -1,0 +1,66 @@
+﻿<div id="main-nav" class="navigation-bg" style="display: none;">
+    <nav>
+        <div class="container">
+            <ul class='clearfix sf-menu' id='example'>
+                <li><a title='Home' href='/alumni/'><i class='fa fa-home'></i></a></li>
+                <li><a title='My Profile' href='/alumni/profile/'>My Profile</a></li>
+                @*<li class='has-sub'>
+            <a href='/alumni/'>Online Upload</a>
+            <ul>
+                <li class='selected'><a href='/alumni/home/submitarticle/'>Submit Articles for Submission Theme</a></li>
+            </ul>
+        </li>*@
+                <li><a href='/alumni/alumniconnectwith/mycoursemates'>My Course Members</a></li>
+                <li class='has-sub'>
+                    <a title='About NDC' href='/alumni/' class='has-sub'>NDC Connect</a>
+                    <ul>
+                        <li><a href='~/Flipbook/index.html' title="Alumni News Letter" target="_blank">Alumni News Letter</a></li>
+                        <li><a href='/alumni/participant/library/ndc-publications' target="_blank">NDC Journal</a></li>
+                        <li><a href='/alumni/AlumniArticle/Index' target="_blank">Upload Article</a></li>
+                        @*<li><a href='https://ndclibrary.in/' target="_blank" title="Membership required">Library</a></li>*@
+                        <li><a href='/alumni/participant/coffee-table-book' target="_blank">Coffee Table Book</a></li>
+                        <li><a href='/alumni/Home/Memento' target="_blank">Alumni Memento</a></li>
+
+                    </ul>
+                </li>
+
+                @*<li class=has-sub>
+            <a href='/alumni/'>Connect with </a>
+            <ul>
+                <li><a href='/alumni/alumniconnectwith/currentcourse'>Current Course Participants</a></li>
+                <li><a href='/alumni/alumniconnectwith/mycoursemates'>Course Member</a></li>
+                <li><a href='/alumni/alumniconnectwith/otheralumni'>Other Alumni</a></li>
+            </ul>
+        </li>*@
+                <li>
+                    <a title='About NDC' href='/alumni/home/alumnifeedback/' class='has-sub'>Feedback</a>
+                </li>
+                @*<li><a href='/home/faqs' target="_blank">FAQs</a></li>*@
+                <li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a href="javascript: document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out" title="Log out"></i> Log Out </a>
+                        }
+                    }
+
+                </li>
+            </ul>
+            <style type="text/css">
+                .sf-menu li a{
+                    padding:8px 34px !important
+                }
+                .menuchang {
+                    background-image: url('images/new.gif');
+                    background-repeat: no-repeat;
+                    padding-right: 5px;
+                    background-position: top;
+                }
+            </style>
+
+        </div>
+    </nav>
+</div>
+

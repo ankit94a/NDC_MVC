@@ -1,0 +1,31 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CrsMbrVehicleStickerIndxVM>
+<table id="tblCountryVisit" class="table table-condensed table-bordered">
+    <thead>
+        <tr class="bg-2 text-white">
+            <td colspan="7">Vehicle Sticker</td>
+        </tr>
+        <tr class="bg-light">
+            <td class="juipfname">@Html.DisplayNameFor(model => model.BrandModelNo)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Colour)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.RegistrationNo) </td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.DrivingLicenseNo) </td>
+            <td class="juipfname">Registration Certificate</td>
+            <td class="juipfname">Driving License</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.BrandModelNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Colour)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.RegistrationNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.DrivingLicenseNo)</td>
+                <td class="juipfvalue"><a target="_blank" href="@Url.Content(item.RegistrationCertificatePath ?? "#")">Registration File</a></td>
+                <td class="juipfvalue"><a target="_blank" href="@Url.Content(item.DrivingLicensePath ?? "#")">Driving License</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

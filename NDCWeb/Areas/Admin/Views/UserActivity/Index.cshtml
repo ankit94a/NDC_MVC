@@ -1,0 +1,78 @@
+﻿@model IEnumerable<NDCWeb.View_Models.UserActivityVM>
+{@{
+        ViewBag.Title = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="main-card  card">
+    <div class="card-body">
+        <h5 class="card-title">Activity Log:- List of Activities</h5>
+        <div class="pull-right">
+        </div>
+        <table class="display table table-striped table-hover" cellspacing="0" width="100%" id="myTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Url)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Data)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IpAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ActivityDate)
+                    </th>
+                    @*<th></th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ActivityId</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Url)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Data)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IpAddress)
+                        </td>
+                        <td>
+                            @item.ActivityDate.ToShortDateString()
+                        </td>
+                        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ActivityId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ActivityId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ActivityId })
+        </td>*@
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

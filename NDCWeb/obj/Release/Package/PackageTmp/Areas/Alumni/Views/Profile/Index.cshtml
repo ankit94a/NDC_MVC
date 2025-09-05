@@ -1,0 +1,163 @@
+﻿@model NDCWeb.View_Models.AlumniIndxVM
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Alumni/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background-color: #f3fbfa;
+    }
+</style>
+
+<link rel="stylesheet" href="/Component/css/gallery/css/animate.min.css" />
+<link rel="stylesheet" href="/Component/css/gallery/css/jquery.desoslide.min.css">
+<link href="/Component/Custom/css/intlTelInput.css" rel="stylesheet" />
+<link href="/Component/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/mainjs")
+
+<div class="container mt-4 mb-4">
+    <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="d-flex flex-column align-items-center text-center">
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <img src="@Url.Content(ViewBag.ProfilePic ??  ViewBag.ProfilePic )" alt="@ViewBag.fullname" title="@ViewBag.fullname" class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h4>@ViewBag.fullname</h4>
+                                <p class="text-secondary mb-1">@Model.CourseSerNo @Model.NdcEqvCourse </p>
+                                <p class="text-muted font-size-sm"></p>
+
+                                @*@Html.ActionLink("Edit", "AlumniProfile", new { alumniid = Model.AluminiId }, new { @class = "btn btn-outline-primary btn-sm" })*@
+                                @Html.EncodedActionLink("Edit", "AlumniProfile", "Profile", "Alumni", new { alumniid = Model.AluminiId }, new { @class = "btn btn-outline-primary btn-sm" }, "")
+                                <button class="btn btn-outline-primary btn-sm" onclick="javascript: document.getElementById('logoutForm').submit()">Logout </button>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Username</h6>
+                        <span class="text-secondary">@Html.DisplayFor(model => model.Email)</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Updated On</h6>
+                        <span class="text-secondary">
+                            @if (Model.LastUpdatedAt != null)
+                            {
+                                @Html.DisplayFor(model => model.LastUpdatedAt)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.RegDate)
+                            }
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Rank & Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.ServiceRank) @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.Surname)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @if (!string.IsNullOrEmpty(Model.Email))
+                            {
+                                <span>@AESEncrytDecry.MaskEmail(Model.Email).ToString()</span>
+                            }
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @if (!string.IsNullOrEmpty(Model.MobileNo))
+                            {
+                                <span>@AESEncrytDecry.MaskMobile(Model.MobileNo).ToString()</span>
+                            }
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Course Year</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.CourseYear)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Date of Marriage</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.RegDate)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Decoration (if any)</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.Decoration)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Address</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.PermanentAddress)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Residential Address</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Prefered Address for communication</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.NdcCommunicationAddress)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

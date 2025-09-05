@@ -1,0 +1,148 @@
+﻿
+@model NDCWeb.Areas.Member.View_Models.MPhilMemberEnrolACKVM
+<div class="container shadow p-3 mb-5 bg-white rounded">
+    <div class="row">
+        <div class="col-md-9 text-center">
+            <p class="float-right">Locker No..........</p><br />
+            <h5><u>UNIVERSITY OF MADRAS</u></h5><br />
+            <img src="/images/NDC-Logo.png" width="80" />
+            <h5>
+                <b>NATIONAL DEFENCE COLLEGE</b><br />
+                (AUTONOMOUS STATUS)<br />
+                ADMISSION TO THE MASTER OF PHILOSOPHY (M.PHIL) <br />
+                PROGRAMMES IN AFFILATAE D COLLEGES/INSTITUTIONS FOR THE ACADEMIC<br />
+                YEAR 2021-22
+            </h5>
+
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-10">
+                    <table class="table table-light border">
+                        <tr>
+                            <td>1. Name of the College applied to:</td>
+                            <td><b> @Html.DisplayFor(model => model.CollegeApplied)</b></td>
+                        </tr>
+                        <tr>
+                            <td>2. Subject: </td>
+                            <td><b>  @Html.DisplayFor(model => model.Subject)</b></td>
+                        </tr>
+                        <tr>
+                            <td>3.	Name of the Applicant (In English):</td>
+                            <td><b>   @Html.DisplayFor(model => model.ApplicantNameEnglish)</b></td>
+                        </tr>
+                        <tr>
+                            <td> &nbsp; &nbsp; Name of the Applicant (In Vernacular):</td>
+                            <td><b>   @Html.DisplayFor(model => model.ApplicantNameVernacular)</b></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                4.	a. <u>Permanent Address</u>:<br />
+                                <b>   @Html.DisplayFor(model => model.PermanentAddress)<br /> </b>
+                                Pin Code -  <b> @Html.DisplayFor(model => model.PermanentPin)</b><br />
+                                Mobile No - <b> @Html.DisplayFor(model => model.PermanentMob)</b>
+                                e-mail - <b> @Html.DisplayFor(model => model.EmailId)</b>
+                            </td>
+                            <td>
+                                b. <u>Address for Communication</u><br />
+                                <b>   @Html.DisplayFor(model => model.CommunicationAddress)<br /> </b>
+                                Pin Code -  <b> @Html.DisplayFor(model => model.CommunicationPin)</b><br />
+                                Mobile No - <b> @Html.DisplayFor(model => model.CommunicationMob)</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> 5.   Date of Birth:</td>
+                            <td><b>   @Html.DisplayFor(model => model.DOBirth)</b></td>
+                        </tr>
+                        <tr>
+                            <td> 6.   Name of Father / Husband :</td>
+                            <td><b>   @Html.DisplayFor(model => model.FatherName)</b></td>
+                        </tr>
+                        <tr>
+                            <td> 7.   Sex :<b>@Html.DisplayFor(model => model.Gender)</b> </td>
+                            <td> 8.   Nationality :<b>@Html.DisplayFor(model => model.Nationality)</b></td>
+                        </tr>
+                        <tr>
+                            <td> 9.   Name of Community : </td>
+                            <td> <b>@Html.DisplayFor(model => model.Community)</b></td>
+                        </tr>
+                        <tr>
+                            <td> 10.   Specify physical handicap : </td>
+                            <td> <b>@Html.DisplayFor(model => model.PhysicalHandicap)</b></td>
+                        </tr>
+                        <tr>
+                            <td> 11.	Number of years studied in School and College : </td>
+                            <td> <b>@Html.DisplayFor(model => model.YearsStudies)</b></td>
+                        </tr>
+                        <tr>
+                            <td> 12.	Qualification of the applicant.	Degree :<br />Subject (Main): </td>
+                            <td> <b>@Html.DisplayFor(model => model.DegreeName)<br />@Html.DisplayFor(model => model.SubjectMain)</b></td>
+                        </tr>
+                        <tr>
+                            <td> 13.	Name of the Institution/College and University where studied: </td>
+                            <td> <b>@Html.DisplayFor(model => model.UniversityCollegeStudied)</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"> 14.	Provide details of Post Graduate Study: </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-info">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Regn No</th>
+                                <th rowspan="2">Month & Year of Passing</th>
+                                <th rowspan="2">Title of the Paper</th>
+                                <th colspan="2">Marks Awarded</th>
+                                <th colspan="2">Max Marks</th>
+                            </tr>
+                            <tr>
+                                <th>IA<small> (Internal Assessment)</small></th>
+                                <th>UA<small> (University Examination)</small></th>
+                                <th>IA<small> (Internal Assessment)</small></th>
+                                <th>UA<small> (University Examination)</small></th>
+                            </tr>
+                        </thead>
+                        <tbody id="new_pg" class="bg-white">
+                            <tr>
+                                <td>@Html.DisplayFor(model => model.UniversityCollegeStudied)</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table border">
+                        <tr>
+                            <td colspan="2"><b> 15.   Enclosures (Upload attested copies only)</b></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="IsMarksStatementDocPath" @{if (Model.IsMarksStatementDocPath == true) { <text> checked </text>  } } /> Statement of Marks <br />
+                                <input type="checkbox" name="IsCourseCertificateDocPath" @{if (Model.IsCourseCertificateDocPath == true) { <text> checked </text>  } } /> Equivalent Course Certificate<br />
+                                <input type="checkbox" name="IsMemberImgPath" @{if (Model.IsMemberImgPath == true) { <text> checked </text>  } } /> Photo
+                            </td>
+                            <td>
+                                <input type="checkbox" name="IsPostGradDegreeDocPath" @{if (Model.IsPostGradDegreeDocPath == true) { <text> checked </text>  } } /> Post Graduate Degree <br />
+                                <input type="checkbox" name="IsTranslatedCopyEngDocPath" @{if (Model.IsTranslatedCopyEngDocPath == true) { <text> checked </text>  } } /> Translated Copies in English
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>16.   Any other information which you would like to present in support of your application:</td>
+                            <td><b>@Html.DisplayFor(model => model.AnyOtherInformation)</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><u><b> DECLARATION BY THE APPLICANT</b></u></td>
+                        </tr>
+                        <tr><td colspan="2">@Html.DisplayFor(model => model.Undertaking)I hereby declare tat the particulars furnished above are correct. I agree that the authorities may invalidate my application, at any time, if any of the information furnished is found to be false. I am aware that my eligibility for admission for a course will be decided by the concerned admitting authority.</td></tr>
+                    </table>
+                </div>
+                <div class="col-md-2">
+                    <img src="@Url.Content(Model.MemberImgPath)" width="120" height="120" class="border-dark" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

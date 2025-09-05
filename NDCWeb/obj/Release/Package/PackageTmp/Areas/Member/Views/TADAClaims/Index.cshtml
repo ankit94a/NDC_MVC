@@ -1,0 +1,93 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.TADAClaimsIndexVM>
+
+@{
+    ViewBag.Title = "TA/DA Claims";
+
+}
+
+<div class="container">
+   <h4>@ViewBag.Title</h4>
+    <p class="float-right">
+        @Html.ActionLink("Create New", "TADAClaimsEntry",null, new {@class="btn btn-primary btn-sm" } )
+    </p>
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CDAACNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BasicPay)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MSP)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PayLevel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MobileNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BankNameAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PayACOffcAddress)
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CDAACNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BasicPay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MSP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MobileNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BankNameAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayACOffcAddress)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("TADAClaimsEdit", new { id=item.TADAId })"><i class="fa fa-edit"></i></a> |
+
+                        <a href="@Url.Action("TADAClaimsEdit", new { id=item.TADAId })"><i class="fa fa-print"></i></a> |
+
+                        <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.TADAId, this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

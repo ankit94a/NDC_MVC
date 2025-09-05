@@ -1,0 +1,167 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.AddStatusLeaveInfoListVM>
+
+@{
+    ViewBag.Title = "Leave Details";
+}
+<div class="container-fluid mt-4 mb-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+            
+        </div>
+        <div class="card-body">
+            <table class="table w-100" id="myTable" style="font-size:12px">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Locker No
+                        </th>
+                        <th>
+                            Leave Category
+                        </th>
+                        <th>
+                            Leave Type
+                        </th>
+                        <th>
+                            From Date
+                        </th>
+                        <th>
+                            To Date
+                        </th>
+                        <th>
+                            Total Days
+                        </th>
+                        <th>
+                            Prefix From
+                        </th>
+                        <th>
+                            Prefix To
+                        </th>
+                        <th>
+                            Suffix From
+                        </th>
+                        <th>
+                            Suffix To
+                        </th>
+                        <th>
+                            Reason For Leave
+                        </th>
+                        <th>
+                            Address On Leave
+                        </th>
+                        <th>
+                            Tele No
+                        </th>
+                        <th>
+                            Recommend By Embassy
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LockerNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveCategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FromDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ToDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalDays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrefixDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrefixToDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuffixDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuffixToDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReasonForLeave)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AddressOnLeave)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeleNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RecommendByEmbassy)
+                        </td>
+                        <td>
+                            @if (item.StaffType == "AQ")
+                            {
+                                @Html.DropDownList("ddl_staffStatus", (IEnumerable<SelectListItem>)ViewBag.AQStatus, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            }
+                            else if (item.StaffType == "IAG")
+                            {
+                                @Html.DropDownList("ddl_staffStatus", (IEnumerable<SelectListItem>)ViewBag.IAGStatus, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            }
+                            else if (item.StaffType == "SSDS")
+                            {
+                                @Html.DropDownList("ddl_staffStatus", (IEnumerable<SelectListItem>)ViewBag.SSDSStatus, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            }
+                            <input type="hidden" name="hdnStaffType" value="@item.StaffType">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-xs" onclick="updateStatus(@item.LeaveId, this)"><i class="fa fa-check"></i></button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-center">
+            @Html.ActionLink("View All Leaves", "ShowCompleteLeaveStatusList",null,new { @class="btn btn-primary btn-sm"})
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        LoadJDT('#myTable');
+        function updateStatus(leaveid, e) {
+            let row = $(e).closest("tr");
+            let status = row.find('select[name="ddl_staffStatus"] option:selected').val();
+            let staffType = row.find('input[name="hdnStaffType"]').val();
+
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("StaffLeaveStatusAdd")',
+                data: { leaveId: leaveid, status: status, staffType: staffType },
+                datatype: 'json',
+                success: function (textStatus) {
+                    toastr.info(textStatus);
+                },
+                error: function () {
+                    toastr.error('Server Not Found');
+                }
+            });
+        }
+
+    </script>
+}

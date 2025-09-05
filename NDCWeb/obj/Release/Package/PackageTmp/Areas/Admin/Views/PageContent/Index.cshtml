@@ -1,0 +1,68 @@
+﻿@model IEnumerable<NDCWeb.Areas.Admin.View_Models.PageContentCompleteIndxVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Page (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","PageContent")" class="btn-shadow mb-3 mt-0 btn btn-primary">Create Page</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Menu Area
+                    </th>
+                    <th>
+                        Parent
+                    </th>
+                    <th>
+                        Menu Name
+                    </th>
+                    <th>
+                        Menu Slug
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuArea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ParentMenuName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SlugMenu)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.PageContentId })" class="text-primary btn-xs"><i class="fa fa-edit"></i></a>|
+                        <a href="@Url.Action("PagePreview", new { id = item.PageContentId })" target="_blank" class="text-primary btn-xs"><i class="fa fa-eye"></i></a>|
+                        <a class="text-danger btn-xs" onclick="Delete(@item.PageContentId, this)"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

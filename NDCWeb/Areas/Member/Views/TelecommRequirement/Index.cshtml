@@ -1,0 +1,71 @@
+﻿@model NDCWeb.Areas.Member.View_Models.TelecommRequirementIndexVM
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Requisition form - Telephone & Internet";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mb-4 mt-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <div class="shadow p-3 mb-5 bg-white rounded" id="printDv">
+                <div class="row p-4">
+                    <div class="col-md-12 text-center">
+                        <p class="float-right">Form-V</p><br />
+                        <img src="/images/NDC-Logo.png" width="80" />
+                        <br />
+                        <h5 class="text-uppercase"><u>@ViewBag.Title</u></h5>
+                    </div>
+
+                    <table class="table table-light">
+                        <tr>
+                            <td class="juipfname">Full Name</td>
+                            <td><b>@Model.FullName</b></td>
+                        </tr>
+                        <tr>
+                            <td class="juipfname">Accommodation Form - Qtr Allotment. Post receipt activity is undertaken</td>
+                            <td><b>@Model.HouseNo</b></td>
+                        </tr>
+                        <tr>
+                            <td class="juipfname">Do you require internet (FTTH) at Residence</td>
+                            <td>
+                                <b>@(Model.ReqInternet == true? "Yes" : "No")</b><br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="juipfname">
+                                Address where Internet is required
+                            </td>
+                            <td><b>@Model.ResidentialComplex</b></td>
+                        </tr>
+                        <tr>
+                            <td class="juipfname">
+                                Type of Connection required
+                            </td>
+                            <td><b>@Model.TypeOfConnection</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="juipfname"><strong><u>NOTE</u></strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="juipfname">
+                                <p>(a) Civil Landline connection from College at Raksha Bhawan Residences will be available only for ITEC officers.</p>
+                                <p>
+                                    (b) Intercom facility at Raksha Bhawan is available for all Residences at Raksha Bhawan
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.TelecommReqId }, new { @class = "btn btn-primary" })*@
+            @Html.EncodedActionLink("Edit", "Edit", "TelecommRequirement", "member", new { id = Model.TelecommReqId }, new { @class = "btn btn-primary" }, "")
+            <a href="" class="btn btn-primary" onclick="print()">Print</a>
+        </div>
+    </div>
+</div>

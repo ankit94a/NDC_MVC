@@ -1,0 +1,79 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.OtherRequestCrtVM
+@{
+    ViewBag.Title = "Send forgot password request to Admin.";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAuth.cshtml";
+}
+<style>
+    .modal-header {
+        text-align: center !important;
+    }
+</style>
+<div class="modal-dialog w-100 mx-auto">
+    <div class="modal-content">
+        <div class="modal-header bg-white" style="text-align:center !important">
+            <h3> Forgot Password Request</h3>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                @*@HtmlHelper.UnobtrusiveJavaScriptEnabled;*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="position-relative input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                            </div>
+                            @Html.TextBoxFor(model => model.UserId, new { @class = "form-control", @placeholder = "Enter Username/Login Id", autocomplete = "off", autocorrect = "off", value = "", oncopy = "return false", onpaste = "return false" })
+                            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="position-relative input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2"><i class="fa fa-user-lock"></i></span>
+                            </div>
+                            @Html.TextBoxFor(model => model.LockerNo, new { @class = "form-control", @placeholder = "Enter Locker No.", autocomplete = "off", autocorrect = "off", value = "", oncopy = "return false", onpaste = "return false" })
+
+                        </div>
+                        <div class="position-relative input-group mb-3">
+                            @Html.ValidationMessageFor(model => model.LockerNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="position-relative input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2"><i class="fa fa-mobile"></i></span>
+                            </div>
+                            @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", @placeholder = "Enter Mobile No.", autocomplete = "off", autocorrect = "off", value = "", oncopy = "return false", onpaste = "return false" })
+                            @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="position-relative input-group mb-3 d-flex justify-content-center alert alert-info">
+                            <div style="margin: auto;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon2"><i class="fa fa-robot mr-2"></i> <img src="/Captcha/GetCaptchaImage" title="Captcha" class="img-responsive img-thumbnail mr-2" /><a class="btn btn-outline-dark" href="forgot"><i class="fa fa-recycle"></i></a></span>
+                                </div>
+
+                                <input type="text" class="form-control w-100 align-self-center" name="VfyCaptcha" placeholder="Type the characters shown" required autocomplete="off" autocorrect="off" value="" oncopy="return false" onpaste="return false" />
+                                <p class="text-danger">@ViewBag.CaptchaError</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer clearfix bg-white">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+                <a href="@Url.Action("Login","Auth")" class="btn-link">Back to Login Page</a>
+                <a href="/" class="btn-lg btn btn-link"><i class="fa fa-home"></i></a>
+            </div>
+
+        }
+
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            document.getElementById("MobileNo").setAttribute("autocomplete", "off")
+        });
+    </script>
+}

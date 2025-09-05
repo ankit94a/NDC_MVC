@@ -1,0 +1,21 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.NewsArticleIndxVM
+@{
+    ViewBag.Title = "Article";
+}
+<div class="container bg-white">
+    <div class="card mt-4 shadow">
+        <div class="card-header">
+            &nbsp;&nbsp; @Model.Headline
+        </div>
+        <div class="card-body">
+            <div class="content-area">
+                <div class="field-content">
+                    @Html.Raw(@Model.Description)
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center bg-white">
+            <a href="/staff/home/" class="btn btn-primary btn-sm">Back</a>
+        </div>
+    </div>
+</div>

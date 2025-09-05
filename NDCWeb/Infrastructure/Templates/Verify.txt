@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html>
+<body style="color:grey; font-size:15px;font-family:'Verdana', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:#000;">
+    <font face="Helvetica, Arial, sans-serif"></font>
+        <div style="position:absolute; width:50%; background-color:#9af1f7; padding:20px 0 20px 20px;">
+            <img src="https://ndc.techbrills.com/images/ndc-logo.png"/>
+        </div>
+        <div style="background-color: #ece8d4; width:50%; height:200px; padding:10px 0 20px 20px; position:absolute;">
+            <p>Dear {0},<p>
+			<p>{1}</p>
+                <br />
+			<p><small>You received this message because your email is registered with NDC Online Portal Developed and Maintained by <a href="http://createch-software.com">Createch Software Pvt. Ltd. New Delhi, INDIA</a></small></p>
+        </div>
+</body>
+</html>

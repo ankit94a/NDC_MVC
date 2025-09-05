@@ -1,0 +1,96 @@
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csprojAssemblyReference.cache
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\New Website\WEBSITE Source Code\Repos\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb
+E:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\New Website\WEBSITE Source Code\PSLRepo\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb
+D:\Yogendra Projects\NDC NEW 13072023_1556\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\Yogendra Projects\NDC NEW 13072023_1556\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\Yogendra Projects\NDC NEW 13072023_1556\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\Yogendra Projects\NDC NEW 13072023_1556\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\Yogendra Projects\NDC NEW 13072023_1556\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\Yogendra Projects\NDC NEW 13072023_1556\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\NDC for Audit 2023\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\NDC for Audit 2023\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\NDC for Audit 2023\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\Projects\NDC\NDC3\NDC for Audit 2023\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\Projects\NDC\NDC3\NDC for Audit 2023\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\NDC for Audit 2023\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb
+D:\Yogendra Projects\NDC for Audit 2023\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\Yogendra Projects\NDC for Audit 2023\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\Yogendra Projects\NDC for Audit 2023\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\Yogendra Projects\NDC for Audit 2023\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\Yogendra Projects\NDC for Audit 2023\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\Yogendra Projects\NDC for Audit 2023\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll.config
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\AngleSharp.Css.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\AngleSharp.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Buffers.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Collections.Immutable.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Memory.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Numerics.Vectors.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Text.Encoding.CodePages.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\AngleSharp.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\AngleSharp.Css.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Buffers.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Collections.Immutable.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Memory.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Numerics.Vectors.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\bin\Debug\System.Text.Encoding.CodePages.xml
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.1E10160B.Up2Date
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\New Website\NDC CIRA\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll.config
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\NTierDGR.Common.pdb
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\AngleSharp.Css.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\AngleSharp.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Buffers.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Collections.Immutable.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Memory.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Numerics.Vectors.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Text.Encoding.CodePages.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\AngleSharp.xml
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\AngleSharp.Css.xml
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Buffers.xml
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Collections.Immutable.xml
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Memory.xml
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Numerics.Vectors.xml
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\bin\Debug\System.Text.Encoding.CodePages.xml
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.AssemblyReference.cache
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.csproj.CoreCompileInputs.cache
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.1E10160B.Up2Date
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.dll
+D:\Codebase\NDCWeb_Live\NDCWeb\NTierDGR.Common\obj\Debug\NTierDGR.Common.pdb

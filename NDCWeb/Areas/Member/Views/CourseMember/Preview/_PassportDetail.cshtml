@@ -1,0 +1,83 @@
+﻿@model NDCWeb.Areas.Member.View_Models.PassportDetailIndxVM
+<div class="card mt-4">
+    <div class="card-header">
+        PASSPORT DETAILS
+    </div>
+    <div class="card-body">
+        <a class="btn btn-danger btn-sm float-right" data-toggle="tab" href="#PassportPartial" onclick="displayTab('PassportPartial')">EDIT THIS SECTION</a>
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="8">PASSPORT (SELF)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.HoldingPassport)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.HoldingPassport)</td>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.MemberPassportNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportNo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPassportIssueDate) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportIssueDate)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPassportValidUpto) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportValidUpto)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPassportType) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportType)</td>
+                <td class="juipfname">PASSPORT FILE </td>
+                <td class="juipfvalue" colspan="5">
+                    @if (Model.MemberPassportImgPath != null && Model.MemberPassportImgPath != "#")
+                    {
+                    <img src="@Url.Content(Model.MemberPassportImgPath)" class="img-thumbnail" width="120" />
+                    }
+                    else
+                    {
+                        @: <b>N/A</b>
+                    }                    
+
+                </td>
+
+            </tr>
+            <tr class="bg-light">
+                <td colspan="8">PASSPORT DETAILS OF SPOUSE</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportNo) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportNo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportIssueDate) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportIssueDate)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportValidUpto) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportValidUpto)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpousePassportType) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpousePassportType)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">Passport images (Front and Back) </td>
+                <td class="juipfvalue" colspan="7">
+                    @if (Model.MemberPassportImgPath != null && Model.MemberPassportImgPath != "#")
+                    {
+                        <img src="@Url.Content(Model.MemberPassportImgPath)" class="img-thumbnail" width="120" />
+                    }
+                    else
+                    {
+                        @: <b>N/A</b>
+                    }
+
+                </td>
+            </tr>
+        </table>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                PASSPORT DETAILS OF CHILDREN
+            </div>
+            <div class="card-body">
+                @if (Model.iChildrenPassports != null)
+                {
+                    @Html.Partial("Preview/_PassportChildren", Model.iChildrenPassports)
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,38 @@
+﻿@model NDCWeb.Areas.Member.View_Models.AccountInfoIndxVM
+
+<div class="card mt-4">
+    <div class="card-header">
+        ACCOUNT DETAILS (FOR INDIAN & FOREIGN OFFICERS)
+    </div>
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="8">Bank Account Details</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.AccountNo)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.AccountNo)</td>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.AccountType)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.AccountType)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.IFSC) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.IFSC)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.MICR) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.MICR)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.PassbookPath)</td>
+                <td class="juipfvalue" colspan="7"><img src="@Url.Content(Model.PassbookPath ?? "#")" class="img-thumbnail" width="120" /></td>
+            </tr>
+            <tr class="bg-light">
+                <td colspan="8">PAO Details (Indian Army & Navy Officers only)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.CDAAcNo) </td>
+                <td class="juipfvalue" colspan="7">@Html.DisplayFor(model => model.CDAAcNo)</td>
+            <tr>
+        </table>
+    </div>
+</div>
+
+
+

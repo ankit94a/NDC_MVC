@@ -1,0 +1,96 @@
+﻿@model NDCWeb.Areas.Member.View_Models.MemberCompletePreviewVM
+
+<div id='docPrint'>
+    @{
+        if (Model.PersonalVM != null)
+        {
+            @Html.Partial("Preview/_CourseMemberPersonal", Model.PersonalVM)
+            //@Html.RenderPartial("ChartPartialName", Model.PersonalVM);
+        }
+        if (Model.AppointmentVM != null)
+        {
+            @Html.Partial("Preview/_AppointmentDetails", Model.AppointmentVM)
+        }
+        if (Model.QualificationsVM.Count > 1)
+        {
+            @Html.Partial("Preview/_Qualification", Model.QualificationsVM)
+        }
+        if (Model.CountryVisitsVM.Count > 1)
+        {
+            @Html.Partial("Preview/_CountryVisit", Model.CountryVisitsVM)
+        }
+        if (Model.LanguagesVM.Count > 1)
+        {
+            @Html.Partial("Preview/_LanguagesKnown", Model.LanguagesVM)
+        }
+        if (Model.ImportantAssignmentsVM.Count > 1)
+        {
+            @Html.Partial("Preview/_AssignmentAppointment", Model.ImportantAssignmentsVM)
+        }
+        @*if (Model.BiographyVM != null)
+            {
+                @Html.Partial("Preview/_Biography", Model.BiographyVM)
+            }*@
+        if (Model.SpouseVM != null)
+        {
+            @Html.Partial("Preview/_Spouse", Model.SpouseVM)
+        }
+        if (Model.PassportVM != null)
+        {
+            @Html.Partial("Preview/_PassportDetail", Model.PassportVM)
+        }
+        if (Model.VisaVM != null)
+        {
+            @Html.Partial("Preview/_VisaDetail", Model.VisaVM)
+        }
+        if (Model.AccountInfoVM != null)
+        {
+            @Html.Partial("Preview/_AccountInfo", Model.AccountInfoVM)
+        }
+        if (Model.TallyVM != null)
+        {
+            @Html.Partial("Preview/_Tally", Model.TallyVM)
+        }
+    }
+</div>
+<div class="card-footer">
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious">Previous</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" onclick="printdoc()">Print</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-secondary btnNext" disabled>&nbsp;</a>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.btnNext').click(function () {
+            $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+    });
+
+    function printdoc() {
+        var mywindow = window.open('', 'PRINT', 'height=700,width=900');
+        mywindow.document.write('<html><head>');
+        mywindow.document.write("<link href='/Component/css/bootstrap.min.css' rel='stylesheet'/>")
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(document.getElementById('docPrint').innerHTML);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+
+
+        setTimeout(function () {
+            mywindow.print();
+            mywindow.close();
+        }, 1000)
+        return true;
+
+        //var newWin = window.open('', 'Print-Window');
+        //newWin.document.open();
+        //newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+        //newWin.document.close();
+        //setTimeout(function () { newWin.close(); }, 10);
+    }
+</script>

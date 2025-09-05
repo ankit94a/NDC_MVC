@@ -1,0 +1,61 @@
+﻿@model NDCWeb.Areas.Admin.Models.CustomRole
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">@ViewBag.Title</h5>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>
+
+        <h4>List of users in this role</h4>
+        @if (ViewBag.UserCount == 0)
+        {
+            <hr />
+            <p>No users found in this role.</p>
+        }
+
+    <table class="table table-striped table-info" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ 
+                var cnt = 1;
+            }
+            @foreach (var item in ViewBag.Users)
+            {
+
+                <tr>
+                    <td scope="row">@cnt</td>
+                    <td scope="col">
+                        @item.UserName
+                    </td>
+                </tr>
+                cnt++;
+            }
+        </tbody>
+    </table>
+        <div class="form-group mt-2">
+            <div class="col-md-offset-4 col-md-10">
+                <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-outline-primary btn-xs"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Index", new { id = Model.Id })" class="btn btn-outline-info btn-xs"><i class="fa fa-home"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

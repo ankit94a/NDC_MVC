@@ -1,0 +1,73 @@
+﻿@model NDCWeb.Areas.Member.View_Models.ServiceRationCrtVM
+
+@{
+    ViewBag.Title = "Ration";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3 class="text-center">Details of Service Ration</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PersonalNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PersonalNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PersonalNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Eater, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Eater, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Eater, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LRC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LRC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LRC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @*<input type="submit" value="Create" class="btn btn-default" />*@
+                <button id="btnSave" onclick="RationAdd()" class="btn btn-default">Save</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function RationAdd() {
+            let ration = {
+                PersonalNo: $("#PersonalNo").val(),
+                Eater: $("#Eater").val(),
+                LRC: $("#LRC").val(),
+            }
+
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/Ration',
+                data: ration,
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    alert("success");
+                    //alert(xhr.getResponseHeader('location'));
+                },
+                error: function () {
+                    alert('Operation Failed!')
+                }
+            })
+        }
+    </script>
+}

@@ -1,0 +1,166 @@
+﻿<!-- Menu aside start -->
+@using Microsoft.AspNet.Identity
+
+<nav class="sidenav shadow-right sidenav-light">
+    <div class="sidenav-menu">
+        <div class="nav accordion" id="accordionSidenav">
+            <!-- Sidenav Menu Heading (Account)-->
+            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+            <div class="sidenav-menu-heading d-sm-none">Account</div>
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+                <div class="nav-link-icon"><i data-feather="activity"></i></div>
+                Dashboards
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                    <a class="nav-link" href="@Url.Action("Index","Home")">
+                        Default
+                        <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
+                    </a>
+                   
+                </nav>
+            </div>
+            <!-- Sidenav Heading (Custom)-->
+            <div class="sidenav-menu-heading">Content Management</div>
+            <!-- Sidenav Accordion (Pages)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseNavs" aria-expanded="false" aria-controls="collapseNavs">
+                <div class="nav-link-icon"><i data-feather="grid"></i></div>
+                Navigation
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseNavs" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavNavsMenu">
+                    <!-- Nested Sidenav Accordion (CMS -- Navigation)-->
+                    <a class="nav-link" href="@Url.Action("Create","MenuItemMaster")">Create Navigation</a>
+                    <a class="nav-link" href="@Url.Action("Index","MenuItemMaster")">View Navigation</a>
+                    <a class="nav-link" href="@Url.Action("MenuSortOrder","MenuItemMaster")">Menu Ordering</a>
+                </nav>
+            </div>
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <div class="nav-link-icon"><i data-feather="globe"></i></div>
+                Web Pages
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                    <!-- Nested Sidenav Accordion (CMS -- Web Pages)-->
+                    <a class="nav-link" href="@Url.Action("Create", "PageContent")">Create Page</a>
+                    <a class="nav-link" href="@Url.Action("Index", "PageContent")">Edit Page</a>
+                    <a class="nav-link" href="@Url.Action("Index", "NewsArticle")">Whats New / Article</a>
+                </nav>
+            </div>
+            <!-- Sidenav Accordion (Media)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseMedias" aria-expanded="false" aria-controls="collapseMedias">
+                <div class="nav-link-icon"><i data-feather="repeat"></i></div>
+                Media
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseMedias" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" href="@Url.Action("Index", "MediaCategoryMaster")">Media Categories</a>
+                    <a class="nav-link" href="@Url.Action("Index", "MediaGallery")">Media Gallery</a>
+                </nav>
+            </div>
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <div class="nav-link-icon"><i data-feather="layout"></i></div>
+                Institution
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
+                    <!-- Nested Sidenav Accordion (Layout -> Navigation)-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutSidenavVariations" aria-expanded="false" aria-controls="collapseLayoutSidenavVariations">
+                        Staff / Faculty
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayoutSidenavVariations" data-bs-parent="#accordionSidenavLayout">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" href="@Url.Action("Create", "StaffMaster")">Create</a>
+                            <a class="nav-link" href="@Url.Action("Index", "StaffMaster")">View / Edit</a>
+                        </nav>
+                    </div>
+                    <!-- Nested Sidenav Accordion (Layout -> Container Options)-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutContainers" aria-expanded="false" aria-controls="collapseLayoutContainers">
+                        Training Data
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayoutContainers" data-bs-parent="#accordionSidenavLayout">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" href="@Url.Action("Index", "trainingactivity")">View</a>
+                            <a class="nav-link" href="@Url.Action("Create", "trainingactivity")">Create</a>
+                        </nav>
+                    </div>
+                    <!-- Nested Sidenav Accordion (Layout -> Page Headers)-->
+                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsPageHeaders" aria-expanded="false" aria-controls="collapseLayoutsPageHeaders">
+                        Students / Participants
+                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayoutsPageHeaders" data-bs-parent="#accordionSidenavLayout">
+                        <nav class="sidenav-menu-nested nav">
+                            <a class="nav-link" href="/admin/members/participants">Course Members</a>
+                            <a class="nav-link" href="@Url.Action("CourseToAlumni", "Manage")">Student to Alumni</a>
+                            <a class="nav-link" href="/admin/members/alumnilist">Alumni</a>
+                        </nav>
+                    </div>
+                    <a class="nav-link" href="starter-default.html">
+                        Vistor Feedback
+                        <span class="badge bg-secondary-soft text-secondary ms-auto">Inactive</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Sidenav Heading (Institution)-->
+            <div class="sidenav-menu-heading">Administration</div>
+            <!-- Sidenav Accordion (Layout)-->
+            <!-- Sidenav Accordion (Components)-->
+            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
+                <div class="nav-link-icon"><i data-feather="package"></i></div>
+                Masters
+                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseComponents" data-bs-parent="#accordionSidenav">
+                <nav class="sidenav-menu-nested nav">
+                    <a class="nav-link" href="@Url.Action("Index", "Faculty")">Designations</a>
+                    <a class="nav-link" href="@Url.Action("Index", "RankMaster")">Ranks</a>
+                    <a class="nav-link" href="@Url.Action("Index", "RolesAdmin")">
+                        User Roles
+                        <span class="badge bg-danger-soft text-danger ms-auto">Use with care</span>
+                    </a>
+                    @*<a class="nav-link" href="@Url.Action("Register", "Account")">
+                        Create user
+                        <span class="badge bg-danger-soft text-danger ms-auto">Use with care</span>
+                    </a>*@
+                    <a class="nav-link" href="@Url.Action("AppUsersList", "Account")">View Users</a>
+                </nav>
+            </div>
+            <a class="nav-link" href="@Url.Action("index", "OtherRequest")">
+                <div class="nav-link-icon"><i data-feather="key"></i></div>
+                Forgot Password Requests
+            </a>
+            <a class="nav-link" href="@Url.Action("Create", "MenuRole")">
+                <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                Auth/Un-Auth Page Access
+            </a>
+            <!-- Sidenav Link (Tables)-->
+            <a class="nav-link" href="@Url.Action("Index", "UserActivity")">
+                <div class="nav-link-icon"><i data-feather="filter"></i></div>
+                Audit Log
+            </a>
+        </div>
+    </div>
+    <!-- Sidenav Footer-->
+    <div class="sidenav-footer">
+        <div class="sidenav-footer-content">
+            <div class="sidenav-footer-subtitle">Logged in as:</div>
+            <div class="sidenav-footer-title">
+                @if (Request.IsAuthenticated)
+                {
+                    @User.Identity.GetUserName()
+                }
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Menu aside end -->

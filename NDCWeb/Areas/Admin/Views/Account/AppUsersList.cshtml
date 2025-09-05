@@ -1,0 +1,33 @@
+﻿@model IEnumerable<NDCWeb.Areas.Admin.View_Models.AppUserViewModel>
+@{
+    ViewBag.Title = "List of Users";
+}
+<div class="main-card  card">
+    <div class="card-body">
+        <h5 class="card-title">@ViewBag.Title</h5>
+        <div class="pull-right">
+            @*<a href="@Url.Action("Register","Account")" class="btn btn-outline-primary ">Create User</a>*@
+        </div>            
+        <table class="table table-hover table-bordered table-info" id="UsersWithRoles">
+            <thead>
+                <tr>
+                    <td><b>Username</b></td>
+                    <td><b>Name</b></td>
+                    <td><b>Email</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>@user.FName</td>
+                        <td>@user.Email</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

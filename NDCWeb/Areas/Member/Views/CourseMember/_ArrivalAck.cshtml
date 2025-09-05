@@ -1,0 +1,89 @@
+﻿@model NDCWeb.Areas.Member.View_Models.ArrivalDetailAck
+<div class="container shadow p-3 mb-5 bg-white rounded">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <p class="float-right">Form-V</p><br />
+            <img src="/images/NDC-Logo.png" width="80" />
+            <br />
+            <h5><u>ARRIVAL DETAILS</u></h5>
+        </div>
+        <div class="col-md-12">
+
+            <table class="table table-light border">
+                <tr>
+                    <td>1. Arrival at:</td>
+                    <td><b> @Html.DisplayFor(model => model.ArrivaAt)</b></td>
+                </tr>
+                <tr>
+                    <td>2. Date: </td>
+                    <td><b>  @Html.DisplayFor(model => model.ArrivalDate)</b></td>
+                </tr>
+                <tr>
+                    <td>3.	Time:</td>
+                    <td><b>   @Html.DisplayFor(model => model.ArrivalTime)</b></td>
+                </tr>
+                <tr>
+                    <td> 4. Mode of Arrival:</td>
+                    <td><b>   @Html.DisplayFor(model => model.ArrivalMode)</b></td>
+                </tr>
+            </table>
+            <h5><u>5.	Persons Accompanied:</u></h5>
+            <table class="table table-bordered table-info">
+                <thead>
+                    <tr>
+                        <th>Name (Full)</th>
+                        <th>Age</th>
+                        <th>Relation</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody id="new_pg" class="bg-white">
+                    <tr>
+                        <td>@Html.DisplayFor(model => model.ArrivaAt)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5><u>6.	Meals Required:</u></h5>
+            <table class="table table-bordered table-info">
+                <thead>
+                    <tr>
+                        <th>Date from-to</th>
+                        <th>Breakfast</th>
+                        <th>Lunch</th>
+                        <th>Dinner</th>
+                    </tr>
+                </thead>
+                <tbody id="new_pg" class="bg-white">
+                    <tr>
+                        <td>@Html.DisplayFor(model => model.ArrivalDate)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="card mt-4">
+                <div class="card-header" style="background-color:#fff">
+                    <span class="font-weight-bold" style="color:red">Important</span>
+                </div>
+                <div class="card-body text-justify">
+                    <p id="passport_instruction_indian">
+                        <u><b>Mess Detachment</b></u><br />
+                        In order to facilitate smooth settling down the NDC Mess operates a detachment for residents of Raksha Bhawan (RB) and Vikram Vihar (VV), for a week at the begining of the Course.
+                        Depending upon the allotment of accommodation, the detachment details from interested Course Members is sought.
+                    </p>
+                    <p class="font-weight-bold" style="color:red">
+                        Please provide RT PCR test of persons accompanying on arrival.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

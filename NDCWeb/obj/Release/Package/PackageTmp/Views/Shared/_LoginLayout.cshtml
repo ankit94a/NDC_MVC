@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+    <meta charset="utf-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        @ViewBag.Title
+    </title>
+    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="keywords" />
+    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="description" />
+    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="DC.Subject.Keyword" />
+    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="NDC.Description" />
+    <link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
+
+    @Scripts.Render("~/bundles/mainjs")
+    @Styles.Render("~/bundles/jquistyle")
+    @Styles.Render("~/Content/css") 
+    @Styles.Render("~/Content/sitestyle")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body id="fontSize">
+    <header>
+        <div class="top_head">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 top-acess">
+                        <div class="pull-left hidden-xs hidden-sm res_pb5">
+                            <a href='/' title="Home"><span class="home"></span></a>
+                            <a href='#' title='Subscribe Release'>
+                            </a>
+                        </div>
+                        <div class="pull-right">
+                            <ul id="example1">
+                                <li class="skin-reader hidden-xs"><a href='screenReaderAcces.html' title='Screen Reader Access '>Screen Reader Access  </a></li>
+                                <li class="language res_pb5">
+                                    <select name="ddlLang" onchange="" id="ddlLang" class="form-control">
+                                        <option selected="selected" value="1">English</option>
+                                        <option value="2">Hindi</option>
+                                    </select>
+
+                                </li>
+                                <li class="icon"><a href="#main-nav" title="Skip to Content"><img src='/images/skip-icon.png' alt="Skip to Content" /></a></li>
+                                <li class="icon dropdown">
+                                    <a href="javascript:void(0)">
+                                        <img src='/images/handicape-icon.png'
+                                             alt="Handicape" title="Handicape" />
+                                    </a>
+                                    <ul class="dropdown-content">
+                                        <li>
+                                            <a href="#" title="Decrease Font Size" onClick="set_font_size('decrease')">
+                                                <img src='/images/decrease-font-size.png'
+                                                     alt="Normal Font Size" title="Decrease Font Size" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Normal Font Size" onclick="set_font_size('')" class="">
+                                                <img src='/images/standard-view.png'
+                                                     alt="Normal Font Size" title="Normal Font Size" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Increase Font Size" onclick="set_font_size('increase')">
+                                                <img src='/images/increase-text-size.png'
+                                                     alt="Normal Font Size" title="Increase Font Size" />
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="javascript:void(0)" title="High Contrast" onclick="setActiveStyleSheet('change'); return false;">
+                                                <img src='/images/high-contrast.png'
+                                                     alt="High Contrast" title="High Contrast" />
+                                            </a>
+                                        </li>
+                                        <li class=""><a href="javascript:void(0)" title="Normal Theme" onclick="setActiveStyleSheet('normal'); return false;"><img src='/images/standard-view.png' alt="Normal Theme" title="Normal Theme" /></a></li>
+                                    </ul>
+                                </li>
+                                <!--Commented by CP to disable Theme-->
+                                <!--<li class="icon dropdown"><a href="javascript:void(0)"><img src='images/theme.png' alt="Color Theme" title="Color Theme"></a>
+                                    <ul class="dropdown-content">
+                                        <li><a href="javascript:void(0)" title="Green" onclick="setActiveStyleSheet('green'); return false;"><img src='images/green.png' alt="" title="Green" /></a></li>
+                                        <li><a href="javascript:void(0)" title="Orange" onclick="setActiveStyleSheet('orange'); return false;"><img src='images/yello.png' alt="" title="Orange" /></a></li>
+                                    </ul>
+                                </li>-->
+
+                                <li class="icon"><a href='SiteMap.html'><img src='/images/sitemap.png' alt="Sitemap" title="Sitemap"></a></li>
+                                <li class="icon">
+                                    <a href='AdvanceSearch.html'><img src='/images/search.png' alt="Advance Search" title="Advance Search" /></a>
+                                </li>
+                                <!--
+                                <li class="icon dropdown"><a href=""><img src="images/language-icon.png" alt="Language" title="Language"></a>
+                                <ul class="dropdown-content">
+                                        <li><a href="#" title="Red" onclick="setActiveStyleSheet('red'); return false;"><img src="images/hindi.png" alt="Hindi" title="Hindi"></a></li>
+                                        <li><a href="#" title="Green" onclick="setActiveStyleSheet('green'); return false;"><img src="images/english.png" alt="English" title="English"></a></li>
+                                    </ul>
+                                </li> -->
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <style>
+            .logo {
+                top: 10%;
+                left: 40%;
+                position: absolute;
+                transform: translate(-50%, 0%);
+            }
+        </style>
+        <div class="mid-head">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="indian-emblem pull-left">
+                            <a href='/'>
+                                <img src='/images/1200px-Emblem_of_India.png' class="shadow-sm p-3 mb-5 bg-white" alt="Indian Emblem" title="Indian Emblem" height="85" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-center">
+                        <!-- <img class='img_d' src="images/150-years.png" height="100px" alt="" style="cursor:pointer;display: none;" onclick="javascript:window.open('https://www.gandhi.gov.in/')"> -->
+                        <div class="logo">
+                            <h2 lang="hi"><strong>राष्ट्रीय रक्षा महाविद्यालय</strong></h2>
+                            <h1><a style="font-size:inherit !important" href='/' title="National Defence College">National Defence College</a> </h1>
+                            <h2>Ministry of Defence, Government of India</h2>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                        <img class='img_d' src="images/swach-bharat.png" height="100px" alt="" style="cursor:pointer;display: none;" onclick="javascript:window.open('https://www.gandhi.gov.in/')">
+                    </div> -->
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <img class="pull-right" src="/images/NDC-Logo.png" height="100" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="mean-container">
+    </div>
+    <div id="main-nav" class="navigation-bg" style="display: none;">
+        <nav>
+            <div class="container">
+                <ul class='clearfix sf-menu' id='example'>
+                    <li style="font-size: 1.22em;margin: 0; padding:0 !important"><a title='Home' href='/'><i class='fa fa-home'></i></a></li>
+                    <li style="font-size: 1.22em;margin: 0; padding:0 !important"><a title='FAQa' href='/faq/faqs/'>FAQs</a></li>
+                    <li style="font-size: 1.22em;margin: 0; padding:0 !important"><a title='User Guide' href='/'>USER GUIDE</a></li>
+                    @*<li class='has-sub'>
+                        <a title='About NDC' href='About.html' class='has-sub'>About NDC</a>
+                        <ul>
+                            <li class='has-sub'>
+                                <a title='has-sub' href=''>From Commandants desk</a>
+                                <ul>
+                                    <li class='selected'><a href='Comdt-message.html'>Messages</a></li>
+                                    <li><a href='#'>Letters</a></li>
+                                </ul>
+                            </li>
+
+                            <li class='has-sub'>
+                                <a title='' href=''>NDC History</a>
+                                <ul>
+                                    <li class='selected'><a href=''>NDC Origin</a></li>
+                                    <li class='has-sub'><a href=''>Landmark Events</a> </li>
+                                    <li class='selected'><a href=''>Prominent Alumni</a></li>
+                                    <li><a href='#'>Previous Courses Brief</a></li>
+                                    <li><a href='#'>Previous Secretaries</a></li>
+                                    <li><a href='#'>Previous Faculty</a></li>
+                                    <li><a href='#'>Previous Staff</a></li>
+                                </ul>
+                            </li>
+                            <li class='selected'><a href=''>Roll of Honour</a></li>
+                            <li class='selected'><a href=''>Organisation Chart</a></li>
+                            <li class='selected'><a href=''>Who is Who</a></li>
+                            <li class='selected'><a href=''>Office Campus</a></li>
+                            <li class="selected"><a href=''>Residential Facility </a></li>
+                        </ul>
+                    </li>
+
+                    <li class='has-sub'>
+                        <a href='#' class='has-sub'>Course</a>
+                        <ul>
+                            <li class='selected'><a href=''>Composition</a></li>
+                            <li class='selected'><a href=''>Conduct of Study </a></li>
+                            <li class='selected'><a href=''>A Day at NDC </a></li>
+                            <li class='selected'><a href=''>Tours </a></li>
+                        </ul>
+                    </li>
+
+                    <li class='has-sub'>
+                        <a href='#' class='has-sub'>Wing</a>
+                        <ul>
+                            <li class='selected'><a href=''>Training</a></li>
+                            <li class='has-sub'>
+                                <a href=''>University</a>
+                                <ul>
+                                    <li class='selected'><a href=''>MPhil/PhD</a></li>
+                                    <li><a href='#'>IAG Paper Guiding Notes</a></li>
+                                    <li><a href='#'>Thesis Guiding Notes</a></li>
+                                </ul>
+                            </li>
+                            <li class='selected'><a href=''>Research</a></li>
+                            <li>
+                                <a class='has-sub' href='#'>Library</a>
+                                <ul>
+                                    <li class='selected'><a href=''>Home</a></li>
+                                    <li><a href='Signin.html'>e-Resources</a></li>
+                                    <li><a href='Signin.html'>Refread</a></li>
+                                    <li><a href='Signin.html'>OPAC</a></li>
+                                    <li><a href='#'>NDC Publication</a></li>
+                                    <li><a href='#'>Membership Form</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class='' href='#'>Administration</a>
+                            </li>
+
+                            <li><a class='selected' href='#'>IT & Communication</a></li>
+                        </ul>
+                    </li>*@
+
+
+                </ul>
+                
+            </div>
+        </nav>
+    </div>  <div class="clearfix">
+    </div>
+    <div id="fb-root">
+    </div>
+    @RenderBody()
+    <footer>
+        <div class="footer-bottom">
+            <div class="container">
+                <ul>
+                    <li><a title='Archive Policy' href='#'>Archive Policy</a></li>
+                    <li><a title='Quick Portal' href='#'>Web Information Manager</a></li>
+                    <li><a title='Archives' href='#'>Disclaimer</a></li>
+                    <li><a title='Terms & Conditions' href='#'>Terms & Conditions</a></li>
+                    <li><a title='Copyright Policy' href='#'>Copyright Policy</a></li>
+                    <li><a title='Hyperlinking Policy' href='#'>Hyperlinking Policy</a></li>
+                </ul>
+
+                <p class="text-center"><span class="footer-nic">Site is hosted by National Informatics Centre (NIC). Information is provided and updated by National Defence College</span></p>
+            </div>
+        </div>
+        
+    </footer>
+
+</body>
+</html>

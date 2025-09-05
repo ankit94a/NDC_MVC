@@ -1,0 +1,36 @@
+﻿@model NDCWeb.Areas.Alumni.View_Models.AlumniArticleIndxVM
+@using NDCWeb.Infrastructure.Constants;
+@{
+    int hiddenFileId = 0;
+}
+
+<div>
+    @foreach (var mdfl in Model.iAlumniArticleMedias)
+    {
+    <a href="@Url.Content(mdfl.FilePath)" target="_blank">@mdfl.FileName</a>
+    hiddenFileId++;
+    <input type="text" id="@hiddenFileId" value="@mdfl.FilePath.Replace("~","")" />
+    <button type="button" class="btn btn-primary" onclick="copyToClipboard('@hiddenFileId')">Copy text</button>
+    }
+    
+</div>
+
+@Html.ActionLink("Back to List", "Index")
+<script>
+    function copyToClipboard(hiddenFileId) {
+        var copyFilePath = document.getElementById(hiddenFileId);
+        copyFilePath.select();
+        //copyFilePath.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+        alert("Copied the text: " + copyFilePath.value);
+    }
+
+    //function copyToClipboard2(element) {
+    //    var $temp = $("<input>");
+    //    $("body").append($temp);
+    //    $temp.val($(element).text()).select();
+    //    document.execCommand("copy");
+    //    $temp.remove();
+    //}
+</script>
+

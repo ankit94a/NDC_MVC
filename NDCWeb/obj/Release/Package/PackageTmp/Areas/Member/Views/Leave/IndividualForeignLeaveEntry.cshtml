@@ -1,0 +1,124 @@
+﻿@model NDCWeb.Areas.Member.View_Models.LeaveForeignOffrVM
+
+@{
+    ViewBag.Title = "IndividualForeignLeaveEntry";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="card mt-4 mb-4">
+                <div class="card-header" style="background-color:#fff">
+                    Leave Input
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.LeaveCategory, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("GetLeaveCategory", (IEnumerable<SelectListItem>)ViewBag.GetLeaveCategory, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LeaveCategory, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.LeaveType, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("LeaveType", (IEnumerable<SelectListItem>)ViewBag.LeaveType, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LeaveType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.FromDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.ToDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.PrefixDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.PrefixDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.PrefixDate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.PrefixToDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.PrefixToDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.PrefixToDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.SuffixDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.SuffixDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.SuffixDate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.SuffixToDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.SuffixToDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.SuffixToDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.TotalDays, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.TotalDays, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TotalDays, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.ReasonForLeave, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ReasonForLeave, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReasonForLeave, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            @Html.LabelFor(model => model.AddressOnLeave, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.AddressOnLeave, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AddressOnLeave, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.TeleNo, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.TeleNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TeleNo, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label>Recmd By Embassy</label>
+                            @Html.DropDownList("RecommendByEmbassy", (IEnumerable<SelectListItem>)ViewBag.EmbassyRecmdType, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RecommendByEmbassy, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Country</label>
+                            @Html.DropDownListFor(model => model.CountryId, (IEnumerable<SelectListItem>)ViewBag.Country, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        @Html.ActionLink("Back to List", "IndividualLeaveList")
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    }
+
+</div>

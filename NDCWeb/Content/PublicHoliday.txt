@@ -1,0 +1,10 @@
+﻿1,Kashmir Day,Observed since 1990 as a day of protest against Indian control of part of Kashmir,2022-02-05,2022-02-07
+2,Chhotelal,Chhotelal is on leave since,2022-02-05,2022-02-05
+3,Pakistan Day,Commemorates the Lahore Resolution of 1940,2022-02-23,2022-02-23
+4,Labour Day,Youm-e-Mazdoor,2022-05-01,2022-05-01
+5,Eid-ul-Fitr,The end of Ramadan,2022-06-26,2022-06-29
+6,Independence Day,Pakistan Independence Day,2022-08-14,2022-08-14
+7,Eid ul-Azha Day,Feast of Sacrifice,2022-09-01,2022-09-05
+8,Ashura,9th &10th day of Muharram,2022-09-30,2022-10-02
+9,Eid Milad-un-Nabi,Birthday of Prophet Muhammad(PBUH),2022-12-01,2022-12-01
+10,Quaid-e-Azarn Day/Christmas,Quaid-e-Azarn Day/Christmas,2022-12-25,2022-12-25

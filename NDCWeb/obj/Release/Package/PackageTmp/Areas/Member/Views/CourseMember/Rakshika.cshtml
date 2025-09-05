@@ -1,0 +1,91 @@
+﻿@model NDCWeb.Areas.Member.View_Models.RakshikaCrtVM
+
+@{
+    ViewBag.Title = "Rakshika";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h3 class="text-center">Rakshika Membership</h3>
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.SpouseName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SpouseName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SpouseName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SpouseNickName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SpouseNickName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SpouseNickName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CourseMemberName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CourseMemberName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CourseMemberName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DOBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.DOBirth, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Qualification, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Qualification, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Qualification, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @*<input type="submit" value="Create" class="btn btn-default" />*@
+            <button id="btnSave" onclick="rakshikaAdd()" class="btn btn-default">Save</button>
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        function rakshikaAdd() {
+            let rakshika = {
+                SpouseName: $("#SpouseName").val(),
+                CourseMemberName: $("#CourseMemberName").val(),
+                SpouseNickName: $("#SpouseNickName").val(),
+                DOBirth: $("#DOBirth").val(),
+                Qualification: $("#Qualification").val(),
+            }
+
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/Rakshika',
+                data: rakshika,
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    alert("success");
+                    //alert(xhr.getResponseHeader('location'));
+                },
+                error: function () {
+                    alert('Operation Failed!')
+                }
+            })
+        }
+    </script>
+}
+
+

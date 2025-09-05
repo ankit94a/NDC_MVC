@@ -1,0 +1,337 @@
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\NDCWeb.dll.config
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\NDCWeb.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\NDCWeb.pdb
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\csc.exe
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\csc.exe.config
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\csc.rsp
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\csi.exe
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\csi.exe.config
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\csi.rsp
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\System.Buffers.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\System.Collections.Immutable.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\System.Memory.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\System.Numerics.Vectors.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\System.Reflection.Metadata.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\vbc.exe
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\vbc.exe.config
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\vbc.rsp
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\VBCSCompiler.exe
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\roslyn\VBCSCompiler.exe.config
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\AngleSharp.Css.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\AngleSharp.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Antlr3.Runtime.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\AutoMapper.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\CaptchaMvc.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\EntityFramework.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\EntityFramework.SqlServer.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\HtmlSanitizer.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.Abstractions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.Extensions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Hosting.Abstractions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Http.Features.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.DependencyInjection.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Options.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Primitives.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.Interop.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Web.Infrastructure.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Win32.Registry.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Newtonsoft.Json.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\NTierDGR.Common.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Owin.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\PagedList.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\PagedList.Mvc.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Buffers.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Collections.Immutable.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Memory.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Net.Http.Formatting.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Numerics.Vectors.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Security.AccessControl.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Security.Cryptography.Xml.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Security.Permissions.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Security.Principal.Windows.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Text.Encoding.CodePages.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Text.Encodings.Web.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.ValueTuple.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Helpers.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Http.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Http.WebHost.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Mvc.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Optimization.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Razor.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.WebPages.Deployment.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.WebPages.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.WebPages.Razor.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\WebGrease.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\NTierDGR.Common.pdb
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\AngleSharp.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\AngleSharp.Css.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\AutoMapper.pdb
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\AutoMapper.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\CaptchaMvc.pdb
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\CaptchaMvc.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\EntityFramework.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\EntityFramework.SqlServer.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\HtmlSanitizer.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Cryptography.Internal.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.Abstractions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.Extensions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Hosting.Abstractions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Http.Features.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.DependencyInjection.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.FileProviders.Abstractions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Hosting.Abstractions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Options.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Primitives.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.Interop.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Newtonsoft.Json.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\PagedList.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\PagedList.Mvc.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Buffers.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Collections.Immutable.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Memory.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Net.Http.Formatting.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Numerics.Vectors.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Text.Encoding.CodePages.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Text.Encodings.Web.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.ValueTuple.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Helpers.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Http.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Http.WebHost.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Mvc.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Razor.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.WebPages.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.WebPages.Deployment.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.WebPages.Razor.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\System.Web.Optimization.xml
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\bin\Antlr3.Runtime.pdb
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.csproj.AssemblyReference.cache
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.InStepCourseInitialWithAll.resources
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.AddOtherRankInStep.resources
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.AddInStepCourseIdInAlumniTable.resources
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.AddColumnLectureAttendToSpeechFeedback.resources
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.ChangeDatatypeOfRecomendForNextCourseSpeechFeedback.resources
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.addIsReadColumn.resources
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.UserPasswordHistory.resources
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.csproj.GenerateResource.cache
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.csproj.CoreCompileInputs.cache
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.csproj.CopyComplete
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.dll
+D:\Projects\NDC\NDC3\CURRENT\NDCWeb\NDCWeb\obj\Release\NDCWeb.pdb
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\NDCWeb.dll.config
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\NDCWeb.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\NDCWeb.pdb
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\csc.exe
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\csc.exe.config
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\csc.rsp
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\csi.exe
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\csi.exe.config
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\csi.rsp
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.Managed.Core.targets
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\System.Buffers.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\System.Collections.Immutable.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\System.Memory.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\System.Numerics.Vectors.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\System.Reflection.Metadata.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\vbc.exe
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\vbc.exe.config
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\vbc.rsp
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\VBCSCompiler.exe
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\roslyn\VBCSCompiler.exe.config
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\AngleSharp.Css.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\AngleSharp.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Antlr3.Runtime.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\AutoMapper.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\CaptchaMvc.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\EntityFramework.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\EntityFramework.SqlServer.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.Core.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.Abstractions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.Extensions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Hosting.Abstractions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Http.Features.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.DependencyInjection.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Logging.Abstractions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Options.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Primitives.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.Cookies.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.Interop.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.OAuth.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Web.Infrastructure.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Win32.Registry.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Newtonsoft.Json.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\NTierDGR.Common.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Owin.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\PagedList.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\PagedList.Mvc.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Buffers.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Collections.Immutable.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Memory.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Net.Http.Formatting.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Numerics.Vectors.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Security.AccessControl.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Security.Cryptography.Xml.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Security.Permissions.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Security.Principal.Windows.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Text.Encoding.CodePages.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Text.Encodings.Web.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.ValueTuple.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Helpers.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Http.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Http.WebHost.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Mvc.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Optimization.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Razor.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.WebPages.Deployment.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.WebPages.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.WebPages.Razor.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\WebGrease.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\NTierDGR.Common.pdb
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\AngleSharp.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\AngleSharp.Css.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\AutoMapper.pdb
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\AutoMapper.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\CaptchaMvc.pdb
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\CaptchaMvc.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\EntityFramework.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\EntityFramework.SqlServer.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.Core.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Cryptography.Internal.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.Abstractions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.DataProtection.Extensions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Hosting.Abstractions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.AspNetCore.Http.Features.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.DependencyInjection.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.FileProviders.Abstractions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Hosting.Abstractions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Logging.Abstractions.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Options.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Extensions.Primitives.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.Cookies.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.Interop.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Microsoft.Owin.Security.OAuth.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Newtonsoft.Json.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\PagedList.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\PagedList.Mvc.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Buffers.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Collections.Immutable.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Memory.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Net.Http.Formatting.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Numerics.Vectors.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Text.Encoding.CodePages.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Text.Encodings.Web.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.ValueTuple.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Helpers.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Http.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Http.WebHost.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Mvc.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Razor.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.WebPages.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.WebPages.Deployment.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.WebPages.Razor.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\System.Web.Optimization.xml
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\Antlr3.Runtime.pdb
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.csproj.AssemblyReference.cache
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.InStepCourseInitialWithAll.resources
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.AddOtherRankInStep.resources
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.AddInStepCourseIdInAlumniTable.resources
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.AddColumnLectureAttendToSpeechFeedback.resources
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.ChangeDatatypeOfRecomendForNextCourseSpeechFeedback.resources
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.addIsReadColumn.resources
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.Migrations.UserPasswordHistory.resources
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.csproj.GenerateResource.cache
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.csproj.CoreCompileInputs.cache
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.dll
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.pdb
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\bin\NTierDGR.Common.dll.config
+D:\New Website\NDC CIRA\NDCWeb\NDCWeb\obj\Release\NDCWeb.csproj.Up2Date

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.ImportantAssignmentIndxVM>
+<table class="table table-condensed table-bordered">
+    <thead>
+        <tr class="bg-2 text-white">
+            <td colspan="6">Appointment Held</td>
+        </tr>
+        <tr class="bg-light">
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Appointment)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Organisation)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Location)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.From)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.To)</td>
+            <td>Remove</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Appointment)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Organisation)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Location)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.From)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.To)</td>
+                <td>
+                    <button type="button" class="btn btn-transparent text-danger btn-sm" onclick="removeImptAssignment(@item.AsgmtAppointmentId, this)"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+        }
+        <tr class="bg-light text-center">
+            <td colspan="6">
+                <a class="btn btn-primary btn-sm text-white" data-toggle="tab" onclick="serviceEditClick('ImportantAssignmentPartial')">Add more</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    function removeImptAssignment(id, event) {
+        $.ajax({
+            type: 'post',
+            url: '/api/courseMembers/ImportantAssignmentDelete/' + id,
+            datatype: 'json',
+            success: function (data, textStatus, xhr) {
+                if (textStatus === 'success') {
+                    $(event).closest("tr").remove();
+                }
+            },
+            error: function () {
+                alert('Operation Failed!')
+            }
+        });
+    }
+</script>

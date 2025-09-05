@@ -1,0 +1,31 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CountryVisitIndxVM>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            COUNTRY VISITED
+        </div>
+        <div class="card-body">
+            <table id="tblCountryVisit" class="table table-condensed table-bordered table-hover">
+                <thead>
+                    <tr class="bg-light">
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Country)</td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.YearOfVisit)</td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Duration) </td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Purpose) </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Country)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.YearOfVisit)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Duration)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Purpose)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+

@@ -1,0 +1,515 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+    int cnta = 0;
+}
+
+<style>
+    .overlay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 2;
+        opacity: 0;
+        background: rgba(39, 42, 43, 0.8);
+        transition: opacity 200ms ease-in-out;
+        border-radius: 4px;
+        margin: -15px 0 0 0;
+        padding: 10px;
+    }
+
+    button {
+        margin: 5px;
+    }
+
+    &:hover {
+        opacity: 100;
+    }
+
+    .pdf-container {
+        width: 98%;
+        height: 120vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .pdf-container embed {
+            width: 100%;
+            height: 100%;
+        }
+
+    .pdf-container2 {
+        width: 99%;
+        height: 40vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .pdf-container2 embed {
+            width: 100%;
+            height: 100%;
+        }
+
+    #dvinstr {
+        z-index: 100001;
+    }
+</style>
+@if (ViewBag.Flash.Count != 0)
+{
+    <div class="row">
+        <div class="ticker_section">
+            <div class="container">
+                <marquee class="scroll-text">
+                    @foreach (var item in ViewBag.Flash)
+                    {
+                        if (item.Highlight == true)
+                        {
+                            <a class="btn-link" style="color:#fff;" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })"><img src="/images/new.gif">  @Html.Raw(@item.Headline)</a><span class="glyphicon glyphicon-forward" style="padding:0 20px"></span>
+                        }
+                        else
+                        {
+                            <a class="btn-link" style="color:#fff;" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a><span class="glyphicon glyphicon-forward" style="padding:0 20px"></span>
+                        }
+                    }
+                </marquee>
+            </div>
+        </div>
+    </div>
+}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>*@
+            </div>
+            <div class="modal-body">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a class="btn btn-primary text-white m-2" href="/writereaddata/media/files/2024/Nov/d3e2a604-6c2f-4628-a9eb-1e4200d53e7f.pdf" target="_blank"><span class="badge badge-danger">1</span> Welcome DO Letter</a>
+                    <a class="btn btn-primary text-white m-2" href="/member/accomodation/entry"><span class="badge badge-danger">2</span> Accommodation Form</a>
+                    <a class="btn btn-primary text-white m-2" href="/writereaddata/documents/Course_Handbook_NDC_64(1).pdf" target="_blank"><span class="badge badge-danger">3</span> Course Hand Book- NDC 65th Course</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*@if (ViewBag.Exists == null)
+{
+    <div id="dvinstr">
+        <div class="card">
+            <div class="card-body text-white">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <a class="btn btn-primary text-white m-2" href="/writereaddata/media/files/2024/Nov/d3e2a604-6c2f-4628-a9eb-1e4200d53e7f.pdf" target="_blank"><span class="badge badge-danger">1</span> Welcome DO Letter</a>
+                            <a class="btn btn-primary text-white m-2" href="/member/accomodation/entry"><span class="badge badge-danger">2</span> Accommodation Form</a>
+                            <a class="btn btn-primary text-white m-2" href="/writereaddata/documents/Course_Handbook_NDC_64(1).pdf" target="_blank"><span class="badge badge-danger">3</span> Course Hand Book- NDC 65th Course</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center text-white">
+                <a class="btn btn-danger text-white" data-dismiss="modal" id="closebtn" aria-hidden="true">Close</a>
+            </div>
+        </div>
+    </div>
+
+}*@
+
+<section class="pt20 pb30">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="pcard text-center">
+                    <div class="overlay">
+                        <button class="btn btn-primary">sign up</button>
+                    </div>
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <img src="@Url.Content(ViewBag.ProfilePic ?? "#")" alt="@ViewBag.fullname" title="@ViewBag.fullname">
+                            <div class="pcard-container text-center">
+                                <h4 class=card-title><b>@ViewBag.fullname</b></h4>
+                                <p>
+                                    @ViewBag.Course Course <i class="fa fa-circle text-success"></i> Locker No: @if (ViewBag.LockerNo != null)
+                                    {@ViewBag.LockerNo}
+                                </p>
+                                <p>
+                                    @if (ViewBag.RolesAssign != null)
+                                    {@ViewBag.RolesAssign}
+                                </p>
+                                <p>
+                                    <a href="/member/coursemember/changeuserpassword" class="text-lg-center text-success"> <i class="fa fa-key"></i> Change Password</a>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="text-lg-center text-danger"> <i class="fa fa-power-off"></i> Log off</a>
+
+                                </p>
+                            </div>
+                        }
+                    }
+
+                </div>
+                <div class="list-group shadow-sm" style="clear:both">
+                    <h4 class="list-group-item active">MY TASKS</h4>
+                    <a href="/member/accomodation/entry" class="list-group-item"> Accommodation Form</a>
+                    <a href="~/member/coursemember/courseenrol" class="list-group-item">Personal/Service Details</a>
+                    <a href="~/member/arrival/" class="list-group-item">Arrival Details</a>
+                    @*<a href="~/member/university/mphil" class="list-group-item">M.Phil Enrollment Form-I</a>
+        <a href="~/member/university/muregistration" target="_blank" class="list-group-item">M.Phil Enrollment Form-II</a>*@
+                    <!--Pop Up-->
+                    <a href="~/member/leave/individualleavelist" class="list-group-item">Leave</a>
+                 
+                    <a href="~/member/infotech/" class="list-group-item">IT Hardware Requisitions</a>
+                    <a href="~/member/event/eventboard/" class="list-group-item">Participate/Host Party/Function</a>
+
+                    <a href="~/member/moduleactivity/index/" class="list-group-item">Training Activities</a>
+
+                    <a href="/home/faqs" target="_blank" class="list-group-item">FAQs</a>
+                    <a href="~/member/home/DocAlert" target="_blank" class="list-group-item">Presentation Global Issue</a>
+                </div>
+                <div class="list-group shadow-sm" style="clear:both">
+                    <!--<h4 class="list-group-item active">SOPs</h4>
+                    <a href="~/writereaddata/user/documents/e4fbe4f8-8f39-48b0-9cf3-a115e78eb6b2.pdf" class="list-group-item">SOP for MS-Teams</a>-->
+                    <!--<a href="~/writereaddata/user/documents/e4fbe4f8-8f39-48b0-9cf3-a115e78eb6b2.pdf" class="list-group-item">UIIS NDC Briefing</a>-->
+                    <div class="list-group shadow-sm" style="clear:both">
+                        <h4 class="list-group-item active">MAPS</h4>
+                        <p style="margin-left:22px">@Html.ActionLink("Maps for Reference", "Maps")</p>
+                        <h4 class="list-group-item active">UPLOAD PROCEDURES</h4>
+                        <p style="margin-left:22px">@Html.ActionLink("Videos on Upload Procedures", "UploadProcedure")</p>
+                    </div>
+
+
+
+
+                    @*<h4 class="list-group-item active">Downloads</h4>
+                        <div class="dropdown">
+                            <button class="dropbtn">Dropdown</button>
+                            <div class="dropdown-content" style="padding:15px 15px; margin:10px 10px 10px 10px;">
+                                <a href="/writereaddata/media/MemberHomeData/Papers Upload/ASAT Papers Upload Proc">ASAT Papers Upload Proc</a>
+                                <a href="#">Link 2</a>
+                                <a href="#">Link 3</a>
+                            </div>
+                        </div>*@
+
+
+
+
+                </div>
+                @*<h4 class="list-group-item active">SGE-II</h4>
+                    <a href="~/writereaddata/media/files/2023/Oct/b4485619-e914-43f0-a61d-45c1c2ff816b.pdf" class="list-group-item">General Instructions For SGE-II (06-12 OCT 23)</a>*@
+
+                @*<div class="card shadow-sm">
+                        <div class="card-header bg-danger text-white">
+                            &nbsp;&nbsp; <i class="fa fa-flash"></i> Important Announcements
+                        </div>
+                        <div class="card-body">
+                            <table>
+                                @{ cnta = 0; }
+                                @foreach (var item in ViewBag.Upcoming)
+                                {
+                                    cnta++;
+
+                                    if (item.Highlight == true)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@cnta</td>
+                                            <td>
+                                                <a class="btn-link" href="@Url.Action("article", "home", new { id = item.NewsArticleId })">  @Html.Raw(@item.Headline)</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>@cnta</td>
+                                            <td>
+                                                <a class="btn-link" href="@Url.Action("article", "home", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>*@
+            </div>
+            <div class="col-md-6">
+
+                @if (ViewBag.WeeklyTrainingProgramme != null)
+                {
+                    string path = ViewBag.WeeklyTrainingProgramme;
+                    path = path.Replace("~", "");
+                    <div class="pdf-container">
+                        @*<embed src="~/writereaddata/media/MemberHomeData/weeklypgme.pdf" type="application/pdf">*@
+                        <embed src="@path" type="application/pdf">
+                    </div>
+                    @*<iframe src="https://view.officeapps.live.com/op/embed.aspx?src=https://ndc.nic.in/@path" frameborder="no" style="width:100%;height:800px"></iframe>*@
+                }
+
+            </div>
+            <div class="col-md-3">
+                <div class="calendarr">
+                    @if (ViewBag.TrainingCalendar != null)
+                    {
+                        string path = ViewBag.TrainingCalendar;
+                        path = path.Replace("~", "");
+
+                        @*<iframe id="btp" src="https://view.officeapps.live.com/op/embed.aspx?src=https://ndc.nic.in/@path" frameborder="no" style="width:100%;height:400px"></iframe>*@
+                        path = path.Replace("~", "");
+                        <div class="pdf-container2">
+                            <embed src="@path" type="application/pdf">
+                        </div>
+
+                    }
+                </div>
+                <div class="card shadow">
+                    <div class="card-header text-danger">
+                        &nbsp;&nbsp; <i class="fa fa-bell"></i> Alerts
+                    </div>
+                    @*<div class="card-header text-danger">
+                            &nbsp;&nbsp; <i class="fa fa-bell"></i> WiFi Password
+                        </div>
+                        <table>
+                            <tr>
+                                <td><b>SNo.</b></td>
+                                <td><b>SSID</b></td>
+                                <td><b>Password</b></td>
+                            </tr>
+                            <tr>
+                                <td>(a)</td>
+                                <td>Guest</td>
+                                <td><div id="guest" name="guest" style="display:none">Soundbite$#123</div><button type="button" id="btnguest" name="btnguest"><i class="fa fa-eye"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>(b)</td>
+                                <td>Takshashila</td>
+                                <td><div id="takshashila" name="takshashila" style="display:none">@@%Massive987</div><button type="button" id="btntakshashila" name="btntakshashila"><i class="fa fa-eye"></i></button></td>
+                            </tr>
+                        </table>*@
+                    <div class="card-body">
+                        <table>
+                            <tr class="bg-danger text-white">
+                                <td> <span class="card-title"><i class="fa fa-plane"></i> Leave Notification</span></td>
+                            </tr>
+                            <tr>
+                                @if (ViewBag.LeaveAlert != null)
+                                {
+                                    <td>
+                                        <a class="btn-link list-group-item" href="@Url.Action("IndividualLeaveList", "Leave")">
+                                            <img src="/images/new.gif"> Leave @ViewBag.LeaveAlert
+                                        </a>
+                                    </td>
+                                }
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header text-primary">
+                        &nbsp;&nbsp; <i class="fa fa-calendar"></i> Socials
+                    </div>
+                    <div class="card-body">
+                        @{ Html.RenderAction("BirthdayAlert"); }
+                        <hr />
+                        @{ Html.RenderAction("FamilyBirthdayAlert"); }
+                        <hr />
+                        @{ Html.RenderAction("MarriageAnniversaryAlert"); }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal for video -->
+<style>
+    .modal-dialog {
+        max-width: 800px;
+        margin: 30px auto;
+    }
+
+    .modal-body {
+        position: relative;
+        padding: 0px;
+    }
+
+    .close {
+        position: absolute;
+        right: -30px;
+        top: 0;
+        z-index: 999;
+        font-size: 2rem;
+        font-weight: normal;
+        color: #fff;
+        opacity: 1;
+    }
+</style>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- 16:9 aspect ratio -->
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input hidden value=@ViewBag.Exists id="CC_id" />
+<!-- Modal for video END -->
+
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            getDocs();
+            $("#btnguest").click(function () {
+                $("#guest").toggle();
+            });
+            $("#btntakshashila").click(function () {
+                $("#takshashila").toggle();
+            });
+        });
+
+        //Training Calendar Details
+        function getDocs() {
+            $.ajax({
+                type: "get", url: '/api/home/GetTrainingDoc/category/Weekly Training Programme', dataType: "json",
+                success: OnDocsSuccess,
+
+                error: function () {
+                    alert('Server Not Found');
+                }
+            });
+        };
+        function OnDocsSuccess(response) {
+            let Docs = response;
+            fillDocs(Docs);
+        };
+        function fillDocs(Docs) {
+            let $Docs = Docs;
+            let $DocsDiv = $('.Docssec');
+            $DocsDiv.empty();
+            $.each($Docs, function (i, mg) {
+                let $file = mg.iMediaFiles;
+                $.each($file, function (j, mf) {
+                    var mfPath = (mf.FilePath).replace("~", "");
+                    $DocsDiv.append(`
+                                                                            <a href="${mg.Caption}">
+                                                                                    <img src="${mfPath}" alt="Commandant NDC" title="Commandant NDC">
+                                                                                    <p class="pm-name"><b>${mg.Description}</b></p>
+                                                                                    <p style="margin-bottom: 7px;">Commandant NDC</p>
+                                                                                </a>
+                                                                                `);
+                    indx++;
+                });
+            });
+        }
+
+        // Commented since Logoff and CHange password was not able to click
+        //var sizeTheOverlays = function () {
+        //    $(".overlay").resize().each(function () {
+        //        var h = $(this).parent().outerHeight();
+        //        var w = $(this).parent().outerWidth();
+        //        $(this).css("height", h);
+        //        $(this).css("width", w);
+        //    });
+        //};
+
+        //sizeTheOverlays();
+
+
+        //var width = $(window).width();
+        //$(window).resize(function () {
+        //    if ($(this).width() != width) {
+        //        width = $(this).width();
+        //        sizeTheOverlays();
+        //    }
+        //});
+
+        //POPUP
+        $(document).ready(function () {
+            var CC = document.getElementById("CC_id").value.toString(); 
+            if (CC == null || CC == "") {
+                $('#exampleModal').modal('show')
+
+            }
+        });
+        $(document).ready(function () {
+            $('#closebtn').click(function () {
+                $('#dvinstr').dialog('close');
+                return false;
+            });
+        });
+    </script>
+    <script>
+
+        var URL = "https://docs.google.com/viewer?url=https://ndc.nic.in/writereaddata/media/files/2021/Sep/a7567ff6-f29c-4d9c-9dea-35b0e63c5ab4.pdf&embedded=true";
+        var count = 0;
+        var iframe = '<iframe id = "myIframe" src = "${URL}" style = "width:100%; height:500px;"  frameborder = "0"></iframe>';
+
+        $('#iframeContainer').html(iframe);
+        $('#myIframe').on('load', function () {
+            count++;
+            if (count > 0) {
+                clearInterval(ref)
+            }
+        });
+
+        var ref = setInterval(() => {
+            $('#iframeContaine').html(iframe);
+            $('#myIframe').on('load', function () {
+                count++;
+                if (count > 0) {
+                    clearInterval(ref)
+                }
+            });
+        }, 4000)
+
+        //Video Dialog
+        $(document).ready(function () {
+
+            // Gets the video src from the data-src on each button
+
+            var $videoSrc;
+            $('.video-btn').click(function () {
+                $videoSrc = $(this).data("src");
+            });
+            console.log($videoSrc);
+            // when the modal is opened autoplay it
+            $('#myModal').on('shown.bs.modal', function (e) {
+
+                // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+                $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
+
+            })
+            // stop playing the youtube video when I close the modal
+            $('#myModal').on('hide.bs.modal', function (e) {
+                // a poor man's stop video
+                $("#video").attr('src', $videoSrc);
+            })
+
+            // document ready
+        });
+    </script>
+}
+
+
+

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.TrainingActivityIndxVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container mb-4 mt-4">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                <h3 style="text-align:center">
+                    @if (Session["module"] != null)
+                    {<text>@Session["module"].ToString().ToUpper()</text>}
+                </h3>
+            </div>
+        </div>
+
+        <table class="table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Activity")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Activity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @*<a class="btn btn-outline-primary btn-sm" href="@Url.Action("ShowMediaFiles", new { id = item.TrainingActivityId })" target="_blank"><i class="fa fa-eye"></i></a>*@
+                            @Html.EncodedActionLink("", "ShowMediaFiles", "TrainingActivity", "staff", new { Id = item.TrainingActivityId }, new { @class = "btn btn-outline-primary btn-sm" }, "fa fa-eye", "_blank")
+                            @*<a class="btn btn-outline-primary" href="@Url.Action("ShowActivity", new { id = item.TrainingActivityId })" target="_blank"><i class="fa fa-eye"></i>Show</a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        LoadJDT('#myTable');
+    </script>
+}

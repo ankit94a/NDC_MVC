@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<body style="color:grey; font-size:15px;font-family:'Verdana', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:#000;">
+    <font face="Helvetica, Arial, sans-serif"></font>
+        <div style="position:absolute; width:50%; background-color:#9af1f7; padding:20px 0 20px 20px;">
+            <img src="https://ndc.techbrills.com/images/ndc-logo.png"/>
+        </div>
+        <div style="background-color: #ece8d4; width:50%; height:200px; padding:10px 0 20px 20px; margin-top:150px;position:absolute;">
+            <p>Dear {0},<p>
+
+            <p>Please <a href="https://ndc.techbrills.com/admin/account/login">Login</a> to your account using following detail: -</p>
+            <p>
+                Username: {1}.<br><br>
+                Click <b style="background-color:#ff6a00;color:#fff;border-radius:3px; padding:2px">Apply New</b> to apply for our Schemes
+                <br />
+            <p>Thank you for registering with <b><a href="https://ndc.nic.in" style="text-decoration:none">National Defence College (NDC)</a></b></p>
+			<p><small>You received this message because your email is registered with NDC Online portal Developed and Maintained by <a href="http://createch-software.com">Createch Software Pvt. Ltd. New Delhi, INDIA</a></small></p>
+        </div>
+</body>
+</html>

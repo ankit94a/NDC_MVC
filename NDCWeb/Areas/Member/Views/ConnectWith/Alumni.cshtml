@@ -1,0 +1,46 @@
+﻿@model IEnumerable<NDCWeb.View_Models.AlumniIndxVM>
+@{
+    ViewBag.Title = "Alumni of Past NDC Courses";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-4">
+    <div class="panel-heading border-bottom">
+        <h3 class="h3 text-primary">@ViewBag.Title</h3>
+    </div>
+    <div class="card-body">
+        @foreach (var item in Model)
+        {
+            <table class="table table-info">
+                <tr>
+                    <td rowspan="6" width="180">
+                        <img src="@Url.Content(item.AlumniPhoto ?? "/Areas/Member/Component/images/avatars/profile-blank.png")" height="120" alt="@item.FirstName @item.Surname">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="180">Full Name</td>
+                    <td>@item.FirstName @item.Surname</td>
+                </tr>
+                <tr>
+                    <td>Coutry / Service</td>
+                    <td>@item.Country @item.Branch</td>
+                </tr>
+                <tr>
+                    <td>Course, Year</td>
+                    <td>@item.CourseSerNo @item.NdcEqvCourse  @item.YearDone @item.CourseYear</td>
+                </tr>
+                <tr>
+                    <td> Mobile No</td>
+                    <td>@item.MobileNo</td>
+                </tr>
+                <tr>
+                    <td>Email Id</td>
+                    <td>@item.Email</td>
+                </tr>
+            </table>
+            <br />
+        }
+    </div>
+    <div class="panel-footer mb-4 text-center">
+        <a href="/member/home/" class="btn btn-primary btn-sm"> Back</a>
+    </div>
+</div>

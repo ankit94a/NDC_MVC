@@ -1,0 +1,261 @@
+﻿@model NDCWeb.Areas.Member.View_Models.LeaveCrtVM
+
+@{
+    ViewBag.Title = "IndividualLeaveEntry";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="card mt-4 mb-4 shadow-sm">
+                <div class="card-header" style="margin-left:12px !important">
+                    Leave Input
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            @if (ViewBag.Citizenship != null)
+                            {
+                            <input id="FPCountryName" name="FPCountry" type="hidden" value="@ViewBag.Citizenship" />
+                                @Html.LabelFor(model => model.LeaveCategory, htmlAttributes: new { @class = "control-label" })
+                                if (ViewBag.Citizenship == "India")
+                                {
+                                    <div class="form-inline">
+                                        <label class="containerchk col-md-4">
+                                            Leave for Indian Course Participant
+                                            <input type="radio" checked="checked" value="Leave for Indian Course Participant" name="LeaveCategory">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="containerchk col-md-4">
+                                            Leave for Foreign Course Participant
+                                            <input type="radio" value="Leave for Foreign Country Study Tour" name="LeaveCategory" disabled>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.LeaveCategory, "", new { @class = "text-danger" })
+
+                                }
+                                else
+                                {
+                                    <div class="form-inline">
+                                        <label class="containerchk col-md-4">
+                                            Leave for Indian Course Participant
+                                            <input type="radio" value="Leave for Indian Course Participant" name="LeaveCategory" disabled>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="containerchk col-md-4">
+                                            Leave for Foreign Course Participant
+                                            <input type="radio" checked="checked" value="Leave for Foreign Country Study Tour" name="LeaveCategory">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.LeaveCategory, "", new { @class = "text-danger" })
+
+                                }
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>Information !</strong> You have not filled your citizenship country details. Please complete the Personal Information Form before applying leave.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-row">
+
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.LeaveType, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("LeaveType", (IEnumerable<SelectListItem>)ViewBag.LeaveType, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LeaveType, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.FromDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @onchange = "ttlDaysDiff()", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.ToDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @onchange = "ttlDaysDiff()", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.PrefixDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.PrefixDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.PrefixDate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.PrefixToDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.PrefixToDate, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.PrefixToDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.SuffixDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.SuffixDate, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.SuffixDate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.SuffixToDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.SuffixToDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.SuffixToDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-1">
+                            @Html.LabelFor(model => model.TotalDays, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.TotalDays, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TotalDays, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-7">
+                            @Html.LabelFor(model => model.ReasonForLeave, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ReasonForLeave, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReasonForLeave, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            @Html.LabelFor(model => model.AddressOnLeave, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.AddressOnLeave, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AddressOnLeave, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.TeleNo, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.TeleNo, new { htmlAttributes = new { @class = "form-control", @type = "number", @maxlength = "14", @minlength = "10" } })
+                            @Html.ValidationMessageFor(model => model.TeleNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div id="foreign" class="form-group col-md-3 foreign">
+                            <label>Recommend by Embassy</label>
+                            @Html.DropDownList("RecommendByEmbassy", (IEnumerable<SelectListItem>)ViewBag.EmbassyRecmdType, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RecommendByEmbassy, "", new { @class = "text-danger" })
+                        </div>
+                        <div id="foreign" class="form-group col-md-3 foreign">
+                            <label>Country</label>
+                            @Html.DropDownListFor(model => model.CountryId, (IEnumerable<SelectListItem>)ViewBag.Country, "-- Select --", htmlAttributes: new { @class = "form-control", @id = "ddlCountry" })
+                            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                        </div>
+                        <div id="foreign" class="form-group col-md-3 foreign">
+                            @Html.LabelFor(model => model.DocPath, htmlAttributes: new { @class = "control-label" })
+                            <input id="LeaveFile" type="file" required name="LeaveFile" onchange="imgValidate('LeaveFile', 'DocPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                            <p class="text-info">Size 1MB or less, File Type (.PDF)</p>
+                            @Html.EditorFor(model => model.DocPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer bg-white text-center">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        @Html.ActionLink("Back to List", "IndividualLeaveList", null, new { @class="btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/daterange");
+<script>
+        $(document).ready(function () {
+            $('.foreign').hide();
+            $('#SuffixDate').prop('readonly', true);
+            $('#PrefixToDate').prop('readonly', true);
+            var leavecat = $("input[type='radio']:checked").val();
+            if (leavecat == "Leave for Indian Course Participant") {
+                $('.foreign').hide();
+                $("#CountryId").val(null);
+                $("#RecommendByEmbassy").val(null);
+            }
+            else {
+                $('.foreign').show();
+            }
+            var FSCountry = $("input[name=FPCountry]").val();
+            $('#ddlCountry option:contains(' + FSCountry + ')').attr('selected', 'selected');
+            //$("input[name=CountryId]").val(FSCountry);
+
+            $('input[type=radio][name=LeaveCategory]').change(function () {
+                var leavecat = $("input[type='radio']:checked").val();
+                if (leavecat == "Leave for Indian Course Participant") {
+                    $('.foreign').hide();
+                    $("#CountryId").val(null);
+                    $("#RecommendByEmbassy").val(null);
+                }
+                else {
+                    $('.foreign').show();
+                }
+
+            });
+        });
+        function ttlDaysDiff() {
+            const date1 = new Date($("#FromDate").val());
+            const date2 = new Date($("#ToDate").val());
+            const diffTime = Math.abs(date2 - date1);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            //console.log(diffTime + " milliseconds");
+            //console.log(diffDays + " days");
+            $("#TotalDays").val(diffDays + 1);
+        }
+
+        // #region Date Ranges
+        $('#FromDate').datepicker({
+            dateFormat: 'dd M yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function (selectedDate) {
+                $('#ToDate').datepicker("option", "minDate", selectedDate, "dateFormat", 'dd M yy');
+                $('#PrefixDate').datepicker("option", "maxDate", selectedDate, "dateFormat", 'dd M yy');
+
+                var dt = new Date(selectedDate);
+                dt.setDate(dt.getDate() - 1);
+
+                $("#PrefixToDate").val($.datepicker.formatDate('dd M yy', dt));
+                $('#PrefixToDate').prop('readonly', true);
+                /* $('#PrefixToDate').datepicker("option", "maxDate", selectedDate, "dateFormat", 'dd M yy');*/
+
+            }
+        });
+        $('#ToDate').datepicker({
+            dateFormat: 'dd M yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function (selectedDate) {
+                $('#FromDate').datepicker("option", "maxDate", selectedDate, "dateFormat", 'dd M yy');
+                /*$('#SuffixDate').datepicker("option", "minDate", selectedDate, "dateFormat", 'dd M yy');*/
+                $('#SuffixToDate').datepicker("option", "minDate", selectedDate, "dateFormat", 'dd M yy');
+
+                var dt = new Date(selectedDate);
+                dt.setDate(dt.getDate() + 1);
+
+                $("#SuffixDate").val($.datepicker.formatDate('dd M yy', dt));
+                $('#SuffixDate').prop('readonly', true);
+            }
+        });
+            // #endregion
+        function imgValidate(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg', 'pdf'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+            else {
+                $('#' + fileLocId).val('');
+            }
+        }
+</script>
+
+}

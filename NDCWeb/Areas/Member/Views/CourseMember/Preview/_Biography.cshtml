@@ -1,0 +1,28 @@
+﻿@*@model NDCWeb.Areas.Member.View_Models.CrsMbrBiographyVM*@
+@model NDCWeb.Areas.Member.View_Models.BiographyIndxVM
+
+<div class="card mt-4">
+    <div class="card-body">
+        <a class="btn btn-danger btn-sm float-right" data-toggle="tab" href="#BiographyPartial" onclick="editTab('BiographyPartial')">EDIT THIS SECTION</a>
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="10">BIOGRAPHICAL SKETCH</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.PenPicture)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.PenPicture)</td>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.FamilyBackground)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.FamilyBackground)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.EarlySchooling) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.EarlySchooling)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.AcademicAchievement) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.AcademicAchievement)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.PersonalValueSystem) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.PersonalValueSystem)</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+

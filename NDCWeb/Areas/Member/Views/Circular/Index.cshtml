@@ -1,0 +1,54 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.CircularIndxVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Circulars";
+
+    int counter = 1;
+    string textColor = "text-primary";
+}
+
+<div class="container mt-4">
+    <h3 class="text-primary" style="text-align: center;"><span style="text-decoration: underline;"><strong>Circulars</strong></span></h3>
+    <div class="card">
+        <div class="card-body">
+            <p style="text-align: justify;">
+                @foreach (var item in Model)
+                {
+                    //if (counter == 1)
+                    //{ textColor = "text-info h4"; }
+                    //else if (counter == 2)
+                    //{ textColor = "text-warning h4"; }
+                    //else if (counter == 3)
+                    //{ textColor = "text-success h4"; }
+                    //else if (counter == 4)
+                    //{ textColor = "text-danger h4"; }
+                    //else
+                    //{ textColor = "text-primary h4"; }
+
+                    <span style="color: #169179;">
+                        <i class="fa fa-hand-point-right black-font"></i>  @Html.EncodedActionLink(item.Description, "ShowMediaFiles", "circular", "member", new { id = item.CircularId }, new { @class = "text-justify black-font" }, "", "_blank")
+                    </span>
+                    <br /><br />
+
+                    counter++;
+                    if (counter == 5)
+                    { counter = 1; }
+                }
+            </p>
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDTSorted('#myTable');
+
+    @*function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }*@
+    </script>
+}
+
+

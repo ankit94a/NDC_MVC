@@ -1,0 +1,19 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CrsMbrAppointmentVM
+<div class="card mt-4">
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="5">APPOINTMENT DETAILS (PRESENT)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Designation)</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.Designation)</td>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.Organisation)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Organisation)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Location) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.Location)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+

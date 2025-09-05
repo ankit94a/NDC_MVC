@@ -1,0 +1,217 @@
+﻿
+@model NDCWeb.Areas.Member.View_Models.ChildrenUpVM
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formUpChild" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ChildId, new { @id = "hdnChildId" })
+
+    <div class="form-horizontal">
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                Children DETAILS
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Name</Label>
+                        @Html.EditorFor(model => model.ChildName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChildName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">DOB</Label>
+                        @Html.EditorFor(model => model.ChildDOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.ChildDOBirth, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label">Gender</Label>
+                        @Html.DropDownListFor(model => model.ChildGender, (IEnumerable<SelectListItem>)ViewBag.Gender, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ChildGender, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Occupation</Label>
+                        @Html.EditorFor(model => model.ChildOccupation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChildOccupation, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="citizencountry">Contact No</label>
+                        @Html.EditorFor(model => model.ChildContactNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChildContactNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Living With You?</Label>
+                        @Html.DropDownListFor(model => model.ChildStayWithMember, (IEnumerable<SelectListItem>)ViewBag.YesNoOpt, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ChildStayWithMember, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                PASSPORT DETAILS OF CHILDREN
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Passport No</Label>
+                        @Html.EditorFor(model => model.ChildPassportNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChildPassportNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Passport Name</Label>
+                        @Html.EditorFor(model => model.ChildPassportName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChildPassportName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Date of Issue</Label>
+                        @Html.EditorFor(model => model.ChildPassportIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.ChildPassportIssueDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Valid Upto</Label>
+                        @Html.EditorFor(model => model.ChildPassportValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.ChildPassportValidUpto, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="citizencountry">Passport Type</label>
+                        @Html.DropDownListFor(model => model.ChildPassportType, (IEnumerable<SelectListItem>)ViewBag.PassportType, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ChildPassportType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="citizencountry">Country that issued your passport</label>
+                        @Html.DropDownListFor(model => model.ChildPassportCountryIssued, (IEnumerable<SelectListItem>)ViewBag.ddlCountry, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ChildPassportCountryIssued, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="passport_self">Upload passport image (Front)</label>
+                        <input id="childPassportPicfile" type="file" title="Upload Your Child Passport" name="childPassportPicfile" onchange="imgValidateEdit('childPassportPicfile', 'ChildPassportImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                        <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                        @Html.EditorFor(model => model.ChildPassportImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="passport_self">Upload passport image (Back)</label>
+                        <input id="childPassportBackPicfile" type="file" title="Upload Your Child Passport" name="childPassportBackPicfile" onchange="imgValidateEdit('childPassportBackPicfile', 'ChildPassportBackImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                        <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                        @Html.EditorFor(model => model.ChildPassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                VISA DETAILS (CHILDREN)
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Visa No</Label>
+                        @Html.EditorFor(model => model.ChildVisaNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChildVisaNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Date of Issue</Label>
+                        @Html.EditorFor(model => model.ChildVisaIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.ChildVisaIssueDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Valid Upto</Label>
+                        @Html.EditorFor(model => model.ChildVisaValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.ChildVisaValidUpto, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Upload Visa images (Front and Back) </label>
+                        <input id="childVisaPicfile" type="file" title="Upload Your Visa" name="childVisaPicfile" onchange="imgValidateEdit('childVisaPicfile', 'ChildVisaPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                        <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                        @Html.EditorFor(model => model.ChildVisaPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-center bg-white">
+        <button type="button" class="btn btn-lg btn-primary" onclick="editChildrenDetail()">Update</button>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('#ChildGender').val('@Model.ChildGender');
+        $('#ChildStayWithMember').val('@Model.ChildStayWithMember');
+        $('#ChildPassportType').val('@Model.ChildPassportType');
+
+        getDatepickerf1('.datepickerJq1');
+    });
+
+    function fillChildrenDetail() {
+        let children = {
+            ChildName: $("#ChildName").val(),
+            ChildGender: $("#ChildGender").val(),
+            ChildDOBirth: $("#ChildDOBirth").val(),
+            ChildOccupation: $("#ChildOccupation").val(),
+            ChildContactNo: $("#ChildContactNo").val(),
+            ChildStayWithMember: $("#ChildStayWithMember").val(),
+            ChildPassportNo: $("#ChildPassportNo").val(),
+            ChildPassportName: $("#ChildPassportName").val(),
+            ChildPassportIssueDate: $("#ChildPassportIssueDate").val(),
+            ChildPassportValidUpto: $("#ChildPassportValidUpto").val(),
+            ChildPassportType: $("#ChildPassportType").val(),
+            ChildPassportCountryIssued: $("#ChildPassportCountryIssued").val(),
+            ChildPassportImgPath: $("#ChildPassportImgPath").val() || '#',
+            ChildPassportBackImgPath: $("#ChildPassportBackImgPath").val() || '#',
+            ChildVisaNo: $("#ChildVisaNo").val(),
+            ChildVisaIssueDate: $("#ChildVisaIssueDate").val(),
+            ChildVisaValidUpto: $("#ChildVisaValidUpto").val(),
+            ChildVisaPath: $("#ChildVisaPath").val() || '#',
+        }
+        return children;
+    }
+
+    function editChildrenDetail() {
+        if ($("#formUpChild").valid()) {
+            let ChildId = $('#hdnChildId').val();
+            let children = fillChildrenDetail();
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/ChildrenEdit/' + ChildId,
+                data: children,
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    toastr.info(textStatus);
+                    childTab('ChildrenPartial', 'R');
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+    }
+
+        // #region Upload Helper
+        function imgValidate(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg', 'jpeg', 'png'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("ImageUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+            else {
+                $('#' + fileLocId).val('');
+            }
+        }
+        function docValidate(fileUploadId, fileLocId) {
+            let fileTypes = ['pdf', 'doc', 'docx', 'txt', 'xlsx', 'ppt', 'zip'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+            else {
+                $('#' + fileLocId).val('');
+            }
+        }
+        // #endregion
+</script>

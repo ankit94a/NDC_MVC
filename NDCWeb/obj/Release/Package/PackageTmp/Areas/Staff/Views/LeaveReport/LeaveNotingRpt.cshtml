@@ -1,0 +1,211 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.ShowLeaveRptVM
+@{
+    ViewBag.Title = "Leave Noting";
+}
+<div class="container mt-4">
+    <div id="printDiv">
+        <table>
+            <tr>
+                <td colspan="3" style="text-align:right">
+                    <strong><u>1043/NDC/Sectt/Leave/Air Force/62</u></strong>
+                </td>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td>
+
+                    Leave application for @Model.TotalDays day(s) @Model.LeaveType on
+                    @if (Model.SuffixDate != null)
+                    {
+                        <text>@Model.SuffixDate.Value.ToString("dd MMM yyyy")</text>
+                    }
+                    with permission to suffix on @Model.FromDate.ToString("dd MMM yyyy") in respect of @Model.FullName (@Model.LockerNo) course member is placed opposite.
+                </td>
+            </tr>
+
+            <tr>
+                <td>2.</td>
+                <td>The following leave has been sanctioned/availed by the offr:-</td>
+            </tr>
+            <!-- <tr>
+            <td></td>
+            <td style="text-align:right">
+                (@Model.AQName)
+            </td>
+
+    </tr>-->
+            <tr>
+                <td></td>
+                <td>
+                    <span>
+                        (a)  EL  -
+                        @if (Model.LeaveType == "EL")
+                        {
+                            <text>@Model.TotalDays.ToString() Days</text>
+                        }
+                        else
+                        {
+                            <text>Nil </text>
+                        }
+                    </span>
+
+                </td>
+            </tr>
+            <tr>
+
+                <td></td>
+
+                <td>
+                    (b)  CL  -
+                    @if (Model.LeaveType == "CL")
+                    {
+                        <text>@Model.TotalDays.ToString() Days</text>
+                    }
+                    else
+                    {
+                        <text>Nil </text>
+                    }
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td></td>
+
+                <td>
+                    (c)  AL  -
+                    @if (Model.LeaveType == "AL")
+                    {
+                        <text>@Model.TotalDays.ToString() Days</text>
+                    }
+                    else
+                    {
+                        <text>Nil </text>
+                    }
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td></td>
+
+                <td>(d)  SIQ/Hospital  -  Nil.</td>
+
+            </tr>
+
+            <tr>
+
+                <td>3.</td>
+
+                <td>As on date, leave already sanctioned by two officers as per details given below:-</td>
+
+            </tr>
+
+            <tr>
+
+                <td></td>
+
+                <td>
+                    @{ Html.RenderAction("GetLeaveData"); }
+                </td>
+
+
+            </tr>
+
+            <tr>
+
+                <td>4.</td>
+
+                <td>Put up for approval by SDS(Air).</td>
+
+            </tr>
+
+            <tr>
+
+                <td></td>
+
+                <td style="text-align:right">
+                    (@Model.AQName)
+                    <br />
+                    Lt Col
+                    <br />
+                    AA & QMG, NDC
+                    <br />
+                    @DateTime.Now.Date.ToString("MMM") &nbsp; @DateTime.Now.Year
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center">
+                    <br /><strong><u>RECOMMENDED / NOT RECOMMENDED</u></strong>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <strong>______________________</strong><br />
+                    <strong>(IAG SDS)</strong><br />
+                    <strong>(SDS Army-II)</strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-center">
+                    <br /><strong><u>SANCTIONED / NOT SANCTIONED</u></strong>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <strong>______________________</strong><br />
+                    <strong>(Sponsor / Service SDS)</strong><br />
+                    <strong>(SDS (Air))</strong>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <strong>______________________</strong><br /><br />
+                    <strong>Through (Secretary)</strong>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <strong>______________________</strong><br /><br />
+                    <strong>(Commandant)</strong> for info pl.<br />
+
+                </td>
+            </tr>
+        </table>
+        <div class="panel-footer text-center bg-white mt-4">
+            <a href="javascript:void()" class="btn btn-primary btn-sm" onclick=" printdoc();">Print</a>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printDiv').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+    </script>
+}
+
+
+
+

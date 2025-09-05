@@ -1,0 +1,74 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.HolidayCalendarIndxVM>
+
+@{
+    ViewBag.Title = "List of Hoiday";
+}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+            <span class="pull-right ml-1"> @Html.ActionLink("Add Event", "Add", null, new { @class = "btn btn-primary btn-sm" })</span>
+            <span class="pull-right"> @Html.ActionLink("View Full Event", "IndexCalendar", null, new { @class = "btn btn-primary btn-sm" })</span>
+        </div>
+        <div class="card-body">
+            <table class="table w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Month)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Day)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.HolidayType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CountryName)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Month)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Day)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HolidayType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CountryName)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = item.HolidayCalendarId })"><i class="fa fa-edit"></i></a>
+                                <a onclick="Delete(@item.HolidayCalendarId, this)"><i class="fa fa-trash text-danger"></i></a>
+                            </td>
+                        </tr>
+                    }
+
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

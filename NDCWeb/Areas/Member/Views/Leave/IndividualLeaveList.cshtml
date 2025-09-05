@@ -1,0 +1,230 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.LeaveIndexVM>
+
+@{
+    ViewBag.Title = "Individual Leave List";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4 col-md-12">
+
+    <p>
+        @Html.ActionLink("Apply for Leave", "IndividualLeaveEntry")
+    </p>
+    <table class="table w-10" id="myTable">
+        <thead>
+            <tr>
+                @if (ViewBag.Citizenship != "India")
+                {
+                    <th style="vertical-align: middle; white-space: nowrap">
+                        @Html.DisplayNameFor(model => model.LeaveIn)
+                    </th>
+                }
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.LeaveDuration)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.LeaveCategory)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.LeaveType)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.FromDate)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.ToDate)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.PrefixDate)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.PrefixToDate)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.SuffixDate)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.SuffixToDate)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.TotalDays)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.ReasonForLeave)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.AddressOnLeave)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.TeleNo)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    @Html.DisplayNameFor(model => model.RecommendByEmbassy)
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    Country
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    AQ Status
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    IAG Status
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    SDS Staus
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">
+                    Certificate
+                </th>
+                <th style="vertical-align: middle; white-space: nowrap">Delete</th>
+            </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        @*if (ViewBag.Citizenship == "India")
+                        {
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="control-label"><b>Leave Type</b></label>
+                                    <div class="form-inline">
+                                        <label class="containerchk col-md-4">
+                                            Leave for Indian Course Participant
+                                            <input type="radio" checked="checked" value="Leave for Indian Course Participant" name="LeaveCategory">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="containerchk col-md-4">
+                                            Leave for Foreign Country Study Tour
+                                            <input type="radio" value="Leave for Foreign Country Study Tour" name="LeaveCategory">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        }*@
+                    <tr>
+                        @if (ViewBag.Citizenship != "India")
+                        {
+
+                           <td>
+                               @Html.DisplayFor(modelItem => item.LeaveIn)
+                           </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveDuration)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveCategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FromDate)
+                        </td>
+                        <td style="vertical-align: middle; white-space: nowrap">
+                            @Html.DisplayFor(modelItem => item.ToDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrefixDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrefixToDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuffixDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuffixToDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalDays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReasonForLeave)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AddressOnLeave)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeleNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RecommendByEmbassy)
+                            @if (item.DocPath != null)
+                            {
+                                <a href="@Url.Content(item.DocPath)" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country.CountryName)
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.AQStatus == "Recommend"? "Initiated": "Not Initiated")*@
+                            @if (item.AQStatus != null)
+                            {
+                                <i class="fa @(item.AQStatus.ToString() == "Recommend" ? "fa-check text-success" : "fa-cross text-danger")"></i>
+                                @(item.AQStatus.ToString() == "Recommend" ? "Initiated" : "Not Initiated")
+                            }
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.IAGStatus)*@
+                            @if (item.IAGStatus != null)
+                            {
+                                <i class="fa @(item.IAGStatus.ToString() == "Recommend" ? "fa-check text-success" : "fa-cross text-danger")"></i>
+                                @(item.IAGStatus.ToString() == "Recommend" ? "Recommended" : "Not Recommended")
+                            }
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.ServiceSDSStatus)*@
+                            @if (item.IAGStatus != null)
+                            {
+                                <i class="fa @(item.ServiceSDSStatus.ToString() == "Sanction" ? "fa-check text-success" : "fa-cross text-danger")"></i>
+                                @(item.ServiceSDSStatus.ToString() == "Sanction" ? "Sanctioned" : "Not Sanctioned")
+                            }
+                        </td>
+                        <td>
+                            @if (item.BtnLeaveCertificate == true)
+                            {
+                                <a href="@Url.Action("LeaveCertificateRpt", new { leaveid=item.LeaveId })" class="btn btn-outline-info"><i class="fa fa-print" title="Click to preview & Print Leave Certificate"></i></a>
+                            }
+                        </td>
+                        @*<td>
+            <a href="@Url.Action("IndividualLeaveEntryEdit", new { id=item.LeaveId })"><i class="fa fa-edit"></i></a>
+        </td>*@
+                        <td>
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.LeaveId, this)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    LoadJDT('#myTable');
+
+            function Delete(id, event) {
+                var TableId = "#myTable";
+                var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+                DeleteJDTRow(id, event, TableId, Jsonurl)
+            }
+
+            $(document).ready(function () {
+                $('.foreign').hide();
+                $('input[type=radio][name=LeaveCategory]').change(function () {
+                    var leavecat = $("input[type='radio']:checked").val();
+                    if (leavecat == "Leave for Indian Course Participant") {
+                        $('.foreign').hide();
+                    }
+                    else {
+                        $('.foreign').show();
+                    }
+
+                });
+            });
+    </script>
+}
+

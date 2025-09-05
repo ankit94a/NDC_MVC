@@ -1,0 +1,82 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.LatestEventVM>
+@{
+    ViewBag.Title = "Participants Detail";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+<div class="card shadow mt-4 mb-4">
+    <div class="card-header">
+        <h4 class="text-center"><u><b>@ViewBag.Title</b></u></h4>
+    </div>
+    <div class="card-body">
+        <table class="table w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Mobile No
+                    </th>
+                    <th>
+                        Attend Self
+                    </th>
+                    <th>
+                        Attend Spouse
+                    </th>
+                    <th>
+                        Secy Permited
+                    </th>
+                    <th>
+                        Dietary Pref Self
+                    </th>
+                    <th>
+                        Dietary Pref Spouse
+                    </th>
+                    <th>
+                        Liquor Pref
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MobileNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AttendSelf)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AttendSpouse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SecyPermited)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DietaryPrefSelf)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DietaryPrefSpouse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LiquorPref)
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <div class="card-footer text-center bg-white">
+            @*<button class="btn btn-success btn-sm">Download</button>*@
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        LoadJDT('#myTable');
+
+    </script>
+}

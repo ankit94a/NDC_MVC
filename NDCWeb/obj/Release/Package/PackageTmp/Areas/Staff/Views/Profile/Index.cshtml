@@ -1,0 +1,117 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.StaffMasterIndxVM
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "My Profile";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background-color: #f3fbfa;
+    }
+</style>
+<div class="container mt-4 mb-4">
+    <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <img src="@Url.Content(ViewBag.ProfilePic ?? "/Component/images/avatars/avatar.png")" alt="@ViewBag.fullname" title="@ViewBag.fullname" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>@ViewBag.fullname</h4>
+                                    <p class="text-secondary mb-1">@ViewBag.Appointment</p>
+                                    <p class="text-muted font-size-sm"></p>
+                                    @*<a href="@Url.Action("Edit", new { id = @Model.StaffId })" class="btn btn-outline-primary btn-sm" title="Edit this user">Edit</a>*@
+                                    @Html.EncodedActionLink("Edit", "Edit", "profile", "staff", new { id = @Model.StaffId }, new { @class = "btn btn-outline-primary btn-sm" },"")
+                                    <button class="btn btn-outline-primary btn-sm" onclick="javascript: document.getElementById('logoutForm').submit()">Logout </button>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Username</h6>
+                        <span class="text-secondary">@Html.DisplayFor(model => model.EmailId)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Rank & Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.Ranks.RankName) @Html.DisplayFor(model => model.FullName)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.EmailId)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.PhoneNo)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Date of Birth</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.DOBirth)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Date of Marriage</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.DOMarriage)
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Decoration (if any)</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            @Html.DisplayFor(model => model.Decoration)
+                        </div>
+                    </div>
+                    <hr>
+                    @*<div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Address</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                NA
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

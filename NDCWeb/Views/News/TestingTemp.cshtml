@@ -1,0 +1,414 @@
+﻿
+@{
+    ViewBag.Title = "News Index";
+}
+<section class="pt20">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href='/' class="active">Home</a></li>
+            <li class="breadcrumb-item active"><a href="#"> @ViewBag.Title</a></li>
+            <li class="pull-right">
+                <div class="print-icons">
+                    <input type="image" name="print" id="print" src="/images/printer_icon.png" />
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>
+<section class="pb40">
+    <!--  *********   Left Part- Release Listing  ******* -->
+    <div class='container' style='padding-left: 1px; padding-right: 1px;'>
+        <div class='col-md-4 erelease-left1' valign="top" style='margin-top: 20px;'>
+            <div class="mddiv" id="relhead">
+                English Release 31-December 2017
+            </div>
+            <div class='col-md-12 date-bodered' style='margin-bottom: 7px;'>
+                <div class='col-md-12'>
+                    <select class='form-control' name="minname" id="minID" style="" onchange="datewise()">
+                        <option selected="selected" value='0'>All Ministries</option>
+
+                        <option value='75'>
+                            Cabinet Committee on Investment
+                        </option>
+
+                        <option value='1'>
+                            President's Secretariat
+                        </option>
+
+                    </select>
+                </div>
+                <div class='col-md-12' style='padding-left: 0px; padding-right: 0px; margin-top: 7px;'>
+                    <div class='col-md-3'>
+                        <select class='form-control' name="rdate" id="rdateID" onchange="return datewise()">
+                            <option value='0'>All</option>
+
+                            <option value='1'>
+                                1
+                            </option>
+
+                            <option value='2'>
+                                2
+                            </option>
+
+                            <option value='3'>
+                                3
+                            </option>
+
+                            <option value='4'>
+                                4
+                            </option>
+
+                            <option value='5'>
+                                5
+                            </option>
+
+                            <option value='6'>
+                                6
+                            </option>
+
+                            <option value='7'>
+                                7
+                            </option>
+
+                            <option value='8'>
+                                8
+                            </option>
+
+                            <option value='9'>
+                                9
+                            </option>
+
+                            <option value='10'>
+                                10
+                            </option>
+
+                            <option value='11'>
+                                11
+                            </option>
+
+                            <option value='12'>
+                                12
+                            </option>
+
+                            <option value='13'>
+                                13
+                            </option>
+
+                            <option value='14'>
+                                14
+                            </option>
+
+                            <option value='15'>
+                                15
+                            </option>
+
+                            <option value='16'>
+                                16
+                            </option>
+
+                            <option value='17'>
+                                17
+                            </option>
+
+                            <option value='18'>
+                                18
+                            </option>
+
+                            <option value='19'>
+                                19
+                            </option>
+
+                            <option value='20'>
+                                20
+                            </option>
+
+                            <option value='21'>
+                                21
+                            </option>
+
+                            <option value='22'>
+                                22
+                            </option>
+
+                            <option value='23'>
+                                23
+                            </option>
+
+                            <option value='24'>
+                                24
+                            </option>
+
+                            <option value='25'>
+                                25
+                            </option>
+
+                            <option value='26'>
+                                26
+                            </option>
+
+                            <option value='27'>
+                                27
+                            </option>
+
+                            <option value='28'>
+                                28
+                            </option>
+
+                            <option value='29'>
+                                29
+                            </option>
+
+                            <option value='30'>
+                                30
+                            </option>
+
+                            <option selected="selected" value='31'>
+                                31
+                            </option>
+
+                            <option value='0'>All</option>
+                        </select>
+                    </div>
+                    <div class='col-md-5'>
+                        <select class='form-control' name="rmonth" id="rmonthID" onchange="datewise()">
+
+                            <option value='1'>
+                                January
+                            </option>
+
+                            <option value='2'>
+                                February
+                            </option>
+
+                            <option value='3'>
+                                March
+                            </option>
+
+                            <option value='4'>
+                                April
+                            </option>
+
+                            <option value='5'>
+                                May
+                            </option>
+
+                            <option value='6'>
+                                June
+                            </option>
+
+                            <option value='7'>
+                                July
+                            </option>
+
+                            <option value='8'>
+                                August
+                            </option>
+
+                            <option value='9'>
+                                September
+                            </option>
+
+                            <option value='10'>
+                                October
+                            </option>
+
+                            <option value='11'>
+                                November
+                            </option>
+
+                            <option selected="selected" value='12'>
+                                December
+                            </option>
+
+                        </select>
+                    </div>
+                    <div class='col-md-4'>
+                        <select class='form-control' name="ryear" id="ryearID" onchange="datewise()">
+
+                            <option selected="selected" value='2017'>
+                                2017
+                            </option>
+
+                            <option value='2016'>
+                                2016
+                            </option>
+
+                            <option value='2015'>
+                                2015
+                            </option>
+
+                            <option value='2014'>
+                                2014
+                            </option>
+
+                            <option value='2013'>
+                                2013
+                            </option>
+
+                            <option value='2012'>
+                                2012
+                            </option>
+
+                            <option value='2011'>
+                                2011
+                            </option>
+
+                            <option value='2010'>
+                                2010
+                            </option>
+
+                            <option value='2009'>
+                                2009
+                            </option>
+
+                            <option value='2008'>
+                                2008
+                            </option>
+
+                            <option value='2007'>
+                                2007
+                            </option>
+
+                            <option value='2006'>
+                                2006
+                            </option>
+
+                            <option value='2005'>
+                                2005
+                            </option>
+
+                            <option value='2004'>
+                                2004
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="lreleaseID" class="leftrightdiv col-md-12" style="max-height: 550px;
+                overflow-y: auto;">
+
+                <ul class="link1" style='padding-left: 1px; padding-right: 1px;'>
+
+                    <li class="rel-display11 min-rel" style="list-style: none; font-size: 110%">
+                        President's Secretariat
+                    </li>
+
+                    @*<li class="rel" style="border-bottom: teal 1px dotted;cursor:pointer" onclick='Getrelease(175067)'>
+                            President’s Greetings on the Eve of New Year
+                            <span style='font-weight:lighter;color: ThreeDDarkShadow;'> ()</span>
+                        </li>*@
+                    <ul class='rel-display11'>
+                        <li class="rel rel-list" id='175067' onclick='Getrelease(175067)'>
+                            President’s Greetings on the Eve of New Year
+                        </li>
+                    </ul>
+
+                    @*<li class="rel min-rel" style="list-style: none; font-size: 110%">
+                            Vice President's Secretariat
+                        </li>*@
+
+                    <!-- <li class="rel" style="border-bottom: teal 1px dotted;cursor:pointer" onclick='Getrelease(175065)' >Vice President wishes all citizens on the advent of Year 2018<span style='font-weight:lighter;color: ThreeDDarkShadow;'> ()</span></li>  -->
+                    <ul class='rel-display11'>
+                        <li class="icon-rel"></li>
+                        <li class="rel rel-list" id='175065' onclick='Getrelease(175065)'>
+                            Vice President wishes all citizens on the advent of Year 2018
+                        </li>
+                    </ul>
+
+                    <li class="rel min-rel" style="list-style: none; font-size: 110%">
+                        Prime Minister's Office
+                    </li>
+
+                    <!-- <li class="rel" style="border-bottom: teal 1px dotted;cursor:pointer" onclick='Getrelease(175061)' >English rendering of PM’s address in Mann Ki Baat on 31.12.2017 <span style='font-weight:lighter;color: ThreeDDarkShadow;'> ()</span></li>  -->
+                    <ul class='rel-display11'>
+                        <li class="icon-rel"></li>
+                        <li class="rel rel-list" id='175061' onclick='Getrelease(175061)'>
+                            English rendering of PM’s address in Mann Ki Baat on 31.12.2017
+                        </li>
+                    </ul>
+
+                    <!-- <li class="rel" style="border-bottom: teal 1px dotted;cursor:pointer" onclick='Getrelease(175060)' >Text of PM’s address in Mann Ki Baat on 31.12.2017 <span style='font-weight:lighter;color: ThreeDDarkShadow;'> ()</span></li>  -->
+                    <ul class='rel-display11'>
+                        <li class="icon-rel"></li>
+                        <li class="rel rel-list" id='175060' onclick='Getrelease(175060)'>
+                            Text of PM’s address in Mann Ki Baat on 31.12.2017
+                        </li>
+                    </ul>
+
+                    <!-- <li class="rel" style="border-bottom: teal 1px dotted;cursor:pointer" onclick='Getrelease(175059)' >
+                    English rendering of PM’s inaugural address, for the 85th Sivagiri Pilgrimage Celebrations, at Sivagiri Mutt, Varkala, Kerala via video conference.
+                     <span style='font-weight:lighter;color: ThreeDDarkShadow;'> ()</span></li>  -->
+                    <ul class='rel-display11'>
+                        <li class="icon-rel"></li>
+                        <li class="rel rel-list" id='175059' onclick='Getrelease(175059)'>
+
+                            English rendering of PM’s inaugural address, for the 85th Sivagiri Pilgrimage Celebrations, at Sivagiri Mutt, Varkala, Kerala via video conference.
+                        </li>
+                    </ul>
+
+                    <li class="rel min-rel" style="list-style: none; font-size: 110%">
+                        Min of Home Affairs
+                    </li>
+
+                    <!-- <li class="rel" style="border-bottom: teal 1px dotted;cursor:pointer" onclick='Getrelease(175066)' >Union Home Minister to celebrate the New Year with Himveers of ITBP<span style='font-weight:lighter;color: ThreeDDarkShadow;'> ()</span></li>  -->
+                    <ul class='rel-display11'>
+                        <li class="icon-rel"></li>
+                        <li class="rel rel-list" id='175066' onclick='Getrelease(175066)'>
+                            Union Home Minister to celebrate the New Year with Himveers of ITBP
+                        </li>
+                    </ul>
+
+                    <li class="rel min-rel" style="list-style: none; font-size: 110%">
+                        Min of Housing & Urban Affairs
+                    </li>
+
+                    <!-- <li class="rel" style="border-bottom: teal 1px dotted;cursor:pointer" onclick='Getrelease(175064)' >37.5 LAKH HOUSES SANCTIONED UNDER PMAY- (U) WITH AN INVESTMENT OF RS. 2.03 LAKH CRORE JOINTLY FROM CENTRE & STATES/UTS---17.32 LAKH HOUSES GROUNDED & 4.68 LAKH HOUSES COMPLETED SINCE LAUNCH OF MISSION--RS. 12,916 CRORE RELEASED TO STATES/UTS <span style='font-weight:lighter;color: ThreeDDarkShadow;'> ()</span></li>  -->
+                    <ul class='rel-display11'>
+                        <li class="icon-rel"></li>
+                        <li class="rel rel-list" id='175064' onclick='Getrelease(175064)'>
+                            37.5 LAKH HOUSES SANCTIONED UNDER PMAY- (U) WITH AN INVESTMENT OF RS. 2.03 LAKH CRORE JOINTLY FROM CENTRE & STATES/UTS---17.32 LAKH HOUSES GROUNDED & 4.68 LAKH HOUSES COMPLETED SINCE LAUNCH OF MISSION--RS. 12,916 CRORE RELEASED TO STATES/UTS
+                        </li>
+                    </ul>
+
+                </ul>
+                <br />
+            </div>
+            <table width="100%" style="padding: 20px;">
+                <tr>
+                    <td width="50%" align="left" valign="middle">
+                        <div id="prdate" onclick="changepreviousdate()" style="cursor: pointer; color: red">
+                            <span class='icon-previous'>Previous Date</span>
+                        </div>
+                    </td>
+                    <td width="50%" align="right" style="padding-right: 20px">
+                        <div id="nextdate" onclick="changenextdate()" style="cursor: pointer; color: red;
+                            display: none">
+                            <span class='icon-after'>Next Date</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class='old-rel'>
+                <a href="http://pibarchive.nic.in/newsite/archivepage.aspx">
+                    Click here for Releases from 1-January
+                    1998 to 15-December 2003
+                </a>
+            </div>
+            <br />
+        </div>
+        <!-- *************** Left part display end here -->
+        <!-- *************   Right Part- Release Display  ******* -->
+        <div class='col-md-8 pull-right' valign="top">
+            <p class='print-icon'>
+                <img src="~/images/printer_icon.png" class='icon-print' onclick="printpage()" title='print' />
+            </p>
+            @*<div id='relcontent' style="margin-top: -5px; margin-bottom: 10px;">
+                    <iframe id='rframe' class='rframe' scrolling='no' onload='javascript:resizeIframe(this);'
+                            src="#"></iframe>
+                </div>*@
+        </div>
+    </div>
+</section>
+
+

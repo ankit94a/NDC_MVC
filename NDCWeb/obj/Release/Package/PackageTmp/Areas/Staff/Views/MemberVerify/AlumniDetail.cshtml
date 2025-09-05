@@ -1,0 +1,206 @@
+﻿@model NDCWeb.View_Models.AlumniDetailVM
+
+@{
+    ViewBag.Title = "Alumni Detail";
+}
+
+<div class="container shadow mb-4">
+    <div class="card" id="printDiv">
+        <style>
+            tr :nth-child(1) {
+                font-weight: bold;
+                width:50%;
+            }
+        </style>
+        <div class="card-heading">
+            <h3 class="text-uppercase text-center">@ViewBag.Title</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered" id="mytable">
+               
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.FirstName)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Surname)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Surname)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Decoration)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Decoration)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ServiceRetd)
+                    </td>
+
+                    <td>
+                        @(Model.ServiceRetd == "True" ? "Serving" : "Retired")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ServiceId)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.ServiceId)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ServiceRank)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.ServiceRank)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Branch)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Branch)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CourseSerNo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CourseSerNo)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CourseYear)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CourseYear)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NdcEqvCourse)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NdcEqvCourse)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Country)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.YearDone)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.YearDone)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.MobileNo)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.PermanentAddress)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.PermanentAddress)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NdcCommunicationAddress)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.NdcCommunicationAddress)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.OtherInfo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.OtherInfo)
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <div class="panel-footer bg-white text-center pb-4">
+        <input type="button" class="btn btn-primary btn-sm" onclick="printdoc()" value="Print" />
+        <br />
+    </div>
+</div>
+@section scripts{
+    <script>
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printDiv').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+    </script>
+}

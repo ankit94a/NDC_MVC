@@ -1,0 +1,32 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CrsMbrQualificationIndxVM>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            QUALIFICATIONS
+        </div>
+        <div class="card-body">
+            <table class="table table-condensed table-bordered table-hover">
+                <thead>
+                    <tr class="bg-light">
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Course)</td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.QualificationType)</td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Year) </td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Location) </td>
+                        <td class="juipfname">@Html.DisplayNameFor(model => model.Country) </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Course)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.QualificationType)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Year)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Location)</td>
+                            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Country)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

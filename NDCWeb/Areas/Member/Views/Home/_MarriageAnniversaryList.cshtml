@@ -1,0 +1,25 @@
+﻿
+@model IEnumerable<NDCWeb.Areas.Member.View_Models.MarriageAnniversaryAlertVM>
+    @{ 
+        var CURRENTDATE = DateTime.Now.ToString("M");
+    }
+
+<table>
+    <tr class="bg-danger text-white">
+        <td colspan="3"> <span class="card-title"><i class="fa fa-gift"></i> Marriage Anniversary</span></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+              <strong>@CURRENTDATE</strong>
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.FullName),
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.DOMarriage, "{0:dd MMM yyyy}")
+            </td>*@
+        </tr>
+    }
+</table>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CrsMbrLanguageIndxVM>
+<table class="table table-condensed table-bordered">
+    <thead>
+        <tr class="bg-2 text-white">
+            <td colspan="5">Languages Known
+                <a class="btn btn-transparent btn-sm float-right" data-toggle="tab" href="#ServicePartial" onclick="serviceEditClick('LanguagesKnownPartial')"><i class="fa fa-pencil-square text-primary"></i></a>
+            </td>
+        </tr>
+        <tr class="bg-light">
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Language)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Read)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Write)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.Speak)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Language)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Read)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Write)</td>
+                <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Speak)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

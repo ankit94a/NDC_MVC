@@ -1,0 +1,142 @@
+﻿@model NDCWeb.Areas.Member.View_Models.EventParticipantCreateVM
+
+@{
+    ViewBag.Title = "Course Member as Guest";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4 mb-4">
+    <div class="card">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+        <div class="card-header" style="margin-left: 12px;">
+            <h4>@ViewBag.Title</h4>
+        </div>
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        @Html.HiddenFor(model => model.EventId)
+                        @Html.LabelFor(model => model.ParticipateAs, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("ParticipateAs", (IEnumerable<SelectListItem>)ViewBag.GetCategory, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ParticipateAs, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mt-3">
+                        <b>  <label class="control-label col-md-3">Attendance (Self)</label></b>
+                        @Html.RadioButtonFor(e => e.AttendSelf, true, new { id = "attend-true" })
+                        @Html.Label("attend-true", "Yes")
+                        @Html.RadioButtonFor(e => e.AttendSelf, false, new { id = "attend-false" })
+                        @Html.Label("attend-false", "No")
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mt-3">
+                        <b>  <label class="control-label col-md-3">Attendance (Spouse)</label></b>
+                        @Html.RadioButtonFor(e => e.AttendSpouse, true, new { id = "AttendSpouse-true" })
+                        @Html.Label("AttendSpouse-true", "Yes")
+
+                        @Html.RadioButtonFor(e => e.AttendSpouse, false, new { id = "AttendSpouse-false" })
+                        @Html.Label("AttendSpouse-false", "No")
+                        @Html.ValidationMessageFor(model => model.AttendSpouse, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mt-3">
+                        <b> @Html.LabelFor(model => model.SecyPermited, htmlAttributes: new { @class = "control-label col-md-3" })</b>
+                        @Html.RadioButtonFor(e => e.SecyPermited, true, new { id = "SecyPermited-true" })
+                        @Html.Label("SecyPermited-true", "Yes")
+
+                        @Html.RadioButtonFor(e => e.SecyPermited, false, new { id = "SecyPermited-false" })
+                        @Html.Label("SecyPermited-false", "No")
+                        @Html.ValidationMessageFor(model => model.SecyPermited, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mt-3">
+                        <b>  @Html.LabelFor(model => model.DietaryPrefSelf, htmlAttributes: new { @class = "control-label col-md-3" })</b>
+                        @Html.RadioButtonFor(e => e.DietaryPrefSelf, true, new { id = "DietaryPrefSelf-true" })
+                        @Html.Label("DietaryPrefSelf-true", "Veg")
+
+                        @Html.RadioButtonFor(e => e.DietaryPrefSelf, false, new { id = "DietaryPrefSelf-false" })
+                        @Html.Label("DietaryPrefSelf-false", "Non-Veg")
+                        @Html.ValidationMessageFor(model => model.DietaryPrefSelf, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mt-3">
+                        <b><label for="DietaryPrefSpouse" class="control-label col-md-3">Dietary Preference (Spouse)</label></b>
+                        @Html.RadioButtonFor(e => e.DietaryPrefSpouse, true, new { id = "DietaryPrefSpouse-true" })
+                        @Html.Label("DietaryPrefSpouse-true", "Veg")
+
+                        @Html.RadioButtonFor(e => e.DietaryPrefSpouse, false, new { id = "DietaryPrefSpouse-false" })
+                        @Html.Label("DietaryPrefSpouse-false", "Non-Veg")
+                        @Html.ValidationMessageFor(model => model.DietaryPrefSpouse, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mt-3">
+                        <b><label class="control-label col-md-3">Choice of Liquor</label></b>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LiquorPref" id="LiquorPref" value="Whisky">
+                            <label class="form-check-label" for="LiquorPref">Whisky</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LiquorPref" id="LiquorPref1" value="Rum">
+                            <label class="form-check-label" for="LiquorPref">Rum</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LiquorPref" id="LiquorPref2" value="Vodka/Gin">
+                            <label class="form-check-label" for="LiquorPref">Vodka/Gin</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LiquorPref" id="LiquorPref3" value="Beer">
+                            <label class="form-check-label" for="LiquorPref">Beer</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LiquorPref" id="LiquorPref4" value="Soft Drink">
+                            <label class="form-check-label" for="LiquorPref">Soft Drink</label>
+                        </div>
+                        @*@Html.ValidationMessageFor(model => model.LiquorPref, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-3" })
+                        @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control col-md-9 editorHtml", rows = "5", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+
+        }
+    </div>
+    </div>
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var category = null;
+        $(':radio[name="AttendSelf"]').change(function () {
+            var ckval = $(this).filter(':checked').val();
+            if (ckval == 0) {
+                confirm("Permission from Secretary is mendatory, select Yes to proceed");
+                return false;
+            }
+        });
+        $(':radio[name="AttendSpouse"]').change(function () {
+            var ckval = $(this).filter(':checked').val();
+            if (ckval == 0) {
+                confirm("Permission from Secretary is mendatory, select Yes to proceed");
+                return false;
+            }
+        });
+        </script>
+    }

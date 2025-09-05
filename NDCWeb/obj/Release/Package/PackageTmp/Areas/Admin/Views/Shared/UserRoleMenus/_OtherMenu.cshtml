@@ -1,0 +1,70 @@
+﻿<div class="app-sidebar__inner">
+    <ul class="vertical-nav-menu">
+        <li class="app-sidebar__heading">Dashboards</li>
+        <li>
+            <a href="@Url.Action("Index","AdminHome")" class="mm-active">
+                <i class="metismenu-icon pe-7s-rocket"></i>
+                Admin Dashbord
+            </a>
+        </li>
+        <li class="app-sidebar__heading">Content Management</li>
+        <li>
+            <a href="#">
+                <i class="metismenu-icon pe-7s-paperclip"></i>
+                Content
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Create", "PageContent")">
+                        <i class="metismenu-icon">
+                        </i>Create Page
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "PageContent")">
+                        <i class="metismenu-icon">
+                        </i>View / Edit Pages
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class="metismenu-icon pe-7s-albums"></i>
+                Media
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "MediaCategoryMaster")">
+                        <i class="metismenu-icon">
+                        </i>Media Categories
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "MediaGallery")">
+                        <i class="metismenu-icon">
+                        </i>Media Gallery
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class="metismenu-icon pe-7s-cart"></i>
+                Products
+                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "ProductItem")">
+                        <i class="metismenu-icon">
+                        </i>Catalog
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+

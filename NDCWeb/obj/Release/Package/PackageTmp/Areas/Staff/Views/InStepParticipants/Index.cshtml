@@ -1,0 +1,330 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.InStepRegistrationIndexVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "In-Step Course Participents List";
+}
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+
+<div class="container mb-4 card col-md-12">
+    <div class="main-card mb-3 card">
+        <div class="card-header">
+            <a href="/staff/instepcourse/index" title="Go to Course List" class="btn btn-primary">Back to Course List</a>
+            <a href="/staff/" title="Go to Course List" class="btn btn-info">Home</a>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.Title</h5>
+            <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th> Action </th>
+                        <th> </th>
+                        <th> Service No </th>
+                        <th> Rank </th>
+                        <th>Other Rank</th>
+                        <th> Name </th>
+                        <th> DOB </th>
+                        <th> Gender </th>
+                        <th> Email Id </th>
+                        <th> Mobile No </th>
+                        <th> Whatsapp No </th>
+                        <th> Department </th>
+                        <th> DOC </th>
+                        <th> Category </th>
+                        <th> Honour/Award </th>
+                        <th> Sen Year </th>
+                        <th> Address Local </th>
+                        <th> Address Permanent </th>
+                        <th> NOK Name </th>
+                        <th> NOK Contact </th>
+                        <th> Passport No </th>
+                        <th> Passport Auth </th>
+                        <th> Download Passport</th>
+                        <th> Aadhaar No </th>
+                        <th> Download Aadhaar</th>
+                        <th> ETA </th>
+                        <th> Arrival Mode </th>
+                        <th> ETD </th>
+                        <th> Departure Mode </th>
+                        <th> Any Other Requirement </th>
+                        <th> Bio Data </th>
+                        <th> Download App/Nomination</th>
+                        <th> Delete </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.EncodedActionLink("", "Edit", "InStepParticipants", "staff", new { id = item.InStepRegId }, new { @class = "btn btn-outline-primary" }, "fa fa-pencil")
+                            </td>
+                            <td>
+                                @if (item.PhotoPath != null && item.PhotoPath != "#")
+                                {
+                                    <img src="@Url.Content(item.PhotoPath)" width="64" />
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ServiceNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RankName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem =>item.OtherRank)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DOB)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gender)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MobileNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WhatsappNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BranchDepartment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfCommissioning)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ServicesCategory)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HonourAward)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SeniorityYear)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AddressLocal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AddressPermanent)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NOKName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NOKContact)
+                            </td>
+                            <td>
+                                @{
+                                    string PasspNo = "", Aadhar_No = "";
+                                    if (!item.AadhaarNo.IsEmpty())
+                                    {
+                                        Aadhar_No = AESEncrytDecry.DecryptStringAESPAN(item.AadhaarNo);
+                                    }
+                                    //if (!item.PassportNo.IsEmpty())
+                                    //{
+                                    //    PasspNo = AESEncrytDecry.DecryptStringAESPAN(item.PassportNo);
+                                    //}
+                                }
+                                @item.PassportNo
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PassportAuthority)
+                            </td>
+                            <td>
+                                @if (item.PassportDocPath != null && item.PassportDocPath != "#")
+                                {
+                                    <a href="@Url.Content(item.PassportDocPath)"><i class="fa fa-file-pdf-o text-danger"></i></a>
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+                            <td>
+                                @Aadhar_No
+                            </td>
+                            <td>
+                                @if (item.AadhaarDocPath != null && item.AadhaarDocPath != "#")
+                                {
+                                    <a href="@Url.Content(item.AadhaarDocPath)"><i class="fa fa-file-pdf-o text-danger"></i></a>
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArrivalTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArrivalMode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartureTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartureMode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AnyOtherRequirement)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BioData)
+                            </td>
+                            <td>
+                                <button type="button" onclick="Download(@item.InStepRegId, 1)"><i class="fa fa-file-pdf-o text-white"></i></button>
+                                @if (item.ApprovedNominationDocPath != null && item.ApprovedNominationDocPath != "#")
+                                {
+                                    @*<a href="@Url.Content(item.ApprovedNominationDocPath)"><i class="fa fa-file-pdf-o text-danger"></i></a>*@
+                                    @Html.ActionLink("Download", "Download", new { file = Url.Content(item.ApprovedNominationDocPath) })
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger btn-xs" onclick="Delete(@item.InStepRegId, this)"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables/ButtonJs")
+
+    <script>
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    function Download(Id, TId) {
+
+        //alert('Hello');
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("DownloadFile")',
+            data: {
+                __RequestVerificationToken: getToken(),
+                id: Id,
+                tId: TId
+            },
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (data, status, xhr) {
+                var a = document.createElement('a');
+                var url = window.URL.createObjectURL(data);
+                a.href = url;
+                var header = xhr.getResponseHeader('Content-Disposition');
+                var filename = getFileNameByContentDisposition(header);
+                a.download = filename;
+                a.click();
+                window.URL.revokeObjectURL(url);
+                loadPartials();
+            },
+            error: function () {
+                toastr.error('Unable to download.');
+            }
+        });
+    };
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            //var fileName = 'ARRIVAL PARTICIPANTS LIST_' + crrtdate;
+            var fileName = "";
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                /*columns: [{ width: '40%' }, 1, 2, 3, 4],*/
+                columnDefs: [
+                    {
+                        "targets": [29],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 29]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A1',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        exportOptions: {
+                            columns: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 25, 26, 27, 28, 29],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            //doc.content.splice(0, 1);
+
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 14,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'ARRIVAL PARTICIPANTS LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+
+
+
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+
+                            doc.content[0].layout = objLayout;
+
+                            doc.content[0].alignment = 'center'
+                        }
+
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+
+
+        });
+    </script>
+}
+

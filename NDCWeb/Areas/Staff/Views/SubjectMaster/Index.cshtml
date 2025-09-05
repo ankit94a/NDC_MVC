@@ -1,0 +1,44 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.SubjectMasterIndexVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h3 style="text-align:center"><u>List of Subjects</u></h3>
+<p class="mt-2">
+    @Html.ActionLink("Create New Subject", "Create", null, new { @class = "btn btn-primary btn-sm" })
+</p>
+<table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubjectName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.SubjectId })"><i class="fa fa-edit"></i></a>
+                    <button type="button" class="btn btn-transparent red btn-xs" onclick="Delete(@item.SubjectId, this)"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

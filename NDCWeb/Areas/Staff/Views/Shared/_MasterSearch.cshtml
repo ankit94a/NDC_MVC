@@ -1,0 +1,563 @@
+<style>
+    /*Master Input*/
+    /* Parent box */
+    .input-box {
+        margin-top: 10px;
+    }
+
+        /* Input styling */
+        .input-box input {
+            border: none;
+            width: 20vw;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+            height: 3vh;
+        }
+
+    /* Results wrapper aligns under input */
+    .search-results-wrapper {
+        position: absolute;
+        left: 38%;
+        max-height: 600px;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    .list-group {
+        width: 22.3vw;
+    }
+    /* List item styling */
+    .list-group-item {
+        height: 50px;
+        line-height: 50px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+        padding: 0 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+        .list-group-item:hover {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        }
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+    .text-muted {
+        background-color: yellow;
+        border-radius: 10px;
+        color: white;
+        padding: 15px 0;
+    }
+
+    .nav-link {
+        width: 178px;
+    }
+</style>
+
+<script>
+    var myModal;
+    function getUserData(id) {
+        $.ajax({
+            url: '/Staff/Event/MemberCompletePreviewPartial',
+            type: 'GET',
+            data: { userId: id },
+            dataType: 'json',
+            success: function (response) {
+                console.log("User:", response);
+                
+                bindPersonalDetails(response.data.PersonalVM)
+                myModal = new bootstrap.Modal(document.getElementById('userModal'));
+                myModal.show();
+            },
+            error: function (xhr) {
+                console.error("Error:", xhr.responseText);
+            }
+        });
+    }
+
+    function closeModal() {
+        myModal.hide()
+    }
+
+    function bindPersonalDetails(user) {
+    $('#personalInfoBody').html(`
+        <p><strong>Full Name:</strong> ${user.FirstName} ${user.MiddleName ?? ''} ${user.Surname ?? ''}</p>
+        <p><strong>Nick Name:</strong> ${user.NickName ?? ''}</p>
+        <p><strong>Father’s Name:</strong> ${user.FatherName ?? ''} ${user.FatherMiddleName ?? ''} ${user.FatherSurname ?? ''}</p>
+        <p><strong>Mother’s Name:</strong> ${user.MotherName ?? ''} ${user.MotherMiddleName ?? ''} ${user.MotherSurname ?? ''}</p>
+        <p><strong>Date of Birth:</strong> ${formatDate(user.DOBirth)}</p>
+        <p><strong>Gender:</strong> ${user.Gender ?? ''}</p>
+        <p><strong>Marital Status:</strong> ${user.MaritalStatus ?? ''}</p>
+        <p><strong>Blood Group:</strong> ${user.BloodGroup ?? ''}</p>
+        <p><strong>Height:</strong> ${user.Height ?? ''}</p>
+        <p><strong>Identification Mark:</strong> ${user.IndentificationMark ?? ''}</p>
+        <p><strong>Citizenship Country:</strong> ${user.CitizenshipCountries.CountryName ?? ''}</p>
+        <p><strong>Medical Condition/Category:</strong> ${user.MedicalCategory ?? ''}</p>
+        <p><strong>NOK:</strong> ${user.NOK ?? ''}</p>
+    `);
+    $('#communicationInfoBody').html(`
+        <p><strong>Mobile Number:</strong> ${user.MobileNo ?? ''}</p>
+        <p><strong>Alternate Mobile:</strong> ${user.AlternateMobileNo ?? ''}</p>
+        <p><strong>Email:</strong> ${user.EmailId ?? ''}</p>
+        <p><strong>Alternate Email:</strong> ${user.AlternateEmailId ?? ''}</p>
+        <p>
+        <strong>Address:</strong><br>
+        ${user.CommunicationAddress ?? ''}<br>
+        ${user.OfficeHouseNo ?? ''}, ${user.OfficePremisesName ?? ''}<br>
+        ${user.OfficeStreet ?? ''}, ${user.OfficeArea ?? ''}<br>
+        ${user.OfficeCity ?? ''}, ${user.OfficeState?.Name ?? ''} - ${user.OfficeZipCode ?? ''}<br>
+        ${user.OfficeCountry?.Name ?? ''}
+    </p>`);
+
+     $('#passportBody').html(`
+        <p><strong>Holding Passport:</strong> ${user.HoldingPassport ?? ''}</p>
+        <p><strong>Passport No:</strong> ${user.MemberPassportNo ?? ''}</p>
+        <p><strong>Passport Type:</strong> ${user.MemberPassportType ?? ''}</p>
+        <p><strong>Issue Date:</strong> ${formatDate(user.MemberPassportIssueDate)}</p>
+        <p><strong>Valid Upto:</strong> ${formatDate(user.MemberPassportValidUpto)}</p>
+        <p><strong>Issued Country:</strong> ${user.CountryIssued ?? ''}</p>
+    `);
+
+     $('#visaDetail').html(`
+        <p><strong>Visa No:</strong> ${user.VisaNo ?? ''}</p>
+        <p><strong>Visa Issue Date:</strong> ${formatDate(user.VisaIssueDate)}</p>
+        <p><strong>Visa Valid Upto:</strong> ${formatDate(user.VisaValidUpto)}</p>
+    `);
+
+    $('#otherInfo').html(`
+        <p><strong>Dietary Preferences (V/NV):</strong> ${user.DietaryPref ?? ''}</p>
+        <p><strong>Aadhaar Copy:</strong> ${user.AadhaarPath ? 'Available' : 'N/A'}</p>
+        <p><strong>PAN Number:</strong> ${user.PANCardNo ?? ''}</p>
+        <p><strong>Spouse Name:</strong> ${user.SpouseName ?? ''}</p>
+        <p><strong>Biographical Sketch:</strong> ${user.BioSketch ?? 'To be uploaded'}</p>
+    `);
+        $('#bService').html(`
+    <p><strong>Branch of Service:</strong> ${user.BranchOfService ?? ''}</p>
+    <p><strong>Service No:</strong> ${user.ServiceNo ?? '-'}</p>
+    <p><strong>Rank/Status:</strong> ${user.RankStatus ?? ''}</p>
+    <p><strong>Date of Joining:</strong> ${user.DateOfJoining ?? ''}</p>
+    <p><strong>Date of Seniority:</strong> ${user.DateOfSeniority ?? ''}</p>
+`);
+
+    }
+
+    function formatDate(dotNetDate) {
+        if (!dotNetDate) return "";
+        let match = /Date\((-?\d+)\)/.exec(dotNetDate);
+        if (match) {
+            let date = new Date(parseInt(match[1]));
+            return date.toLocaleDateString();
+        }
+        return dotNetDate;
+    }
+</script>
+
+
+@using (Html.BeginForm("MasterSearch", "Event", FormMethod.Get, new { @class = "input-box d-flex align-items-center justify-content-center position-relative left-50%" }))
+{
+    <input type="text" name="query" class="form-control" placeholder="Master Search" value="@ViewBag.Query" autocomplete="off" />
+    <button type="submit" class="btn btn-primary ms-2">Submit</button>
+}
+
+@if (TempData["SearchResults"] != null)
+{
+    var results = TempData["SearchResults"] as List<NDCWeb.Models.MasterSearch>;
+    string query = TempData["Query"] as string;
+
+    <div class="search-results-wrapper">
+        @if (results.Any())
+        {
+            <ul class="list-group mb-0" style="margin-left:10px">
+                @foreach (var user in results)
+                {
+                    <li class="list-group-item" onclick="getUserData('@user.Id')">
+                        <h5>@user.FName </h5>
+                        <small class="text-muted">(@user.Role)</small>
+                    </li>
+
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No users found.</p>
+        }
+    </div>
+}
+
+
+<div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="userTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab">Personal</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="service-tab" data-bs-toggle="tab" data-bs-target="#service" type="button" role="tab">Service</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="spouse-tab" data-bs-toggle="tab" data-bs-target="#spouse" type="button" role="tab">Spouse</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="children-tab" data-bs-toggle="tab" data-bs-target="#children" type="button" role="tab">Children</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="college-tab" style="width:210px" data-bs-toggle="tab" data-bs-target="#college" type="button" role="tab">College Administration</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="accounts-tab" data-bs-toggle="tab" data-bs-target="#accounts" type="button" role="tab">Accounts</button>
+                    </li>
+                </ul>
+                <div class="tab-content mt-3" id="userTabContent">
+                    @*Personal Tab*@
+                    <div class="tab-pane fade show active" id="personal" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold fs-2">Personal Information</div>
+                                    <div class="card-body" id="personalInfoBody">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold fs-2">Communication</div>
+                                    <div class="card-body" id="communicationInfoBody">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Passport Details</div>
+                                    <div class="card-body" id="passportBody">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Visa Details</div>
+                                    <div class="card-body id=visaDetail">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Other Information</div>
+                                    <div class="card-body" id="otherInfo">
+ 
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    @*Service Details Tab*@
+                    <div class="tab-pane fade" id="service" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Service Details</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6" id="bService">
+                                                @*<p><strong>Branch of Service:</strong> Inspectorate</p>
+                                                <p><strong>Service No:</strong> -</p>
+                                                <p><strong>Rank/Status:</strong> Captain GE Navy</p>
+                                                <p><strong>Date of Joining:</strong> 10 Dec 2000</p>
+                                                <p><strong>Date of Seniority:</strong> 13 Jan 2025</p>*@
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><strong>Present Appointment:</strong></p>
+                                                <p><strong>Designation:</strong> -</p>
+                                                <p><strong>Organisation:</strong> -</p>
+                                                <p><strong>Location (Office Address):</strong> -</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <p><strong>Have you worked as DA/MA?:</strong> -</p>
+                                            <p><strong>Are you working as DA/MA?:</strong> -</p>
+                                            <p><strong>Details:</strong> -</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Qualifications</div>
+                                    <div class="card-body">
+                                        <p><strong>Course Name:</strong> -</p>
+                                        <p><strong>Qualification Type:</strong> -</p>
+                                        <p><strong>Year:</strong> -</p>
+                                        <p><strong>Location:</strong> -</p>
+                                        <p><strong>Country:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Countries Visited</div>
+                                    <div class="card-body">
+                                        <p><strong>Country:</strong> -</p>
+                                        <p><strong>Year of Visit:</strong> -</p>
+                                        <p><strong>Duration:</strong> -</p>
+                                        <p><strong>Purpose:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Languages Known</div>
+                                    <div class="card-body">
+                                        <p><strong>Language:</strong> -</p>
+                                        <p><strong>Read:</strong> -</p>
+                                        <p><strong>Write:</strong> -</p>
+                                        <p><strong>Speak:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Appointments Held</div>
+                                    <div class="card-body">
+                                        <p><strong>Appointment:</strong> -</p>
+                                        <p><strong>Organisation:</strong> -</p>
+                                        <p><strong>Location:</strong> -</p>
+                                        <p><strong>From:</strong> -</p>
+                                        <p><strong>To:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="spouse" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Particulars</div>
+                                    <div class="card-body">
+                                        <p><strong>Name:</strong> -</p>
+                                        <p><strong>Blood Group:</strong> -</p>
+                                        <p><strong>Contact No:</strong> -</p>
+                                        <p><strong>Date of Birth:</strong> -</p>
+                                        <p><strong>Occupation:</strong> -</p>
+                                        <p><strong>Spouse staying with officer during course?:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Passport Detail (Foreign Officers Only)</div>
+                                    <div class="card-body">
+                                        <p><strong>Holding Passport?:</strong> Yes / No</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Visa Details</div>
+                                    <div class="card-body">
+                                        <p><strong>Visa No:</strong> -</p>
+                                        <p><strong>Date of Issue:</strong> -</p>
+                                        <p><strong>Valid Upto:</strong> -</p>
+                                        <p><strong>Upload Visa Images:</strong> (Front & Back)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">FRRO Details (Foreign Officers Only)</div>
+                                    <div class="card-body">
+                                        <p><strong>FRRO No:</strong> -</p>
+                                        <p><strong>Date of Issue:</strong> -</p>
+                                        <p><strong>Valid Upto:</strong> -</p>
+                                        <p><strong>Upload FRRO Images:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Languages Known</div>
+                                    <div class="card-body">
+                                        <p><strong>Language:</strong> -</p>
+                                        <p><strong>Read:</strong> Yes / No</p>
+                                        <p><strong>Write:</strong> Yes / No</p>
+                                        <p><strong>Speak:</strong> Yes / No</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="card h-100">
+                                <div class="card-header fw-bold">Qualification</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>Higher Education:</strong> -</p>
+                                            <p><strong>Subject:</strong> -</p>
+                                            <p><strong>Grade/Division:</strong> -</p>
+                                            <p><strong>Board/University:</strong> -</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><strong>Professional Qualification:</strong> -</p>
+                                            <p><strong>Academic Achievement:</strong> -</p>
+                                            <p><strong>Grade/Division:</strong> -</p>
+                                            <p><strong>Institute:</strong> -</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*Children Details Tab*@
+                    <div class="tab-pane fade" id="children" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Child Particulars</div>
+                                    <div class="card-body">
+                                        <p><strong>Name:</strong> -</p>
+                                        <p><strong>Date of Birth:</strong> -</p>
+                                        <p><strong>Gender:</strong> -</p>
+                                        <p><strong>Occupation:</strong> -</p>
+                                        <p><strong>Contact No:</strong> -</p>
+                                        <p><strong>Living With You?:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Passport Details</div>
+                                    <div class="card-body">
+                                        <p><strong>Passport No:</strong> -</p>
+                                        <p><strong>Passport Name:</strong> -</p>
+                                        <p><strong>Date of Issue:</strong> -</p>
+                                        <p><strong>Valid Upto:</strong> -</p>
+                                        <p><strong>Passport Type:</strong> -</p>
+                                        <p><strong>Country that issued Passport:</strong> -</p>
+                                        <hr>
+                                        <p><strong>Upload Passport Image (Front):</strong> [Upload Option]</p>
+                                        <p><strong>Upload Passport Image (Back):</strong> [Upload Option]</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Visa Details</div>
+                                    <div class="card-body">
+                                        <p><strong>Visa No:</strong> -</p>
+                                        <p><strong>Date of Issue:</strong> -</p>
+                                        <p><strong>Valid Upto:</strong> -</p>
+                                        <hr>
+                                        <p><strong>Upload Visa Images (Front & Back):</strong> [Upload Option]</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    @*College Administration Tab*@
+                    <div class="tab-pane fade" id="college" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Name Tally</div>
+                                    <div class="card-body">
+                                        <p><strong>Rank (in abbreviated form):</strong> -</p>
+                                        <p><strong>As per Passport:</strong> -</p>
+                                        <p><strong>As Required on Name Tab:</strong> -</p>
+                                        <p><strong>Nick Name:</strong> -</p>
+                                        <p><strong>Service/Country:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Tele Directory of Current NDC Course</div>
+                                    <div class="card-body">
+                                        <p><strong>Name/Rank:</strong> -</p>
+                                        <p><strong>Resi Address:</strong> -</p>
+                                        <p><strong>Mobile No:</strong> -</p>
+                                        <p><strong>Tele No:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Vehicle Sticker</div>
+                                    <div class="card-body">
+                                        <p><strong>Brand/Model No:</strong> -</p>
+                                        <p><strong>Colour:</strong> -</p>
+                                        <p><strong>Registration No:</strong> -</p>
+                                        <p><strong>Driving License No:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    @*Accounts Tab*@
+                    <div class="tab-pane fade" id="accounts" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="card h-100">
+                                    <div class="card-header fw-bold">Bank Account Details (For Indian & Foreign Officers)</div>
+                                    <div class="card-body">
+                                        <p><strong>Account No:</strong> -</p>
+                                        <p><strong>Account Type:</strong> -</p>
+                                        <p><strong>IFSC:</strong> -</p>
+                                        <p><strong>MICR:</strong> -</p>
+                                        <p><strong>Name & Address of Banker:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="card h-100 border-primary">
+                                    <div class="card-header fw-bold text-primary">PAO Details (Indian Army & Navy Officers only)</div>
+                                    <div class="card-body">
+                                        <p><strong>CDA Account No:</strong> -</p>
+                                        <p><strong>Basic Pay:</strong> -</p>
+                                        <p><strong>MSP:</strong> -</p>
+                                        <p><strong>Pay Level:</strong> -</p>
+                                        <p><strong>Address of Pay Account:</strong> -</p>
+                                        <p><strong>PAO Nodal Officer Name:</strong> -</p>
+                                        <p><strong>PAO Nodal Contact No:</strong> -</p>
+                                        <p><strong>PAO Nodal Email:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="card h-100 border-success">
+                                    <div class="card-header fw-bold text-success">PAO Details (Civil Service only)</div>
+                                    <div class="card-body">
+                                        <p><strong>Pay Account No:</strong> -</p>
+                                        <p><strong>Address of Pay Account:</strong> -</p>
+                                        <p><strong>PAO Nodal Officer Name:</strong> -</p>
+                                        <p><strong>PAO Nodal Contact No:</strong> -</p>
+                                        <p><strong>PAO Nodal Email:</strong> -</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>

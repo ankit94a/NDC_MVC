@@ -1,0 +1,315 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CrsMemberPersonalIndxVM
+<table class="table table-condensed table-bordered">
+    <tr>
+        <td>
+            @if (Model.MemberImgPath != null && Model.MemberImgPath != "#")
+            {
+                <img src="@Url.Content(Model.MemberImgPath)" class="img-thumbnail" width="120" />
+            }
+            else
+            {
+
+            }
+        </td>
+        <td colspan="4" class="text-center">
+            <img src="/images/NDC-Logo1.png" width="80" /><br />
+            <h4>
+                <u>PERSONAL DETAILS</u>
+            </h4>
+        </td>
+        <td colspan="1" style="text-align:right">
+            @if (Model.JointImgPath != null && Model.JointImgPath != "#")
+            {
+                <img src="@Url.Content(Model.JointImgPath)" class="img-thumbnail" width="120" />
+            }
+        </td>
+    </tr>
+    <tr>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.FirstName)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.FirstName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MiddleName) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MiddleName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.Surname)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.Surname)</td>
+    </tr>
+    <tr>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.FatherName)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.FatherName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.FatherMiddleName) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.FatherMiddleName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.FatherSurname)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.FatherSurname)</td>
+    </tr>
+    <tr>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.MotherName)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MotherName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MotherMiddleName) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MotherMiddleName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MotherSurname)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MotherSurname)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.NickName)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.NickName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MobileNo)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MobileNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.AlternateMobileNo)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.AlternateMobileNo)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.IndentificationMark)</td>
+        <td class="juipfvalue"> @Html.DisplayFor(model => model.IndentificationMark)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.EmailId)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.EmailId) </td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.AlternateEmailId)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.AlternateEmailId)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.DOBirth)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.DOBirth)</td>
+        <td class="juipfname">Marital Status</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MaritalStatus)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.DOMarriage)</td>
+        <td class="juipfname">@Html.DisplayFor(model => model.DOMarriage)</td>
+        @*<td class="juipfvalue">@if (Model.DOMarriage == DateTime.MinValue) { @Html.DisplayFor(model=>model.DOMarriage) } else { Model.DOMarriage.ToString(); }</td>*@
+    </tr>
+    <tr>
+        <td class="juipfname">Gender</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.Gender)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.BloodGroup)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.BloodGroup)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.Height)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.Height)</td>
+
+    </tr>
+    <tr>
+        <td class="juipfname">Citizenship Country</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.CitizenshipCountries.CountryName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.VoterIdNo)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.VoterIdNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.PANCardNo)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.PANCardNo)</td>
+
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MedicalCategory)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MedicalCategory)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.DietaryPref)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.DietaryPref)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseName)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.SpouseName)</td>
+    </tr>
+
+    @if (Model.AadhaarPath != null && Model.AadhaarPath != "#")
+    {
+        <tr>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.NOK)</td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.NOK)</td>
+            <td class="juipfname">Aadhaar Copy</td>
+            <td class="juipfvalue" colspan="3">
+                <a href="@Url.Content(Model.AadhaarPath ?? "#")"><i class="fa fa-file-pdf-o fa-2x" style="color:blue"></i> View</a>
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.NOK)</td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.NOK)</td>
+            <td class="juipfname">Aadhaar Copy</td>
+            <td class="juipfvalue" colspan="3">
+                NA
+            </td>
+        </tr>
+    }
+
+    <tr class="bg-2 text-white">
+        <td colspan="6"><b>Address for Communication</b> (@Html.DisplayFor(model => model.CommunicationAddress))</td>
+    </tr>
+    <tr>
+        <td class="juipfname">Flat/House/Door No.</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeHouseNo)</td>
+        <td class="juipfname">Name of Premises/Building</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.OfficePremisesName)</td>
+        <td class="juipfname">Area/Locality/Post Office</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeArea)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">Road/Street/Lane</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeStreet)</td>
+        <td class="juipfname">Town/city/District</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeCity)</td>
+        <td class="juipfname">State/Union Territory</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeStates.StateName)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">Country</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.OfficeStates.Countries.CountryName)</td>
+        <td class="juipfname">Pin/Zip</td>
+        <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.OfficeZipCode)</td>
+    </tr>
+
+    <tr class="bg-2 text-white">
+        <td colspan="6"><b>Passport Detail</b></td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.HoldingPassport)</td>
+        <td class="juipfvalue">
+            @{ if (Model.HoldingPassport == null || Model.HoldingPassport == "No")
+                { <text>Not Holding Diplomatic or Official</text> }
+            else if (Model.HoldingPassport == "Yes")
+            {
+                <text>Diplomatic or Official</text>
+            }
+            }
+        </td>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.MemberPassportNo)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPassportIssueDate) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportIssueDate)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPassportValidUpto) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportValidUpto)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPassportType) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPassportType)</td>
+        <td class="juipfname">PASSPORT FILE </td>
+        <td class="juipfvalue" colspan="1">
+            @if (Model.MemberPassportImgPath != null && Model.MemberPassportImgPath != "#")
+            {
+                <a href="@Url.Content(Model.MemberPassportImgPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> View</a>
+            }
+            else
+            {
+                @: <b>N/A</b>
+            }
+            @*|
+                @if (Model.MemberPassportImgPath != null && Model.MemberPassportImgPath != "#")
+                {
+                    <a href="@Url.Content(Model.MemberPassportBackImgPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> Back Side</a>
+                }
+                else
+                {
+                    @: Back-Side <b>N/A</b>
+                }*@
+
+        </td>
+    </tr>
+
+    @if (Model.HoldingPersonalPassportSelf == true)
+    {
+        <tr class="bg-2 text-white">
+            <td colspan="6"><b>Personal Passport Detail</b></td>
+        </tr>
+        <tr>
+            <td class="juipfname"> @Html.DisplayNameFor(model => model.MemberPersonalPassportNo)</td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPersonalPassportNo)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPersonalPassportIssueDate) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPersonalPassportIssueDate)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.MemberPersonalPassportValidUpto) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.MemberPersonalPassportValidUpto)</td>
+        </tr>
+        <tr>
+            <td class="juipfname">PASSPORT FILE </td>
+            <td class="juipfvalue" colspan="1">
+                @if (Model.MemberPersonalPassportImgPath != null && Model.MemberPersonalPassportImgPath != "#")
+                {
+                    <a href="@Url.Content(Model.MemberPersonalPassportImgPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> View</a>
+                }
+                else
+                {
+                    @: <b>N/A</b>
+                }
+                @*|
+                    @if (Model.MemberPersonalPassportBackImgPath != null && Model.MemberPersonalPassportBackImgPath != "#")
+                    {
+                        <a href="@Url.Content(Model.MemberPersonalPassportBackImgPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> Back Side</a>
+                    }
+                    else
+                    {
+                        @: Back-Side <b>N/A</b>
+                    }*@
+
+            </td>
+        </tr>
+    }
+
+    @if (Model.CitizenshipCountries.CountryName != "India")
+    {
+        <tr class="bg-2 text-white">
+            <td colspan="6"><b>Visa Detail</b></td>
+        </tr>
+        <tr>
+            <td class="juipfname"> @Html.DisplayNameFor(model => model.VisaNo)</td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.VisaNo)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.VisaIssueDate) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.VisaIssueDate)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.VisaValidUpto) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.VisaValidUpto)</td>
+        </tr>
+        <tr>
+            <td class="juipfname">VISA FILE </td>
+            <td class="juipfvalue" colspan="7">
+                @if (Model.VisaPath != null && Model.VisaPath != "#")
+                {
+                    <a href="@Url.Content(Model.VisaPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> Visa</a>
+                }
+                else
+                {
+                    <b>N/A</b>
+                }
+            </td>
+        </tr>
+    }
+    @if (Model.SelfFRRONo != null && Model.SelfFRRONo != "")
+    {
+        <tr class="bg-2 text-white">
+            <td colspan="6"><b>FRRO Detail</b></td>
+        </tr>
+        <tr>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.SelfFRRONo) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.SelfFRRONo)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.SelfIssueDate) </td>
+            <td class="juipfvalue">@Html.DisplayFor(model => model.SelfIssueDate)</td>
+            <td class="juipfname">@Html.DisplayNameFor(model => model.SelfValidUpto) </td>
+            <td class="juipfvalue" colspan="4">@Html.DisplayFor(model => model.SelfValidUpto)</td>
+        </tr>
+        <tr>
+            <td class="juipfname">FRRO images </td>
+            <td class="juipfvalue" colspan="7">
+                @if (Model.SelfFRROPath != null && Model.SelfFRROPath != "#")
+                {
+                    <a href="@Url.Content(Model.SelfFRROPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> FRRO</a>
+                }
+                else
+                {
+                    <b>N/A</b>
+                }
+            </td>
+        </tr>
+    }
+    <tr class="bg-2 text-white">
+        <td colspan="6"><b>Biographical Sketch</b></td>
+    </tr>
+    <tr>
+        <td class="juipfvalue text-justify" colspan="6">@Html.DisplayFor(model => model.BioSketch)</td>
+    </tr>
+</table>
+<div class="panel-footer text-white">
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info" disabled>Previous</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" id="btnEdit" onclick="editTab('PersonalDetailPartial')">Edit</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext">Next</a>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.btnNext').click(function () {
+            $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+    });
+</script>

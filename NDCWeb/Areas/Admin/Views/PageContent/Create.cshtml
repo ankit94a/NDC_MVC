@@ -1,0 +1,102 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.PageContentCrtVM
+
+@{
+    ViewBag.Title = "Create Pages";
+}
+
+<div class="main-card  card">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.Title</h5>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+                @Html.LabelFor(model => model.MenuArea, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-4">
+                    @Html.DropDownList("MenuArea", (IEnumerable<SelectListItem>)ViewBag.UrlArea, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MenuArea, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.MenuId, "Menu Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-sm-4">
+                    @Html.DropDownList("MenuId", (IEnumerable<SelectListItem>)ViewBag.ParentMenus, "Select", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MenuId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.MenuId, "Menu Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MenuId", (IEnumerable<SelectListItem>)ViewBag.ParentMenus, "Select", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MenuId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @rows="50" } })*@
+                    @Html.TextAreaFor(model => model.Content, new { @class = "form-control editorHtml", @rows = 10 })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-primary mr-2" />
+                </div>
+            </div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#MenuArea').change(function () {
+                $('#MenuId').empty();
+                $.ajax({
+                    type: 'get',
+                    url: '/api/menuMasters/GetMenuWithParent/menuArea/' + $('#MenuArea').val(),
+                    datatype: 'json',
+                    success: function (menus) {
+                        $.each(menus, function (i, menu) {
+                            $('#MenuId').append('<option value="' + menu.Value + '">' + menu.Text + '</option>');
+                        });
+                    },
+                    error: function () {
+                        alert('Server Not Found');
+                    }
+                });
+            });
+        });
+        tinymce.init({
+            selector: '#Content',
+            mode: "textareas",
+            height: 1000,
+            //width: 600,
+            plugins: "code,autolink,image,imagetools,media,link,lists,pagebreak,style,table,advhr,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template, wordcount, advlist, autosave, visualblocks",
+            images_reuse_filename: true,
+            image_title: true,
+            images_upload_url: '@Url.Action("ImageUpload")',
+            relative_urls: false,
+            content_style: ".lws-editor-columns .row .col-xs-12{position:relative}.lws-editor-columns .row .col-xs-12::before{content:'';display:block;position:absolute;height:100%;width:calc(100% - 30px);border:1px dotted gray}.lws-editor-columns .row .col-xs-12 img{max-width:100%;height:auto}",
+            content_css: "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css",
+            content_css_cors: true,
+            invalid_elements: "script",
+            templates: [
+                { "title": "1 columns", "description": "Insert on the page, 1 columns with the same width", "content": "<div class=\"lws-editor-columns\"><div class=\"row\"><div class=\"col-xs-12 col-sm-12 col-md-12\"><p>Column 1</p></div></div></div><p></p><p></p><p></p><p></p>" },
+                { "title": "2 columns", "description": "Insert on the page, 2 columns with the same width", "content": "<div class=\"lws-editor-columns\"><div class=\"row\"><div class=\"col-xs-12 col-sm-12 col-md-6\"><p>Column 1</p></div><div class=\"col-xs-12 col-sm-12 col-md-6\"><p>Column 2</p></div></div></div><p></p><p></p><p></p><p></p>" },
+                { "title": "3 columns", "description": "Insert on the page, 3 columns with the same width", "content": "<div class=\"lws-editor-columns\"><div class=\"row\"><div class=\"col-xs-12 col-sm-12 col-md-4\"><p>Column 1</p></div><div class=\"col-xs-12 col-sm-12 col-md-4\">Column 2</div><div class=\"col-xs-12 col-sm-12 col-md-4\"><p>Column 3</p></div></div></div><p></p><p></p><p></p><p></p>" },
+                { "title": "4 columns", "description": "Insert on the page, 4 columns with the same width", "content": "<div class=\"lws-editor-columns\"><div class=\"row\"><div class=\"col-xs-12 col-sm-12 col-md-3\"><p>Column 1</p></div><div class=\"col-xs-12 col-sm-12 col-md-3\"><p>Column 2</p></div><div class=\"col-xs-12 col-sm-12 col-md-3\"><p>Column 3</p></div><div class=\"col-xs-12 col-sm-12 col-md-3\"><p>Column 4</p></div></div></div><p></p><p></p><p></p><p></p>" },
+                { "title": "6 columns", "description": "Insert on the page, 6 columns with the same width", "content": "<div class=\"lws-editor-columns\"><div class=\"row\"><div class=\"col-xs-12 col-sm-12 col-md-2\"><p>Column 1</p></div><div class=\"col-xs-12 col-sm-12 col-md-2\"><p>Column 2</p></div><div class=\"col-xs-12 col-sm-12 col-md-2\"><p>Column 3</p></div><div class=\"col-xs-12 col-sm-12 col-md-2\"><p>Column 4</p></div><div class=\"col-xs-12 col-sm-12 col-md-2\"><p>Column 5</p></div><div class=\"col-xs-12 col-sm-12 col-md-2\"><p>Column 6</p></div></div></div><p></p><p></p><p></p><p></p>" }],
+        });
+    </script>
+}

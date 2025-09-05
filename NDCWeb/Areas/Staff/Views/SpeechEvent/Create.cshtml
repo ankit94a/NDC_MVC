@@ -1,0 +1,137 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.SpeechEventCrtVM
+@{
+    ViewBag.Title = "Add Details of Speakers";
+}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+                <div class="form-row">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <br />
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.SubjectId, (IEnumerable<SelectListItem>)ViewBag.Subject, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.TopicId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.TopicId, new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TopicId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.SpeakerId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("SpeakerId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SpeakerId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="SpeechDate" class="control-label">Date</label>
+                        @*@Html.LabelFor(model => model.SpeechDate, htmlAttributes: new { @class = "control-label" })*@
+                        @Html.EditorFor(model => model.SpeechDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.SpeechDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="FeedbackStartDate" class="control-label">Start Date</label>
+                        @*@Html.LabelFor(model => model.FeedbackStartDate, htmlAttributes: new { @class = "control-label" })*@
+                        @Html.EditorFor(model => model.FeedbackStartDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.FeedbackStartDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @*@Html.LabelFor(model => model.FeedbackEndDate, htmlAttributes: new { @class = "control-label" })*@
+                        <label for="FeedbackEndDate" class="control-label">End Date</label>
+                        @Html.EditorFor(model => model.FeedbackEndDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.FeedbackEndDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label" })
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Active)
+                            @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center bg-white">
+                <input type="submit" value="Save" class="btn btn-primary btn-md" />
+                @Html.ActionLink("Back to List", "Index",null, new {@class="btn btn-primary btn-md" })
+            </div>
+        }
+    </div>
+    </div>
+
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        <script>
+
+            $("#SubjectId").change(function () {
+                $("#TopicId").empty();
+                bindtopic();
+                $("#SpeakerId").empty();
+            });
+
+            $("#TopicId").change(function () {
+                $("#SpeakerId").empty();
+                bindspeaker();
+            });
+            function bindtopic() {
+                $.ajax({
+                    type: 'get',
+                    url: '/api/subjectMstr/GetTopics/subject/' + $('#SubjectId').val(),
+                    datatype: 'json',
+                    success: function (topics) {
+                        $('#TopicId').append('<option>--Select--</option>');
+                        $.each(topics, function (i, topic) {
+                            $('#TopicId').append('<option value="' + topic.Value + '">' + topic.Text + '</option>');
+                        });
+                    },
+                    error: function () {
+                        toastr.error('Operation Failed!');
+                    }
+                });
+            }
+
+            function bindspeaker() {
+                $.ajax({
+                    type: 'get',
+                    url: '/api/speaker/GetSpeakers/topic/' + $('#TopicId').val(),
+                    datatype: 'json',
+                    success: function (speakers) {
+                        $('#SpeakerId').append('<option>--Select--</option>');
+                        $.each(speakers, function (i, speaker) {
+                            $('#SpeakerId').append('<option value="' + speaker.Value + '">' + speaker.Text + '</option>');
+                        });
+                    },
+                    error: function () {
+                        toastr.error('Operation Failed!');
+                    }
+                });
+            }
+
+            // #region Date Ranges
+            $('#FeedbackStartDate').datepicker({
+                dateFormat: 'dd M yy',
+                changeMonth: true,
+                changeYear: true,
+                onClose: function (selectedDate) {
+                    $('#FeedbackEndDate').datepicker("option", "minDate", selectedDate, "dateFormat", 'dd M yy');
+                }
+            });
+            $('#FeedbackEndDate').datepicker({
+                dateFormat: 'dd M yy',
+                changeMonth: true,
+                changeYear: true,
+                onClose: function (selectedDate) {
+                    $('#FeedbackStartDate').datepicker("option", "maxDate", selectedDate, "dateFormat", 'dd M yy');
+                }
+            });
+                // #endregion
+        </script>
+    }

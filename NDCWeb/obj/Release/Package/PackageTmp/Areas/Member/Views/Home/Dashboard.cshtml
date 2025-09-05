@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btn {
+        border-radius: 0px !important;
+    }
+
+    .btn-block {
+        margin-bottom: 5px !important;
+    }
+
+    .ui-dialog-titlebar-close {
+        visibility: hidden;
+    }
+
+    .ui-dialog-titlebar {
+        background-color: red;
+        color: white;
+    }
+</style>
+<div class="card mt-4">
+    <div class="card-header bg-danger">
+        <h4 class="bg-danger text-white">MY APPLICATION</h4>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title text-danger">Important</h4>
+        <p class="card-text">You are requested to furnish following necessary data to the NDC or its designee.</p>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <a href="/member/coursemember/courseenrol" class="btn btn-primary btn-block"><span class="badge badge-danger">1</span> Create your Bio-Data</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dvinstr" title="Welcome to 61st NDC Course">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title danger"><u>Instruction to Fill Application Form Online</u></h3>
+            <p class="card-text">
+                <ol class="">
+                    <li>Log in with user name and password. You are advised to carefully read Welcome DO & Handbook of <b>NDC 61</b>.</li>
+                    <li>
+                        You are also requested to do the following after logging in
+                        <ol style="list-style-type:lower-alpha">
+                            <li>	Change your password immediately ,while choosing your password it must be alphanumeric and between 8 to 16 characters long.</li>
+                            <li>	Remember your Username and Password for subsequent login.</li>
+                        </ol>
+                    </li>
+                    <li>Click on the button <b>NEW PARTICIPANT REGISTRATION </b> that appears in the applicant login area and fill the required registration details. After filling the mandatory information click the <b>"SUBMIT"</b> button.</li>
+                    <li>
+                        <b>Before proceeding for filling the form online the applicant must have the following:-</b>
+                        <ol style="list-style-type:lower-alpha">
+                            <li>
+                                Scanned Photograph (less than 100 KB)
+                            </li>
+                            <li>
+                                Scanned Signature (less than 100 KB)
+                            </li>
+                            <li>
+                                Scanned copy of Age Proof (less than 200 KB)
+                            </li>
+                            <li>
+                                Scanned copy of relevant Educational Qualification (less than 200 KB)
+                            </li>
+                            <li>
+                                Scanned Visa,Passport,FRRO (less than 100 KB)
+                            </li>
+                            <li>
+                                Scanned Cancelled cheque (less than 100 KB)
+                            </li>
+                            <li>
+                                Scanned Driving Licence and Registration Certificate of Vehicles (less than 200 KB)
+
+                            </li>
+                        </ol>
+                    </li>
+                    <li>It is suggested to scan documents from your originals. Once you have uploaded the document, click the next button you will get the Form preview option. Save/Print your form for future reference.</li>
+                </ol>
+            </p>
+        </div>
+        <div class="card-footer text-center text-white">
+            <a href="/member/coursemember/courseenrol" class="btn btn-success">PROCEED TO REGISTRATION</a>
+            <a class="btn btn-danger text-white" data-dismiss="modal" id="closebtn" aria-hidden="true">CLOSE</a>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#dvinstr").dialog({
+                modal: true,
+                width: 'auto'
+            });
+
+            $("#closebtn").click(function () {
+                $("#dvinstr").modal("hide");
+            });
+        });
+        $(document).ready(function () {
+            $('#closebtn').click(function () {
+                $('#dvinstr').dialog('close');
+                return false;
+            });
+        });
+    </script>
+}
+

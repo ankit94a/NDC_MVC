@@ -1,0 +1,40 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.EventIndexVM>
+@foreach (var item in Model)
+{
+<table>
+    <tr class="bg-2 text-white">
+        <td colspan="2"> <span class="card-title">@Html.DisplayFor(modelItem => item.EventName)</span></td>
+    </tr>
+    <tr>
+        <td> @Html.DisplayNameFor(model => model.EventVenu)</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventVenu)
+        </td>
+    </tr>
+    <tr>
+        <td> @Html.DisplayNameFor(model => model.EventDate)</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDate)
+        </td>
+    </tr>
+    <tr>
+        <td> @Html.DisplayNameFor(model => model.EventTime)</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventTime)
+        </td>
+    </tr>
+    <tr>
+        <td> @Html.DisplayNameFor(model => model.EventDress)</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDress)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Remarks)</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDress)
+        </td>
+    </tr>
+</table>
+
+}

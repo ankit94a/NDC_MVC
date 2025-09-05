@@ -1,0 +1,80 @@
+﻿@*@model NDCWeb.Areas.Member.View_Models.CrsMbrVisaVM*@
+@model NDCWeb.Areas.Member.View_Models.VisaDetailIndxVM
+
+<div class="card">
+    <div class="card-header">
+        VISA DETAILS (FOREIGN OFFICERS, SPOUSES, AND CHILDREN ONLY)
+    </div>
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-hover">
+            <tr class="bg-light">
+                <td colspan="8">VISA (SELF)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">Visa Entry Type</td>
+                <td class="juipfvalue"> @Html.DisplayFor(model => model.VisaEntryType)</td>
+                <td class="juipfname"> @Html.DisplayNameFor(model => model.VisaNo)</td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.VisaNo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.VisaIssueDate) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.VisaIssueDate)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.VisaValidUpto) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.VisaValidUpto)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">VISA FILE </td>
+                <td class="juipfvalue" colspan="7"><img src="@Url.Content(Model.VisaPath)" class="img-thumbnail" width="120" /></td>
+
+            </tr>
+            <tr class="bg-light">
+                <td colspan="8">FFRO DETAILS (SELF)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SelfFRRONo) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SelfFRRONo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SelfIssueDate) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SelfIssueDate)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SelfValidUpto) </td>
+                <td class="juipfvalue" colspan="4">@Html.DisplayFor(model => model.SelfValidUpto)</td>
+
+            </tr>
+            <tr>
+                <td class="juipfname">FRRO images </td>
+                <td class="juipfvalue" colspan="7"><img src="@Url.Content(Model.SelfFRROPath)" class="img-thumbnail" width="120" /></td>
+            </tr>
+            <tr class="bg-light">
+                <td colspan="8">FFRO DETAILS (SPOUSE)</td>
+            </tr>
+            <tr>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseFRRONo) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpouseFRRONo)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseIssueDate) </td>
+                <td class="juipfvalue">@Html.DisplayFor(model => model.SpouseIssueDate)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.SpouseValidUpto) </td>
+                <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.SpouseValidUpto)</td>
+
+            </tr>
+            <tr>
+                <td class="juipfname">FRRO images </td>
+                <td class="juipfvalue" colspan="7"><img src="@Url.Content(Model.SpouseFRROPath)" class="img-thumbnail" width="120" /></td>
+            </tr>
+        </table>
+    </div>
+    <div class="card-footer">
+        <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious">Previous</a>
+        <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" id="btnEdit" onclick="editTab('VisaPartial')">Edit</a>
+        <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext">Next</a>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.btnNext').click(function () {
+            $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+    });
+</script>
+
+

@@ -1,0 +1,73 @@
+﻿@model NDCWeb.Areas.Member.View_Models.TelecommRequirementUpdateVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="card">
+    <div class="card-header">@ViewBag.Title</div>
+    @using (Html.BeginForm())
+    {
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(Model => Model.TelecommReqId)
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group row">
+                    1. @Html.LabelFor(model => model.HouseNo, htmlAttributes: new { @class = "col-md-8 control-label" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.HouseNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HouseNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    2. @Html.LabelFor(model => model.ReqInternet, htmlAttributes: new { @class = "col-md-8 control-label" })
+                    <div class="col-md-3">
+                        <div class="custom-checkbox">
+                            @Html.RadioButtonFor(e => e.ReqInternet, true, new { id = "ReqInternet-true" })
+                            @Html.Label("ReqInternet-true", "Yes")
+                            @Html.RadioButtonFor(e => e.ReqInternet, false, new { id = "ReqInternet-false" })
+                            @Html.Label("ReqInternet-false", "No")
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row" id="divcomplex">
+                    3. @Html.LabelFor(model => model.ResidentialComplex, htmlAttributes: new { @class = "col-md-8 control-label" })
+                    <div class="col-md-3">
+                        @*@Html.DropDownList("ResidentialComplex", (IEnumerable<SelectListItem>)ViewBag.GetAccnPreference, "-- Select --", htmlAttributes: new { @class = "form-control-sm" })*@
+                        @Html.EditorFor(model => model.ResidentialComplex, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ResidentialComplex, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @*<label class="control-label col-md-3 mt-4"></label>*@
+                    4. @Html.LabelFor(model => model.TypeOfConnection, htmlAttributes: new { @class = "col-md-8 control-label" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("TypeOfConnection", (IEnumerable<SelectListItem>)ViewBag.InternetPref, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TypeOfConnection, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    5. @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "col-md-8 control-label" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-10 mt-4">
+                        <p><strong><u>NOTE</u></strong></p>
+                        <p><b>(a) Civil Landline connection from college at Raksha Bhawan residences will be available only for ITEC officers.</b></p>
+                        <p><b>(b) Intercom facility at Raksha Bhawan is available for all Course participants.</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-white text-center mt-2">
+            <input type="submit" value="Update" class="btn btn-primary" />
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

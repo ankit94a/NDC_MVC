@@ -1,0 +1,197 @@
+﻿@using NDCWeb.Infrastructure.Constants;
+@{
+    ViewBag.Title = "Search Article";
+}
+
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href='@Url.Action("Index","Home")'>Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">@ViewBag.Title </li>
+            </ol>
+        </nav>
+        <div class="row">
+            <div class='col-md-12' style="margin-bottom:4em">
+                <div class="search_box">
+                    <div class="col-md-4">
+                        <label for='NewsCategory'> Category :</label>
+                        <div class="col-md-9">
+                            @Html.DropDownList("NewsCategory", EnumHelper.GetSelectList(typeof(NewsCategory)), "-- Select --", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for='txtFrom'>Date: </label>
+                            <div class="col-md-3">
+                                <input id="txtFrom" type="text" class="form-control datepickerJq1" autocomplete="off" placeholder="mm/dd/yyyy" />
+                            </div>
+                            <div class="col-md-3">
+                                <input id="txtTo" type="text" class="form-control datepickerJq1" autocomplete="off" placeholder="mm/dd/yyyy" />
+                            </div>
+                            <label>Archive: </label>
+                            <div class="col-md-1">
+                                <label>
+                                    <label>
+                                        <input id="chkArchive" type="checkbox" class="checkbox" />
+                                    </label>
+                                </label>
+                            </div>
+                            <div class="col-md-2">
+                                <button id="btnSearch" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            getNewsArticles(1);
+        });
+        $(document).ready(function () {
+            $("#btnSearch").click(function () {
+                getNewsArticles(1);
+            });
+        });
+
+        $("body").on("click", ".Pager .page", function () {
+            getNewsArticles(parseInt($(this).attr('page')));
+        });
+
+        function getNewsArticles(pageIndex) {
+            let e = document.getElementById("NewsCategory");
+            let newsCategoryId = Number(e.options[e.selectedIndex].value);
+            let checkBox = document.getElementById("chkArchive");
+            let fromDate = new Date($("#txtFrom").val());
+
+            let formData = {
+                from: $("#txtFrom").val(),
+                to: $("#txtTo").val(),
+                archive: checkBox.checked
+            };
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetNewsArticle")',
+                data: '{pageIndex: ' + pageIndex + ', newsCategoryId: "' + newsCategoryId + '", fromDate: "' + formData.from + '", toDate: "' + formData.to + '", archive: "' + formData.archive + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+                //error: function (xhr, status, error) {
+                //    alert(xhr.responseText + ', ' + status + ', ' + error);
+                //}
+            });
+            return false;
+        };
+
+        function OnSuccess(response) {
+            let pagingParam = response.pagingParam;
+            let article = response.article;
+            fillGallery(article);
+
+            $(".Pager").ASPSnippets_Pager({
+                ActiveCssClass: "current",
+                PagerCssClass: "pager",
+                PageIndex: pagingParam.PageIndex,
+                PageSize: pagingParam.PageSize,
+                RecordCount: pagingParam.RecordCount
+            });
+        };
+
+        function fillGallery(article) {
+            let $article = article;
+            let $articleDiv = $('.articleCls');
+            $articleDiv.empty();
+
+            $.each($article, function (i, art) {
+                let newsCategory = getNewsCategory(art.NewsCategory);
+                let artPublishDate = getIntToDateFormat(art.PublishDate);
+
+                $articleDiv.append(`
+                            <ul class='rel-display11'>
+                                <li class="rel rel-list">
+                                    ${art.Headline}
+                                    <a href="javascript:void()" class="btnGetDescription" onclick="getNewsContent(${art.NewsArticleId})"><i class="fa fa-arrow-right"></i></a>
+                                </li>
+                                <div>
+                                    <span class='pull-left'><i class="fa fa-newspaper-o"></i> ${newsCategory}</span>
+                                    <span class='pull-right'><i class="fa fa-clock-o"></i> ${artPublishDate}</span>
+                                </div>
+                                <hr/>
+                            </ul>
+                        `);
+            });
+        }
+
+        function getNewsContent(newsArticleId)  {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetNewsContent")',
+                data: '{newsArticleId: ' + newsArticleId + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: fillNewsContent,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+                //error: function (xhr, status, error) {
+                //    alert(xhr.responseText + ', ' + status + ', ' + error);
+                //}
+            });
+            return false;
+        };
+        function fillNewsContent(response) {
+            let $newsContent = response.newsContent;
+            let newsCategory = getNewsCategory($newsContent.NewsCategory);
+            let nwsPublishDate = getIntToDateFormat($newsContent.PublishDate);
+            let $newsContentDiv = $('.newsContentCls');
+
+            $newsContentDiv.empty();
+            $newsContentDiv.append(`
+                <div>
+                    <h3>${$newsContent.Headline}</h3>
+                    <br />
+                    <span class='pull-left'><i class="fa fa-newspaper-o"></i> ${newsCategory}</span>
+                    <span class='pull-right'><i class="fa fa-clock-o"></i> ${nwsPublishDate}</span>
+                </div>
+                <hr />
+                <div class="leftrightdiv col-md-12" style="max-height: 550px; overflow-y: auto;">
+                    <div style='padding-left: 1px; padding-right: 1px;'>${$newsContent.Description}</div>
+                </div>
+
+            `);
+        }
+        function getNewsCategory(newsCategoryId) {
+            let newsCategory = '';
+            switch (newsCategoryId) {
+                case 1:
+                    newsCategory = "Bulletin";
+                    break;
+                case 2:
+                    newsCategory = "What's New";
+                    break;
+                case 3:
+                    newsCategory = "News";
+                    break;
+                case 4:
+                    newsCategory = "Flash News";
+            }
+            return newsCategory;
+        }
+    </script>
+}
+
+

@@ -1,0 +1,150 @@
+﻿
+@model NDCWeb.Areas.Member.View_Models.MPhilMemberEnrolACKVM
+<div class="container shadow p-3 mb-5 bg-white rounded">
+    <div id="printDiv">
+        <div class="row">
+            <div class="col-md-10 text-center">
+                <p class="float-right">Locker No <b>@ViewBag.LockerNo</b>.</p><br />
+                <h5><u>UNIVERSITY OF MADRAS</u></h5><br />
+                <img src="/images/NDC-Logo.png" width="80" />
+                <h5>
+                    <b>NATIONAL DEFENCE COLLEGE</b><br />
+                    (AUTONOMOUS STATUS)<br />
+                    ADMISSION TO THE MASTER OF PHILOSOPHY (M.PHIL) <br />
+                    PROGRAMMES IN AFFILATAE D COLLEGES/INSTITUTIONS FOR THE ACADEMIC<br />
+                    YEAR 2022-23
+                </h5>
+            </div>
+            <div class="col-md-2">
+                <img src="@Url.Content(Model.MemberImgPath)" width="120" height="120" class="border-dark" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-light border">
+                    <tr>
+                        <td>1. Name of the College applied to:</td>
+                        <td><b> @Html.DisplayFor(model => model.CollegeApplied)</b></td>
+
+                    </tr>
+                    <tr>
+                        <td>2. Subject: </td>
+                        <td><b>  @Html.DisplayFor(model => model.Subject)</b></td>
+                    </tr>
+                    <tr>
+                        <td>3.	Name of the Applicant (In English):</td>
+                        <td><b>   @Html.DisplayFor(model => model.ApplicantNameEnglish)</b></td>
+                    </tr>
+                    <tr>
+                        <td> &nbsp; &nbsp; Name of the Applicant (In Vernacular):</td>
+                        <td><b>   @Html.DisplayFor(model => model.ApplicantNameVernacular)</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            4.	a. <u>Permanent Address</u>:<br />
+                            <b>   @Html.DisplayFor(model => model.PermanentAddress)<br /> </b>
+                            Pin Code -  <b> @Html.DisplayFor(model => model.PermanentPin)</b><br />
+                            Mobile No - <b> @Html.DisplayFor(model => model.PermanentMob)</b>
+                            e-mail - <b> @Html.DisplayFor(model => model.EmailId)</b>
+                        </td>
+                        <td>
+                            b. <u>Address for Communication</u><br />
+                            <b>   @Html.DisplayFor(model => model.CommunicationAddress)<br /> </b>
+                            Pin Code -  <b> @Html.DisplayFor(model => model.CommunicationPin)</b><br />
+                            Mobile No - <b> @Html.DisplayFor(model => model.CommunicationMob)</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 5.   Date of Birth:</td>
+                        <td><b>   @Html.DisplayFor(model => model.DOBirth)</b></td>
+                    </tr>
+                    <tr>
+                        <td> 6.   Name of Father / Husband :</td>
+                        <td><b>   @Html.DisplayFor(model => model.FatherName)</b></td>
+                    </tr>
+                    <tr>
+                        <td> 7.   Sex :<b>@Html.DisplayFor(model => model.Gender)</b> </td>
+                        <td> 8.   Nationality :<b>@Html.DisplayFor(model => model.Nationality)</b></td>
+                    </tr>
+                    <tr>
+                        <td> 9.   Name of Community : </td>
+                        <td> <b>@Html.DisplayFor(model => model.Community)</b></td>
+                    </tr>
+                    <tr>
+                        <td> 10.   Specify physical handicap : </td>
+                        <td> <b>@Html.DisplayFor(model => model.PhysicalHandicap)</b></td>
+                    </tr>
+                    <tr>
+                        <td> 11.	Number of years studied in School and College : </td>
+                        <td> <b>@Html.DisplayFor(model => model.YearsStudies)</b></td>
+                    </tr>
+                    <tr>
+                        <td> 12.	Qualification of the applicant.	Degree :<br />Subject (Main): </td>
+                        <td> <b>@Html.DisplayFor(model => model.DegreeName)<br />@Html.DisplayFor(model => model.SubjectMain)</b></td>
+                    </tr>
+                    <tr>
+                        <td> 13.	Name of the Institution/College and University where studied: </td>
+                        <td> <b>@Html.DisplayFor(model => model.UniversityCollegeStudied)</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> 14.	Provide details of Post Graduate Study: </td>
+                    </tr>
+                </table>
+                @{ Html.RenderAction("PGPartial"); }
+                <table class="table border">
+                    <tr>
+                        <td colspan="2"><b> 15.   Enclosures (Upload attested copies only)</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="IsMarksStatementDocPath" @{if (Model.IsMarksStatementDocPath == true) { <text> checked </text>  } } /><a href="@Url.Content(Model.MarksStatementDocPath ?? "#")" target="_blank"> Statement of Marks</a> <br />
+                            <input type="checkbox" name="IsCourseCertificateDocPath" @{if (Model.IsCourseCertificateDocPath == true) { <text> checked </text>  } } /><a href="@Url.Content(Model.CourseCertificateDocPath ?? "#")" target="_blank"> Equivalent Course Certificate</a><br />
+                            <input type="checkbox" name="IsMemberImgPath" @{if (Model.IsMemberImgPath == true) { <text> checked </text>  } } /> <a href="@Url.Content(Model.MemberImgPath ?? "#")" target="_blank"> Photograph</a> <br />
+                        </td>
+                        <td>
+                            <input type="checkbox" name="IsPostGradDegreeDocPath" @{if (Model.IsPostGradDegreeDocPath == true) { <text> checked </text>  } } /><a href="@Url.Content(Model.PostGradDegreeDocPath ?? "#")" target="_blank"> Post Graduate Degree</a> <br />
+                            <input type="checkbox" name="IsTranslatedCopyEngDocPath" @{if (Model.IsTranslatedCopyEngDocPath == true) { <text> checked </text>  } } /><a href="@Url.Content(Model.TranslatedCopyEngDocPath ?? "#")" target="_blank"> Translated Copies in English</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>16.   Any other information which you would like to present in support of your application:</td>
+                        <td><b>@Html.DisplayFor(model => model.AnyOtherInformation)</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><u><b> DECLARATION BY THE APPLICANT</b></u></td>
+                    </tr>
+                    <tr><td colspan="2"><input type="checkbox" class="big-checkbox" name="Undertaking" checked/>  I hereby declare tat the particulars furnished above are correct. I agree that the authorities may invalidate my application, at any time, if any of the information furnished is found to be false. I am aware that my eligibility for admission for a course will be decided by the concerned admitting authority.</td></tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel-footer bg-white text-center mb-4">
+        <input type="button" class="btn btn-primary btn-sm" onclick="printdoc()" value="Print" />
+        <a href="/member/" class="btn btn-primary btn-sm">Back</a>
+    </div>
+</div>
+   
+
+@section scripts{
+    <script>
+            function printdoc() {
+                var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+                mywindow.document.write('<html><head>');
+                mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+                mywindow.document.write('</head><body >');
+                mywindow.document.write(document.getElementById('printDiv').innerHTML);
+                mywindow.document.write('</body></html>');
+
+                mywindow.document.close(); // necessary for IE >= 10
+                mywindow.focus(); // necessary for IE >= 10*/
+
+                setTimeout(function () {
+                    mywindow.print();
+                    mywindow.close();
+                }, 1000)
+                return true;
+            }
+    </script>
+}

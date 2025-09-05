@@ -1,0 +1,30 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.ImportantAssignmentIndxVM>
+    <table class="table table-condensed table-bordered">
+        <thead>
+            <tr class="bg-2 text-white">
+                <td colspan="6">
+                    Appointment Held
+                    <a class="btn btn-transparent btn-sm float-right" data-toggle="tab" href="#ServicePartial" onclick="serviceEditClick('ImportantAssignmentPartial')"><i class="fa fa-pencil-square text-primary"></i></a>
+                </td>
+            </tr>
+            <tr class="bg-light">
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Appointment)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Organisation)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.Location)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.From)</td>
+                <td class="juipfname">@Html.DisplayNameFor(model => model.To)</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Appointment)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Organisation)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Location)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(modelItem => item.From)</td>
+                    <td class="juipfvalue">@Html.DisplayFor(modelItem => item.To)</td>
+                </tr>
+            }
+        </tbody>
+    </table>

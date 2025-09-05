@@ -1,0 +1,138 @@
+﻿@model NDCWeb.Areas.Member.View_Models.InfoTechIndxVM
+@{
+    ViewBag.Title = "IT Equipment Requirements";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<div class="container pt-2">
+    <div class="card" id="printDiv" style="font-family:Arial; font-size:13px">
+        <style>
+            tr :nth-child(1) {
+                font-weight: bold;
+            }
+        </style>
+        <div class="card-header" text-uppercase h4 text-center border-0">
+            <u>@ViewBag.Title</u>
+            <span class="pull-right">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ITId })
+
+                @*@Html.ActionLink("Edit Requirement", "Edit", null, new { @class = "btn btn-primary btn-sm" })*@
+            </span>
+
+        </div>
+        <div class="card-body">
+            <ol>
+                <li>Full Name with Decoration: <b>@ViewBag.Rank @ViewBag.FullName</b></li>
+                <br />
+                <li>
+                    Are you in possession of official laptop from previous Department/Organisation
+                    @if (Model.LaptopFromDepartment == true)
+                    {
+                        <b>Yes</b><br /><br />
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Laptop Make
+                                </th>
+                                <th>
+                                    Model No
+                                </th>
+                                <th>
+                                    Serial No.
+                                </th>
+                                <th>
+                                    Adapter Available
+                                </th>
+                                <th>
+                                    Bag Available
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => Model.DLaptopMake)</td>
+                                <td>@Html.DisplayFor(modelItem => Model.DModelNo)</td>
+                                <td>@Html.DisplayFor(modelItem => Model.DSlNo)</td>
+                                <td>@(Model.DAdaptor == true ? "Yes": "No")</td>
+                                <td>@(Model.DBag == true ? "Yes" : "No")</td>
+
+                            </tr>
+                        </table>
+                    }
+                    else
+                    {
+                        <b>No</b>
+                    }
+                </li>
+                <li>
+                    Do you require laptop for the duration of the course from College?
+
+                    @if (Model.LaptopFromCollege == true)
+                    {
+                        <b>Yes</b><br /><br />
+                        @*<table class="table">
+                            <tr>
+                                <th>
+                                    Laptop Make
+                                </th>
+                                <th>
+                                    Model No
+                                </th>
+                                <th>
+                                    Serial No.
+                                </th>
+                                <th>
+                                    Adapter Available
+                                </th>
+                                <th>
+                                    Bag Available
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => Model.CLaptopMake)</td>
+                                <td>@Html.DisplayFor(modelItem => Model.CModelNo)</td>
+                                <td>@Html.DisplayFor(modelItem => Model.CSlNo)</td>
+                                <td>@(Model.CAdaptor == true ? "Yes": "No")</td>
+                                <td>@(Model.CBag == true ? "Yes" : "No")</td>
+                            </tr>
+                        </table>*@
+
+                    @*<li>Declartion form. <a class="text-danger" href="@Url.Content(Model.DeclarationFormDocPath ?? "#")" title="View Biodata" target="_blank"><i class="fa fa-file-pdf-o"></i> </a></li>*@
+                    <br />
+
+                }
+                else
+                {
+                    <b>No</b>
+                }
+                    </li>
+                   @* <li>Having insurance receipt of laptop during course?.  <a class="text-danger" href="@Url.Content(Model.InsuranceReceiptDocPath ?? "#")" title="View Biodata" target="_blank"><i class="fa fa-file-pdf-o"></i> </a> </li>
+                    <br />
+                    <li>Permission to carry laptop outside NDC premises?. <a class="text-danger" href="@Url.Content(Model.OutsidePermissionDocPath ?? "#")" title="View Biodata" target="_blank"><i class="fa fa-file-pdf-o"></i> </a></li>
+                </ol>*@
+            </div>
+            <div class="panel-footer mb-4 text-center">
+                <input type="button" class="btn btn-primary btn-sm" onclick="printdoc()" value="Print" />
+            </div>
+        </div>
+    </div>
+    @section scripts{
+        <script>
+            function printdoc() {
+                var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+                mywindow.document.write('<html><head>');
+                mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+                mywindow.document.write('</head><body style="font-size:14px">');
+                mywindow.document.DOCUMENT_FRAGMENT_NODE
+                mywindow.document.write(document.getElementById('printDiv').innerHTML);
+                mywindow.document.write('</body></html>');
+
+                mywindow.document.close(); // necessary for IE >= 10
+                mywindow.focus(); // necessary for IE >= 10*/
+
+                setTimeout(function () {
+                    mywindow.print();
+                    mywindow.close();
+                }, 1000)
+                return true;
+            }
+        </script>
+    }

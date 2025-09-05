@@ -1,0 +1,76 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.LibraryMembershipIndxVM>
+
+@{
+    ViewBag.Title = "List of Library Membership Application";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container pt-2">
+    <div class="card">
+        <div class="card-header" style="background-color:#fff">
+            <h4>@ViewBag.Title </h4>
+        </div>
+        <div class="card-body">
+            <table class="table" id="myTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LockerNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MemberName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Designation)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MobileNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EmailId)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LockerNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MemberName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Designation)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MobileNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailId)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Membership", new { id = item.LibraryMembershipId })
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        LoadJDT('#myTable');
+    </script>
+}

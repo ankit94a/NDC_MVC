@@ -1,0 +1,158 @@
+﻿@model NDCWeb.Areas.Member.View_Models.CrsMbrAddressCrtVM
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                CURRENT ADDRESSES
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.CurrentAddress, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CurrentAddress, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CurrentAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.CurrentTelephone, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CurrentTelephone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CurrentTelephone, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.CurrentFax, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CurrentFax, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CurrentFax, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                PERMANENT ADDRESSES
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.PermanentAddress, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.PermanentAddress, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PermanentAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "form-label" })
+                        @Html.DropDownListFor(model => model.CountryId, (IEnumerable<SelectListItem>)ViewBag.Country, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @*@Html.DropDownListFor(model => model.CountryId, new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })*@
+                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.StateId, htmlAttributes: new { @class = "form-label" })
+                        @Html.DropDownListFor(model => model.StateId, new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.PermanentTelephone, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.PermanentTelephone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PermanentTelephone, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.PermanentFax, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.PermanentFax, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PermanentFax, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.OffcTelephone, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.OffcTelephone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OffcTelephone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+                <input type="button" id="btnSave" value="Submit" onclick="addAddress()" class="btn btn-primary btn-lg" />
+                @*<a class="details btn btn-primary btn-lg" href="#" onclick="viewAck()"><i class="fa fa-eye"></i>Preview</a>
+                <a href="#" class="btn btn-primary btn-lg btnNext">Next</a>
+                <a href="#" class="btn btn-primary btn-lg btnPrevious">Go Back</a>*@
+
+                @*<a class="details" href="#" onclick="viewAck()"><i class="fa fa-eye"></i>Preview</a>*@
+            </div>
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+    function fillAddressDetail() {
+        let address = {
+            CurrentAddress: $("#CurrentAddress").val(),
+            CurrentTelephone: $("#CurrentTelephone").val(),
+            CurrentFax: $("#CurrentFax").val(),
+            PermanentAddress: $("#PermanentAddress").val(),
+            PermanentTelephone: $("#PermanentTelephone").val(),
+            PermanentFax: $("#PermanentFax").val(),
+            OffcTelephone: $("#OffcTelephone").val(),
+            City: $("#City").val(),
+            ZipCode: $("#ZipCode").val(),
+
+            StateId: $("#StateId").val(),
+        }
+        return address;
+    }
+    $(document).ready(function () {
+        $('#CountryId').change(function () {
+            $('#StateId').empty();
+            $.ajax({
+                type: 'get',
+                url: '/api/countrystatecity/GetStates/country/' + $('#CountryId').val(),
+                datatype: 'json',
+                success: function (states) {
+                    $.each(states, function (i, state) {
+                        $('#StateId').append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    });
+                },
+                error: function () {
+                    alert('Server Not Found');
+                }
+            });
+        });
+    });
+
+    function addAddress() {
+        if ($("form").valid()) {
+            let address = fillAddressDetail();
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/Address',
+                //data: JSON.stringify(courseMember),
+                data: address,
+                datatype: 'json',
+                success: function (data, textStatus, xhr) {
+                    displayTab('AddressPartial');
+                },
+                error: function () {
+                    alert('Operation Failed!')
+                }
+            });
+        }
+    }
+</script>

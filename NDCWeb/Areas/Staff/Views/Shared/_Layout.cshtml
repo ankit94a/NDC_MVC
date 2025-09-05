@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="Head1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+    <meta charset="utf-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        National Defence College
+    </title>
+    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="keywords" />
+    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="description" />
+    <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="DC.Subject.Keyword" />
+    <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="NDC.Description" />
+    <link rel="stylesheet" type="text/css" href="~/Component/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/style.css" />
+
+    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/index.css" />
+    @*<link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/fontawesome/css/fontawesome.min.css" />*@
+    <!-- Color Theme CSS -->
+    <link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
+    @*@Styles.Render("~/Content/css")*@
+    <!--Calendar Style-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+    <!-- Full Calendar -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print" />
+    <!--Calendar Style Ends-->
+
+    @Styles.Render("~/bundles/jquistyle")
+    @Styles.Render("~/bundles/datatables/css")
+    @Styles.Render("~/bundles/toastr/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/mainjs")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#respMenu").aceResponsiveMenu({
+                resizeWidth: '2000', // Set the same in Media query
+                animationSpeed: 'fast', //slow, medium, fast
+                accoridonExpAll: false //Expands all the accordion menu on click
+            });
+        });
+        $(document).ready(function () {
+            $('#main-nav nav').meanmenu()
+        });
+    </script>
+    <style type="text/css">
+        .sf-menu li {
+            text-transform: uppercase;
+        }
+
+        .menuchang {
+            background-image: url('images/new.gif');
+            background-repeat: no-repeat;
+            padding-right: 5px;
+            background-position: top;
+        }
+
+        .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+            background-color: #0061f1;
+            font-size: 1.3em;
+        }
+
+        .nav-tabs .nav-link {
+            border: 1px solid #c9d9ef;
+            background-color: #eaf8f7;
+        }
+
+        .form-control {
+            font-size: 1.0em;
+        }
+
+        .nav-tabs .nav-link {
+            padding: .8rem 2rem;
+        }
+
+        .sf-menu li a {
+        }
+
+        label {
+            font-weight: 400;
+        }
+
+        table tr th {
+            background-color: #fff;
+            color: #353535;
+            text-align: center;
+        }
+        /*Calendar*/
+        .fc-sun {
+            color: #ff0000;
+            font-weight: 600;
+        }
+
+        .fc-sat {
+            color: #ff5e00;
+            font-weight: 600;
+        }
+
+        
+    </style>
+
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/v/dt/dt-2.1.6/b-3.1.2/b-html5-3.1.2/datatables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.6/b-3.1.2/b-html5-3.1.2/datatables.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body id="fontSize">
+    @Html.Partial("_Header")
+    <div class="mean-container">
+    </div>
+
+
+    @*@if (ViewBag.SiteMenuItems == null)
+        {
+            @Html.Partial("_UserMenu");
+        }
+        else
+        {
+            @Html.Partial("_StaticUserMenu");
+        }*@
+    @if (ViewBag.SiteMenuStaffType != null)
+    {
+        @Html.Partial("_StaticUserMenu")
+        @*@Html.Partial("_UserMenu");*@
+    }
+    <!-- Menu Part End -->
+    <div class="clearfix">
+
+    </div>
+
+    @Html.Partial("_MasterSearch")
+
+
+    <div class="container-fluid">
+        @Html.Partial("_Notifications")
+        @Html.AntiForgeryToken()
+        @RenderBody()
+
+    </div>
+
+    @Html.Partial("_Footer")
+
+    <script src='~/Component/js/font-size.js' type="text/javascript"></script>
+    <script src='~/Component/js/superfish.js' type="text/javascript"></script>
+    <script src='~/Component/js/jquery.meanmenu.js' type="text/javascript"></script>
+    <script src='~/Component/js/custom.js' type="text/javascript"></script>
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/datatables")*@
+
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/toastr/js")
+    <!-- Include moment-->
+    <!-- comment by yogendra -->
+    @*<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>*@
+
+    <!-- add by yogendra -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+
+    <!-- qTip -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+
+    <!-- Full Calendar -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
+
+    <script src="~/Areas/Staff/Component/Custom/js/script-custom-calendar.js"></script>
+    <script>
+        toastrOptDefault();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.1.6/b-3.1.2/b-html5-3.1.2/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.6/b-3.1.2/b-html5-3.1.2/datatables.min.js"></script>
+
+    @Scripts.Render("~/bundles/custom")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

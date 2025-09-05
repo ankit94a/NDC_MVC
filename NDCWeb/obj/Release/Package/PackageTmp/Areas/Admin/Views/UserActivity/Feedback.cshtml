@@ -1,0 +1,62 @@
+﻿@model IEnumerable<NDCWeb.View_Models.AlumniFeedbackIndxVM>
+
+@{
+    ViewBag.Title = "Valuable Feedbacks";
+}
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">List of Feedback (s)</h5>
+        <table class="table table-hover table-bordered tab w-100" id="myTable">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailId)
+                </th>
+                <th>
+                    Feedback(s)
+                </th>
+                <th>
+                    Submit Dt
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        <a class="text-danger btn-sm" onclick="Delete(@item.FeedbackId, this)" title="Delete this user"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+@section Scripts {
+<script>
+        LoadJDT('#myTable');
+
+        function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteFeedbackOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+        }
+
+</script>
+}

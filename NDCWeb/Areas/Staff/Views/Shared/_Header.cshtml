@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Claims
+
+<header>
+    <div class="top_head">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 top-acess">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mid-head">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <div class="indian-emblem pull-left">
+                        <a href='/'>
+                            <img src='/images/1200px-Emblem_of_India.png' class="bg-white" alt="Indian Emblem" title="Indian Emblem" height="100" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+                            <div class="logo">
+                                <h2 lang="hi"><strong>राष्ट्रीय रक्षा महाविद्यालय</strong></h2>
+                                <h1><a style="font-size:inherit !important" href='/' title="National Defence College">National Defence College</a> </h1>
+                                <h2>Ministry of Defence, Government of India</h2>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                            <div class="useridentity d-none d-md-block" style="font-style:italic">
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <i class="fa fa-user ml-2 opacity-8"></i><span> </span>
+                                    var fname = ((ClaimsIdentity)User.Identity).FindFirst("FName");
+                                    @:@ViewBag.fullname
+                                    @*@fname.Value*@
+                                    using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-power-off ml-2"></i> Log off</a>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                    <img class="pull-right" src="/images/NDC-Logo.png" height="100" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

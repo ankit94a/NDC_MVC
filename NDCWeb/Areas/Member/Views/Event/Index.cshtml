@@ -1,0 +1,85 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.EventParticipantIndexVM>
+
+@{
+    ViewBag.Title = "My Party/Function";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container pt-2">
+    <div class="card mb-4">
+        <div class="card-header" style="background-color:#fff">
+            @ViewBag.Title
+            <span class="pull-right">@Html.ActionLink("View College Events", "Eventboard", null, new { @class = "btn btn-primary btn-sm" })</span>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ParticipateAs)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AttendSelf)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AttendSpouse)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SecyPermited)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DietaryPrefSelf)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DietaryPrefSpouse)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LiquorPref)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Remarks)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EventId)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParticipateAs)
+                        </td>
+                        <td>
+                            @(item.AttendSelf ? "Yes":"No")
+                        </td>
+                        <td>
+                            @(item.AttendSpouse ? "Yes":"No")
+                        </td>
+                        <td>
+                            @(item.SecyPermited ? "Yes":"No")
+                        </td>
+                        <td>
+                            @(item.DietaryPrefSelf ? "Veg": "Non-Veg")
+                        </td>
+                        <td>
+                            @(item.DietaryPrefSpouse ? "Veg" : "Non-Veg")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LiquorPref)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Remarks)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Events.EventName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.EventParticipantId })
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

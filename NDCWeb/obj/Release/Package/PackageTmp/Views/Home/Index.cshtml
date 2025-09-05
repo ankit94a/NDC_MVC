@@ -1,0 +1,243 @@
+﻿@using NDCWeb.Infrastructure.Constants;
+@{
+    ViewBag.Title = "National Defence College";
+    if (ViewBag.Course != "N" || ViewBag.InStepCourse != "N")
+    {
+    <div class="floathome">
+        @if (ViewBag.InStepCourse != "N" && ViewBag.Course != "N")
+        {
+            <a href="/instep/register/"><span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>@ViewBag.InStepCourse Course Registration </a><br />
+            <a href="/registration/"><span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>NDC @ViewBag.Course Course Registration</a>
+        }
+        else if (ViewBag.InStepCourse != "N")
+        {
+            <a href="/instep/register/"><span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>@ViewBag.InStepCourse Course Registration </a>
+        }
+        else if (ViewBag.Course != "N")
+        {
+            <a href="/registration/"><span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>NDC @ViewBag.Course<sup>th</sup> Course Registration</a>
+        }
+    </div>
+    }
+
+}
+<link href="~/Component/css/Modal.css" rel="stylesheet" />
+
+<!--Promo Popup start-->
+<div id="openModal" class="modalDialog">
+    <div>
+        <a href="#close" title="Close" class="close">X</a>
+        <p>
+            <a href="https://www.gallantryawards.gov.in/" target="_blank"><img src="https://ndc.nic.in//writereaddata/media/files/2021/Sep/91d70307-258f-4d0e-bc48-84e948990257.jpg" /></a>
+        </p>
+    </div>
+</div>
+<!--Promo Popup End-->
+<style>
+</style>
+
+<section class="banner_bg pt5">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12 c1News">
+                <div class="whats-new-section">
+                    <span class="title">
+                        Whats New
+                    </span>
+                    <div class="what-news-wrapper">
+                        <ul class="newsslider c2News">
+                            @foreach (var item in ViewBag.WhatsNew)
+                            {
+                                if (item.Highlight == true)
+                                {
+                                    <li><img src="/images/new.gif"> <a href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a> </li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a></li>
+                                }
+                            }
+                        </ul>
+                        <div class="view-footer text-center">
+                            <a href="@Url.Action("index", "news", new { ncat = NewsCategory.WhatsNew })">Read All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 c3Carousel">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner homeSliderCls">
+
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!--<div class="text-center res-shadow"><img src="/images/shadow-banner.png" alt="" title=""></div>-->
+            </div>
+
+            <div class="col-md-3 col-sm-4 col-xs-12 c4Comdt">
+
+                <div class="comdt-section text-center c5Comdt">
+                    <div class="comdtsec">
+                    </div>
+                    <ul>
+                        <li><a title='Profile c6Comdt' href='/about/from-commandants-desk/messages'>Commandant's Desk</a></li>
+                        <li><a title='Profile c6Comdt' href='/about/from-commandants-desk/former-commandants'>Former Commandants</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="ticker_section">
+    <div class="container">
+        <marquee class="scroll-text" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+            @foreach (var item in ViewBag.Flash)
+            {
+                if (item.Highlight == true)
+                {
+                    <a class="btn-link c6Comdt" href="@Html.Raw(@item.ArticleUrl)"><img src="/images/new.gif">  @Html.Raw(@item.Headline)</a><span class="glyphicon glyphicon-forward c7News"></span>
+                }
+                else
+                {
+                    <a class="btn-link c6Comdt" href="@Html.Raw(@item.ArticleUrl)">@Html.Raw(@item.Headline)</a><span class="glyphicon glyphicon-forward c7News"></span>
+                }
+            }
+        </marquee>
+    </div>
+</div>
+<section class="site-intro-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12 c8Upcoming">
+                <div class="latest-news-events">
+                    <span class="title">
+                        Upcoming Events
+                    </span>
+                    <div class="what-news-wrapper">
+                        <ul class="upcomingslide c9Upcoming">
+                            @foreach (var item in ViewBag.Upcoming)
+                            {
+                                if (item.Highlight == true)
+                                {
+                                    <li>
+                                        <a class="btn-link c6Comdt" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })"><img src="/images/new.gif">  @Html.Raw(@item.Headline)</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a class="btn-link c6Comdt" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                        <div class="view-footer text-center c10Upcoming">
+                            <a href="@Url.Action("index", "news", new { ncat = NewsCategory.Upcoming })">Read All</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="previous-month">
+                    <span class="title">
+                        Last Months Highlights
+                    </span>
+                    <div class="what-news-wrapper">
+                        <ul class="lastmonthlide 11LastMonth">
+                            @foreach (var item in ViewBag.LastMonth)
+                            {
+                                if (item.Highlight == true)
+                                {
+                                    <li><img src="/images/new.gif"> <a class="c6Comdt" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a> </li>
+                                }
+                                else
+                                {
+                                    <li><a class="c6Comdt" href="@Url.Action("Article", "News", new { id = item.NewsArticleId })">@Html.Raw(@item.Headline)</a></li>
+                                }
+                            }
+                        </ul>
+                        <div class="view-footer text-center">
+                            <a href="@Url.Action("index", "news", new { ncat = NewsCategory.LastMonth })">Read All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 c12Welcome">
+                <div class="site-intro">
+                    <img class="img-responsive" src="/images/welcome-to-NDC(1).jpg">
+                    <h4>
+                        WELCOME TO NATIONAL DEFENCE COLLEGE
+                    </h4>
+                    <p>
+                        The National Defence College (NDC) was inaugurated on April 27, 1960 by Pandit Jawaharlal Nehru, the first Prime Minister of Independent India.
+                        <br />
+                        <button class="cbtn-sm btn-1" id="btnLearnMoreIndex" type="button">
+                            Learn more
+                        </button>
+                    </p>
+
+
+                    @*<div class="dropdown">
+                        <button class="cbtn-sm btn-1 dropdown-toggle" type="button" data-toggle="dropdown">
+                        Learn more
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a href="/content2/learn-more/aim-of-ndc">Aim</a></li>
+                        <li><a href="/content2/learn-more/role-of-ndc">Role</a></li>
+                        <li><a href="/content2/learn-more/vision-mission-of-ndc">Vision/Mission</a></li>
+                        </ul>
+                        </div>*@
+                    <!--NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned "the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare". Today, NDC continues to provide future decision-makers with the necessary skills and background for filling senior positions in national security and associated fields.-->
+                    <!-- <a href="About.html" class="btn btn-primary">Learn more</a> -->
+
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-12 c14LatestNews">
+                <div class="latest-news-events">
+                    <h3>Login</h3>
+                    <button class="cbtn btn-1" id="btnmember">Course Participant</button>
+                    <button class="cbtn btn-1" id="btnstaff">Faculty & Staff</button>
+                    <button class="cbtn btn-1" id="btnalumni">Alumni</button>
+                </div>
+                <div class="ndc-in-news">
+                    <span class="title">
+                        NDC in News
+                    </span>
+                    <div class="ndc-in-news-wrapper">
+                        <ul class=" lastmonthlide  c15NdcinNews">
+                            @foreach (var item in ViewBag.NdcNews)
+                            {
+                                if (item.Highlight == true)
+                                {
+                                    <li>
+                                        <a class="c16NdcinNews" href="@Html.Raw(@item.ArticleUrl)" target="_blank">@Html.Raw(@item.Headline)</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li><a class="c16NdcinNews" href="@Html.Raw(@item.ArticleUrl)" target="_blank"> @Html.Raw(@item.Headline)</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+@section Scripts{
+
+    <script src="~/Component/js/carousel.js"></script>
+    <script src="~/Component/js/Modal.js"></script>
+}

@@ -1,0 +1,306 @@
+﻿@model NDCWeb.Areas.Member.View_Models.SpouseUpVM
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCMSpouse" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.SpouseId, new { @id = "hdnSpouseId" })
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                PARTICULARS
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Name</Label>
+                        @Html.EditorFor(model => model.SpouseName, new { htmlAttributes = new { @class = "form-control required" } })
+                        @Html.ValidationMessageFor(model => model.SpouseName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label required">Blood Group</Label>
+                        @Html.DropDownListFor(model => model.SpouseBloodGroup, (IEnumerable<SelectListItem>)ViewBag.BloodGroup, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SpouseBloodGroup, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label required">Contact No</Label>
+                        @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
+                        @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label required">Date of Birth</Label>
+                        @Html.EditorFor(model => model.SpouseDOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.SpouseDOBirth, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Occupation</Label>
+                        @Html.EditorFor(model => model.Occupation, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Spouse staying with officer during course?</Label>
+                        @Html.EditorFor(model => model.SpouseStay, new { htmlAttributes = new { @class = "custom-checkbox" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header" style="background-color:#fff">
+                EDUCATIONAL QUALIFICATIONS
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Higher education</Label>
+                        @Html.EditorFor(model => model.EduHigher, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.ValidationMessageFor(model => model.EduHigher, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Subject</Label>
+                        @Html.EditorFor(model => model.EduSubject, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.ValidationMessageFor(model => model.EduSubject, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Grade/Division</Label>
+                        @Html.EditorFor(model => model.EduDivision, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Board/University</Label>
+                        @Html.EditorFor(model => model.EduUniversity, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.ValidationMessageFor(model => model.EduUniversity, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header" style="background-color:#fff">
+            PASSPORT DETAIL (to be filled by Foreign Officers only)
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label class="control-label"><b>Are you holding any Passport</b></label>
+                    <div class="form-inline">
+                        <label class="containerchk col-md-1">
+                            Yes @Html.RadioButtonFor(model => model.HoldingPassport, "Yes", new { id = "spousepassport-true" })
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="containerchk col-md-1">
+                            No @Html.RadioButtonFor(model => model.HoldingPassport, "No", new { id = "spousepassport-false" })
+                            <span class="checkmark"></span>
+                        </label>
+                        @Html.ValidationMessageFor(model => model.HoldingPassport, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="dvspousepassportSelf">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Passport No</Label>
+                        @Html.EditorFor(model => model.SpousePassportNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SpousePassportNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <Label class="control-label">Passport Name</Label>
+                        @Html.EditorFor(model => model.SpousePassportName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SpousePassportName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Date of Issue</Label>
+                        @Html.EditorFor(model => model.SpousePassportIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.SpousePassportIssueDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Valid Upto</Label>
+                        @Html.EditorFor(model => model.SpousePassportValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.SpousePassportValidUpto, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="citizencountry">Passport Type</label>
+                        @Html.DropDownListFor(model => model.SpousePassportType, (IEnumerable<SelectListItem>)ViewBag.PassportType, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SpousePassportType, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="citizencountry">Country that issued your passport</label>
+                        @Html.DropDownListFor(model => model.SpousePassportCountryIssued, (IEnumerable<SelectListItem>)ViewBag.ddlCountry, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SpousePassportCountryIssued, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="passport_self">Upload passport image (Front)</label>
+                        <input id="spousePassportPicfile" type="file" title="Upload Your Spouse Passport" name="spousePassportPicfile" onchange="imgValidateEdit('spousePassportPicfile', 'SpousePassportImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                        <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                        @Html.EditorFor(model => model.SpousePassportImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="passport_self">Upload passport image (Back)</label>
+                        <input id="spousePassportBackPicfile" type="file" title="Upload Your Spouse Passport" name="spousePassportBackPicfile" onchange="imgValidateEdit('spousePassportBackPicfile', 'SpousePassportBackImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                        <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                        @Html.EditorFor(model => model.SpousePassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header" style="background-color:#fff">
+            VISA DETAIL
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <Label class="control-label">Visa No</Label>
+                    @Html.EditorFor(model => model.SpouseVisaNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SpouseVisaNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Date of Issue</Label>
+                    @Html.EditorFor(model => model.SpouseVisaIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.SpouseVisaIssueDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Valid Upto</Label>
+                    @Html.EditorFor(model => model.SpouseVisaValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.SpouseVisaValidUpto, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Upload Visa images (Front and Back) </label>
+                    <input id="spouseVisaPicfile" type="file" title="Upload Your Visa" name="selfFRROPicfile" onchange="imgValidateEdit('spouseVisaPicfile', 'SpouseVisaPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                    <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                    @Html.EditorFor(model => model.SpouseVisaPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="card-header" style="background-color:#fff">
+            FRRO DETAILS (to be filled by Foreign Officers only)
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <Label class="control-label">FRRO No</Label>
+                    @Html.EditorFor(model => model.SpouseFRRONo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SpouseFRRONo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Date of Issue</Label>
+                    @Html.EditorFor(model => model.SpouseFRROIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.SpouseFRROIssueDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">Valid Upto</Label>
+                    @Html.EditorFor(model => model.SpouseFRROValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.SpouseFRROValidUpto, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Upload FRRO Images: </label>
+                    <input id="spouseFRROPicfile" type="file" title="Upload Your Spouse FRRO" name="spouseFRROPicfile" onchange="imgValidateEdit('spouseFRROPicfile', 'SpouseFRROPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                    <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                    @Html.EditorFor(model => model.SpouseFRROPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center bg-white">
+            <input type="button" value="Submit" onclick="editSpouse()" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+@*@{ Html.RenderAction("SpouseChildrenPartial", new { mode = "A" }); }*@
+@{ Html.RenderAction("SpouseQualificationPartial", new { mode = "A" }); }
+
+@{ Html.RenderAction("SpouseLanguagePartial", new { mode = "A" }); }
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+    $(document).ready(function () {
+        getDatepickerf1('.datepickerJq1');
+    });
+
+    function fillSpouse() {
+        let spouse = {
+            SpouseName: $("#SpouseName").val(),
+            SpouseBloodGroup: $("#SpouseBloodGroup").val(),
+            ContactNo: $("#ContactNo").val(),
+            SpouseDOBirth: $("#SpouseDOBirth").val(),
+            Occupation: $("#Occupation").val(),
+            SpouseStay: $("#SpouseStay").val(),
+            //EmailId: $("#EmailId").val(),
+            //FoodPreference: $("#FoodPreference").val(),
+            //Qualification: $("#Qualification").val(),
+            EduHigher: $("#EduHigher").val(),
+            EduSubject: $("#EduSubject").val(),
+            EduDivision: $("#EduDivision").val(),
+            EduUniversity: $("#EduUniversity").val(),
+            //iSpouseChildrens: storeChildrenDtl(),
+            //iSpouseLanguages: storeSpouseLanguage(),
+
+            HoldingPassport: $('input[name="HoldingPassport"]:checked').val(),
+            SpousePassportNo: $("#SpousePassportNo").val(),
+            SpousePassportName: $("#SpousePassportName").val(),
+            SpousePassportIssueDate: $("#SpousePassportIssueDate").val(),
+            SpousePassportValidUpto: $("#SpousePassportValidUpto").val(),
+            SpousePassportType: $("#SpousePassportType").val(),
+            SpousePassportCountryIssued: $("#SpousePassportCountryIssued").val(),
+            SpousePassportImgPath: $("#SpousePassportImgPath").val(),
+            SpousePassportBackImgPath: $("#SpousePassportBackImgPath").val(),
+            SpouseVisaNo: $("#SpouseVisaNo").val(),
+            SpouseVisaIssueDate: $("#SpouseVisaIssueDate").val(),
+            SpouseVisaValidUpto: $("#SpouseVisaValidUpto").val(),
+            SpouseVisaPath: $("#SpouseVisaPath").val(),
+            SpouseFRRONo: $("#SpouseFRRONo").val(),
+            SpouseFRROIssueDate: $("#SpouseFRROIssueDate").val(),
+            SpouseFRROValidUpto: $("#SpouseFRROValidUpto").val(),
+            SpouseFRROPath: $("#SpouseFRROPath").val(),
+        }
+        return spouse;
+    }
+    function editSpouse() {
+        //e.preventDefault();
+        if ($("#formCMSpouse").valid()) {
+            let spouse = fillSpouse();
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/SpouseEdit/' + $('#hdnSpouseId').val(),
+                data: spouse,
+                datatype: 'json',
+                success: function (data, textStatus, jqXHR) {
+                    toastr.info(textStatus);
+                    displayTab('SpousePartial');
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+    }
+    // #region Spouse Passport
+    $(document).ready(function () {
+        changespousepassport();
+    });
+    $('#spousepassport-true').change(function () {
+        changespousepassport();
+    });
+    $('#spousepassport-false').change(function () {
+        changespousepassport();
+    });
+    function changespousepassport() {
+        if ($('#spousepassport-true').is(":checked"))
+            $(".dvspousepassportSelf").show();
+        else
+            $(".dvspousepassportSelf").hide();
+    }
+    // #endregion
+</script>
+
+
+

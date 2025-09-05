@@ -1,0 +1,64 @@
+﻿@model NDCWeb.Areas.Alumni.View_Models.AlumniArticleUpVM
+
+@{
+    ViewBag.Title = "Edit Work Items";
+    //Layout = "~/Areas/Alumni/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-4">
+    @using (Html.BeginForm("AlumniArticleEdit", "AlumniArticle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ArticleId)
+            <div class="card mt-4  mb-4">
+                <div class="card-header" style="background-color:#fff">
+                    @ViewBag.Title
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.GetAlumniArticleCat, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="Files" name="Files" class="control-label">Browse</label>
+                            <div class="col-md-10">
+                                <input id="Files" type="file" name="Files" multiple class="uploadify-button" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                    <a class="btn btn-primary" href="@Url.Action("Index")">Back to List</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function docValidateEdit(fileUploadId, fileLocId) {
+            let fileTypes = ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx', 'txt', 'xlsx', 'ppt', 'zip'];
+            let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+            let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+            if (extValidate == true && sizeValidate == true) {
+                let url = '@Url.Action("DocumentUpload")';
+                uploadFile(fileUploadId, fileLocId, url);
+            }
+        }
+    </script>
+}

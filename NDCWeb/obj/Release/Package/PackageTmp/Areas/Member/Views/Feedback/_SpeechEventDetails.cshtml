@@ -1,0 +1,56 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.SpeechEventDetailVM
+<style>
+    tr :nth-child(1) {
+        font-weight: bold;
+    }
+    tr :nth-child(2) {
+        color:green;
+    }
+</style>
+<table class="table table-active">
+    <tr>
+        <td colspan="2" class="bg-2 text-white">
+           Details of Speech
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayName("Subject")
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Speakers.Topics.Subjects.SubjectName)
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayName("Topic")
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => model.Speakers.Topics.TopicName)
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayName("Speaker")
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => model.Speakers.FullName)
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @*@Html.DisplayNameFor(model => model.SpeechDate)*@
+            Date
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => model.SpeechDate)
+        </td>
+    </tr>
+
+</table>

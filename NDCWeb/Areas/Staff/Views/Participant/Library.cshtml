@@ -1,0 +1,56 @@
+﻿@model NDCWeb.Areas.Member.View_Models.LibraryMembershipIndxVM
+
+@{
+    ViewBag.Title = "Library Membership";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container shadow mt-4 mb-4">
+    <div id="printableArea" class="">
+        <div class="text-center pt-4">
+            <h4><u><b>LIBRARY MEMBERSHIP FOR COURSE PARTICIPANTS</b></u></h4>
+        </div>
+        <div class="col-sm-12 mb-15 mt-4">
+            <p class="text-justify">
+                R&R Centre is fully automated. The physicallprinted resources of Library are managed through library management software named KOHA. Books are issued to Course  Participants through Biometric Device. The Officers are supposed to fill up the following details before commencing of the Course:
+            </p>
+            <br />
+            <div class="row">
+                <p class="col-md-6 col-lg-6"><b>(i)&nbsp;&nbsp;&nbsp;&nbsp;Locker No : </b></p>
+                <div class="col-md-6 col-lg-6">@Html.DisplayFor(model => model.LockerNo)</div>
+                <p class="col-md-6 col-lg-6"><b>(ii)&nbsp;&nbsp;&nbsp;&nbsp;Name (First name & last name) : </b></p>
+                <div class="col-md-6 col-lg-6">@Html.DisplayFor(model => model.MemberName)</div>
+                <p class="col-md-6 col-lg-6"><b>(iii)&nbsp;&nbsp;&nbsp;&nbsp;Designation : </b></p>
+                <div class="col-md-6 col-lg-6">@Html.DisplayFor(model => model.Designation)</div>
+                <p class="col-md-6 col-lg-6"><b>(iv)&nbsp;&nbsp;&nbsp;&nbsp;Address (For Communication)  : </b></p>
+                <div class="col-md-6 col-lg-6">@Html.DisplayFor(model => model.Address)</div>
+                <p class="col-md-6 col-lg-6"><b>(v)&nbsp;&nbsp;&nbsp;&nbsp;Mobile No : </b></p>
+                <div class="col-md-6 col-lg-6">@Html.DisplayFor(model => model.MobileNo)</div>
+                <p class="col-md-6 col-lg-6"><b>(vi)&nbsp;&nbsp;&nbsp;&nbsp;Permanent E-mail Address : </b></p>
+                <div class="col-md-6 col-lg-6">@Html.DisplayFor(model => model.EmailId)</div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <br />
+                    <p class="text-justify"><b>This membership is only for this Course period. Course Officers desirous to continue the membership after the Course have to take the Life Membership by filling a membership form (available at NDC Portal) along with one time payment of Rs. 5000/ (Refundable).</b> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-center bg-white">
+        <button type="reset" class="btn btn-primary btn-sm" onclick="printDiv('printableArea')">Print</button>
+        <a href="@Url.Action("ParticipantList")" class="btn btn-primary btn-sm">Back</a>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+}

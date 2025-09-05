@@ -1,0 +1,116 @@
+﻿@model IEnumerable<NDCWeb.View_Models.AlumniIndxVM>
+@{
+    ViewBag.Title = "Alumni List";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+<div class="card shadow mt-4 mb-4">
+    <div class="card-header">
+        <h4 class="text-center"><u>@ViewBag.Title</u></h4>
+    </div>
+    <div class="card-body">
+        <table class="table w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Decoration)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Service_retd)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.a_rank)
+                    </th>
+                    <th>
+                        Name of the Foreign Course
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                    <th>
+                        Country
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Branch)
+                    </th>
+                    <th>
+                        NDC Course Sl No
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourseYear)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mobile_no)
+                    </th>
+                    <th>
+                       Email Id
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ranks.RankName) @Html.DisplayFor(modelItem => item.First_name) @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Decoration)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Service_retd)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.a_rank)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ndc_eqv_course)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.year_done)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.a_country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Branch)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseSerNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseYear)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mobile_no)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Alumini_Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Alumini_Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Alumini_Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="card-footer text-center bg-white">
+            @*<button class="btn btn-success btn-sm">Download</button>*@
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        LoadJDT('#myTable');
+
+    </script>
+}

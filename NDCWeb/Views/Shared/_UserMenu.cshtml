@@ -1,0 +1,36 @@
+﻿@using NDCWeb.Infrastructure.Helpers.Menu;
+@using NDCWeb.View_Models;
+
+<div id="main-nav" class="navigation-bg">
+    <nav>
+        <div class="container">
+            @Html.SiteMenuAsUnorderedList(ViewBag.SiteMenuItems as List<MenuControlVM>)
+        </div>
+    </nav>
+</div>
+
+@*<div id="main-nav" class="navigation-bg">
+    <nav>
+        <div class="container">
+            <ul>
+                <li>
+                    <a href="HM">Contact Us</a>
+                </li>
+                <li class="has-sub">
+                    <a title="" href="DGRL1">Dym Test1</a>
+                    <ul>
+                        <li class="has-sub">
+                            <a href="DGRL2">d1 Test2</a>
+                            <ul>
+                                <li><a href="DGRL2">D 2 Test 4</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="HM">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>*@

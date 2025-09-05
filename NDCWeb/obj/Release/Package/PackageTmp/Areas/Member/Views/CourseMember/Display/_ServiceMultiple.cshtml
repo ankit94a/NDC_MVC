@@ -1,0 +1,28 @@
+﻿@{ Html.RenderAction("AppointmentPartial"); }
+<br />
+@{ Html.RenderAction("QualificationPartial", new { mode = "R" }); }
+<br />
+@{ Html.RenderAction("CountryVisitPartial", new { mode = "R" }); }
+<br />
+@{ Html.RenderAction("LanguagesKnownPartial", new { mode = "R" }); }
+<br />
+@{ Html.RenderAction("ImportantAssignmentPartial", new { mode = "R" }); }
+
+<div class="panel-footer text-white">
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious text-white">Previous</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-secondary" disabled>&nbsp;</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext text-white">Next</a>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.btnNext').click(function () {
+            $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+    });
+
+</script>

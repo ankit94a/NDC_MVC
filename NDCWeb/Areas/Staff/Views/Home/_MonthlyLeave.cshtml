@@ -1,0 +1,22 @@
+﻿
+@model IEnumerable<NDCWeb.Areas.Staff.View_Models.CalendarLeaveInfoListVM>
+
+<table>
+    <tr class="bg-danger text-white">
+        <td colspan="3"> <span class="card-title"><i class="fa fa-gift"></i> LEAVE STATE UPTO @DateTime.Now.AddMonths(1).ToString("dd MMM yy")</span></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="color:red;">
+                <a class="btn btn-outline-danger btn-sm" href="@Url.Action("LeaveCertificateRpt", "LeaveReport", new { leaveid = item.LeaveId })" title="@item.TotalDays days @item.LeaveType" data-toggle="tooltip" data-placement="top">  @item.Start_Date  to  @item.End_Date</a>
+            </td>
+            <td>
+                @item.FullName
+            </td>
+            <td>
+                @item.LockerNo
+            </td>
+        </tr>
+    }
+</table>

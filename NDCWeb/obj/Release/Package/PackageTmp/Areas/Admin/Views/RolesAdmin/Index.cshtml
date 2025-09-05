@@ -1,0 +1,51 @@
+﻿@model IEnumerable<NDCWeb.Areas.Admin.Models.CustomRole>
+
+@{
+    ViewBag.Title = "List of Roles";
+}
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">@ViewBag.Title</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","RolesAdmin")" class="btn-shadow mb-3 mt-0 btn btn-primary">Create Role</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-transparent text-primary btn-xs"><i class="fa fa-edit"></i></a>
+                            <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-transparent text-success btn-xs"><i class="fa fa-eye"></i></a>
+                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-transparent text-danger btn-xs"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

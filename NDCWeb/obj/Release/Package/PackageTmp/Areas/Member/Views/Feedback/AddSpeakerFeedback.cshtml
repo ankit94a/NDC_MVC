@@ -1,0 +1,153 @@
+﻿@model NDCWeb.Areas.Member.View_Models.FeedbackSpeakerCreateVM
+
+@{
+    ViewBag.Title = "Add Speaker Feedback";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<div class="container mb-4 mt-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.SpeechEventId)
+
+                <div class="form-row">
+                    @Html.Partial("_SpeechEventDetails", (NDCWeb.Areas.Staff.View_Models.SpeechEventDetailVM)@ViewBag.SpeechEventDetail)
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mt-3">
+                        <b>
+                            <label class="control-label col-md-5" for="LectureAttend">Have you attended this lecture?</label>
+
+                        </b>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LectureAttend" id="LectureAttend" value="Y">
+                            <label class="form-check-label" for="LectureAttend">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LectureAttend" id="LectureAttend" value="N">
+                            <label class="form-check-label" for="LectureAttend">No</label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.LectureAttend, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mt-3">
+                        <b>  @Html.LabelFor(model => model.QualityTalk, htmlAttributes: new { @class = "control-label col-md-5" })</b>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="QualityTalk" id="QualityTalk" value="4">
+                            <label class="form-check-label" for="QualityTalk">Excellent</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="QualityTalk" id="QualityTalk" value="3">
+                            <label class="form-check-label" for="QualityTalk">Very Good</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="QualityTalk" id="QualityTalk" value="2">
+                            <label class="form-check-label" for="QualityTalk">Average</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="QualityTalk" id="QualityTalk" value="1">
+                            <label class="form-check-label" for="QualityTalk">Poor</label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.QualityTalk, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mt-3">
+
+                        <b>  <label class="control-label col-md-5" for="RecomendForNextCourse">Do you recommend the speaker for next course</label>
+                        @*@Html.LabelFor(model => model.RecomendForNextCourse, htmlAttributes: new { @class = "control-label col-md-5" })*@
+                        </b>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="RecomendForNextCourse" id="RecomendForNextCourse" value="Y">
+                            <label class="form-check-label" for="RecomendForNextCourse">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="RecomendForNextCourse" id="RecomendForNextCourse" value="N">
+                            <label class="form-check-label" for="RecomendForNextCourse">No</label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.RecomendForNextCourse, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.Suggetions, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.TextAreaFor(model => model.Suggetions, htmlAttributes: new { @class = "form-control editorHtml", rows = "3", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.Suggetions, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center bg-white">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-sm" />
+                    @Html.ActionLink("Back to List", "SpeechEventActiveList", null, new { @class = "btn btn-primary btn-sm" })
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        @*$('#TopicId').val('@Model.TopicId');*@
+        //getDatepickerf1('.datepickerJq1');
+
+        
+    });
+    $("#SubjectId").change(function () {
+        $("#TopicId").empty();
+        bindtopic();
+        $("#SpeakerId").empty();
+    });
+
+    $("#TopicId").change(function () {
+        $("#SpeakerId").empty();
+        bindspeaker();
+    });
+    function bindtopic() {
+        $.ajax({
+            type: 'get',
+            url: '/api/subjectMstr/GetTopics/subject/' + $('#SubjectId').val(),
+            datatype: 'json',
+            success: function (topics) {
+                $('#TopicId').append('<option>--Select--</option>');
+                $.each(topics, function (i, topic) {
+                    $('#TopicId').append('<option value="' + topic.Value + '">' + topic.Text + '</option>');
+                });
+            },
+            error: function () {
+                toastr.error('Operation Failed!');
+            }
+        });
+    }
+
+    function bindspeaker() {
+        $.ajax({
+            type: 'get',
+            url: '/api/speaker/GetSpeakers/topic/' + $('#TopicId').val(),
+            datatype: 'json',
+            success: function (speakers) {
+                $('#SpeakerId').append('<option>--Select--</option>');
+                $.each(speakers, function (i, speaker) {
+                    $('#SpeakerId').append('<option value="' + speaker.Value + '">' + speaker.Text + '</option>');
+                });
+            },
+            error: function () {
+                toastr.error('Operation Failed!');
+            }
+        });
+    }
+
+   
+</script>
+}

@@ -1,0 +1,154 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.StaffMasterUpVM
+
+@{
+    ViewBag.Title = "Create Staff";
+}
+
+@Styles.Render("~/Component/cmsup")
+<div class="main-card mb-3 card">
+    @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.StaffId)
+    <div class="card-body">
+        <h5 class="card-title">Update Profile</h5>
+        <hr />
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.Decoration, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Decoration, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Decoration, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", @title="To update EmailId contact to IT Cell" } })
+                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.DOBirth, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.DOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.DOBirth, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.DOMarriage, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.DOMarriage, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.DOMarriage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="position-relative row form-group">
+            @Html.LabelFor(model => model.Service, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-4">
+                @Html.DropDownList("Service", (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Service, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.RankId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-4">
+                @Html.DropDownList("RankId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RankId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="position-relative row form-group ">
+            <label class="col-sm-2 form-check-label"></label>
+            <div class="col-md-5">
+                <label for="selfPicfile" class="col-sm-6 form-check-label">Choose your Photograph</label>
+                <input id="selfPicfile" type="file" title="Upload Your Image" name="selfPicfile" onchange="imgValidateEdit('selfPicfile', 'SelfImage')" class="uploadify-button form-control-file" accept="image/jpeg,image/png,image/jpg" />
+                <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                @Html.EditorFor(model => model.SelfImage, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+            </div>
+            <div class="col-md-5">
+                <label class="col-sm-6 form-check-label" for="file">Choose document</label>
+                <input id="docFiles" type="file" name="docFiles" multiple class="uploadify-button form-control-file" accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                <p class="text-info">Max size 500kb, File Type (.pdf, .docx, .doc)</p>
+            </div>
+        </div>
+
+        <div class="position-relative row form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="mb-2 mr-2 btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/cmsup")
+<script>
+    $(document).ready(function () {
+        $('#Service').val('@Model.Service');
+
+        if ('@ViewData["SelectedRank"]' != null) {
+            bindrank();
+        }
+        $("#Service").change(function () {
+            $("#RankId").empty();
+            bindrank();
+        });
+    });
+
+        function bindrank() {
+        $.ajax({
+            type: 'get',
+            url: '/api/rankMasters/GetRanks/service/' + $('#Service').val(),
+            datatype: 'json',
+            success: function (ranks) {
+                $.each(ranks, function (i, rank) {
+                    $('#RankId').append('<option value="' + rank.Value + '">' + rank.Text + '</option>');
+                });
+                if ('@ViewData["SelectedRank"]' != 0) {
+                    $("#RankId").val('@ViewData["SelectedRank"]');
+                }
+            },
+            error: function () {
+                alert('Server Not Found');
+            }
+        });
+    }
+
+        // #region Upload Helper
+    function imgValidateEdit(fileUploadId, fileLocId) {
+        let fileTypes = ['jpg', 'jpeg', 'png'];
+        let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+        let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+        if (extValidate == true && sizeValidate == true) {
+            let url = '@Url.Action("ImageUpload")';
+            uploadFile(fileUploadId, fileLocId, url);
+        }
+    }
+    function docValidateEdit(fileUploadId, fileLocId) {
+        let fileTypes = ['pdf', 'doc', 'docx', 'txt', 'xlsx', 'ppt', 'zip'];
+        let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+        let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+        if (extValidate == true && sizeValidate == true) {
+            let url = '@Url.Action("DocumentUpload")';
+            uploadFile(fileUploadId, fileLocId, url);
+        }
+    }
+    // #endregion
+</script>
+
+}

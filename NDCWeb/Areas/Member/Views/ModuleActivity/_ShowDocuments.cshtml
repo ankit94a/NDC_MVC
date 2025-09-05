@@ -1,0 +1,126 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.TrainingActivityIndxVM
+<link href="~/Areas/Admin/Component/css/main.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="main-card card">
+        <div class="card-header">
+            <h5 class="card-title">List of Uploads</h5>
+        </div>
+        <div class="card-body">
+            @{
+                bool isExists = false;
+            }
+            <div class="row">
+                @*<table class="table table-hover table-bordered tab w-100" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>Description</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var mdfl in Model.iTrainingActivityMedias)
+                        {
+                            isExists = true;
+                            <tr>
+                                <td>
+                                    @mdfl.TrainingActivityId
+                                </td>
+                                <td>@mdfl.FileName</td>
+                                <td><a href="@Url.Content(mdfl.FilePath ?? "#")" target="blank">Download</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>*@
+                @foreach (var mdfl in Model.iTrainingActivityMedias.OrderByDescending(x=> x.TrainingActivityId))
+                {
+                    isExists = true;
+
+
+                    if (mdfl.Extension == ".jpg" || mdfl.Extension == ".png" || mdfl.Extension == ".jpeg")
+                    {
+                        <div class="col-sm-4">
+                            <div class="card mb-2">
+                                <img src="@Url.Content(mdfl.FilePath)" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">@mdfl.FileName</p>
+                                    <a href="@Url.Content(mdfl.FilePath)" class="btn btn-primary" download><i class="fa fa-download"></i> Save</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (mdfl.Extension == ".mp4")
+                    {
+                        <div class="col-sm-4">
+                            <div class="card mb-2">
+                                <video controls="controls" class="card-img-top">
+                                    <source src="@Url.Content(mdfl.FilePath)" type="video/mp4" />
+                                </video>
+                                <div class="card-body">
+                                    <p class="card-text">@mdfl.FileName</p>
+                                    <a href="@Url.Content(mdfl.FilePath)" class="btn btn-primary" download><i class="fa fa-download"></i> Save</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (mdfl.Extension == ".pdf")
+                    {
+                        <div class="col-sm-12">
+                            <div class="card mb-2 shadow-sm">
+                                <div class="card-header">
+                                    <a href="@Url.Content(mdfl.FilePath ?? "#")" target="blank"> @mdfl.FileName</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (mdfl.Extension == ".doc" || mdfl.Extension == ".docx" || mdfl.Extension == ".ppt" || mdfl.Extension == ".pptx")
+                    {
+                        <div class="col-sm-12">
+                            <div class="card mb-2 shadow-sm">
+                                <div class="card-header">
+                                    <a href="@Url.Content(mdfl.FilePath ?? "#")" target="blank"><i class="fa fa-file-word-o"></i> @mdfl.FileName</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                @if (ViewBag.Url != null)
+                {
+                    <div class="col-4">
+                        <div class="card shadow p-3 mb-5 bg-white">
+                            <div class="card-img-top embed-responsive embed-responsive-16by9">
+                                @*<iframe class="embed-responsive-item" src="@ViewBag.Url" allowfullscreen></iframe>*@
+                                @Html.Raw(ViewBag.Url)
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (!isExists)
+                {
+                    <div class="col-4">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <p class="card-text"><i class="fa fa-warning"></i>  User has not submitted document(s)</p>
+                                <a onclick="JavaScript: window.close();" class="btn btn-primary" download><i class="fa fa-cross"></i> Close</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    <script>
+    LoadJDTSorted('#myTable');
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

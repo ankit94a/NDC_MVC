@@ -1,0 +1,162 @@
+﻿@model IEnumerable<NDCWeb.Areas.Admin.View_Models.InStepCourseIndexVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "In-Step Course List";
+}
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+
+<div class="container mb-4 card col-md-12">
+    <div class="main-card  card">
+        <div class="card-header text-right">
+            <a href="/staff/instepcourse/create" class="btn btn-primary">Add Course</a>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.Title</h5>
+
+            <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th> Course Name </th>
+                        <th> Start Date </th>
+                        <th> End Date </th>
+                        <th> Status </th>
+                        <th> Actions </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CourseId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CourseName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            </td>
+                            <td>
+                                @if (item.IsCurrent == true)
+                                {
+                                    <span>Ongoing Course</span>
+                                }
+                                else if (item.UnderRegistration == true)
+                                {
+                                    <span>Registration Open from :@item.RegistrationStartDate  to @item.RegistrationEndDate</span>
+                                }
+                            </td>
+                            <td>
+                                @Html.EncodedActionLink("View Participants", "Index", "InStepParticipants", "staff", new { id = item.CourseId }, new { @class = "btn btn-outline-success" }, "fa fa-eye")
+                                @Html.EncodedActionLink("Edit", "Edit", "InStepCourse", "staff", new { id = item.CourseId }, new { @class = "btn btn-outline-primary" }, "fa fa-pencil")
+                                @Html.EncodedActionLink("Delete", "Delete", "InStepCourse", "staff", new { id = item.CourseId }, new { @class = "btn btn-outline-danger" }, "fa fa-trash")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/datatables/ButtonJs")
+        <script>
+        //LoadJDT('#myTable');
+        function Delete(id, event) {
+            var TableId = "#myTable";
+            var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+            DeleteJDTRow(id, event, TableId, Jsonurl)
+        }
+        </script>
+    }*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables/ButtonJs")
+
+    <script>
+function Delete(id, event) {
+    var TableId = "#myTable";
+    var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+    DeleteJDTRow(id, event, TableId, Jsonurl)
+}
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            var fileName = 'IN-STEP COURSE LIST_' + crrtdate;
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            //doc.content.splice(0, 1);
+
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 14,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'ARRIVAL PARTICIPANTS LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+
+
+
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+
+                            doc.content[0].layout = objLayout;
+
+                            doc.content[0].alignment = 'center'
+                        }
+
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+
+
+        });
+    </script>
+}

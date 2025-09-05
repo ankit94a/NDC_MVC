@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNet.Identity;
+@using NDCWeb.Areas.Admin.Models;
+
+@{
+    @Html.Partial("UserRoleMenus/_AdminMenu")
+    @*if (Roles.IsUserInRole(User.Identity.GetUserName(), CustomRoles.Admin))
+    {
+        @Html.Partial("UserRoleMenus/_AdminMenu")
+    }
+    else if (Roles.IsUserInRole(User.Identity.GetUserName(), CustomRoles.approval))
+    {
+        @Html.Partial("UserRoleMenus/_ApprovalMenu")
+    }
+    else
+    {
+        @Html.Partial("UserRoleMenus/_OtherMenu")
+    }*@
+}

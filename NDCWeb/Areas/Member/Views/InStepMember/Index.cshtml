@@ -1,0 +1,196 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.InStepRegistrationVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "In-Step Course Participents List";
+}
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+
+<div class="container mb-4 card col-md-12">
+    <div class="main-card  card">
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.Title</h5>
+
+            <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th> Email Id </th>
+                        <th> Service No </th>
+                        <th> Rank </th>
+                        <th> Name </th>
+                        <th> DOB </th>
+                        <th> Gender </th>
+                        <th> Mobile No </th>
+                        <th> Whatsapp No </th>
+                        <th> Department </th>
+                        <th> DOC </th>
+                        <th> Aadhaar No </th>
+                        <th> Arrival Time </th>
+                        <th> Arrival Mode </th>
+                        <th> Action </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @if (item.PhotoPath != null && item.PhotoPath != "#")
+                                {
+                                    <img src="@Url.Content(item.PhotoPath)" width="64" />
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ServiceNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Ranks.RankName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DOB)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gender)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MobileNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WhatsappNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BranchDepartment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfCommissioning)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AadhaarNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArrivalTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArrivalMode)
+                            </td>
+                            <td>
+                                @Html.EncodedActionLink("", "Edit", "InStepMember", "member", new { id = item.InStepRegId }, new { @class = "btn btn-outline-primary" }, "fa fa-pencil")|
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.InStepRegId })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/datatables/ButtonJs")
+        <script>
+        //LoadJDT('#myTable');
+        function Delete(id, event) {
+            var TableId = "#myTable";
+            var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+            DeleteJDTRow(id, event, TableId, Jsonurl)
+        }
+        </script>
+    }*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables/ButtonJs")
+
+    <script>
+function Delete(id, event) {
+    var TableId = "#myTable";
+    var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+    DeleteJDTRow(id, event, TableId, Jsonurl)
+}
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            var fileName = 'ARRIVAL PARTICIPANTS LIST_' + crrtdate;
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                columns: [{ width: '40%' }, 1,2, 3, 4],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            //doc.content.splice(0, 1);
+
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 14,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'ARRIVAL PARTICIPANTS LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+
+
+
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+
+                            doc.content[0].layout = objLayout;
+
+                            doc.content[0].alignment = 'center'
+                        }
+
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+
+
+        });
+    </script>
+}

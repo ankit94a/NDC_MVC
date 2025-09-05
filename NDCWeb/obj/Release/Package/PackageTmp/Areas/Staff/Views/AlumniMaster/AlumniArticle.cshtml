@@ -1,0 +1,58 @@
+﻿@model IEnumerable<NDCWeb.Areas.Alumni.View_Models.AlumniArticleIndxVM>
+@{
+    ViewBag.Title = "List of Uploaded Items";
+}
+<div class="container mb-3 card">
+    <div class="main-card mb-3 card">
+        <div class="card-header">
+            @ViewBag.Title
+            <a href="@Url.Action("AlumniArticleEntry","AlumniArticle")" class="btn btn-primary btn-sm pull-right">Add New</a>
+        </div>
+        <div class="card-body">
+            <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Category)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            View
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="@Url.Action("AlumniArticleEdit", new { id = item.ArticleId })"><i class="fa fa-pencil"></i></a> |
+                                @*<span class="badge badge-primary">@Html.DisplayFor(modelItem => item.iAlumniArticleMedias.Count)</span> &nbsp;*@
+                                <a class="btn btn-outline-primary" href="@Url.Action("ShowMediaFiles", new { id = item.ArticleId })" target="_blank"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

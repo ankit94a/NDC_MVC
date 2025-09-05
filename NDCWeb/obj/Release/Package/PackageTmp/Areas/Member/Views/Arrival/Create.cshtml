@@ -1,0 +1,490 @@
+﻿@model NDCWeb.Areas.Member.View_Models.ArrivalDetailCrtVM
+@{
+    ViewBag.Title = "Create Arrival";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+<div class="container mb-4 mt-4 wrap-frm">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="card shadow-sm">
+            <div class="card-header" style="margin-left: 12px;">
+                Arrival Details
+            </div>
+            <div class="card-body">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <b>Full Name </b> <label class="pl-3 pr-3"> @ViewBag.FullName</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.ArrivaAt, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.ArrivaAt, (IEnumerable<SelectListItem>)ViewBag.ArrivalLoc, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ArrivaAt, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.ArrivalDate, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ArrivalDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.ArrivalDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-2">
+                            @Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ArrivalTime, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                            @Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.ArrivalMode, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.ArrivalMode, (IEnumerable<SelectListItem>)ViewBag.ArrivalMode, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ArrivalMode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>       
+        <div class="card shadow-sm">
+            <div class="card-header" style="margin-left: 12px;">
+                Accompanied Person(s)
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <Label class="control-label">Name </Label>
+                        <input type="text" name="meName" id="meName_1" class="form-control" autocomplete="off" placeholder="Name">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <Label class="control-label">Age </Label>
+                        <input type="text" name="meAge" id="meAge_1" class="form-control" autocomplete="off" placeholder="Age">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">Relationship</Label>
+                        <input type="text" name="meRelation" id="meRelation_1" class="form-control" autocomplete="off" placeholder="Relationship">
+                    </div>
+
+                    <div class="form-group col-md-5">
+                        <Label class="control-label">Remarks</Label>
+                        <input type="text" name="meRemarks" id="meRemarks_1" class="form-control" autocomplete="off" placeholder="Remarks">
+                    </div>
+                </div>
+                <div id="new_acc"></div>
+                <input type="hidden" value="1" id="total_acc">
+                <div class="form-row">
+                    <div class="col text-center">
+                        <Label class="control-label pb-1" style="width:100%"></Label>
+                        <button type="button" class="add-Pers btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i> Add Person</button>
+                        <button type="button" class="remove-Pers btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i> Remove Person</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow-sm mt-4">
+            <div class="card-header" style="margin-left: 12px;">
+                <label class="control-label"><b>Meals Required</b></label>
+                <br />
+                <label class="containerchk col-md-1">
+                    Yes
+                    @Html.CheckBoxFor(m => m.MealRequired)
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+        </div>
+        <div class="card-body dvMealRequired">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <Label class="control-label">No of Meals </Label>
+                    @Html.EditorFor(model => model.NoofMeals, new { htmlAttributes = new { @class = "form-control", @type= "numeric" } })
+                    @Html.ValidationMessageFor(model => model.NoofMeals, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">From Date </Label>
+                    @Html.EditorFor(model => model.MealFromDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.MealToDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label">To Date </Label>
+                    @Html.EditorFor(model => model.MealToDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.MealToDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    <Label class="control-label">Dietary Preference of the family</Label>
+                    @Html.DropDownListFor(model => model.MealDietPreference, (IEnumerable<SelectListItem>)ViewBag.DietPreference, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MealDietPreference, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="card-body dvMealRequired text-justify">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" name="meDate" id="meDate_1" class="form-control datepickerJq1" autocomplete="off" placeholder="Date">
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label" style="margin-top:10px">Breakfast </Label>
+                    <input type="checkbox" name="meBreakfast" id="meBreakfast_1" class="custom-checkbox">
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label" style="margin-top:10px">Lunch</Label>
+                    <input type="checkbox" name="meLunch" id="meLunch_1" class="custom-checkbox">
+
+                </div>
+                <div class="form-group col-md-2">
+                    <Label class="control-label" style="margin-top:10px">Dinner</Label>
+                    <input type="checkbox" name="meDinner" id="meDinner_1" class="custom-checkbox">
+
+                </div>
+            </div>
+            <div id="new_me"></div>
+            <input type="hidden" value="1" id="total_me">
+            <div class="form-row">
+                <div class="col text-center">
+                    <Label class="control-label pb-1" style="width:100%"></Label>
+                    <button type="button" class="add-Meal btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i> Add</button>
+                    <button type="button" class="remove-Meal btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i> Remove</button>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="card shadow-sm mt-4">
+
+            </div>*@
+        <div class="card shadow-sm mt-4">
+            @*<div class="card-header">Detachment details (food delivery required at home)</div>*@
+            <div class="card-header" style="margin-left: 12px;">
+                <label class="control-label" for="mealsrequired"><b>Detachment details (food delivery required at home)</b></label><br />
+                <label class="containerchk col-md-1">
+                    Yes
+                    @Html.CheckBoxFor(m => m.FoodDetachment)
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div class="card-body text-justify dvFoodDetachment">
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">From Date</Label>
+                        @Html.EditorFor(model => model.DetachFromDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.DetachFromDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <Label class="control-label">To Date</Label>
+                        @Html.EditorFor(model => model.DetachToDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.DetachToDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <Label class="control-label">Any other specific info pertaining to meal requirement</Label>
+                        @Html.EditorFor(model => model.DetachMealInfo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DetachMealInfo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        <Label class="control-label">Meal Charges Approx (Select one)</Label>
+                        @Html.DropDownListFor(model => model.DetachCharges, (IEnumerable<SelectListItem>)ViewBag.DetachmentFoodCharges, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DetachCharges, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow-sm mt-4">
+            <div class="card-header" style="margin-left: 12px;">
+                <span class="font-weight-bold" style="color:red">Note</span>
+            </div>
+            <div class="card-body text-justify">
+                <p id="passport_instruction_indian">
+                    <u><b>Mess Detachment</b></u><br />
+                    In order to facilitate smooth settling down the NDC Mess operates a detachment for residents of Raksha Bhawan (RB) and Vikram Vihar (VV), for a week at the begining of the Course.
+                    Depending upon the allotment of accommodation, the detachment details from interested Course Members is sought.
+                </p>
+
+            </div>
+        </div>
+
+    }
+
+    <div class="card-footer text-center bg-white">        
+            <button id="btnSave" onclick="AddArrivals()" class="btn btn-primary">Submit</button>
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })          
+       
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+                // #region Meal
+                function storeMeal() {
+                    let ttlme = $('#total_me').val();
+                    let meals = [];
+                    for (i = 1, j = 0; i <= ttlme; i++, j++) {
+                        meals[j] = {
+                            Date: $('#meDate_' + i).val(),
+                            Breakfast: document.getElementById('meBreakfast_' + i).checked,
+                            Lunch: document.getElementById('meLunch_' + i).checked,
+                            Dinner: document.getElementById('meDinner_' + i).checked,
+                        };
+                    }
+                    return meals;
+                }
+                $('.add-Meal').on('click', addMeal);
+                $('.remove-Meal').on('click', removeMeal);
+                function addMeal() {
+                    let new_me_no = parseInt($('#total_me').val()) + 1;
+                    let new_inputMe = `<div id="Meal_${new_me_no}" class="form-row">
+                                           <div class="form-group col-md-6">
+                                               <input type="text" name="meDate" id="meDate_${new_me_no}" class="form-control datepickerJq1" autocomplete = "off" placeholder="Date">
+                                           </div>
+                                           <div class="form-group col-md-2">
+                                              <Label class="control-label">Breakfast </Label>
+                                               <input type="checkbox" name="meBreakfast" id="meBreakfast_${new_me_no}" value="true" class="custom-checkbox">
+                                           </div>
+                                           <div class="form-group col-md-2">
+                                              <Label class="control-label">Lunch </Label>
+                                                   <input type="checkbox" name="meLunch" id="meLunch_${new_me_no}" value="true" class="custom-checkbox">
+                                           </div>
+                                           <div class="form-group col-md-2">
+                                              <Label class="control-label">Dinner </Label>
+                                                   <input type="checkbox" name="meDinner" id="meDinner_${new_me_no}" class="custom-checkbox">
+                                           </div>
+                                       </div>`
+                    $('#new_me').append(new_inputMe);
+                    $('#total_me').val(new_me_no);
+                    getDatepickerSetRange('input[name="meDate"]', $("#MealFromDate").val(), $("#MealToDate").val());
+                }
+                function removeMeal() {
+                    let last_me_no = $('#total_me').val();
+
+                    if (last_me_no > 1) {
+                        $('#Meal_' + last_me_no).remove();
+                        $('#total_me').val(last_me_no - 1);
+                    }
+                }
+                // #endregion
+
+                // #region Accompanied Members
+                function storeMembers() {
+                    let ttlmem = $('#total_acc').val();
+                    let members = [];
+                    for (i = 1, j = 0; i <= ttlmem; i++, j++) {
+                        members[j] = {
+                            FullName: $('#meName_' + i).val(),
+                            Age: $('#meAge_' + i).val(),
+                            Relation: $('#meRelation_' + i).val(),
+                            Remarks: $('#meRemarks_' + i).val(),
+                        };
+                    }
+                    return members;
+                }
+                $('.add-Pers').on('click', addMember);
+                $('.remove-Pers').on('click', removeMember);
+                function addMember() {
+                    let new_mem_no = parseInt($('#total_acc').val()) + 1;
+                    let new_inputMem = `<div id="Mem_${new_mem_no}" class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <input type="text" name="meName" id="meName_${new_mem_no}" class="form-control" autocomplete = "off" placeholder="Name">
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <input type="text" name="meAge" id="meAge_${new_mem_no}" class="form-control" autocomplete = "off" placeholder="Age">
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                    <input type="text" name="meRelation" id="meRelation_${new_mem_no}" class="form-control" autocomplete = "off" placeholder="Relationship">
+                                            </div>
+                                            <div class="form-group col-md-5">
+                                                    <input type="text" name="meRemarks" id="meRemarks_${new_mem_no}" class="form-control" autocomplete = "off" placeholder="Remarks">
+                                            </div>
+                                        </div>`
+                    $('#new_acc').append(new_inputMem);
+                    $('#total_acc').val(new_mem_no);
+                }
+                function removeMember() {
+                    let last_mem_no = $('#total_acc').val();
+
+                    if (last_mem_no > 1) {
+                        $('#Mem_' + last_mem_no).remove();
+                        $('#total_acc').val(last_mem_no - 1);
+                    }
+                }
+                // #endregion
+
+        // #region Meals Required
+        $(document).ready(function () {
+            showMealsRequired();
+        });
+        $('#MealRequired').change(function () {
+            showMealsRequired();
+        });
+        function showMealsRequired() {
+            if ($('#MealRequired').is(":checked"))
+                $(".dvMealRequired").show();
+            else
+                $(".dvMealRequired").hide();
+        }
+    // #endregion
+
+        // #region Food Detachment
+        $(document).ready(function () {
+            showFoodDetachment();
+        });
+        $('#FoodDetachment').change(function () {
+            showFoodDetachment();
+        });
+        function showFoodDetachment() {
+            if ($('#FoodDetachment').is(":checked"))
+                $(".dvFoodDetachment").show();
+            else
+                $(".dvFoodDetachment").hide();
+        }
+        // #endregion
+        // #region Date Ranges
+        $('#ArrivalDate').datepicker({
+            dateFormat: 'dd M yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function (selectedDate) {
+                $('#MealFromDate').datepicker("option", "minDate", selectedDate, "dateFormat", 'dd M yy');
+                $('#DetachFromDate').datepicker("option", "minDate", selectedDate, "dateFormat", 'dd M yy');
+            }
+        });
+
+        $('#MealFromDate').datepicker({
+            dateFormat: 'dd M yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function (selectedDate) {
+                $('#MealToDate').datepicker("option", "minDate", selectedDate, "dateFormat", 'dd M yy');
+                $('input[name="meDate"]').datepicker("option", "minDate", selectedDate, "dateFormat", 'dd M yy');
+            }
+        });
+        $('#MealToDate').datepicker({
+            dateFormat: 'dd M yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function (selectedDate) {
+                $('#MealFromDate').datepicker("option", "maxDate", selectedDate, "dateFormat", 'dd M yy');
+                $('input[name="meDate"]').datepicker("option", "maxDate", selectedDate, "dateFormat", 'dd M yy');
+            }
+        });
+
+        $('#DetachFromDate').datepicker({
+            dateFormat: 'dd M yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function (selectedDate) {
+                $('#DetachToDate').datepicker("option", "minDate", selectedDate, "dateFormat", 'dd M yy');
+            }
+        });
+        $('#DetachToDate').datepicker({
+            dateFormat: 'dd M yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function (selectedDate) {
+                $('#DetachFromDate').datepicker("option", "maxDate", selectedDate, "dateFormat", 'dd M yy');
+            }
+        });
+        // #endregion
+        function FillArrival() {
+            let arrival = {
+                ArrivaAt: $("#ArrivaAt").val(),
+                ArrivalDate: $("#ArrivalDate").val(),
+                ArrivalTime: $("#ArrivalTime").val(),
+                ArrivalMode: $("#ArrivalMode").val(),
+                TransportationMode: $("#TransportationMode").val(),
+                AssistanceRequired: $("#AssistanceRequired").val(),
+
+                MealRequired: $("#MealRequired").is(":checked"),
+                NoofMeals: $("#NoofMeals").val(),
+                MealFromDate: $("#MealFromDate").val(),
+                MealToDate: $("#MealToDate").val(),
+                MealDietPreference: $("#MealDietPreference").val(),
+
+                FoodDetachment: $("#FoodDetachment").is(":checked"),
+                DetachFromDate: $("#DetachFromDate").val(),
+                DetachToDate: $("#DetachToDate").val(),
+                DetachMealInfo: $("#DetachMealInfo").val(),
+                DetachCharges: $("#DetachCharges").val(),
+
+                iArrivalMeals: storeMeal(),
+                iArrivalAccompanied: storeMembers(),
+            }
+            return arrival;
+        }
+        function AddArrivals() {
+            if ($("form").valid()) {
+                let ArrivalData = FillArrival();
+                $.ajax({
+                    type: 'post',
+                    url: '/api/courseMembers/Arrival',
+                    data: ArrivalData,
+                    datatype: 'json',
+                    success: function (data, textStatus, xhr) {
+                        alert("Arrival detail successfully saved.!");
+                        window.location.replace("/member/arrival/");
+                    },
+                    error: function () {
+                        alert('Operation Failed!')
+                    }
+                })
+            }
+        }
+
+    // #region
+        function getDatepickerSetRange($txtboxDate, minDate, maxDate) {
+            $($txtboxDate).datepicker({
+                dateFormat: "dd M yy",
+                minDate: minDate,
+                maxDate: maxDate,
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+        }
+
+    function viewAck() {
+        let AccMember = FillArrival();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("ArrivalAck")',
+            data: { modal: AccMember },
+            //contentType: "application/json; charset=utf-8",
+            dataType: "html",
+            success: function (response) {
+                $('#dialog').html(response);
+                $('#dialog').dialog('open');
+            },
+            failure: function (response) {
+                alert('Operation Failed!');
+            },
+            error: function (response) {
+                alert('Server Not Found!');
+            }
+        });
+    }
+
+        $(function () {
+            $("#dialog").dialog({
+                title: 'Review: - Arrival Details',
+                autoOpen: false,
+                //maxWidth: 800,
+                //maxHeight: 700,
+                width: 960,
+                height: 700,
+                modal: true,
+                buttons: {
+                    Ok: function () {
+                        //Add();
+                        $("[id*=btnSave]").click();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                close: function () {
+                }
+            });
+        });
+
+    // #endregion
+    </script>
+}

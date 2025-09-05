@@ -1,0 +1,163 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.MphilDegreeIndxVM>
+@{
+    ViewBag.Title = "LIST OF APPLICATION FOR REGISTRATION FOR THE M.Phil. DEGREE COURSE";
+}
+@Styles.Render("~/bundles/datatables/ButtonCss")
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+<div class="container mb-4 mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            &nbsp;&nbsp;   @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <table class="table w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th style="vertical-align:middle">
+                            @Html.DisplayNameFor(model => model.YearOfAdmission)
+                        </th>
+                        <th style="vertical-align:middle">
+                            Name of Applicant
+                        </th>
+                        <th style="vertical-align:middle">
+                            @Html.DisplayNameFor(model => model.NameOfSupervisor)
+                        </th>
+                        <th style="vertical-align:middle">
+                            @Html.DisplayNameFor(model => model.DOB)
+                        </th>
+                        <th style="vertical-align:middle">
+                            @Html.DisplayNameFor(model => model.Gender)
+                        </th>
+                        <th style="vertical-align:middle">
+                            @Html.DisplayNameFor(model => model.Community)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.YearOfAdmission)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameOfApplicant)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameOfSupervisor)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.DOB)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.Gender)
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DisplayFor(modelItem => item.Community)
+                            </td>
+                            <td>
+                                <a class="btn btn-transparent btn-xs" href="@Url.Action("MUMPhilDetail", new { id = item.MPhilDegreeId })" title="View Detail"><i class="fa fa-columns"></i></a>
+                                <a class="btn btn-transparent text-danger btn-xs" onclick="Delete(@item.MPhilDegreeId, this)"><i class="fa fa-trash" title="Delete this Application"></i></a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        @*<div class="panel-footer bg-white text-center mb-4">
+            @Html.ActionLink("Back", "index", new { controller = "home" }, new { @class = "btn btn-primary btn-sm" })
+        </div>*@
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables/ButtonJs")
+    <script>
+    //LoadJDT('#myTable');
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteMPhilDegreeOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+    <script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            var fileName = 'MODULE FEEDBACK LIST_' + crrtdate;
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                "order": [[0, "desc"]],
+                "columnDefs": [{ "targets": [0], "visible": false, "searchable": false }],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        //title:'JOBS OPPORTUNITIES FOR OFFICERS',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            doc.content.splice(0, 1);
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 13,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'MODULE FEEDBACK LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+                            doc.content[0].layout = objLayout;
+                            doc.content[0].alignment = 'center'
+                        }
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+            oTable.on('order.dt search.dt', function () {
+                oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+            oTable.on('order.dt search.dt', function () {
+                oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                    oTable.cell(cell).invalidate('dom');
+                });
+            }).draw();
+        });
+    </script>
+}
+

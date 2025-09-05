@@ -1,0 +1,108 @@
+﻿@using System.Data
+@model DataSet
+@{
+    ViewBag.Title = "Consolidated Speaker Feedback";
+    int cnt = 0, coltotal = 0;
+    System.Text.StringBuilder strb = new System.Text.StringBuilder();
+
+}
+<link href="~/Areas/Staff/Component/css/PrintStyle.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="card-header">
+        <a href="/staff/feedbacks/SpeechEventList" class="btn btn-primary btn-sm pull-right mt-4 m-2">Back</a>
+        <input type="button" class="btn btn-primary btn-sm pull-right mt-4 m-2" onclick="printdoc()" value="Print" />
+        <button class="btn btn-primary btn-sm pull-right mt-4" onclick="ExportToExcel('xlsx')">Export table to excel</button>
+
+
+        <h4 style="text-align:center;" class="mt-4"><u>@ViewBag.Title</u></h4>
+
+    </div>
+    <div class="card-body">
+        <div id="printDiv">
+            <br />
+            <table cellpadding="0" cellspacing="0" class="tabler" id="tbl_exporttable_to_xls" border="1">
+                <thead>
+                    <tr>
+                        @foreach (DataColumn column in Model.Tables[0].Columns)
+                        {
+                            <th class="rotated_cell">
+                                <div class='rotate_text'> @column.ColumnName</div>
+                            </th>
+                        }
+                        <th class="rotated_cell"><div class='rotate_text'>Total</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow row in Model.Tables[0].Rows)
+                    {
+                        cnt = 0;
+                        <tr>
+                            @foreach (DataColumn column in Model.Tables[0].Columns)
+                            {
+                                <td>
+                                    @if (row[column.ColumnName].ToString() == "1")
+                                    {
+                                        cnt = cnt + 1;
+                                        <span>&#10003;</span>
+                                    }
+                                    else if (row[column.ColumnName].ToString() == "0")
+                                    {
+                                        <span>*</span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            @row[column.ColumnName].ToString()
+                                        </span>
+                                    }
+                                </td>
+                            }
+                            <td>@cnt</td>
+                        </tr>
+                    }
+                    @*<tr>
+                        @foreach (DataColumn column in Model.Tables[0].Columns)
+                        {
+                            <td>
+                                @column.ColumnName.Replace("Locker No", "Total")
+                            </td>
+                        }
+                    </tr>*@
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Component/js/xlsx/xlsx.full.min.js"></script>
+    <script src="~/Component/js/xlsx/shim.min.js"></script>
+    <script>
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=1400,width=5000');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href='/Areas/Staff/Component/css/PrintStyle.css' rel='stylesheet' /><link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printDiv').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+
+        function ExportToExcel(type, fn, dl) {
+            var elt = document.getElementById('tbl_exporttable_to_xls');
+            var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+            return dl ?
+                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                XLSX.writeFile(wb, fn || ('Consolidated_Speaker_Feedback.' + (type || 'xlsx')));
+        }
+    </script>
+}
+

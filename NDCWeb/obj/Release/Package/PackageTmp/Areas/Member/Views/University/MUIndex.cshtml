@@ -1,0 +1,99 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.MphilDegreeIndxVM>
+
+@{
+    ViewBag.Title = "List of Application for MPhil Degree";
+}
+
+<div class="container mb-4 mt-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+        <table class="table w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Name of applicant
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NameOfSupervisor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DOB)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.POB)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Age)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Community)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.YearOfAdmission)
+                    </th>
+                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateOfApplication)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameOfApplicant)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameOfSupervisor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOB)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.POB)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Community)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.YearOfAdmission)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOfApplication)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.MPhilDegreeId }) |
+                            @Html.ActionLink("Details", "MUDetails", new { id = item.MPhilDegreeId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.MPhilDegreeId })
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+</table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+    }
+    </script>
+}

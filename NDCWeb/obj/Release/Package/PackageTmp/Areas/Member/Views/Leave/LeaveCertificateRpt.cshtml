@@ -1,0 +1,102 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.ShowLeaveCertificateRptVM
+
+@{
+    ViewBag.Title = "LeaveCertificateRpt";
+}
+<div class="container mt-4 mb-4">
+    <div id="printDiv">
+        <table cellpadding="0" cellspacing="0" class="table-borderless" style="width:100%">
+            <tr>
+                <td style="width:100px"></td>
+                <td style="width:50px"></td>
+                <td style="width:100px"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3" class="text-uppercase">
+                    <p style="text-align: center;"><span style="text-decoration: underline;"><strong>Leave Certificate</strong></span></p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3">
+                    1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.FullName, @Model.CountryName 62th NDC Course at National Defence College, 6, Tees January Marg, New Delhi-110011, has been granted @Model.TotalDays days @Model.LeaveType from @Model.FromDate.ToString("dd MMM yy") to @Model.ToDate.ToString("dd MMM yy")
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3">
+                    2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact details of the officer are as under:-
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.AddressOnLeave<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.TeleNo
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2" width="80%">
+                    National Defence College,<br />
+                    (Ministry of Defence),<br />
+                    6, Tees January Marg,<br />
+                    New Delhi-110011
+                </td>
+                <td colspan="1" class="text-left" width="20%">
+                    <div class="text-left">
+                        (@Model.AQName)<br />
+                        Lt Col<br />
+                        AA & QMG, NDC
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3">
+                    <p>1043/NDC/Sectt/Leave/62</p>
+                    <p>Dated: @DateTime.Now.Month.ToString("MMM") &nbsp; @DateTime.Now.Year</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3">
+                    <b><p>Distribution</p></b>
+                    1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Officers concerned (Locker No-@Model.LockerNo)<br />
+                    2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NDC Officer Mess<br />
+                    3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DS Coord<br />
+                    4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personal File
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel-footer text-center bg-white mt-4">
+        <a href="javascript:void()" class="btn btn-primary btn-sm" onclick=" printdoc();">Print</a>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+            function printdoc() {
+                var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+                mywindow.document.write('<html><head>');
+                mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+                mywindow.document.write('</head><body >');
+                mywindow.document.write(document.getElementById('printDiv').innerHTML);
+                mywindow.document.write('</body></html>');
+
+                mywindow.document.close(); // necessary for IE >= 10
+                mywindow.focus(); // necessary for IE >= 10*/
+
+                setTimeout(function () {
+                    mywindow.print();
+                    mywindow.close();
+                }, 1000)
+                return true;
+            }
+    </script>
+}
+
+
+

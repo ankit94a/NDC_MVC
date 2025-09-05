@@ -1,0 +1,130 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.TrainingActivityUpVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm("Edit", "TrainingActivity", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container mt-2">
+        <div class="form-horizontal">
+            <div class="card mt-2">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.TrainingActivityId)
+                <div class="card-header">
+                    Update Course Training Data
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3 mt-2">
+                        <label for="Files" name="Files" class="control-label">Browse File</label>
+                        <div class="col-md-10">
+                            <input id="Files" type="file" name="Files" multiple class="uploadify-button" accept="image/jpeg,image/png,application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.Module, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.Module, (IEnumerable<SelectListItem>)ViewBag.Module, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Module, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.Activity, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.Activity, (IEnumerable<SelectListItem>)ViewBag.Activity, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Activity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.ParentId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        @Html.DropDownList("ParentId", (IEnumerable<SelectListItem>)ViewBag.ModuleMenu, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MenuId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                        @Html.DropDownList("MenuId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MenuId, "", new { @class = "text-danger" })
+                    </div>*@
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control editorHtml", rows = "4", autocomplete = "off", autocorrect = "off", value = "" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.FromDate, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.ToDate, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                        @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label" })
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Active)
+                            @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-white text-center">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-primary btn-md" />
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-md" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $(document).ready(function () {
+        $('#Module').val('@Model.Module');
+        $('#Activity').val('@Model.Activity');
+
+        });
+    </script>
+    @*<script>
+            $(document).ready(function () {
+                $('#ParentId').val('@Model.ParentId');
+
+                if ('@ViewData["SelectedMenu"]' != null) {
+                    bindSubMenu();
+                }
+                $("#ParentId").change(function () {
+                    $("#RankId").empty();
+                    bindSubMenu();
+                });
+            });
+            function bindSubMenu() {
+                //$('#MenuId').empty();
+                $.ajax({
+                    type: 'get',
+                    url: '/api/menuMasters/GetSubMenus/parentMenu/' + $('#ParentId').val(),
+                    datatype: 'json',
+                    success: function (menus) {
+                        $.each(menus, function (i, menu) {
+                            $('#MenuId').append('<option value="' + menu.Value + '">' + menu.Text + '</option>');
+                        });
+                        if ('@ViewData["SelectedMenu"]' != 0) {
+                            $("#MenuId").val('@ViewData["SelectedMenu"]');
+                    }
+                    },
+                    error: function () {
+                        alert('Server Not Found');
+                    }
+                });
+            }
+        </script>*@
+}

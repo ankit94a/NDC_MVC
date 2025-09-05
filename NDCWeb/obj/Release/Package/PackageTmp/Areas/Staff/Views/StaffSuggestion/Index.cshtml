@@ -1,0 +1,111 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.StaffSuggestionIndxVM>
+@{
+    ViewBag.Title = "List of Suggestion";
+}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            @ViewBag.Title
+        </div>
+        <div class="card-body">
+            <table class="table w-100" id="myTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Sno)
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LockerNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Reply)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sno)
+                        </td>
+                        <td>
+                            @(item.CreatedAt!=null?item.CreatedAt.Value.ToString("dd/MM/yy"):"")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LockerNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @if (item.Reply != null)
+                            {
+                                @(item.Reply)<br />
+                                <span class="text-primary small"><strong>Replied on </strong>@(item.LastUpdatedAt!=null?item.LastUpdatedAt.Value.ToString("dd/MM/yy"):"")</span>
+                            }
+                            else
+                            {
+                                <strong>NA</strong>
+                            }
+
+                        </td>
+                        <td>
+                            @if (item.Status != null)
+                            {
+                                if (item.Status == "Pending")
+                                {
+                                    <div class="text-warning"> @Html.DisplayFor(modelItem => item.Status)</div>
+                                }
+                                else if (item.Status == "Work In Progress")
+                                {
+                                    <div class="text-primary"> @Html.DisplayFor(modelItem => item.Status)</div>
+                                }
+                                else if (item.Status == "Completed")
+                                {
+                                    <div class="text-success"> @Html.DisplayFor(modelItem => item.Status)</div>
+                                }
+                                else if (item.Status == "Rejected")
+                                {
+                                    <div class="text-danger"> @Html.DisplayFor(modelItem => item.Status)</div>
+                                }
+
+                            }
+                            else
+                            {
+                                <strong>NA</strong>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Reply == null)
+                            {
+                                <a href="@Url.Action("Edit", "StaffSuggestion", new { Id = item.SuggestionId })" title="Take Action">Take Action</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Edit", "StaffSuggestion", new { Id = item.SuggestionId })" title="Edit Action">Edit Action</a>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        LoadJDTNoSort('myTable');
+    </script>
+}

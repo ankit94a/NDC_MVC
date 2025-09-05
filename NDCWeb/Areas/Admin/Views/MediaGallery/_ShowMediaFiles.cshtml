@@ -1,0 +1,109 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.MediaGalleryIndxVM
+@using NDCWeb.Infrastructure.Constants;
+@{
+    int hiddenFileId = 0;
+    int cnt = 1;
+}
+<link href="~/Component/css/bootstrap.min.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            Files
+        </div>
+        <div class="card-body">
+            <div class="card-deck">
+                @if (Model.MediaType == MediaType.Image)
+                {
+                    foreach (var mdfl in Model.iMediaFiles)
+                    {
+                        hiddenFileId++;
+                        <div class="col-md-3">
+                            <div class="card mb-2">
+                                <img class="card-img-top" src="@Url.Content(mdfl.FilePath)" alt="Card image cap">
+                                <div class="card-body">
+                                    <form class="form-inline">
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <input type="text" readonly id="@hiddenFileId" value="@mdfl.FilePath.Replace("~","")" style="width:1px" class="form-control-plaintext small" />
+                                            <label for="staticEmail2" class="col-form-label-sm">@mdfl.FileName</label>
+                                        </div>
+                                        <input type="button" class="btn btn-primary btn-sm mb-2" onclick="copyToClipboard('@hiddenFileId')" value="Copy Url" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else if (Model.MediaType == MediaType.Video)
+                {
+                    foreach (var mdfl in Model.iMediaFiles)
+                    {
+                        <video controls="controls" width="400px" height="200px">
+                            <source src="@Url.Content(mdfl.FilePath)" type="video/mp4" />
+                        </video>
+                        hiddenFileId++;
+                        <input type="text" id="@hiddenFileId" value="@mdfl.FilePath.Replace("~","")" style="width:1px" class="form-control-plaintext small" />
+                        <input type="button" class="btn btn-primary btn-sm mb-2" onclick="copyToClipboard('@hiddenFileId')" value="Copy Url" />
+                    }
+                }
+                else if (Model.MediaType == MediaType.Document)
+                {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>File</td>
+                        <td>Path</td>
+                        <td> </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var mdfl in Model.iMediaFiles)
+                    {
+                        cnt++;
+                        hiddenFileId++;
+                        <tr valign="bottom">
+                            <td class="listHeader">@cnt</td>
+                            <td class="listHeader"><a href="@Url.Content(mdfl.FilePath)" target="_blank">@mdfl.FileName</a></td>
+                            <td class="listHeader"><input type="text" id="@hiddenFileId" value="@mdfl.FilePath.Replace("~","")" style="width:1px" class="form-control-plaintext small" /></td>
+                            <td class="listHeader">
+                                <input type="button" class="btn btn-primary btn-sm mb-2" onclick="copyToClipboard('@hiddenFileId')" value="Copy Url" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Component/js/jquery.js"></script>
+<script>
+    function copyToClipboard(hiddenFileId) {
+        var copyFilePath = document.getElementById(hiddenFileId);
+        copyFilePath.select();
+        //copyFilePath.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+
+        //alert("Copied the text: " + copyFilePath.value);
+    }
+
+    $(document).ready(function () {
+        $('input[type="button"]').click(function () {
+            $(this).addClass("btn btn-success btn-sm mb-2");
+            $(this).val("Copied");
+        });
+
+    });
+
+
+
+        //function copyToClipboard2(element) {
+                    //    var $temp = $("<input>");
+                    //    $("body").append($temp);
+                    //    $temp.val($(element).text()).select();
+                    //    document.execCommand("copy");
+                    //    $temp.remove();
+                    //}
+</script>

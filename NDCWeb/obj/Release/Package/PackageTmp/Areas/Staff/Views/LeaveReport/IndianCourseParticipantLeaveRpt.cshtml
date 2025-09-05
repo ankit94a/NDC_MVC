@@ -1,0 +1,219 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.ShowLeaveRptVM
+
+@{
+    ViewBag.Title = "Indian Course Participant Leave Report";
+}
+<div class="container mt-4">
+    <div id="printDiv">
+        <table>
+            <tr>
+                <td colspan="4">
+                    <p style="text-align: center;"><span style="text-decoration: underline;"><strong>LEAVE APPLICATION FORM : INDIAN COURSE PARTICIPANTS</strong></span></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    1. No, Rank and Name
+                </td>
+                <td colspan="3">
+                    @Model.ServiceNo, @Model.FullName
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    2. Locker No
+                </td>
+                <td colspan="3">
+                    @Model.LockerNo
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    3.  Unit :
+                </td>
+                <td colspan="3">
+                    <strong>National Defence College, (Ministry of Defence), New Delhi.</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    4.  Leave Applied :
+                </td>
+                <td colspan="3">
+                    <strong>@Model.LeaveType</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    From :
+                </td>
+                <td>
+                    <strong>@Model.FromDate.ToString("dd MMM yyyy")</strong>
+                </td>
+                <td>
+                    To :
+                </td>
+                <td>
+                    <strong>@Model.ToDate.ToString("dd MMM yyyy")</strong>&nbsp;&nbsp;&nbsp;  (Total : <b>@Model.TotalDays</b> days)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3">
+                    <p>
+                        (With permission to prefix
+                        @if (Model.PrefixDate != null)
+                        {
+                            <text>@Model.PrefixDate.Value.ToString("dd MMM yyyy")</text>
+                        }
+                        @if (Model.PrefixToDate != null)
+                        {
+                            <text>- @Model.PrefixToDate.Value.ToString("dd MMM yyyy")</text>
+                        }
+                        and suffix
+                        @if (Model.SuffixDate != null)
+                        {
+                            <text>@Model.SuffixDate.Value.ToString("dd MMM yyyy"))</text>
+                        }
+                        @if (Model.SuffixToDate != null)
+                        {
+                            <text>- @Model.SuffixToDate.Value.ToString("dd MMM yyyy"))</text>
+                        }
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    5. Reason for leave :
+                </td>
+                <td colspan="3">
+                    <strong>@Model.ReasonForLeave</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    6.  Address while on Leave :
+                </td>
+                <td colspan="3">
+                    <strong>@Model.AddressOnLeave</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Telephone :
+                </td>
+                <td colspan="3">
+                    <strong>@Model.TeleNo</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Leave already availed (in days) :
+                </td>
+                <td colspan="3">
+                    <p>(a) Casual Leave</p>
+                    (b) Annual/Earned Leave
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Date : ______ @DateTime.Now.Year
+                </td>
+                <td>
+                </td>
+                <td colspan="2">
+                    <strong>_______________________________</strong><br />
+                    <strong>(Signature of the Course Member)</strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <br />Date : @Model.AQStatusDate.Value.ToString("dd MMM yyyy")
+                </td>
+                <td>
+                    <strong>@Model.AQStatus</strong>
+                </td>
+                <td colspan="2">
+                    Sd_
+                    <br /><strong><u>AA &amp; QMG, NDC</u></strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="text-center">
+                    <br /><strong><u>INITIATED/ NOT INITIATED</u></strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <br />Date : @Model.IAGStatusDate.Value.ToString("dd MMM yyyy") @*@DateTime.Now.Year*@
+                </td>
+                <td>
+                    <strong>@Model.IAGStatus</strong>
+                </td>
+                <td colspan="2">
+                    Sd_
+                    <br /><strong><u>IAG SDS (SDS        )</u></strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="text-center">
+                    <br /><strong><u>SANCTIONED/ NOT SANCTIONED</u></strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <br />Date : @Model.ServiceSDSStatusDate.Value.ToString("dd MMM yyyy")
+                </td>
+                <td>
+                    <strong>@Model.ServiceSDSStatus</strong>
+                </td>
+                <td colspan="2">
+                    Sd_
+                    <br /><strong><u>(Sponsor / Service SDS)</u></strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <br />
+                    <p><strong><u>(Through Secretary)</u></strong></p>
+                </td>
+                <td></td>
+                <td colspan="2">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <br />
+                    <p><strong><u>Commandant</u></strong></p>
+                </td>
+                <td></td>
+                <td colspan="2">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel-footer text-center bg-white mt-4">
+        <a href="javascript:void()" class="btn btn-primary btn-sm" onclick=" printdoc();">Print</a>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function printdoc() {
+            var mywindow = window.open('', 'PRINT', 'height=700,width=960');
+            mywindow.document.write('<html><head>');
+            mywindow.document.write("<link href = '/Areas/Member/Component/css/style.css' rel = 'stylesheet' /><link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/>")
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById('printDiv').innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            setTimeout(function () {
+                mywindow.print();
+                mywindow.close();
+            }, 1000)
+            return true;
+        }
+    </script>
+}

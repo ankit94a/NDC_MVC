@@ -1,0 +1,169 @@
+﻿@model IEnumerable<NDCWeb.Areas.Staff.View_Models.ArrivalAllVM>
+@using NDCWeb.Infrastructure.Extensions;
+@{
+    ViewBag.Title = "Arrival Detail";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/bundles/datatables/ButtonCss")
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+
+<div class="card shadow mt-4 mb-4">
+    <div class="card-header">
+        <h4 class="text-center"><u>@ViewBag.Title</u></h4>
+    </div>
+    <div class="card-body">
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Arrival Date
+                    </th>
+                    <th>
+                        Arrival Time
+                    </th>
+
+                    <th>
+                        Arrival Mode
+                    </th>
+                    <th>
+                        Arriva At
+                    </th>
+                    @*<th>
+                            Assistance Reqd
+                        </th>*@
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    string arrivaldt;
+                    arrivaldt = @item.ArrivalDate.ToString("dd MMM yyyy");
+                    string arrivaltm;
+                    arrivaltm = @item.ArrivalTime.ToString(@"hh\:mm");
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName))
+                        </td>
+
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => arrivaldt)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => arrivaltm)
+                        </td>
+
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.ArrivalMode) @Html.DisplayFor(modelItem => item.TransportationMode)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(modelItem => item.ArrivaAt)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.AssistanceRequired)
+                            </td>*@
+                        <td>
+                            @*@Html.ActionLink("Details", "ArrivalIndex", new { uId = item.CreatedBy })*@
+                            @Html.EncodedActionLink("Details", "ArrivalIndex", "Participant", "staff", new { id = item.CreatedBy }, new { @class = "" }, "")&nbsp;
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="card-footer text-center bg-white">
+            @*<button class="btn btn-success btn-sm">Download</button>*@
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables/ButtonJs")
+
+
+    <script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            var fileName = 'ARRIVAL PARTICIPANTS LIST_' + crrtdate;
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            //doc.content.splice(0, 1);
+
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 14,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'ARRIVAL PARTICIPANTS LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+
+
+
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+
+                            doc.content[0].layout = objLayout;
+
+                            doc.content[0].alignment = 'center'
+                        }
+
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+
+            //oTable.on('order.dt search.dt', function () {
+            //    oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            //        cell.innerHTML = i + 1;
+            //    });
+            //}).draw();
+
+            //oTable.on('order.dt search.dt', function () {
+            //    oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            //        cell.innerHTML = i + 1;
+            //        oTable.cell(cell).invalidate('dom');
+            //    });
+            //}).draw();
+        });
+    </script>
+}

@@ -1,0 +1,27 @@
+﻿@*@model IEnumerable<NDCWeb.Areas.Member.View_Models.PassportChildrenIndxVM>*@
+@model IEnumerable<NDCWeb.Models.ChildrenPassport>
+<table class="table table-condensed table-bordered table-hover">
+    <thead>
+        <tr class="bg-light">
+            <td class="juipfname">Passport No</td>
+            <td class="juipfname">Issue Date</td>
+            <td class="juipfname">Valid Upto</td>
+            <td class="juipfname">Passport Type</td>
+            <td class="juipfname">Full Name</td>
+            <td class="juipfname">Passport Image</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.PassportNo)</td>
+            <td class="juipfvalue">@item.PassportIssueDate.ToString("dd MMM yyyy")</td>
+            <td class="juipfvalue">@item.PassportValidUpto.ToString("dd MMM yyyy")</td>
+            <td class="juipfvalue"></td>
+            <td class="juipfvalue">@Html.DisplayFor(modelItem => item.PassportType)</td>
+            <td class="juipfvalue"><img src="@Url.Content(item.PassportImgPath ?? "#")" class="img-thumbnail" width="120" /></td>
+        </tr>
+        }
+    </tbody>
+</table>

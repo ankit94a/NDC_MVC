@@ -1,0 +1,74 @@
+﻿@model NDCWeb.Areas.Admin.View_Models.InStepCourseCreateVM
+
+@{
+    ViewBag.Title = "Create Course";
+}
+<div class="card">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create In-Step Course</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card-body">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.CourseName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.IsCurrent, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsCurrent)
+                        @Html.ValidationMessageFor(model => model.IsCurrent, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.LabelFor(model => model.UnderRegistration, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.UnderRegistration)
+                        @Html.ValidationMessageFor(model => model.UnderRegistration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.RegistrationStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.RegistrationStartDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RegistrationStartDate, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.RegistrationEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.RegistrationEndDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RegistrationEndDate, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.TotalStrength, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.TotalStrength, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TotalStrength, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-white text-center">
+
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index")
+
+        </div>
+
+    }
+</div>
+

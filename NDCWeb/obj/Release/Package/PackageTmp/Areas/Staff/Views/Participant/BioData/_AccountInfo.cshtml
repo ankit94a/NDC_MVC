@@ -1,0 +1,111 @@
+﻿@model NDCWeb.Areas.Member.View_Models.AccountInfoIndxVM
+<table class="table table-condensed table-bordered">
+    <tr class="bg-2 text-white">
+        <td colspan="8">Bank Account Details (For Indian & Foreign Officers)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.AccountNo)</td>
+        <td class="juipfvalue"> @Html.DisplayFor(model => model.AccountNo)</td>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.AccountType)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.AccountType)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.IFSC) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.IFSC)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.MICR) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MICR)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.NameAndAddressOfBanker) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.NameAndAddressOfBanker)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.PassbookPath)</td>
+        <td class="juipfvalue" colspan="4">
+            @if (Model.PassbookPath != null && Model.PassbookPath != "#")
+            {
+                <a href="@Url.Content(Model.PassbookPath ?? "#")"><i class="fa fa-file-word-o fa-2x" style="color:blue"></i> Cancelled Cheque</a>
+            }
+            else
+            {
+                <b>N/A</b>
+            }
+
+        </td>
+    </tr>
+    <tr class="bg-2 text-white">
+        <td colspan="8">PAO Details (Indian Army & Navy Officers only)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.CDAAcNo) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.CDAAcNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.BasicPay)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.BasicPay)</td>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.MSP)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MSP)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.PayLevel) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.PayLevel)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.AddressOfPayAc)</td>
+        <td class="juipfvalue" colspan="7">@Html.DisplayFor(model => model.AddressOfPayAc)</td>
+    </tr>
+
+    <tr class="bg-2 text-white">
+        <td colspan="8">PAO Details (Indian Army & Navy Officers only)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.CDAAcNo) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.CDAAcNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.BasicPay)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.BasicPay)</td>
+        <td class="juipfname"> @Html.DisplayNameFor(model => model.MSP)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.MSP)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.PayLevel) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.PayLevel)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.AddressOfPayAc)</td>
+        <td class="juipfvalue" colspan="7">@Html.DisplayFor(model => model.AddressOfPayAc)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.NodalOfficeName)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.NodalOfficeName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.NodalOfficeContactNo)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.NodalOfficeContactNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.NodalOfficeEmail)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.NodalOfficeEmail)</td>
+    </tr>
+    <tr class="bg-2 text-white">
+        <td colspan="8">PAO Details (Civil Service only)</td>
+    </tr>
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.CivilServiceAcNo) </td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.CivilServiceAcNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.CivilServiceAddressOfPayAc)</td>
+        <td class="juipfvalue" colspan="3">@Html.DisplayFor(model => model.CivilServiceAddressOfPayAc)</td>
+    </tr>
+
+    <tr>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.CivilServiceNodalOfficeName)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.CivilServiceNodalOfficeName)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.CivilServiceNodalOfficeContactNo)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.CivilServiceNodalOfficeContactNo)</td>
+        <td class="juipfname">@Html.DisplayNameFor(model => model.CivilServiceNodalOfficeEmail)</td>
+        <td class="juipfvalue">@Html.DisplayFor(model => model.CivilServiceNodalOfficeEmail)</td>
+    </tr>
+</table>
+@*<div class="panel-footer text-white">
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious">Previous</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" onclick="editTab('AccountInfoPartial')">Edit</a>
+    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext">Next</a>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.btnNext').click(function () {
+            $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+    });
+</script>*@
+
+

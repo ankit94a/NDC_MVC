@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Unauthorised Region";
+    Layout = null;
+}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<title>@ViewBag.Title</title>
+<link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
+<!-- Required Fremwork -->
+<script src='~/Component/js/jquery/jquery.min.js' type="text/javascript"></script>
+<link type="text/javascript" href="~/Component/js/jquery/jquery.min.js">
+<link rel="stylesheet" type="text/css" href="~/Component/css/bootstrap.min.css">
+<script src='~/Component/js/bootstrap.min.js' type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Component/css/main.css">
+<script type="text/javascript" src="~/Areas/Admin/Component/scripts/aes.js?"></script>
+<script type="text/javascript" src="~/Areas/Admin/Component/scripts/ccryptimp.js"></script>
+    <div class="app-container app-theme-white body-tabs-shadow">
+        <div class="app-container">
+            <div class="h-100 bg-4 bg-animation">
+                <div class="d-flex h-100 justify-content-center align-items-center">
+                    <div class="mx-auto app-login-box col-md-6">
+                        <div class="app-logo-inverse mx-auto ">
+                        </div>
+                        <div class="modal-dialog w-100 mx-auto bg-danger">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="h5 modal-title text-center">
+                                        <img src="~/images/NDC-Logo.png" class="img-responsive" />
+                                        <h4 class="mt-2">
+                                            <span> Unauthorised Login Location </span>
+                                        </h4>
+                                        <br />
+                                    </div>
+                                    <span class="text-muted text-center">Detected IP @ViewBag.IP</span>
+                                </div>
+                                <div class="modal-footer clearfix text-center bg-warning">
+                                    <div class="float-none">
+                                        <a href="/" class="btn-lg btn btn-outline-danger">Back to Homepage</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center opacity-8 mt-3">Copyright © @DateTime.Now.Year NDC > <a href="http://createch-software.com">Developed by Createch Software Pvt. Ltd.</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

@@ -1,0 +1,129 @@
+﻿@model IEnumerable<NDCWeb.Areas.Admin.View_Models.StaffUserIndxListVM>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "List of Staff";
+}
+<div class="main-card  card">
+    <div class="card-body">
+        <h5 class="card-title">List of Staff (s)</h5>
+        <div class="pull-right">
+            <a href="@Url.Action("Create","StaffMaster")" class="btn-shadow  mt-0 btn btn-primary">Create Staff</a>
+        </div>
+        <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Rank & Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("DOB")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FacultyName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Decoration)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhoneNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmailId)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Status")
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RankName)
+                            @Html.DisplayFor(modelItem => item.FullName)
+                            @Html.HiddenFor(modelItem => item.StaffId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOBirth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FacultyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Decoration)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailId)
+                        </td>
+                        <td>
+                            @if (item.LockoutEnabled == null)
+                            {
+                                <text>
+                                    @*<a href="@Url.Action("Edit", new { id = item.StaffId })">Create User</a>*@
+                                    <button type="button" class="btn btn-primary btn-xs" onclick="createLoginUser(@item.StaffId)">Create User</button>
+                                </text>
+                            }
+                            else if (item.LockoutEndDateUtc != null && item.LockoutEndDateUtc > DateTime.UtcNow)
+                            {
+                                <span class="badge badge-danger"><i class="fa fa-user-lock"></i></span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-success"><i class="fa fa-unlock"></i></span>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn-xs text-success" onclick="resetLoginUser(@item.StaffId)" @((item.LoginId == null) ? "disabled" : "") title="Reset this user"><i class="fa fa-recycle"></i></a> |
+                            <a href="@Url.Action("Edit", new { id = item.StaffId })" class="btn-xs" title="Edit this user"><i class="fa fa-edit"></i></a> |
+                            <a class="btn-transparent text-danger btn-xs" onclick="Delete(@item.StaffId, this)" title="Delete this user"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+    LoadJDT('#myTable');
+
+    function Delete(id, event) {
+        var TableId = "#myTable";
+        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+        DeleteJDTRow(id, event, TableId, Jsonurl)
+        }
+        function createLoginUser(staffId) {
+            $.ajax({
+                type: 'post',
+                data: { staffId: staffId },
+                url: '@Url.Action("CreateLoginUser")',
+                datatype: 'json',
+                success: function (data) {
+                    alert(data);
+                },
+                error: function () {
+                    alert('Server Not Found');
+                }
+            });
+        }
+        function resetLoginUser(staffId) {
+            $.ajax({
+                type: 'post',
+                data: { staffId: staffId },
+                url: '@Url.Action("ResetLoginUser")',
+                datatype: 'json',
+                success: function (data) {
+                    toastr.success(data);
+                },
+                error: function () {
+                    alert('Server Not Found');
+                }
+            });
+        }
+    </script>
+}

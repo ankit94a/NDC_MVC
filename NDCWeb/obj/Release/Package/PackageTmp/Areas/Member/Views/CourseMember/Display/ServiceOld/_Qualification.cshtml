@@ -1,0 +1,64 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.CrsMbrQualificationIndxVM>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-hover">
+            <thead>
+                <tr class="bg-light">
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.Course)</td>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.QualificationType)</td>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.Year) </td>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.Location) </td>
+                    <td class="juipfname">@Html.DisplayNameFor(model => model.Country) </td>
+                    <td>Remove</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Course)</td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.QualificationType)</td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Year)</td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Location)</td>
+                        <td class="juipfvalue">@Html.DisplayFor(modelItem => item.Country)</td>
+                        <td>
+                            <button type="button" class="btn btn-transparent red btn-xs" onclick="removeCMQualification(@item.QualificationId, this)"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="panel-footer">
+            <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious">Previous</a>
+            <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" onclick="addTab('QualificationPartial')">Edit</a>
+            <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext">Next</a>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.btnNext').click(function () {
+            $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+    });
+    function removeCMQualification(id, event) {
+        $.ajax({
+            type: 'delete',
+            url: '/api/courseMembers/QualificationDelete/' + id,
+            datatype: 'json',
+            success: function (data, textStatus, xhr) {
+                if (textStatus === 'success') {
+                    $(event).closest("tr").remove();
+                }
+            },
+            error: function () {
+                alert('Operation Failed!')
+            }
+        });
+    }
+</script>

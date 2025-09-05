@@ -1,0 +1,142 @@
+﻿@model NDCWeb.Areas.Staff.View_Models.SpeakerCrtVM
+@{
+    ViewBag.Title = "Add Speaker";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-4 mb-4">
+    <div class="card shadow">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="card-header">
+                <p class="pl-2"> @ViewBag.Title</p>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("SubjectId", (IEnumerable<SelectListItem>)ViewBag.Course, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.TopicId, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.TopicId, new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TopicId, "", new { @class = "text-danger" })
+                    </div>                   
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    </div>                   
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.AlternateEmail, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.AlternateEmail, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.ValidationMessageFor(model => model.AlternateEmail, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.Telephone, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.CurrentAddress, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CurrentAddress, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.ValidationMessageFor(model => model.CurrentAddress, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+                <div class="position-relative row form-group ">                
+                    <div class="col-md-5">
+                        <label for="selfPicfile" class="form-label">Upload Photograph</label>
+                        <input id="selfPicfile" type="file" required title="Upload Your Image" name="selfPicfile" onchange="imgValidateEdit('selfPicfile', 'PhotoPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                        <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                        @Html.EditorFor(model => model.PhotoPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                    </div>
+                    <div class="col-md-5">
+                        <label for="selffile" class="form-label">Upload Biodata</label>
+                        <input id="selffile" type="file" required title="Upload Your Image" name="selffile" onchange="docValidateEdit('selffile', 'FilePath')" class="uploadify-button form-control-file" accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                        <p class="text-info">Max size 500kb, File Type (.pdf, .docx, .doc)</p>
+                        @Html.EditorFor(model => model.FilePath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer bg-white text-center">
+                <input type="submit" value="Save" class="btn btn-primary btn-md" />
+                @Html.ActionLink("Back to List", "Index",null, new {@class= "btn btn-primary btn-md" })
+
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/cmsup")
+    <script>
+        $("#SubjectId").change(function () {
+            $("#TopicId").empty();
+            bindtopic();
+            $("#SpeakerId").empty();
+        });
+
+        function bindtopic() {
+            $.ajax({
+                type: 'get',
+                url: '/api/subjectMstr/GetTopics/subject/' + $('#SubjectId').val(),
+                datatype: 'json',
+                success: function (topics) {
+                    $('#TopicId').append('<option>--Select--</option>');
+                    $.each(topics, function (i, topic) {
+                        $('#TopicId').append('<option value="' + topic.Value + '">' + topic.Text + '</option>');
+                    });
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+
+        // #region Upload Helper
+    function imgValidateEdit(fileUploadId, fileLocId) {
+        let fileTypes = ['jpg', 'jpeg', 'png'];
+        let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+        let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+        if (extValidate == true && sizeValidate == true) {
+            let url = '@Url.Action("ImageUpload")';
+            uploadFile(fileUploadId, fileLocId, url);
+        }
+        //else {
+        //    $('#' + fileLocId).val('');
+        //}
+    }
+    function docValidateEdit(fileUploadId, fileLocId) {
+        let fileTypes = ['pdf', 'doc', 'docx'];
+        let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
+        let sizeValidate = fileSizeValidation(fileUploadId, 1024);
+        if (extValidate == true && sizeValidate == true) {
+            let url = '@Url.Action("DocumentUpload")';
+            uploadFile(fileUploadId, fileLocId, url);
+        }
+        //else {
+        //    $('#' + fileLocId).val('');
+        //}
+    }
+    // #endregion
+    </script>
+}

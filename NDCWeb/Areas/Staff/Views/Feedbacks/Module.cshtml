@@ -1,0 +1,192 @@
+﻿@model IEnumerable<NDCWeb.Areas.Member.View_Models.StaffFeedbackModuleVM>
+@{
+    ViewBag.Title = "Module Feedback";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/bundles/datatables/ButtonCss")
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+
+<div class="container pt-2 col-md-12">
+    <div class="card mb-4">
+        <div class="card-header">
+            @ViewBag.Title
+            @*<span class="pull-right">@Html.ActionLink("New Feedback", "addmodulefeedback", null, new { @class = "btn btn-primary btn-sm" })</span>*@
+        </div>
+        <div class="card-body">
+            <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable" >
+                <thead>
+                    <tr style="vertical-align:middle">
+                        <th></th>
+                        <th style="vertical-align:middle">SNo.</th>
+                        <th style="vertical-align:middle">
+                            @Html.DisplayNameFor(model => model.SubjectId)
+                        </th>
+                        <th style="vertical-align:middle; white-space: nowrap">Locker No</th>
+                        <th style="vertical-align: middle; text-align: justify;">
+                            @Html.DisplayNameFor(model => model.CoordChairperson)
+                        </th>
+                        <th style="vertical-align: middle; text-align: justify;">
+                            @Html.DisplayNameFor(model => model.TopicForDelete)
+                        </th>
+                        <th style="vertical-align: middle; text-align: justify;">
+                            @Html.DisplayNameFor(model => model.TopicForAdition)
+                        </th>
+                        <th style="vertical-align: middle; text-align: justify;">
+                            @Html.DisplayNameFor(model => model.Suggestions)
+                        </th>
+                        <th style="vertical-align: middle; text-align: justify;">
+                            @Html.DisplayNameFor(model => model.SuggestChanges)
+                        </th>
+                        <th style="vertical-align: middle; text-align: justify;">
+                            @Html.DisplayNameFor(model => model.SuggestionOther)
+                        </th>
+                        <th style="vertical-align: middle; text-align: justify;">
+                            @Html.DisplayNameFor(model => model.CommentsAndRecomedation)
+                        </th>
+                        <th style="vertical-align: middle; text-align: justify;" >
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int sno = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModuleFeedbackId)
+                        </td>
+                        <td>
+                            @{ sno++; }
+                            @sno
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subjects.SubjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LockerNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CoordChairperson)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TopicForDelete)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TopicForAdition)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Suggestions)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuggestChanges)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SuggestionOther)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CommentsAndRecomedation)
+                        </td>
+                        <td>
+                            @if (item.IsSDS)
+                            {
+                                @Html.ActionLink("Comment", "ModuleComment", new { id = item.ModuleFeedbackId, cat = ViewBag.Choice }, new { @class = "btn btn-primary" })
+                            }
+                            else
+                            {
+                                <text>NA</text>
+                            }
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables/ButtonJs")
+    <script>
+        $(document).ready(function () {
+            var crrtdate = getDateTime();
+            var fileName = 'MODULE FEEDBACK LIST_' + crrtdate;
+            oTable = $('#myTable').DataTable({
+                "scrollX": true,
+                "processing": true,
+                "order": [[0, "desc"]],
+                "columnDefs": [{ "targets": [0], "visible": false, "searchable": false }],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fa fa-file-excel-o"> Excel</i>',
+                        exportOptions: {
+                            columns: ':visible',
+                            columns: [1, 2, 3, 4, 5, 6, 7, 8,9]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'A4',
+                        text: '<i class="fa fa-file-pdf-o"> PDF</i>',
+                        //exportOptions: { columns: [0, 1, 2, 5] },
+                        exportOptions: {
+                            //columns: [0, 1, 2, 4, 5, 6, 7, 8],
+                            columns: [1, 2, 3, 4, 5, 6, 7, 8,9],
+                            alignment: 'center'
+                        },
+                        layout: 'lightHorizontalLines',
+                        //title:'JOBS OPPORTUNITIES FOR OFFICERS',
+                        title: fileName,
+                        titleAttr: 'PDF',
+                        customize: function (doc) {
+                            doc.content.splice(0, 1);
+                            doc['header'] = (function () {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'center',
+                                            fontSize: 13,
+                                            bold: true,
+                                            decoration: 'underline',
+                                            text: 'MODULE FEEDBACK LIST'
+                                        }
+                                    ],
+                                    margin: 10,
+                                    alignment: 'center'
+                                }
+                            });
+                            var objLayout = {};
+                            objLayout['hLineWidth'] = function (i) { return .5; };
+                            objLayout['vLineWidth'] = function (i) { return .5; };
+                            objLayout['hLineColor'] = function (i) { return '#000'; };
+                            objLayout['vLineColor'] = function (i) { return '#000'; };
+                            objLayout['paddingLeft'] = function (i) { return 4; };
+                            objLayout['paddingRight'] = function (i) { return 4; };
+                            doc.content[0].layout = objLayout;
+                            doc.content[0].alignment = 'center'
+                        }
+                    },
+                    'colvis'
+                ],
+                select: true
+            });
+            oTable.on('order.dt search.dt', function () {
+                oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+            oTable.on('order.dt search.dt', function () {
+                oTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                    oTable.cell(cell).invalidate('dom');
+                });
+            }).draw();
+        });
+    </script>
+}

@@ -1,0 +1,87 @@
+﻿@model NDCWeb.Areas.Member.View_Models.MemberCompletePreviewVM
+
+@{
+    ViewBag.Title = "Participant Bio";
+}
+
+<div class="card">
+    <div id='docPrint' class="card-body">
+        @{
+
+            if (Model.PersonalVM != null)
+            {
+                @Html.Partial("BioData/_CourseMemberPersonal", Model.PersonalVM)
+            }
+            if (Model.AppointmentVM != null)
+            {
+                @Html.Partial("BioData/_AppointmentDetails", Model.AppointmentVM)
+            }
+            if (Model.QualificationsVM.Count > 1)
+            {
+                @Html.Partial("BioData/_Qualification", Model.QualificationsVM)
+            }
+            if (Model.CountryVisitsVM.Count > 1)
+            {
+                @Html.Partial("BioData/_CountryVisit", Model.CountryVisitsVM)
+            }
+            if (Model.LanguagesVM.Count > 1)
+            {
+                @Html.Partial("BioData/_LanguagesKnown", Model.LanguagesVM)
+            }
+            if (Model.ImportantAssignmentsVM.Count > 1)
+            {
+                @Html.Partial("BioData/_AssignmentAppointment", Model.ImportantAssignmentsVM)
+            }
+            if (Model.SpouseVM != null)
+            {
+                @Html.Partial("BioData/_Spouse", Model.SpouseVM)
+            }
+            if (Model.ChildrensVM.Count > 1)
+            {
+                @Html.Partial("BioData/_Children", Model.ChildrensVM)
+            }
+            if (Model.TallyVM != null)
+            {
+                @Html.Partial("BioData/_Tally", Model.TallyVM)
+            }
+            if (Model.VehicleStickerVM != null)
+            {
+                @Html.Partial("BioData/_VehicleSticker", Model.VehicleStickerVM)
+            }
+            if (Model.AccountInfoVM != null)
+            {
+                @Html.Partial("BioData/_AccountInfo", Model.AccountInfoVM)
+            }
+
+        }
+    </div>
+
+    <div class="card-footer text-center">
+        @*<a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" onclick="printdoc(docPrint)">Print</a>*@
+        <button type="reset" class="btn jui-btn btn-success btn-lg" onclick="printDiv('docPrint')">Print</button>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+}
+@*<script>
+    function printdoc() {
+        var divToPrint = document.getElementById('docPrint');
+        var newWin = window.open('', 'Print-Window');
+        newWin.document.open();
+        newWin.document.write('<link rel="stylesheet" href="/Component/css/bootstrap.min.css" type="text/css" />');
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+        newWin.document.close();
+        setTimeout(function () { newWin.close(); }, 10);
+    }
+</script>*@
+
+
