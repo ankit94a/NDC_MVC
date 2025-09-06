@@ -13,7 +13,7 @@
     }
     .pdf-container {
         width: 98%;
-        height: 120vh;
+        height: 78vh;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
@@ -32,11 +32,12 @@
             width: 100%;
             height: 100%;
         }
+   
 </style>
 <div class="container-fluid mt-4 mb-4">
     <div class="row gutters-sm">
         <div class="col-md-3">
-            <div class="pcard text-center bg-white">
+            <div class="card shadow text-center dashboard-card">
                 @if (Request.IsAuthenticated)
                 {
                     using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -51,22 +52,22 @@
                         <div class="pcard-container text-center">
                             <h4 class=card-title><b>@ViewBag.fullname</b></h4>
                             <p><i class="fa fa-circle text-success"></i> @Appt</p>
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"> Log off</a>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-danger btn-sm"> Log off</a>
                         </div>
                     }
                 }
             </div>
-            <div class="list-group shadow-sm" style="clear:both">
+            <div class="shadow-sm mt-2" style="clear:both">
 
                 @if (ViewBag.StaffType != null)
                 {
                     if (ViewBag.StaffType == 15)//"AQ"
                     {
-                        <h4 class="list-group-item active">TASKS</h4>
-                        <a class="btn-link list-group-item" href="@Url.Action("ArrivalAll", "Participant")">Arrival Detail</a>
-                        <a class="btn-link list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">Leave History</a>
-                        <a class="btn-link list-group-item" href="~/staff/participant/CrsMbrRoleAssignment/">Role Assignment</a>
-                        <a class="btn-link list-group-item" href="~/staff/instepcourse/index/">In-Step Course</a>
+                        <h4 class="card-header custom-header fw-bold py-2 border-bottom btlr text-white text-center pr-5">TASKS</h4>
+                        <a class="list-group-item" href="@Url.Action("ArrivalAll", "Participant")">Arrival Detail</a>
+                        <a class="list-group-item" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">Leave History</a>
+                        <a class="list-group-item" href="~/staff/participant/CrsMbrRoleAssignment/">Role Assignment</a>
+                        <a class="list-group-item" href="~/staff/instepcourse/index/">In-Step Course</a>
                         @*<a href="/staff/CourseStaff/faq" class="list-group-item">FAQs</a>
                             <a href="~/staff/memberverify/participants/" class="list-group-item">Participant Verification</a>
                 <a href="~/staff/participant/participantlist/" class="list-group-item">Participants List</a>

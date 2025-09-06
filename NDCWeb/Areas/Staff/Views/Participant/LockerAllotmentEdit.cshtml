@@ -26,15 +26,44 @@
         line-height: 150%;
         text-decoration: none;
     }
+
+/*    .table-scroll {
+        max-height: 70vh;
+        overflow-y: auto; 
+        overflow-x: auto; 
+        scroll-behavior: smooth;
+        border: 1px solid #ddd;
+    }
+
+
+    #tblLocker thead th {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: linear-gradient(135deg, #c7151ff7, #600208) !important;
+        color: #fff !important;
+        font-weight: bold !important;
+        text-align: center;
+    }*/
+
+
+    #tblLocker tbody tr:hover {
+        background: #f1f1f1;
+    }
+
+    .custom-scroll {
+        height: 65vh;
+        overflow-y: scroll;
+    }
 </style>
 
-<div class="container mt-4 mb-4">
+<div class="container mt-4 mb-4 custom-scroll">
     <div class="card shadow">
         @*<div class="card-header">
             <span class="pl-2">@ViewBag.Title</span>
             <a href="@Url.Action("LockerAllotment")"><i class="btn btn-primary btn-sm pull-right">New Participant Allotment</i></a>
         </div>*@
-        <div class="card-body">
+        <div class="card-body custom-scroll">
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label">Course </label>
                 <div class="col-sm-2">

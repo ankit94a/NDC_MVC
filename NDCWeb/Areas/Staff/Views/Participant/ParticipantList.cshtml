@@ -7,14 +7,53 @@
 
 }
 @Styles.Render("~/bundles/datatables/ButtonCss")
+
+<style>
+    /* Fix table height with smooth scroll */
+    #myTable_wrapper .dataTables_scrollBody {
+        max-height: 57vh !important;
+        overflow-y: auto !important;
+        overflow-x: auto !important;
+        scroll-behavior: smooth;
+    }
+
+    /* Sticky header + Gradient */
+    #myTable thead th {
+        background: linear-gradient(135deg, #c7151ff7, #600208) !important;
+        color: #fff !important;
+        font-weight: bold !important;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+    }
+
+    table.dataTable thead th {
+        background: linear-gradient(135deg, #c7151ff7, #600208) !important;
+        color: #fff !important;
+        font-weight: bold !important;
+        text-align: center;
+    }
+
+    table.dataTable {
+        border-collapse: collapse !important;
+        width: 100%;
+    }
+
+        table.dataTable th,
+        table.dataTable td {
+            padding: 10px;
+            text-align: left;
+        }
+</style>
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
 
 <div class="main-card  mt-2 card">
     <div class="card-body">
         <h5 class="card-title">List of Registered Participants (s)</h5>
-        <div class="form-group row">
-            <label class="col-sm-1 col-form-label">Course </label>
+        <div class="row">
+            @*<label class="col-sm-1 col-form-label">Course </label>*@
             <div class="col-sm-2">
                 @Html.DropDownList("CourseId", (IEnumerable<SelectListItem>)ViewBag.Courses, "Select Course", htmlAttributes: new { @class = "form-control" })
             </div>
@@ -131,6 +170,7 @@
             var fileName = 'REGISTERED PARTICIPANTS LIST_' + crrtdate;
             oTable = $('#myTable').DataTable({
                 "scrollX": true,
+                scrollY: "57vh",
                 "processing": true,
                 dom: 'Bfrtip',
                 buttons: [
