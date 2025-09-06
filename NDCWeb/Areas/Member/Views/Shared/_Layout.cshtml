@@ -210,6 +210,10 @@
     <script src="~/Component/js/imagelightbox.min.js"></script>
     <script src="~/Component/js/jquery.meanmenu.js"></script>
 
+
+    <!-- Toastr -->
+    <script src="~/Component/js/toastr.min.js"></script>
+    @*<script src="~/Component/js/toastr-config.js"></script>*@
     <!-- Custom -->
     <script src="~/Component/js/custom.js"></script>
     <script src="~/Component/js/font-size.js"></script>
@@ -225,14 +229,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    @Scripts.Render("~/bundles/jqueryui")
+    @*@Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/custom")
-    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/toastr")*@
 
 
-    <script>
+    @*<script>
         toastrOptDefault();
-    </script>
+    </script>*@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const toggleBtn = document.getElementById("sidebarToggle");
