@@ -12,10 +12,12 @@
         text-transform: uppercase;
     }
 
-    .btn {
+    .submit {
         font-size: 1.7em;
         background-color: #5a0005;
         color: #fff;
+        padding: 2px;
+        margin: 9px;
     }
 
     .modal-footer {
@@ -61,7 +63,7 @@
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                             @Html.HiddenFor(m => m.hdks)
                         </div>
-                        <div class="position-relative input-group mb-2">
+                        <div class="position-relative input-group mb-2 pt-1">
 
                             @Html.Partial("_Captcha")
                         </div>
@@ -69,7 +71,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <button class="btn btn-block btn-lg" style="font-size: 1.5em;" type="submit">Sign in</button>
+                            <button class="submit btn-block btn-lg" style="font-size: 1.5em;" type="submit">Sign in</button>
 
                         </div>
                     </div>
@@ -78,7 +80,7 @@
 
             </div>
             <div class="modal-footer clearfix bg-white badge text-bg-primary text-wrap pr-20">
-                <div class="icon">
+                <div class="icon m-2">
                     <a href="/" style="color:rgba(220,53,69,1) !important" ;><i class="fa fa-home"></i></a>
                     <a href="@Url.Action("forgot","auth")" style="color:rgba(220,53,69,1) !important" ;>Forgot Password Request</a>
                 </div>

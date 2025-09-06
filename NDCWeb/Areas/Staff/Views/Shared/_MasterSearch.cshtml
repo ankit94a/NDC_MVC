@@ -82,8 +82,13 @@
             dataType: 'json',
             success: function (response) {
                 console.log("User:", response);
-                
+
                 bindPersonalDetails(response.data.PersonalVM)
+                bindServiceDetails(response.data.AppointmentVM)
+                bindSpouseDetails(response.data.SpouseVM)
+                bindChildrenDetails(response.data.ChildrensVM)
+                bindAdministrtionDetails(response.data.TallyVM)
+                bindAccountDetails(response.data)
                 myModal = new bootstrap.Modal(document.getElementById('userModal'));
                 myModal.show();
             },
@@ -98,7 +103,7 @@
     }
 
     function bindPersonalDetails(user) {
-    $('#personalInfoBody').html(`
+        $('#personalInfoBody').html(`
         <p><strong>Full Name:</strong> ${user.FirstName} ${user.MiddleName ?? ''} ${user.Surname ?? ''}</p>
         <p><strong>Nick Name:</strong> ${user.NickName ?? ''}</p>
         <p><strong>Father’s Name:</strong> ${user.FatherName ?? ''} ${user.FatherMiddleName ?? ''} ${user.FatherSurname ?? ''}</p>
@@ -113,7 +118,7 @@
         <p><strong>Medical Condition/Category:</strong> ${user.MedicalCategory ?? ''}</p>
         <p><strong>NOK:</strong> ${user.NOK ?? ''}</p>
     `);
-    $('#communicationInfoBody').html(`
+        $('#communicationInfoBody').html(`
         <p><strong>Mobile Number:</strong> ${user.MobileNo ?? ''}</p>
         <p><strong>Alternate Mobile:</strong> ${user.AlternateMobileNo ?? ''}</p>
         <p><strong>Email:</strong> ${user.EmailId ?? ''}</p>
@@ -127,7 +132,7 @@
         ${user.OfficeCountry?.Name ?? ''}
     </p>`);
 
-     $('#passportBody').html(`
+        $('#passportBody').html(`
         <p><strong>Holding Passport:</strong> ${user.HoldingPassport ?? ''}</p>
         <p><strong>Passport No:</strong> ${user.MemberPassportNo ?? ''}</p>
         <p><strong>Passport Type:</strong> ${user.MemberPassportType ?? ''}</p>
@@ -136,26 +141,214 @@
         <p><strong>Issued Country:</strong> ${user.CountryIssued ?? ''}</p>
     `);
 
-     $('#visaDetail').html(`
+        $('#visaDetail').html(`
         <p><strong>Visa No:</strong> ${user.VisaNo ?? ''}</p>
         <p><strong>Visa Issue Date:</strong> ${formatDate(user.VisaIssueDate)}</p>
         <p><strong>Visa Valid Upto:</strong> ${formatDate(user.VisaValidUpto)}</p>
     `);
 
-    $('#otherInfo').html(`
+        $('#otherInfo').html(`
         <p><strong>Dietary Preferences (V/NV):</strong> ${user.DietaryPref ?? ''}</p>
         <p><strong>Aadhaar Copy:</strong> ${user.AadhaarPath ? 'Available' : 'N/A'}</p>
         <p><strong>PAN Number:</strong> ${user.PANCardNo ?? ''}</p>
         <p><strong>Spouse Name:</strong> ${user.SpouseName ?? ''}</p>
         <p><strong>Biographical Sketch:</strong> ${user.BioSketch ?? 'To be uploaded'}</p>
     `);
+
+
+    }
+    function bindServiceDetails(user) {
         $('#bService').html(`
-    <p><strong>Branch of Service:</strong> ${user.BranchOfService ?? ''}</p>
+    <p><strong>Branch of Service:</strong> ${user.Service ?? ''}</p>
     <p><strong>Service No:</strong> ${user.ServiceNo ?? '-'}</p>
-    <p><strong>Rank/Status:</strong> ${user.RankStatus ?? ''}</p>
-    <p><strong>Date of Joining:</strong> ${user.DateOfJoining ?? ''}</p>
-    <p><strong>Date of Seniority:</strong> ${user.DateOfSeniority ?? ''}</p>
+    <p><strong>Rank/Status:</strong> ${user.Ranks ?? ''}</p>
+    <p><strong>Date of Joining:</strong> ${user.DOJoining ?? ''}</p>
+    <p><strong>Date of Seniority:</strong> ${user.DOSeniority ?? ''}</p>
 `);
+        $('#pAppointment').html(`
+    <p><strong>Present Appointment:</strong></p>
+    <p><strong>Designation:</strong> ${user.Designation ?? '-'}</p>
+    <p><strong>Organisation:</strong> ${user.Organisation ?? '-'}</p>
+    <p><strong>Location (Office Address):</strong> ${user.Location ?? '-'}</p>
+
+`);
+        $('#daMaDetails').html(`
+    <p><strong>Have you worked as DA/MA?:</strong> ${user.WorkingAsDAMA ?? '-'}</p>
+    <p><strong>Are you working as DA/MA?:</strong> ${user.WorkingAsDAMADetails ?? '-'}</p>
+    <p><strong>Details:</strong> ${user.DA_MA_Details ?? '-'}</p>
+`);
+        $('#courseName').html(`
+    <p><strong>Course Name:</strong> ${user.CourseName ?? '-'}</p>
+    <p><strong>Qualification Type:</strong> ${user.QualificationType ?? '-'}</p>
+    <p><strong>Year:</strong> ${user.Year ?? '-'}</p>
+    <p><strong>Location:</strong> ${user.Location ?? '-'}</p>
+    <p><strong>Country:</strong> ${user.Country ?? '-'}</p>
+`);
+        $('#countryVisit').html(`
+    <p><strong>Country:</strong> ${user.CountryVisitsVM ?? '-'}</p>
+    <p><strong>Year of Visit:</strong> ${user.YearOfVisit ?? '-'}</p>
+    <p><strong>Duration:</strong> ${user.VisitDuration ?? '-'}</p>
+    <p><strong>Purpose:</strong> ${user.VisitPurpose ?? '-'}</p>
+`);
+        $('#languageDetails').html(`
+    <p><strong>Language:</strong> ${user.LanguagesVM ?? '-'}</p>
+    <p><strong>Read:</strong> ${user.Read ?? '-'}</p>
+    <p><strong>Write:</strong> ${user.Write ?? '-'}</p>
+    <p><strong>Speak:</strong> ${user.Speak ?? '-'}</p>
+`);
+        $('#appointmentDetails').html(`
+    <p><strong>Appointment:</strong> ${user.Appointment ?? '-'}</p>
+    <p><strong>Organisation:</strong> ${user.Organisation ?? '-'}</p>
+    <p><strong>Location:</strong> ${user.Location ?? '-'}</p>
+    <p><strong>From:</strong> ${user.FromDate ?? '-'}</p>
+    <p><strong>To:</strong> ${user.ToDate ?? '-'}</p>
+`);
+
+
+    }
+
+    function bindSpouseDetails(user) {
+        $('#spouseDetails').html(`
+    <p><strong>Name:</strong> ${user.SpouseName ?? '-'}</p>
+    <p><strong>Blood Group:</strong> ${user.SpouseBloodGroup ?? '-'}</p>
+    <p><strong>Contact No:</strong> ${user.ContactNo ?? '-'}</p>
+    <p><strong>Date of Birth:</strong> ${user.SpouseDOBirth ?? '-'}</p>
+    <p><strong>Occupation:</strong> ${user.Occupation ?? '-'}</p>
+    <p><strong>Spouse staying with officer during course?:</strong> ${user.SpouseStay ?? '-'}</p>
+`);
+        $('#passportDetails').html(`
+    <p><strong>Holding Passport?:</strong> ${user.HoldingPassport ?? 'No'}</p>
+
+`);
+        $('#visaDetails').html(`
+    <p><strong>Visa No:</strong> ${user.SpouseVisaNo ?? '-'}</p>
+    <p><strong>Date of Issue:</strong> ${user.SpouseVisaIssueDate ?? '-'}</p>
+    <p><strong>Valid Upto:</strong> ${user.SpouseVisaValidUpto ?? '-'}</p>
+    <p><strong>Upload Visa Images:</strong>  ${user.SpouseVisaPath ?? '-'}
+        ${(user.VisaFrontImage || user.VisaBackImage)
+                ? `
+                ${user.VisaFrontImage ? `<a href="${user.VisaFrontImage}" target="_blank">Front</a>` : ''}
+                ${user.VisaBackImage ? `<a href="${user.VisaBackImage}" target="_blank">Back</a>` : ''}
+              `
+                : '(Front & Back)'}
+    </p>
+`);
+        $('#frroDetails').html(`
+    <p><strong>FRRO No:</strong> ${user.SpouseFRRONo ?? '-'}</p>
+    <p><strong>Date of Issue:</strong> ${user.SpouseFRROIssueDate ?? '-'}</p>
+    <p><strong>Valid Upto:</strong> ${user.SpouseFRROValidUpto ?? '-'}</p>
+    <p><strong>Upload FRRO Images:</strong>  ${user.SpouseFRROPath ?? '-'}
+        ${(user.FRROFrontImage || user.FRROBackImage)
+                ? `
+                ${user.FRROFrontImage ? `<a href="${user.FRROFrontImage}" target="_blank">Front</a>` : ''}
+                ${user.FRROBackImage ? `<a href="${user.FRROBackImage}" target="_blank">Back</a>` : ''}
+              `
+                : '-'}
+    </p>
+`);
+        $('#languageD').html(`
+    <p><strong>Language:</strong> ${user.iSpouseLanguages ?? '-'}</p>
+    <p><strong>Read:</strong> ${user.CanRead ? 'Yes' : 'No'}</p>
+    <p><strong>Write:</strong> ${user.CanWrite ? 'Yes' : 'No'}</p>
+    <p><strong>Speak:</strong> ${user.CanSpeak ? 'Yes' : 'No'}</p>
+`);
+
+    }
+    function bindChildrenDetails(user) {
+        $('#childDetails').html(`
+    <p><strong>Name:</strong> ${user.ChildName ?? '-'}</p>
+    <p><strong>Date of Birth:</strong> ${user.ChildDOBirth ?? '-'}</p>
+    <p><strong>Gender:</strong> ${user.ChildGender ?? '-'}</p>
+    <p><strong>Occupation:</strong> ${user.ChildOccupation ?? '-'}</p>
+    <p><strong>Contact No:</strong> ${user.ChildContactNo ?? '-'}</p>
+    <p><strong>Living With You?:</strong> ${user.ChildStayWithMember ? 'Yes' : 'No'}</p>
+`);
+
+        $('#passportD').html(`
+    <p><strong>Passport No:</strong> ${user.ChildPassportNo ?? '-'}</p>
+    <p><strong>Passport Name:</strong> ${user.ChildPassportName ?? '-'}</p>
+    <p><strong>Date of Issue:</strong> ${user.ChildPassportIssueDate ?? '-'}</p>
+    <p><strong>Valid Upto:</strong> ${user.ChildVisaValidUpto ?? '-'}</p>
+    <p><strong>Passport Type:</strong> ${user.ChildPassportType ?? '-'}</p>
+    <p><strong>Country that issued Passport:</strong> ${user.ChildPassportCountryIssued ?? '-'}</p>
+    <hr>
+    <p><strong>Upload Passport Image (Front):</strong>
+        ${user.ChildPassportImgPath
+                ? `<a href="${user.ChildPassportImgPath}" target="_blank">View</a>`
+                : '[Upload Option]'}
+    </p>
+    <p><strong>Upload Passport Image (Back):</strong>
+        ${user.ChildPassportBackImgPath
+                ? `<a href="${user.ChildPassportBackImgPath}" target="_blank">View</a>`
+                : '[Upload Option]'}
+    </p>
+`);
+        $('#visaD').html(`
+    <p><strong>Visa No:</strong> ${user.ChildVisaNo ?? '-'}</p>
+    <p><strong>Date of Issue:</strong> ${user.ChildVisaIssueDate ?? '-'}</p>
+    <p><strong>Valid Upto:</strong> ${user.ChildVisaValidUpto ?? '-'}</p>
+    <hr>
+    <p><strong>Upload Visa Images (Front & Back):</strong> ${user.ChildVisaPath ?? '-'}
+        ${(user.VisaFrontImage || user.VisaBackImage)
+                ? `
+                ${user.VisaFrontImage ? `<a href="${user.VisaFrontImage}" target="_blank">Front</a>` : ''}
+                ${user.VisaBackImage ? ` | <a href="${user.VisaBackImage}" target="_blank">Back</a>` : ''}
+              `
+                : '[Upload Option]'}
+    </p>
+`);
+
+
+    }
+    function bindAdministrtionDetails(user) {
+        $('#rankNameDetails').html(`
+    <p><strong>Rank (in abbreviated form):</strong> ${user.RankAbbr ?? '-'}</p>
+    <p><strong>As per Passport:</strong> ${user.PassportName ?? '-'}</p>
+    <p><strong>As Required on Name Tab:</strong> ${user.TabName ?? '-'}</p>
+    <p><strong>Nick Name:</strong> ${user.NickName ?? '-'}</p>
+    <p><strong>Service/Country:</strong> ${user.CountryService ?? '-'}</p>
+`);
+        $('#contactDetails').html(`
+        <p><strong>Name/Rank:</strong> ${user.NameORRank ?? '-'} </p>
+        <p><strong>Resi Address:</strong>${user.ResidentialAddress ?? '-'}</p>
+        <p><strong>Mobile No:</strong>${user.MobileNo ?? '-'}</p>
+        <p><strong>Tele No:</strong>${user.TelephoneNo ?? '-'} </p>
+        `);
+        $('#vehicleDetails').html(`
+    <p><strong>Brand/Model No:</strong> ${user.VehicleBrandModel ?? '-'}</p>
+    <p><strong>Colour:</strong> ${user.VehicleColour ?? '-'}</p>
+    <p><strong>Registration No:</strong> ${user.VehicleRegistrationNo ?? '-'}</p>
+    <p><strong>Driving License No:</strong> ${user.DrivingLicenseNo ?? '-'}</p>
+`);
+
+    }
+
+    function bindAccountDetails(user) {
+        $('#bankDetails').html(`
+    <p><strong>Account No:</strong> ${user.AccountNo ?? '-'}</p>
+    <p><strong>Account Type:</strong> ${user.AccountType ?? '-'}</p>
+    <p><strong>IFSC:</strong> ${user.IFSC ?? '-'}</p>
+    <p><strong>MICR:</strong> ${user.MICR ?? '-'}</p>
+    <p><strong>Name & Address of Banker:</strong> ${user.BankNameAddress ?? '-'}</p>
+`);
+        $('#cdaDetails').html(`
+    <p><strong>CDA Account No:</strong> ${user.CDAAccountNo ?? '-'}</p>
+    <p><strong>Basic Pay:</strong> ${user.BasicPay ?? '-'}</p>
+    <p><strong>MSP:</strong> ${user.MSP ?? '-'}</p>
+    <p><strong>Pay Level:</strong> ${user.PayLevel ?? '-'}</p>
+    <p><strong>Address of Pay Account:</strong> ${user.PayAccountAddress ?? '-'}</p>
+    <p><strong>PAO Nodal Officer Name:</strong> ${user.PAONodalName ?? '-'}</p>
+    <p><strong>PAO Nodal Contact No:</strong> ${user.PAONodalContact ?? '-'}</p>
+    <p><strong>PAO Nodal Email:</strong> ${user.PAONodalEmail ?? '-'}</p>
+`);
+        $('#payAccountDetails').html(`
+    <p><strong>Pay Account No:</strong> ${user.PayAccountNo ?? '-'}</p>
+    <p><strong>Address of Pay Account:</strong> ${user.PayAccountAddress ?? '-'}</p>
+    <p><strong>PAO Nodal Officer Name:</strong> ${user.PAONodalName ?? '-'}</p>
+    <p><strong>PAO Nodal Contact No:</strong> ${user.PAONodalContact ?? '-'}</p>
+    <p><strong>PAO Nodal Email:</strong> ${user.PAONodalEmail ?? '-'}</p>
+`);
+
 
     }
 
@@ -169,7 +362,6 @@
         return dotNetDate;
     }
 </script>
-
 
 @using (Html.BeginForm("MasterSearch", "Event", FormMethod.Get, new { @class = "input-box d-flex align-items-center justify-content-center position-relative left-50%" }))
 {
@@ -237,7 +429,7 @@
                                 <div class="card h-100">
                                     <div class="card-header fw-bold fs-2">Personal Information</div>
                                     <div class="card-body" id="personalInfoBody">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -245,7 +437,7 @@
                                 <div class="card h-100">
                                     <div class="card-header fw-bold fs-2">Communication</div>
                                     <div class="card-body" id="communicationInfoBody">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -253,7 +445,7 @@
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Passport Details</div>
                                     <div class="card-body" id="passportBody">
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +453,7 @@
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Visa Details</div>
                                     <div class="card-body id=visaDetail">
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -269,7 +461,7 @@
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Other Information</div>
                                     <div class="card-body" id="otherInfo">
- 
+
                                     </div>
                                 </div>
                             </div>
@@ -285,24 +477,12 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6" id="bService">
-                                                @*<p><strong>Branch of Service:</strong> Inspectorate</p>
-                                                <p><strong>Service No:</strong> -</p>
-                                                <p><strong>Rank/Status:</strong> Captain GE Navy</p>
-                                                <p><strong>Date of Joining:</strong> 10 Dec 2000</p>
-                                                <p><strong>Date of Seniority:</strong> 13 Jan 2025</p>*@
                                             </div>
-                                            <div class="col-md-6">
-                                                <p><strong>Present Appointment:</strong></p>
-                                                <p><strong>Designation:</strong> -</p>
-                                                <p><strong>Organisation:</strong> -</p>
-                                                <p><strong>Location (Office Address):</strong> -</p>
+                                            <div class="col-md-6" id="pAppointment">
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="row">
-                                            <p><strong>Have you worked as DA/MA?:</strong> -</p>
-                                            <p><strong>Are you working as DA/MA?:</strong> -</p>
-                                            <p><strong>Details:</strong> -</p>
+                                        <div class="row" id="daMaDetails">
                                         </div>
                                     </div>
                                 </div>
@@ -310,46 +490,21 @@
                             <div class="col-md-6">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Qualifications</div>
-                                    <div class="card-body">
-                                        <p><strong>Course Name:</strong> -</p>
-                                        <p><strong>Qualification Type:</strong> -</p>
-                                        <p><strong>Year:</strong> -</p>
-                                        <p><strong>Location:</strong> -</p>
-                                        <p><strong>Country:</strong> -</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100">
-                                    <div class="card-header fw-bold">Countries Visited</div>
-                                    <div class="card-body">
-                                        <p><strong>Country:</strong> -</p>
-                                        <p><strong>Year of Visit:</strong> -</p>
-                                        <p><strong>Duration:</strong> -</p>
-                                        <p><strong>Purpose:</strong> -</p>
+                                    <div class="card-body" id="courseName">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Languages Known</div>
-                                    <div class="card-body">
-                                        <p><strong>Language:</strong> -</p>
-                                        <p><strong>Read:</strong> -</p>
-                                        <p><strong>Write:</strong> -</p>
-                                        <p><strong>Speak:</strong> -</p>
+                                    <div class="card-body" id="languageDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Appointments Held</div>
-                                    <div class="card-body">
-                                        <p><strong>Appointment:</strong> -</p>
-                                        <p><strong>Organisation:</strong> -</p>
-                                        <p><strong>Location:</strong> -</p>
-                                        <p><strong>From:</strong> -</p>
-                                        <p><strong>To:</strong> -</p>
+                                    <div class="card-body" id="appointmentDetails"
                                     </div>
                                 </div>
                             </div>
@@ -361,54 +516,35 @@
                             <div class="col-md-12 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Particulars</div>
-                                    <div class="card-body">
-                                        <p><strong>Name:</strong> -</p>
-                                        <p><strong>Blood Group:</strong> -</p>
-                                        <p><strong>Contact No:</strong> -</p>
-                                        <p><strong>Date of Birth:</strong> -</p>
-                                        <p><strong>Occupation:</strong> -</p>
-                                        <p><strong>Spouse staying with officer during course?:</strong> -</p>
+                                    <div class="card-body" id="spouseDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Passport Detail (Foreign Officers Only)</div>
-                                    <div class="card-body">
-                                        <p><strong>Holding Passport?:</strong> Yes / No</p>
+                                    <div class="card-body" id="passportDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Visa Details</div>
-                                    <div class="card-body">
-                                        <p><strong>Visa No:</strong> -</p>
-                                        <p><strong>Date of Issue:</strong> -</p>
-                                        <p><strong>Valid Upto:</strong> -</p>
-                                        <p><strong>Upload Visa Images:</strong> (Front & Back)</p>
+                                    <div class="card-body" id="visaDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">FRRO Details (Foreign Officers Only)</div>
-                                    <div class="card-body">
-                                        <p><strong>FRRO No:</strong> -</p>
-                                        <p><strong>Date of Issue:</strong> -</p>
-                                        <p><strong>Valid Upto:</strong> -</p>
-                                        <p><strong>Upload FRRO Images:</strong> -</p>
+                                    <div class="card-body" id="frroDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Languages Known</div>
-                                    <div class="card-body">
-                                        <p><strong>Language:</strong> -</p>
-                                        <p><strong>Read:</strong> Yes / No</p>
-                                        <p><strong>Write:</strong> Yes / No</p>
-                                        <p><strong>Speak:</strong> Yes / No</p>
+                                    <div class="card-body" id="languageD">
                                     </div>
                                 </div>
                             </div>
@@ -416,7 +552,7 @@
                         <div class="col-md-12 ">
                             <div class="card h-100">
                                 <div class="card-header fw-bold">Qualification</div>
-                                <div class="card-body">
+                                <div class="card-body" id="qualificationsDetails">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <p><strong>Higher Education:</strong> -</p>
@@ -441,41 +577,21 @@
                             <div class="col-md-12 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Child Particulars</div>
-                                    <div class="card-body">
-                                        <p><strong>Name:</strong> -</p>
-                                        <p><strong>Date of Birth:</strong> -</p>
-                                        <p><strong>Gender:</strong> -</p>
-                                        <p><strong>Occupation:</strong> -</p>
-                                        <p><strong>Contact No:</strong> -</p>
-                                        <p><strong>Living With You?:</strong> -</p>
+                                    <div class="card-body" id="childDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Passport Details</div>
-                                    <div class="card-body">
-                                        <p><strong>Passport No:</strong> -</p>
-                                        <p><strong>Passport Name:</strong> -</p>
-                                        <p><strong>Date of Issue:</strong> -</p>
-                                        <p><strong>Valid Upto:</strong> -</p>
-                                        <p><strong>Passport Type:</strong> -</p>
-                                        <p><strong>Country that issued Passport:</strong> -</p>
-                                        <hr>
-                                        <p><strong>Upload Passport Image (Front):</strong> [Upload Option]</p>
-                                        <p><strong>Upload Passport Image (Back):</strong> [Upload Option]</p>
+                                    <div class="card-body" id="passportD">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Visa Details</div>
-                                    <div class="card-body">
-                                        <p><strong>Visa No:</strong> -</p>
-                                        <p><strong>Date of Issue:</strong> -</p>
-                                        <p><strong>Valid Upto:</strong> -</p>
-                                        <hr>
-                                        <p><strong>Upload Visa Images (Front & Back):</strong> [Upload Option]</p>
+                                    <div class="card-body" id="visaD">
                                     </div>
                                 </div>
                             </div>
@@ -488,34 +604,21 @@
                             <div class="col-md-12 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Name Tally</div>
-                                    <div class="card-body">
-                                        <p><strong>Rank (in abbreviated form):</strong> -</p>
-                                        <p><strong>As per Passport:</strong> -</p>
-                                        <p><strong>As Required on Name Tab:</strong> -</p>
-                                        <p><strong>Nick Name:</strong> -</p>
-                                        <p><strong>Service/Country:</strong> -</p>
+                                    <div class="card-body" id="rankNameDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Tele Directory of Current NDC Course</div>
-                                    <div class="card-body">
-                                        <p><strong>Name/Rank:</strong> -</p>
-                                        <p><strong>Resi Address:</strong> -</p>
-                                        <p><strong>Mobile No:</strong> -</p>
-                                        <p><strong>Tele No:</strong> -</p>
+                                    <div class="card-body" id="contactDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Vehicle Sticker</div>
-                                    <div class="card-body">
-                                        <p><strong>Brand/Model No:</strong> -</p>
-                                        <p><strong>Colour:</strong> -</p>
-                                        <p><strong>Registration No:</strong> -</p>
-                                        <p><strong>Driving License No:</strong> -</p>
+                                    <div class="card-body" id="vehicleDetails">
                                     </div>
                                 </div>
                             </div>
@@ -528,39 +631,21 @@
                             <div class="col-md-12 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Bank Account Details (For Indian & Foreign Officers)</div>
-                                    <div class="card-body">
-                                        <p><strong>Account No:</strong> -</p>
-                                        <p><strong>Account Type:</strong> -</p>
-                                        <p><strong>IFSC:</strong> -</p>
-                                        <p><strong>MICR:</strong> -</p>
-                                        <p><strong>Name & Address of Banker:</strong> -</p>
+                                    <div class="card-body" id="bankDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="card h-100 border-primary">
                                     <div class="card-header fw-bold text-primary">PAO Details (Indian Army & Navy Officers only)</div>
-                                    <div class="card-body">
-                                        <p><strong>CDA Account No:</strong> -</p>
-                                        <p><strong>Basic Pay:</strong> -</p>
-                                        <p><strong>MSP:</strong> -</p>
-                                        <p><strong>Pay Level:</strong> -</p>
-                                        <p><strong>Address of Pay Account:</strong> -</p>
-                                        <p><strong>PAO Nodal Officer Name:</strong> -</p>
-                                        <p><strong>PAO Nodal Contact No:</strong> -</p>
-                                        <p><strong>PAO Nodal Email:</strong> -</p>
+                                    <div class="card-body" id="cdaDetails">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="card h-100 border-success">
                                     <div class="card-header fw-bold text-success">PAO Details (Civil Service only)</div>
-                                    <div class="card-body">
-                                        <p><strong>Pay Account No:</strong> -</p>
-                                        <p><strong>Address of Pay Account:</strong> -</p>
-                                        <p><strong>PAO Nodal Officer Name:</strong> -</p>
-                                        <p><strong>PAO Nodal Contact No:</strong> -</p>
-                                        <p><strong>PAO Nodal Email:</strong> -</p>
+                                    <div class="card-body" id="payAccountDetails">
                                     </div>
                                 </div>
                             </div>
@@ -571,7 +656,6 @@
 
                 </div>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
             </div>
