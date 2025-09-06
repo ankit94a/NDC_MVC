@@ -1,4 +1,4 @@
-﻿<!--@using NDCWeb.Infrastructure.Constants;
+﻿@using NDCWeb.Infrastructure.Constants;
 @{
     ViewBag.Title = "National Defence College";
     if (ViewBag.Course != "N" || ViewBag.InStepCourse != "N")
@@ -24,16 +24,16 @@
 <link href="~/Component/css/Modal.css" rel="stylesheet" />
 
 <!--Promo Popup start-->
-<!--<div id="openModal" class="modalDialog">
+<div id="openModal" class="modalDialog">
     <div>
         <a href="#close" title="Close" class="close">X</a>
         <p>
             <a href="https://www.gallantryawards.gov.in/" target="_blank"><img src="https://ndc.nic.in//writereaddata/media/files/2021/Sep/91d70307-258f-4d0e-bc48-84e948990257.jpg" /></a>
         </p>
     </div>
-</div>-->
+</div>
 <!--Promo Popup End-->
-<!--<style>
+<style>
 </style>
 
 <section class="banner_bg pt5">
@@ -66,24 +66,24 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12 c3Carousel">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">-->
-<!-- Indicators -->
-<!-- Wrapper for slides -->
-<!--<div class="carousel-inner homeSliderCls">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner homeSliderCls">
 
-</div>-->
-<!-- Left and right controls -->
-<!--<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>-->
-<!--<div class="text-center res-shadow"><img src="/images/shadow-banner.png" alt="" title=""></div>-->
-<!--</div>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!--<div class="text-center res-shadow"><img src="/images/shadow-banner.png" alt="" title=""></div>-->
+            </div>
 
             <div class="col-md-3 col-sm-4 col-xs-12 c4Comdt">
 
@@ -183,21 +183,24 @@
                         <button class="cbtn-sm btn-1" id="btnLearnMoreIndex" type="button">
                             Learn more
                         </button>
-                    </p>-->
-@*<div class="dropdown">
-    <button class="cbtn-sm btn-1 dropdown-toggle" type="button" data-toggle="dropdown">
-    Learn more
-    <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-    <li><a href="/content2/learn-more/aim-of-ndc">Aim</a></li>
-    <li><a href="/content2/learn-more/role-of-ndc">Role</a></li>
-    <li><a href="/content2/learn-more/vision-mission-of-ndc">Vision/Mission</a></li>
-    </ul>
-    </div>*@-->
-<!--NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned "the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare". Today, NDC continues to provide future decision-makers with the necessary skills and background for filling senior positions in national security and associated fields.-->
-<!-- <a href="About.html" class="btn btn-primary">Learn more</a> -->
-<!--</div>
+                    </p>
+
+
+                    @*<div class="dropdown">
+                        <button class="cbtn-sm btn-1 dropdown-toggle" type="button" data-toggle="dropdown">
+                        Learn more
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a href="/content2/learn-more/aim-of-ndc">Aim</a></li>
+                        <li><a href="/content2/learn-more/role-of-ndc">Role</a></li>
+                        <li><a href="/content2/learn-more/vision-mission-of-ndc">Vision/Mission</a></li>
+                        </ul>
+                        </div>*@
+                    <!--NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned "the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare". Today, NDC continues to provide future decision-makers with the necessary skills and background for filling senior positions in national security and associated fields.-->
+                    <!-- <a href="About.html" class="btn btn-primary">Learn more</a> -->
+
+                </div>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-12 c14LatestNews">
                 <div class="latest-news-events">
@@ -235,133 +238,4 @@
 </section>
 @section Scripts{
 
-    <script src="~/Component/js/carousel.js"></script>
-    <script src="~/Component/js/Modal.js"></script>
-}-->
-
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background: #f5f7fa;
-        color: #333;
-    }
-
-    .ndc-header {
-        background: #0A1A44;
-        padding: 15px 0;
-        border-bottom: 4px solid #B22222;
-    }
-
-        .ndc-header h1 {
-            color: #fff;
-            font-size: 20px;
-            margin-left: 15px;
-            font-weight: 700;
-        }
-
-    .navbar ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
-
-        .navbar ul li {
-            margin-left: 20px;
-        }
-
-            .navbar ul li a {
-                color: #fff;
-                text-decoration: none;
-                font-weight: 500;
-                transition: 0.3s;
-            }
-
-                .navbar ul li a:hover {
-                    color: #B22222;
-                }
-
-    .slider img {
-        max-height: 550px;
-        object-fit: cover;
-    }
-
-    .carousel-caption {
-        background: rgba(0,0,0,0.6);
-        padding: 15px;
-        border-radius: 5px;
-    }
-
-    .card {
-        background: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-</style>
-
-<header class="ndc-header">
-    <div class="container d-flex align-items-center justify-content-between">
-        <div class="logo d-flex align-items-center">
-            <img src="/images/india-logo.png" alt="Logo" height="60">
-            <h1>National Defence College</h1>
-        </div>
-        <nav class="navbar">
-            <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Course</a></li>
-                <li><a href="#">Alumni</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<!-- Full-width slider -->
-<section class="slider">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/images/slide1.jpg" class="d-block w-100" alt="Defense Training">
-                <div class="carousel-caption">
-                    <h2>Welcome to National Defence College</h2>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/images/slide2.jpg" class="d-block w-100" alt="NDC">
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
-    </div>
-</section>
-
-<!-- Info blocks -->
-<section class="info-sections container mt-4">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <h3>What's New</h3>
-                <ul> ... </ul>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <h3>Upcoming Events</h3>
-                <ul> ... </ul>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <h3>Commandant's Desk</h3>
-                <ul> ... </ul>
-            </div>
-        </div>
-    </div>
-</section>
+}

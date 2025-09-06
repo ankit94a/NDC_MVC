@@ -21,6 +21,7 @@ namespace NDCWeb.Controllers
     public class AlumnusController : Controller
     {
         // GET: Alumni
+
         public ActionResult Index()
         {
             return View();
