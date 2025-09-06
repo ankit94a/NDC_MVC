@@ -1,4 +1,39 @@
 ﻿@model NDCWeb.Areas.Member.View_Models.MemberCompletePreviewVM
+    <style>
+        .custom-btn {
+            border-radius: 30px;
+            padding: 0.45rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+/*            transition: all 0.3s ease-in-out;*/
+            color: #fff;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Previous button (cool blue) */
+        .btn-previous {
+            background: linear-gradient(135deg, #457fca, #5691c8);
+            border: none;
+        }
+
+            .btn-previous:hover {
+                background: linear-gradient(135deg, #3769a5, #457fca);
+/*                transform: translateY(-2px);*/
+            }
+
+        /* Print button (green) */
+        .btn-print {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            border: none;
+        }
+
+            .btn-print:hover {
+                background: linear-gradient(135deg, #0d776d, #2bc76d);
+/*                transform: translateY(-2px);*/
+            }
+
+
+    </style>
 
 <div id='docPrint'>
     @{
@@ -59,91 +94,93 @@
     }
 </div>
 
-    <div class="panel-footer text-white">
-        <a class="btn jui-btn col-md-6 col-xs-12 btn-lg btn-info btnPrevious">Previous</a>
-        <a class="btn jui-btn col-md-6 col-xs-12 btn-lg btn-success" onclick="printdoc()">Print</a>
-       
+<div class="panel-footer text-white d-flex justify-content-between">
+        <a class="btn custom-btn btn-info btn-previous btnPrevious">Previous</a>
+        <a class="btn custom-btn btn-lg btn-print " onclick="printdoc()">Print</a>
+
     </div>
 
-    <script>
-        function ShowSaved() {
-            alert('File has been submitted successfully');
-        }
-        function Export() {
 
-            var pdf = new jsPDF('p', 'pt', 'letter');
 
-            pdf.text(50, 25, "Employee Report");
-            // source can be HTML-formatted string, or a reference
-            // to an actual DOM element from which the text will be scraped.
-            source = document.getElementById('docPrint').innerHTML;
+<script>
+    function ShowSaved() {
+        alert('File has been submitted successfully');
+    }
+    function Export() {
 
-            // we support special element handlers. Register them with jQuery-style
-            // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
-            // There is no support for any other type of selectors
-            // (class, of compound) at this time.
-            specialElementHandlers = {
-                // element with id of "bypass" - jQuery style selector
-                '#bypassme': function (element, renderer) {
-                    // true = "handled elsewhere, bypass text extraction"
-                    return true
-                }
-            };
-            margins = {
-                top: 80,
-                bottom: 60,
-                left: 40,
-                width: 522
-            };
-            // all coords and widths are in jsPDF instance's declared units
-            // 'inches' in this case
-            pdf.fromHTML(
-                source, // HTML string or DOM elem ref.
-                margins.left, // x coord
-                margins.top, { // y coord
-                'width': margins.width, // max width of content on PDF
-                'elementHandlers': specialElementHandlers
-            },
+        var pdf = new jsPDF('p', 'pt', 'letter');
 
-                function (dispose) {
-                    // dispose: object with X, Y of the last line add to the PDF
-                    // this allow the insertion of new lines after html
-                    pdf.save('Biodata.pdf');
-                }, margins);
-        }
+        pdf.text(50, 25, "Employee Report");
+        // source can be HTML-formatted string, or a reference
+        // to an actual DOM element from which the text will be scraped.
+        source = document.getElementById('docPrint').innerHTML;
 
-        $(document).ready(function () {
-            $('.btnNext').click(function () {
-                $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
-            });
+        // we support special element handlers. Register them with jQuery-style
+        // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+        // There is no support for any other type of selectors
+        // (class, of compound) at this time.
+        specialElementHandlers = {
+            // element with id of "bypass" - jQuery style selector
+            '#bypassme': function (element, renderer) {
+                // true = "handled elsewhere, bypass text extraction"
+                return true
+            }
+        };
+        margins = {
+            top: 80,
+            bottom: 60,
+            left: 40,
+            width: 522
+        };
+        // all coords and widths are in jsPDF instance's declared units
+        // 'inches' in this case
+        pdf.fromHTML(
+            source, // HTML string or DOM elem ref.
+            margins.left, // x coord
+            margins.top, { // y coord
+            'width': margins.width, // max width of content on PDF
+            'elementHandlers': specialElementHandlers
+        },
 
-            $('.btnPrevious').click(function () {
-                $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
-            });
+            function (dispose) {
+                // dispose: object with X, Y of the last line add to the PDF
+                // this allow the insertion of new lines after html
+                pdf.save('Biodata.pdf');
+            }, margins);
+    }
+
+    $(document).ready(function () {
+        $('.btnNext').click(function () {
+            $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
         });
 
-        function printdoc() {
-            var mywindow = window.open('', 'PRINT', 'height=700,width=900');
-            mywindow.document.write('<html><head>');
-            mywindow.document.write("<link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/style.css' rel='stylesheet'/>")
-            mywindow.document.write('</head><body >');
-            mywindow.document.write(document.getElementById('docPrint').innerHTML);
-            mywindow.document.write('</body></html>');
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+    });
 
-            mywindow.document.close(); // necessary for IE >= 10
-            mywindow.focus(); // necessary for IE >= 10*/
+    function printdoc() {
+        var mywindow = window.open('', 'PRINT', 'height=700,width=900');
+        mywindow.document.write('<html><head>');
+        mywindow.document.write("<link href='/Areas/Member/Component/css/bootstrap.min.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/main.css' rel='stylesheet'/><link href='/Areas/Member/Component/css/style.css' rel='stylesheet'/>")
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(document.getElementById('docPrint').innerHTML);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
 
 
-            setTimeout(function () {
-                mywindow.print();
-                mywindow.close();
-            }, 1000)
-            return true;
+        setTimeout(function () {
+            mywindow.print();
+            mywindow.close();
+        }, 1000)
+        return true;
 
-            //var newWin = window.open('', 'Print-Window');
-            //newWin.document.open();
-            //newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
-            //newWin.document.close();
-            //setTimeout(function () { newWin.close(); }, 10);
-        }
-    </script>
+        //var newWin = window.open('', 'Print-Window');
+        //newWin.document.open();
+        //newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+        //newWin.document.close();
+        //setTimeout(function () { newWin.close(); }, 10);
+    }
+</script>

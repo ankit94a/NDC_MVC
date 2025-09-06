@@ -1,4 +1,58 @@
 ﻿@model NDCWeb.Areas.Member.View_Models.CrsMemberPersonalIndxVM
+    <style>
+        .panel-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px; /* space between buttons */
+            padding: 10px;
+            background: #f8f9fa; /* light gray footer background */
+            border-top: 1px solid #dee2e6;
+        }
+
+            .panel-footer .btn {
+                flex: 1; /* equal width for all buttons */
+                font-size: 0.95rem;
+                font-weight: 600;
+                padding: 10px 0;
+                border-radius: 8px;
+              
+            }
+
+            /* Edit button (success) */
+            .panel-footer .btn-success {
+                background: #0d6efd;
+                border: none;
+                color: white;
+            }
+
+                .panel-footer .btn-success:hover {
+                    background: linear-gradient(45deg, #218838, #1e7e34);
+                    
+                }
+
+            /* Previous & Next (info) */
+            .panel-footer .btn-info {
+                background: #0d6efd;
+                border: none;
+                color: white;
+            }
+
+                .panel-footer .btn-info:hover {
+                    background: linear-gradient(45deg, #138496, #117a8b);
+                   
+                }
+
+            /* Disabled state */
+            .panel-footer .btn:disabled {
+                background: #d6d6d6 !important;
+                color: #7a7a7a !important;
+                border: none;
+                cursor: not-allowed;
+             
+            }
+
+    </style>
 <table class="table table-condensed table-bordered">
     <tr>
         <td>
@@ -296,9 +350,9 @@
     </tr>
 </table>
 <div class="panel-footer text-white">
-    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info" disabled>Previous</a>
-    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-success" id="btnEdit" onclick="editTab('PersonalDetailPartial')">Edit</a>
-    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext">Next</a>
+    <a class="btn jui-btn   btn-info" disabled>Previous</a>
+    <a class="btn jui-btn   btn-success" id="btnEdit" onclick="editTab('PersonalDetailPartial')">Edit</a>
+    <a class="btn jui-btn  btn-info btnNext">Next</a>
 </div>
 
 

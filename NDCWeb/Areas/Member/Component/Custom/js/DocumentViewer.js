@@ -11,7 +11,7 @@
         if (b.title.length > 0) { html += ' <h5 class="modal-title text-white" id="exampleModalLabel">' + b.title + "</h5>" } 
         html += '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="white-text">&times;</span></button>';
         html += "</div>"; html += '<div class="modal-body" ' + c + ">"; html += b.message; html += "</div>";
-        html += '<div class="modal-footer justify-content-center">'; if (b.closeButton === true) { html += '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>' } html += "</div>"; html += "</div>"; html += "</div>"; html += "</div>"; a("body").prepend(html); a("#myModal").modal().on("hidden.bs.modal", function () { a(this).remove() })
+        html += '<div class="modal-footer justify-content-center">'; if (b.closeButton === true) { html += '<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>' } html += "</div>"; html += "</div>"; html += "</div>"; html += "</div>"; a("body").prepend(html); a("#myModal").modal().on("hidden.bs.modal", function () { a(this).remove() })
     }
 })(jQuery);
 

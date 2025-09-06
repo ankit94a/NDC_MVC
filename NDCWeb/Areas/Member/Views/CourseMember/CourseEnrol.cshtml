@@ -2,8 +2,201 @@
 @{
     ViewBag.Title = "Create /Update Profile";
 }
-
 <style>
+    /* ==== Card Styling ==== */
+.card {
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+    .card-header {
+        background: linear-gradient(90deg, #9b030c, #b30f1a);
+        color: #fff;
+        font-weight: 600;
+        padding: 1rem 1.25rem !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: none;
+    }
+
+/* Blinking warning */
+.blink_me {
+    animation: blinker 1.2s linear infinite;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ffd700 !important;
+}
+@@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+/* ==== Tabs Styling ==== */
+.nav-tabs {
+    border-bottom: none;
+    margin-top: 5px;
+}
+
+.nav-tabs .nav-item {
+    margin-right: 4px;
+    margin-top:2px;
+}
+
+/*.nav-tabs .nav-link {
+    border-radius: 50px;
+    border: 1px solid #dee2e6;
+    background: #9b030c;
+    color: #495057;
+    padding: 0.6rem 1rem;
+    transition: all 0.3s ease-in-out;
+}*/
+    .nav-tabs .nav-link {
+        border-radius: 50px;
+        border: 2px solid #9b030c;
+        background: linear-gradient(135deg, #9b030c, #e63946); /* dark red → lighter red */
+        color: #fff; /* white text for contrast */
+        font-weight: 500;
+        padding: 0.7rem 1.2rem;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+
+
+    .nav-tabs .nav-link .badge {
+        margin-right: 6px;
+        border-radius: 50%;
+        font-size: 0.85rem;
+        padding: 0.5em 0.65em;
+        background: #adb5bd; /* gray for upcoming */
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+    }
+
+.nav-tabs .nav-link:hover {
+    background: #e9ecef;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+    .nav-tabs .nav-link.active {
+        background: linear-gradient(90deg, #9b030c, #b30f1a);
+        color: #fff !important;
+        border: none;
+        box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+    }
+
+.nav-tabs .nav-link.active .badge {
+    background: #28a745 !important;
+}
+    
+    .nav-tabs .nav-link.completed .badge {
+        background: #28a745 !important; /* green */
+    }
+
+    /* Optional hover effect */
+    .nav-tabs .nav-link:hover .badge {
+        transform: scale(1.1);
+    }
+  
+
+/* Disabled tab look */
+.nav-tabs .nav-link.disabled {
+    background: #f1f1f1;
+    border: 1px solid #dee2e6;
+    color: #aaa !important;
+    cursor: not-allowed;
+}
+
+/* ==== Tab Content ==== */
+.tab-content {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0 0 10px 10px;
+    border: 1px solid #dee2e6;
+    border-top: none;
+/*    min-height: 250px;*/
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== Form Required Field Marker ==== */
+.required::before {
+    content: "* ";
+    font-weight: bold;
+    color: red;
+}
+
+/* ==== Custom Checkbox / Radio ==== */
+.custom-control-lg .custom-control-label::before,
+.custom-control-lg .custom-control-label::after {
+    top: 0.15rem !important;
+    left: -2rem !important;
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+}
+.custom-control-lg .custom-control-label {
+    margin-left: 0.5rem !important;
+    font-size: 1rem !important;
+}
+
+/* ==== Loader Overlay ==== */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 99;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading {
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    border: 4px solid #007bff;
+    width: 220px;
+    height: 120px;
+    display: none;
+    position: fixed;
+    background-color: #fff;
+    z-index: 999;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Loader spinner */
+    #loader {
+        border: 10px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 10px solid #9b030c;
+        width: 60px;
+        height: 60px;
+        margin: auto;
+        animation: spin 1s linear infinite;
+    }
+@@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Centering helper */
+.center {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+}
+
+</style>
+
+@*<style>
     .required::before {
         content: "*";
         font-weight: bold;
@@ -106,65 +299,67 @@
             opacity: 0;
         }
     }
-</style>
+</style>*@
 <div class="clearfix pt-2"></div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="card">
-        <div class="card-header">
-            @*@Html.ValidationSummary(true, "", new { @class = "text-danger", @id = "myForm" })*@
-            <label class="label blink_me pull-right">Please keep saving your form. Session will expire in 20 minutes.</label>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#PersonalDetailPartial" role="tab" aria-controls="nav-profile" aria-selected="true"><span class="badge badge-success">1</span> Personal Details</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-item nav-link" id="nav-service-tab" data-toggle="tab" href="#ServicePartial" role="tab" aria-controls="nav-service" aria-selected="false"><span class="badge badge-success">2</span> Service Details</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-item nav-link" id="nav-spousechild-tab" data-toggle="tab" href="#SpousePartial" role="tab" aria-controls="nav-spousechild" aria-selected="false"><span class="badge badge-success">3</span> Spouse Details</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-item nav-link" id="nav-child-tab" data-toggle="tab" href="#ChildrenPartial" role="tab" aria-controls="nav-child" aria-selected="false"><span class="badge badge-success">4</span> Children Details</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-item nav-link" id="nav-tally-tab" data-toggle="tab" href="#TallyPartial" role="tab" aria-controls="nav-tally" aria-selected="false"><span class="badge badge-success">5</span> College Administration</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-item nav-link" id="nav-account-tab" data-toggle="tab" href="#AccountInfoPartial" role="tab" aria-controls="nav-account" aria-selected="false"><span class="badge badge-success">6</span> Accounts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-item nav-link" id="nav-allpreview-tab" data-toggle="tab" href="#MemberCompletePreviewPartial" role="tab" aria-controls="nav-account" aria-selected="false"><span class="badge badge-success">7</span> Preview</a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body">
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="PersonalDetailPartial" role="tabpanel" aria-labelledby="nav-profile-tab">
-                </div>
+<div class="card">
+    <div class="card-header">
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger", @id = "myForm" })*@
 
-                <div class="tab-pane fade" id="ServicePartial" role="tabpanel" aria-labelledby="nav-service-tab">
-                </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#PersonalDetailPartial" role="tab" aria-controls="nav-profile" aria-selected="true"><span class="badge badge-success">1</span> Personal Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" id="nav-service-tab" data-toggle="tab" href="#ServicePartial" role="tab" aria-controls="nav-service" aria-selected="false"><span class="badge badge-success">2</span> Service Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" id="nav-spousechild-tab" data-toggle="tab" href="#SpousePartial" role="tab" aria-controls="nav-spousechild" aria-selected="false"><span class="badge badge-success">3</span> Spouse Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" id="nav-child-tab" data-toggle="tab" href="#ChildrenPartial" role="tab" aria-controls="nav-child" aria-selected="false"><span class="badge badge-success">4</span> Children Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" id="nav-tally-tab" data-toggle="tab" href="#TallyPartial" role="tab" aria-controls="nav-tally" aria-selected="false"><span class="badge badge-success">5</span> College Administration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" id="nav-account-tab" data-toggle="tab" href="#AccountInfoPartial" role="tab" aria-controls="nav-account" aria-selected="false"><span class="badge badge-success">6</span> Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" id="nav-allpreview-tab" data-toggle="tab" href="#MemberCompletePreviewPartial" role="tab" aria-controls="nav-account" aria-selected="false"><span class="badge badge-success">7</span> Preview</a>
+            </li>
+        </ul>
 
-                <div class="tab-pane fade" id="SpousePartial" role="tabpanel" aria-labelledby="nav-spousechild-tab">
-                </div>
-                <div class="tab-pane fade" id="ChildrenPartial" role="tabpanel" aria-labelledby="nav-child-tab">
-                </div>
+    </div>
+    <label class="label blink_me pull-right">Please keep saving your form. Session will expire in 20 minutes.</label>
+    <div class="card-body">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="PersonalDetailPartial" role="tabpanel" aria-labelledby="nav-profile-tab">
+            </div>
 
-                <div class="tab-pane fade" id="TallyPartial" role="tabpanel" aria-labelledby="nav-tally-tab">
-                </div>
-                <div class="tab-pane fade" id="AccountInfoPartial" role="tabpanel" aria-labelledby="nav-account-tab">
-                </div>
-                <div class="tab-pane fade" id="MemberCompletePreviewPartial" role="tabpanel" aria-labelledby="nav-allpreview-tab">
-                </div>
+            <div class="tab-pane fade" id="ServicePartial" role="tabpanel" aria-labelledby="nav-service-tab">
+            </div>
 
-                <div id="dialog" style="display: none">
-                </div>
+            <div class="tab-pane fade" id="SpousePartial" role="tabpanel" aria-labelledby="nav-spousechild-tab">
+            </div>
+            <div class="tab-pane fade" id="ChildrenPartial" role="tabpanel" aria-labelledby="nav-child-tab">
+            </div>
+
+            <div class="tab-pane fade" id="TallyPartial" role="tabpanel" aria-labelledby="nav-tally-tab">
+            </div>
+            <div class="tab-pane fade" id="AccountInfoPartial" role="tabpanel" aria-labelledby="nav-account-tab">
+            </div>
+            <div class="tab-pane fade" id="MemberCompletePreviewPartial" role="tabpanel" aria-labelledby="nav-allpreview-tab">
+            </div>
+
+            <div id="dialog" style="display: none">
             </div>
         </div>
     </div>
+</div>
     <div id="loader" class="center"></div>
     <div class="loading" align="center">
         Loading. Please wait.<br />
