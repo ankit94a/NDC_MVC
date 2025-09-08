@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head id="Head1">
     <meta charset="utf-8" />
@@ -201,6 +202,13 @@
     <!-- Core JS -->
 
     <script src="~/Component/js/jquery/jquery-3.7.1.min.js"></script>
+
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+
+    <!-- jQuery UI JS -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
     <script src="~/Component/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugins -->
@@ -230,13 +238,13 @@
 
 
     @*@Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/custom")
-    @Scripts.Render("~/bundles/toastr")*@
+        @Scripts.Render("~/bundles/custom")
+        @Scripts.Render("~/bundles/toastr")*@
 
 
     @*<script>
-        toastrOptDefault();
-    </script>*@
+            toastrOptDefault();
+        </script>*@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const toggleBtn = document.getElementById("sidebarToggle");

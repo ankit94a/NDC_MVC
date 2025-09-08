@@ -100,5 +100,38 @@ namespace NDCWeb.Areas.Member.Controllers
                 }
             }
         }
+
+
+        //added by Nitin kumar 
+        [HttpPost]
+        public JsonResult GetImageGalleryByMonth(int year, int month)
+        {
+            using (var uow = new UnitOfWork(new NDCWebContext()))
+            {
+                var mediaGalry = uow.MediaGalleryRepo.FindAsQuery(
+                    x => x.MediaType == MediaType.Image
+                         && x.Archive == false
+                         && x.MediaCategoryId == 5
+                         && x.PublishDate.Year == year
+                         && x.PublishDate.Month == month,
+                    np => np.MediaCategoryMasters,
+                    np2 => np2.iMediaFiles
+                );
+
+                var mediaGalryFiltered = mediaGalry
+                    .OrderBy(mg => mg.PublishDate)
+                    .ToList();
+
+                var config = new MapperConfiguration(cfg =>
+                    cfg.CreateMap<MediaGallery, HomeBannerSliderVM>());
+                IMapper mapper = config.CreateMapper();
+
+                var gallery = mapper
+                    .Map<IEnumerable<MediaGallery>, IEnumerable<HomeBannerSliderVM>>(mediaGalryFiltered)
+                    .ToList();
+
+                return Json(new { gallery = gallery }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
