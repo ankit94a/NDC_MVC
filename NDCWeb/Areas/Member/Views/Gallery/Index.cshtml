@@ -2,7 +2,7 @@
 @using NDCWeb.Infrastructure.Constants;
 @{
     ViewBag.Title = "Index";
- }
+}
 <style>
     .list-groups {
         max-height: 300px;
@@ -10,141 +10,139 @@
         overflow: scroll;
         -webkit-overflow-scrolling: touch;
     }
-</style>
-<div class="container pt-2">
-    <div class="card">
-        <div class="card-header">&nbsp;&nbsp; Photo Gallery</div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="list-groups eventCls">
-                    </div>
-                </div>
-                <div class="col-md-9 shadow">
-                    <div class="row galleryCls">
 
-                    </div>
-                </div>
+    /* Gallery Header Styles */
+    .gallery-title {
+        display: inline-block;
+        background: #007BFF; /* Bootstrap blue */
+        color: #fff;
+        font-weight: bold;
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-size: 28px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .gallery-subtitle {
+        color: #555;
+        font-size: 16px;
+        margin-top: 10px;
+        font-style: italic;
+    }
+</style>
+
+<!-- Photo Gallery Header -->
+<div class="text-center my-4">
+    <h2 class="gallery-title">PHOTO GALLERY</h2>
+    <p class="gallery-subtitle">A glimpse into our moments, events, and celebrations</p>
+</div>
+
+<div class="border border-secondary rounded mt-4">
+    <!-- Calendar Header -->
+    <div class="calendar-header d-flex justify-content-between align-items-center mb-4 px-3">
+        <button id="prevMonth" class="btn btn-danger btn-sm">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <h4 id="currentMonth" class="mb-0 text-dark"></h4>
+        <button id="nextMonth" class="btn btn-danger btn-sm">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Month-Wise Gallery Sections -->
+    <div id="galleryContainer" class="row"></div>
+</div>
+
+
+<!-- Image Popup Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark">
+            <div class="modal-body p-0 text-center">
+                <img id="modalImage" src="" class="img-fluid rounded" alt="">
+            </div>
+            <div class="modal-footer justify-content-between">
+                <p id="modalCaption" class="text-light mb-0"></p>
+                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+                    Close
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+
 @section Scripts{
-    <script src="~/Component/js/carousel.js"></script>
-
     <script type="text/javascript">
-        $(function () {
-            getGalleryEvent();
-            //getImageGallery();
-        });
-        function getGalleryEvent() {
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("GetGalleryEvent")',
-                data: [],
-                dataType: "json",
-                success: OnEventSuccess,
-                error: function () {
-                    alert('Server Not Found');
-                }
-            });
-        };
-        function getImageGallery(mediaGalleryId) {
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("GetImageGallery")',
-                data: { mediaGalleryId: mediaGalleryId },
-                dataType: "json",
-                success: OnGallerySuccess,
-                error: function (response) {
-                    alert('Server Not Found');
-                }
-            });
-        };
-        function OnEventSuccess(response) {
-            let galleryEvents = response.galleryEvents;
-            fillEvent(galleryEvents);
-        };
-        function OnGallerySuccess(response) {
-            let gallery = response.gallery;
-            fillGallery(gallery);
-        };
-        function fillEvent(galleryEvents) {
-            let $galleryEvents = galleryEvents;
-            let $eventDiv = $('.eventCls');
-            $eventDiv.empty();
-            $eventDiv.append(`<ul class="list-group"><li class="list-group-item active">Events</li>`);
-            $.each($galleryEvents, function (i, event) {
-                var mfPath = (event.FilePath).replace("~", "");
-                $eventDiv.append(`
-                            <li class="list-group-item small"><a href="javascript:void();" onclick="getImageGallery(${event.MediaGalleryId})" class="list-group-item-action small">
-                            <img src="/component/images/pict-folder.png" alt="" title="" width=32px height=32px>  ${event.Caption}</a></li>
-                        `);
-            });
-        }
-        function fillGallery(gallery) {
-            let $gallery = gallery;
-            let $gallryDiv = $('.galleryCls');
-            let $galleryIndex = $('.galleryIndexCls');
-            $galleryIndex.empty();
-            $gallryDiv.empty();
-            $.each($gallery, function (i, mg) {
-                let $file = mg.iMediaFiles;
-                //let mgPublishDate = getIntToDateFormat(mg.PublishDate);
-                let active = 'active';
-                $.each($file, function (i, mf) {
-                    let mfPath = (mf.FilePath).replace("~", "");
-                    $gallryDiv.append(`<div class="col-md-4"><a href='${mfPath}' target='_blank'><img onclick="window.open(this.src)" class="img-fluid img-thumbnail mb-2" src="${mfPath}" alt="Card image cap"> </a> </div>`);                    
-                });
-            });
-        }
-    </script>
+    let currentDate = new Date();
 
-    @*<script>
-    $(document).ready(function () {
-        getHomeSlider();
+    $(function () {
+        loadGallery(currentDate.getFullYear(), currentDate.getMonth() + 1);
+
+        $("#prevMonth").click(function () {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            loadGallery(currentDate.getFullYear(), currentDate.getMonth() + 1);
+        });
+
+        $("#nextMonth").click(function () {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            loadGallery(currentDate.getFullYear(), currentDate.getMonth() + 1);
+        });
     });
-    function getHomeSlider() {
+
+    function loadGallery(year, month) {
+        let monthName = new Date(year, month - 1).toLocaleString("default", { month: "long" });
+        $("#currentMonth").text(monthName + " " + year);
+
         $.ajax({
-            type: "get",
-            //url: '/api/home/GetBannerSlider/category/Main Home Page Banner' ,
-            url: '@Url.Action("GeImageGalleryForMember")',
+            type: "POST",
+            url: '@Url.Action("GetImageGalleryByMonth")',
+            data: { year: year, month: month },
             dataType: "json",
-            success: OnHomeSliderSuccess,
+            success: function (response) {
+                renderGallery(response.gallery, monthName, year);
+            },
             error: function () {
-                alert('Server Not Found');
+                $("#galleryContainer").html('<p class="text-center text-muted">Server Not Found</p>');
             }
         });
-    };
-    function OnHomeSliderSuccess(response) {
-        let gallery = response;
-        fillGallerySlider(gallery);
-    };
-    function fillGallerySlider(gallery) {
-        let $gallery = gallery;
-        let $gallryDiv = $('.homeSliderCls');
-        $gallryDiv.empty();
-        let indx = 0;
-        $.each($gallery, function (i, mg) {
-            let $file = mg.iMediaFiles;
-            //let mgPublishDate = getIntToDateFormat(mg.PublishDate);
-            let active = 'active';
-            $.each($file, function (j, mf) {
-                var mfPath = (mf.FilePath).replace("~", "");
-                if (indx === 0) { active = 'active'; } else { active = ''; }
-                $gallryDiv.append(`
-                        <div class='item ${active}'>
-                            <img class="img-responsive" src="${mfPath}" alt='Banner' title='Banner'>
-                            <div class='carousel-caption'>
-                                <p>${mg.Description}</p>
-                            </div>
-                        </div>
-                        `);
-                indx++;
-            });
-        });
     }
-    </script>*@
+
+        function renderGallery(gallery, monthName, year) {
+            let $container = $("#galleryContainer");
+            $container.empty();
+
+            if (!gallery || gallery.length === 0) {
+                $container.html(`<p class="text-center text-muted">No images available for ${monthName} ${year}</p>`);
+                return;
+            }
+
+            $.each(gallery, function (i, mg) {
+                $.each(mg.iMediaFiles, function (j, mf) {
+                    let mfPath = mf.FilePath.replace("~", "");
+                    $container.append(`
+                <div class="col-md-4 mb-3">
+                    <img src="${mfPath}"
+                         class="img-fluid img-thumbnail gallery-img"
+                         alt="${mg.Caption}"
+                         data-caption="${mg.Caption}"
+                         data-src="${mfPath}">
+                    <p class="text-center small text-muted mt-1">${mg.Caption}</p>
+                </div>
+            `);
+                });
+            });
+
+            // Attach click event for popup
+            $(".gallery-img").click(function () {
+                let src = $(this).data("src");
+                let caption = $(this).data("caption");
+                $("#modalImage").attr("src", src);
+                $("#modalCaption").text(caption);
+                $("#imageModal").modal("show");
+            });
+        }
+
+    </script>
 }
-
-
