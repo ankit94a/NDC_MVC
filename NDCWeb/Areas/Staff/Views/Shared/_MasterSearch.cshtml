@@ -58,7 +58,7 @@
         align-items: center;
         text-align: center;
         height: -webkit-fill-available;
-        background-color: #9b030c;!important;
+        background-color: #9b030c !important;
         color: #fff !important;
         font-weight: 700;
     }
@@ -69,6 +69,9 @@
         border:none;
         border-radius:5px;
         height:30px;
+    }
+    .custom{
+        margin-left:15vw;
     }
 </style>
 
@@ -84,11 +87,11 @@
                 console.log("User:", response);
 
                 bindPersonalDetails(response.data.PersonalVM)
-                bindServiceDetails(response.data.AppointmentVM)
-                bindSpouseDetails(response.data.SpouseVM)
-                bindChildrenDetails(response.data.ChildrensVM)
-                bindAdministrtionDetails(response.data.TallyVM)
-                bindAccountDetails(response.data)
+                //bindServiceDetails(response.data.AppointmentVM)
+                //bindSpouseDetails(response.data.SpouseVM)
+                //bindChildrenDetails(response.data.ChildrensVM)
+                //bindAdministrtionDetails(response.data.TallyVM)
+                //bindAccountDetails(response.data)
                 myModal = new bootstrap.Modal(document.getElementById('userModal'));
                 myModal.show();
             },
@@ -114,7 +117,7 @@
         <p><strong>Blood Group:</strong> ${user.BloodGroup ?? ''}</p>
         <p><strong>Height:</strong> ${user.Height ?? ''}</p>
         <p><strong>Identification Mark:</strong> ${user.IndentificationMark ?? ''}</p>
-        <p><strong>Citizenship Country:</strong> ${user.CitizenshipCountries.CountryName ?? ''}</p>
+        <p><strong>Citizenship Country:</strong> ${user.CitizenshipCountries?.CountryName ?? ''}</p>
         <p><strong>Medical Condition/Category:</strong> ${user.MedicalCategory ?? ''}</p>
         <p><strong>NOK:</strong> ${user.NOK ?? ''}</p>
     `);
@@ -363,7 +366,7 @@
     }
 </script>
 
-@using (Html.BeginForm("MasterSearch", "Event", FormMethod.Get, new { @class = "input-box d-flex align-items-center justify-content-center position-relative left-50%" }))
+@using (Html.BeginForm("MasterSearch", "Event", FormMethod.Get, new { @class = "input-box d-flex align-items-center justify-content-center position-relative custom" }))
 {
     <input type="text" name="query" class="form-control" placeholder="Master Search" value="@ViewBag.Query" autocomplete="off" />
     <button type="submit" class="btn-color ms-2">Submit</button>
@@ -452,7 +455,7 @@
                             <div class="col-md-6 ">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Visa Details</div>
-                                    <div class="card-body id=visaDetail">
+                                    <div class="card-body" id="visaDetail">
 
                                     </div>
                                 </div>
@@ -504,7 +507,7 @@
                             <div class="col-md-6">
                                 <div class="card h-100">
                                     <div class="card-header fw-bold">Appointments Held</div>
-                                    <div class="card-body" id="appointmentDetails"
+                                    <div class="card-body" id="appointmentDetails">
                                     </div>
                                 </div>
                             </div>
