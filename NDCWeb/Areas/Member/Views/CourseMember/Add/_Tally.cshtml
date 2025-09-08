@@ -1,7 +1,7 @@
 ﻿
 @model NDCWeb.Areas.Member.View_Models.TallyDetailCrtVM
 
-<div class="card mt-4">
+<div class="card shadow p-3">
     <div class="card-header">
         Administration
     </div>
@@ -12,7 +12,7 @@
             @Html.AntiForgeryToken()
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="card mt-2">
+            <div class="card mt-2 p-3">
                 <div class="card-header" style="background-color:#fff">
                     Name Tally
                 </div>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card mt-2">
+            <div class="card mt-2 p-3">
                 <div class="card-header" style="background-color:#fff">
                     <span class="font-weight-bold" style="color:red">Note</span>
                 </div>
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="card mt-2">
+            <div class="card mt-2 p-3">
                 <div class="card-header" style="background-color:#fff">
                     Tele Directory of Current NDC Course
                 </div>
@@ -101,41 +101,91 @@
                     </div>
                 </div>
             </div>
-            <div class="card mt-2">
-                <div class="card-header" style="background-color:#fff">
+            <div class="card mt-2 p-3">
+                <div class="card-header bg-white">
                     Vehicle Sticker
                 </div>
                 <div class="card-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Brand/Model No</th>
+                                <th>Colour</th>
+                                <th>Registration No</th>
+                                <th>Driving License No</th>
+                                <th>RC Upload</th>
+                                <th>DL Upload</th>
+                                <th style="width:120px; text-align:center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vehicleStickerBody">
+                            <tr class="vehicle-row">
+                                <td><input type="text" class="form-control vsBrandModelNo" placeholder="Brand/Model No"></td>
+                                <td><input type="text" class="form-control vsColour" placeholder="Colour"></td>
+                                <td><input type="text" class="form-control vsRegistrationNo" placeholder="Registration No"></td>
+                                <td><input type="text" class="form-control vsDrivingLicenseNo" placeholder="Driving License No"></td>
+                                <td>
+                                    <input type="file" class="form-control-file vsRCUpload">
+                                    <input type="hidden" class="vsRegistrationCertificatePath" value="#">
+                                </td>
+                                <td>
+                                    <input type="file" class="form-control-file vsDLUpload">
+                                    <input type="hidden" class="vsDrivingLicensePath" value="#">
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-danger btn-sm remove-VehicleSticker">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary btn-sm add-VehicleSticker">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input type="hidden" value="1" id="total_vs">
+                </div>
+            </div>
+
+            @*<div class="card mt-2 p-3">
+            <div class="card-header" style="background-color:#fff">
+                Vehicle Sticker
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <Label class="control-label">Brand/Model No</Label>
+                        <input type="text" name="Brand" id="vsBrandModelNo_1" class="form-control" placeholder="Brand/Model No">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <Label class="control-label">Colour</Label>
+                        <input type="text" name="Colour" id="vsColour_1" class="form-control" placeholder="Colour">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <Label class="control-label">Registration No</Label>
+                        <input type="text" name="RegistrationNo" id="vsRegistrationNo_1" class="form-control" placeholder="RegistrationNo">
+                    </div>
+                    <div class="form-group col-md-4">
+                        </div>
+                    </div>
                     <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <Label class="control-label">Brand/Model No</Label>
-                            <input type="text" name="Brand" id="vsBrandModelNo_1" class="form-control" placeholder="Brand/Model No">
-                        </div>
-                        <div class="form-group col-md-1">
-                            <Label class="control-label">Colour</Label>
-                            <input type="text" name="Colour" id="vsColour_1" class="form-control" placeholder="Colour">
-                        </div>
-                        <div class="form-group col-md-2">
-                            <Label class="control-label">Registration No</Label>
-                            <input type="text" name="RegistrationNo" id="vsRegistrationNo_1" class="form-control" placeholder="RegistrationNo">
-                        </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-4">
                             <Label class="control-label">Driving License No</Label>
                             <input type="text" name="DrivingLicenseNo" id="vsDrivingLicenseNo_1" class="form-control" placeholder="Driving License No">
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-4">
                             <label>Upload Image(s) Registration Certificate:</label>
                             <input id="vsRegistrationCertificatePicfile_1" type="file" name="vsRegistrationCertificatePicfile" onchange="imgValidateEdit('vsRegistrationCertificatePicfile_1', 'hdnRegistrationCertificatePath_1')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
                             <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
                             <input type="hidden" value="#" id="hdnRegistrationCertificatePath_1">
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-4">
                             <label>Upload Image(s) of Driving License:</label>
                             <input id="vsDrivingLicensePicfile_1" type="file" name="vsDrivingLicensePicfile" onchange="imgValidateEdit('vsDrivingLicensePicfile_1', 'hdnDrivingLicensePath_1')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
                             <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
                             <input type="hidden" value="#" id="hdnDrivingLicensePath_1">
                         </div>
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-4">
                             <Label class="control-label pb-1" style="width:100%"></Label>
                             <button type="button" class="add-VehicleSticker btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
                             <button type="button" class="remove-VehicleSticker btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i></button>
@@ -146,11 +196,14 @@
                     <input type="hidden" value="1" id="total_vs">
 
                 </div>
-            </div>
+        </div>*@
 
         </div>
         <div class="card-footer text-center bg-white">
-            <input type="button" id="btnSaveTally" value="Submit" onclick="addTally()" class="btn btn-primary btn-lg" />
+            <input type="button" id="btnSaveTally" value="Submit" onclick="addTally()" class="btn btn-outline-danger" />
+        </div>
+        <div class="card-body">
+            @Html.ValidationSummary(false, "Please fix the following error and then submit the form:-", new { @class = "text-danger" })
         </div>
 
     }
@@ -158,67 +211,8 @@
 </div>
 
 @Scripts.Render("~/bundles/jqueryval")
+
 <script>
-    // #region Vehicle Sticker
-    function storeVehicleSticker() {
-        let ttlcv = $('#total_vs').val();
-        let vehicleStickers = [];
-        for (i = 1, j = 0; i <= ttlcv; i++, j++) {
-            vehicleStickers[j] = {
-                VehicleId: $('#vsVehicleId_' + i).val(),
-                BrandModelNo: $('#vsBrandModelNo_' + i).val(),
-                Colour: $('#vsColour_' + i).val(),
-                RegistrationNo: $('#vsRegistrationNo_' + i).val(),
-                DrivingLicenseNo: $('#vsDrivingLicenseNo_' + i).val(),
-                NoOfVehicle: $('#vsNoOfVehicle_' + i).val(),
-                RegistrationCertificatePath: $('#hdnRegistrationCertificatePath_' + i).val() || '#',
-                DrivingLicensePath: $('#hdnDrivingLicensePath_' + i).val() || '#',
-            };
-        }
-        return vehicleStickers;
-    }
-
-    $('.add-VehicleSticker').on('click', addVehicleSticker);
-    $('.remove-VehicleSticker').on('click', removeVehicleSticker);
-    function addVehicleSticker() {
-        let new_row_no = parseInt($('#total_vs').val()) + 1;
-        let new_row_inputs = `<div id="VehicleSticker_${new_row_no}" class="form-row">
-                                <div class="form-group col-md-2">
-                                    <input type="text" name="Brand" id="vsBrandModelNo_${new_row_no}" required title="Enter Brand/Model No" class="form-control" placeholder="Brand/Model No">
-                                </div>
-                                <div class="form-group col-md-1">
-                                    <input type="text" name="Colour" id="vsColour_${new_row_no}" required title="Enter Colour" class="form-control" placeholder="Colour">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <input type="text" name="RegistrationNo" id="vsRegistrationNo_${new_row_no}" required title="Enter RegistrationNo" class="form-control" placeholder="RegistrationNo">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <input type="text" name="DrivingLicenseNo" id="vsDrivingLicenseNo_${new_row_no}" required title="Enter Driving License No" class="form-control" placeholder="Driving License No">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <input id="vsRegistrationCertificatePicfile_${new_row_no}" type="file" name="vsRegistrationCertificatePicfile" onchange="imgValidateEdit('vsRegistrationCertificatePicfile_${new_row_no}', 'hdnRegistrationCertificatePath_${new_row_no}')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
-                                    <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
-                                    <input type="hidden" value="#" id="hdnRegistrationCertificatePath_${new_row_no}">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <input id="vsDrivingLicensePicfile_${new_row_no}" type="file" name="vsDrivingLicensePicfile" onchange="imgValidateEdit('vsDrivingLicensePicfile_${new_row_no}', 'hdnDrivingLicensePath_${new_row_no}')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
-                                    <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
-                                    <input type="hidden" value="#" id="hdnDrivingLicensePath_${new_row_no}">
-                                </div>
-                            </div>`
-        $('#new_vs').append(new_row_inputs);
-        $('#total_vs').val(new_row_no);
-    }
-    function removeVehicleSticker() {
-        let last_row_no = $('#total_vs').val();
-
-        if (last_row_no > 1) {
-            $('#VehicleSticker_' + last_row_no).remove();
-            $('#total_vs').val(last_row_no - 1);
-        }
-    }
-    // #endregion
-
     function fillTallyDetail() {
         let tally = {
             RankAbbr: $("#RankAbbr").val(),
@@ -268,4 +262,173 @@
             })
         }
     }
+    // Collect Vehicle Sticker list
+    function storeVehicleSticker() {
+        let vehicleStickers = [];
+        $("#vehicleStickerBody .vehicle-row").each(function (i) {
+            vehicleStickers.push({
+                VehicleId: i + 1, // optional
+                BrandModelNo: $(this).find(".vsBrandModelNo").val(),
+                Colour: $(this).find(".vsColour").val(),
+                RegistrationNo: $(this).find(".vsRegistrationNo").val(),
+                DrivingLicenseNo: $(this).find(".vsDrivingLicenseNo").val(),
+                NoOfVehicle: 1,
+                RegistrationCertificatePath: $(this).find(".vsRegistrationCertificatePath").val() || "#",
+                DrivingLicensePath: $(this).find(".vsDrivingLicensePath").val() || "#",
+            });
+        });
+        return vehicleStickers;
+    }
+
+    // Add row
+    $(document).on("click", ".add-VehicleSticker", function () {
+        let newRow = $("#vehicleStickerBody .vehicle-row:first").clone();
+        newRow.find("input").val(""); // clear values
+        $("#vehicleStickerBody").append(newRow);
+        updateVehicleButtons();
+    });
+
+    // Remove row (keep at least one)
+    $(document).on("click", ".remove-VehicleSticker", function () {
+        if ($("#vehicleStickerBody .vehicle-row").length > 1) {
+            $(this).closest("tr").remove();
+        } else {
+            $(this).closest("tr").find("input").val("");
+        }
+        updateVehicleButtons();
+    });
+
+    // Update + / – buttons visibility
+    function updateVehicleButtons() {
+        const rows = $("#vehicleStickerBody .vehicle-row");
+        rows.each(function (index) {
+            const isLast = index === rows.length - 1;
+            const $addBtn = $(this).find(".add-VehicleSticker");
+            const $removeBtn = $(this).find(".remove-VehicleSticker");
+
+            if (isLast) {
+                $addBtn.show();
+                $removeBtn.show();
+            } else {
+                $addBtn.hide();
+                $removeBtn.show();
+            }
+        });
+        $("#total_vs").val(rows.length || 1);
+    }
+
+    // Init on page load
+    $(document).ready(function () {
+        updateVehicleButtons();
+    });
+
 </script>
+@*<script>
+    let totalVehicle = 1;
+
+    // ✅ Function to update buttons visibility
+    function updateVehicleButtons() {
+        const rows = $("[id^='VehicleSticker_']");
+        rows.each(function (index) {
+            const isLast = (index === rows.length - 1);
+            const $row = $(this);
+            const $addBtn = $row.find(".add-VehicleSticker");
+            const $removeBtn = $row.find(".remove-VehicleSticker");
+
+            if (isLast) {
+                $addBtn.show();
+                $removeBtn.show();
+            } else {
+                $addBtn.hide();
+                $removeBtn.show();
+            }
+        });
+        $("#total_vs").val(rows.length || 1);
+    }
+
+    // #region Vehicle Sticker
+    function storeVehicleSticker() {
+        let ttlcv = $('#total_vs').val();
+        let vehicleStickers = [];
+        for (let i = 1, j = 0; i <= ttlcv; i++, j++) {
+            if ($("#vsBrandModelNo_" + i).length) {
+                vehicleStickers[j] = {
+                    VehicleId: $('#vsVehicleId_' + i).val(),
+                    BrandModelNo: $('#vsBrandModelNo_' + i).val(),
+                    Colour: $('#vsColour_' + i).val(),
+                    RegistrationNo: $('#vsRegistrationNo_' + i).val(),
+                    DrivingLicenseNo: $('#vsDrivingLicenseNo_' + i).val(),
+                    NoOfVehicle: $('#vsNoOfVehicle_' + i).val(),
+                    RegistrationCertificatePath: $('#hdnRegistrationCertificatePath_' + i).val() || '#',
+                    DrivingLicensePath: $('#hdnDrivingLicensePath_' + i).val() || '#',
+                };
+            }
+        }
+        return vehicleStickers;
+    }
+
+    // Add new row
+    function addVehicleSticker() {
+        totalVehicle++;
+        let new_row_no = parseInt($('#total_vs').val()) + 1;
+        let new_row_inputs = `
+            <div id="VehicleSticker_${new_row_no}" class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" name="Brand" id="vsBrandModelNo_${new_row_no}" class="form-control" placeholder="Brand/Model No">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" name="Colour" id="vsColour_${new_row_no}" class="form-control" placeholder="Colour">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" name="RegistrationNo" id="vsRegistrationNo_${new_row_no}" class="form-control" placeholder="RegistrationNo">
+                </div>
+                <div class="form-group col-md-4">
+    </div>
+                 </div>
+ <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" name="DrivingLicenseNo" id="vsDrivingLicenseNo_${new_row_no}" class="form-control" placeholder="Driving License No">
+                </div>
+                <div class="form-group col-md-4">
+                    <input id="vsRegistrationCertificatePicfile_${new_row_no}" type="file"
+                           onchange="imgValidateEdit('vsRegistrationCertificatePicfile_${new_row_no}', 'hdnRegistrationCertificatePath_${new_row_no}')"
+                           class="form-control-file" accept="image/jpeg,image/png" />
+                    <input type="hidden" value="#" id="hdnRegistrationCertificatePath_${new_row_no}">
+                </div>
+                <div class="form-group col-md-4">
+                    <input id="vsDrivingLicensePicfile_${new_row_no}" type="file"
+                           onchange="imgValidateEdit('vsDrivingLicensePicfile_${new_row_no}', 'hdnDrivingLicensePath_${new_row_no}')"
+                           class="form-control-file" accept="image/jpeg,image/png" />
+                    <input type="hidden" value="#" id="hdnDrivingLicensePath_${new_row_no}">
+                </div>
+                <div class="form-group col-md-4 text-center">
+                    <button type="button" class="remove-VehicleSticker btn btn-outline-danger btn-sm"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="add-VehicleSticker btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>`;
+        $('#new_vs').append(new_row_inputs);
+        updateVehicleButtons();
+    }
+
+    // Remove row
+    function removeVehicleSticker() {
+        const rows = $("[id^='VehicleSticker_']");
+        if (rows.length > 1) {
+            $(this).closest(".form-row").remove();
+        } else {
+            // clear inputs if only 1 row remains
+            $(this).closest(".form-row").find("input[type='text'], input[type='file'], input[type='hidden']").val('');
+        }
+        updateVehicleButtons();
+    }
+    // #endregion
+
+    // Attach event handlers
+    $(document).on("click", ".add-VehicleSticker", addVehicleSticker);
+    $(document).on("click", ".remove-VehicleSticker", removeVehicleSticker);
+
+    // Initialize on load
+    $(document).ready(function () {
+        updateVehicleButtons();
+    });
+</script>*@

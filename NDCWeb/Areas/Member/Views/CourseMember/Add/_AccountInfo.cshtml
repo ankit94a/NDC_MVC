@@ -6,7 +6,7 @@
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="card mt-4">
+        <div class="card mt-4 p-3">
             <div class="card-header">
                 Bank Account Details (For Indian & Foreign Officers)
             </div>
@@ -36,7 +36,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-5">
                         <label for="passbookPicfile" class="">Upload Image of Passbook or Cancelled Cheque: </label>
-                        <input id="passbookPicfile" type="file"  name="passbookPicfile" onchange="imgValidate('passbookPicfile', 'PassbookPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png"/>
+                        <input id="passbookPicfile" type="file" name="passbookPicfile" onchange="imgValidate('passbookPicfile', 'PassbookPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
                         <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
                         @Html.EditorFor(model => model.PassbookPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
                         @Html.ValidationMessageFor(model => model.PassbookPath, "", new { @class = "text-danger" })
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mt-2">
+        <div class="card mt-2 p-3">
             <div class="card-header">
                 PAO Details (Indian Army & Navy Officers only)
             </div>
@@ -147,6 +147,9 @@
             </div>
         </div>
     </div>
+    <div class="card-body">
+        @Html.ValidationSummary(false, "Please fix the following error and then submit the form:-", new { @class = "text-danger" })
+    </div>
 }
 
 @Scripts.Render("~/bundles/jqueryval")
@@ -157,7 +160,7 @@
             AccountNo: $("#AccountNo").val(),
             AccountType: $("#AccountType").val(),
             IFSC: $("#IFSC").val(),
-            MICR: $("#MICR").val(),         
+            MICR: $("#MICR").val(),
             PassbookPath: $("#PassbookPath").val() || '#',
             NameAndAddressOfBanker: $("#NameAndAddressOfBanker").val(),
             CDAAcNo: $("#CDAAcNo").val(),

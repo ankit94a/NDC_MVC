@@ -11,62 +11,76 @@
             font-weight: bold;
             color: red;
         }
+
+
+        .languageRow .col-md-2,
+        .languageRow .col-md-4 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .languageRow input[type="checkbox"] {
+            margin: 0 auto; /* keeps checkboxes centered */
+            display: block;
+        }
     </style>
     @Html.AntiForgeryToken()
 
-    <div class="card mt-4">
+    <div class="card mt-4 p-3">
         <div class="card-header" style="background-color:#fff">
             PARTICULAR
         </div>
         <div class="card-body">
             <div class="form-row">
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Name</Label>
                     @Html.EditorFor(model => model.SpouseName, new { htmlAttributes = new { @class = "form-control required" } })
                     @Html.ValidationMessageFor(model => model.SpouseName, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-3">
                     <Label class="control-label required">Blood Group</Label>
                     @Html.DropDownListFor(model => model.SpouseBloodGroup, (IEnumerable<SelectListItem>)ViewBag.BloodGroup, "-- Select --", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.SpouseBloodGroup, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label required">Contact No</Label>
                     @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
                     @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
                     <Label class="control-label required">Date of Birth</Label>
                     @Html.EditorFor(model => model.SpouseDOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.SpouseDOBirth, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Occupation</Label>
                     @Html.EditorFor(model => model.Occupation, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Occupation, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-3">
-                    <Label class="control-label">Spouse staying with officer during course?</Label>
+                <div class="form-group col-md-3 p-3">
                     @Html.EditorFor(model => model.SpouseStay, new { htmlAttributes = new { @class = "custom-checkbox" } })
+                    <Label class="control-label mb-0">Spouse staying with officer during course?</Label>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card mt-4">
+    <div class="card mt-4 p-3">
         <div class="card-header" style="background-color:#fff">
             PASSPORT DETAIL (to be filled by Foreign Officers only)
         </div>
         <div class="card-body">
             <div class="form-row">
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-12">
                     <label class="control-label"><b>Are you holding any Passport</b></label>
                     <div class="form-inline">
-                        <label class="containerchk col-md-1">
+                        <label class="containerchk col-md-6">
                             Yes @Html.RadioButtonFor(model => model.HoldingPassport, "Yes", new { id = "spousepassport-true" })
                             <span class="checkmark"></span>
                         </label>
-                        <label class="containerchk col-md-1">
+                        <label class="containerchk col-md-6">
                             No @Html.RadioButtonFor(model => model.HoldingPassport, "No", new { id = "spousepassport-false" })
                             <span class="checkmark"></span>
                         </label>
@@ -87,17 +101,20 @@
                         @Html.EditorFor(model => model.SpousePassportName, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.SpousePassportName, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <Label class="control-label">Date of Issue</Label>
                         @Html.EditorFor(model => model.SpousePassportIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.SpousePassportIssueDate, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <Label class="control-label">Valid Upto</Label>
                         @Html.EditorFor(model => model.SpousePassportValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.SpousePassportValidUpto, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-2">
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
                         <label for="citizencountry">Passport Type</label>
                         @Html.DropDownListFor(model => model.SpousePassportType, (IEnumerable<SelectListItem>)ViewBag.PassportType, "-- Select --", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.SpousePassportType, "", new { @class = "text-danger" })
@@ -107,8 +124,6 @@
                         @Html.DropDownListFor(model => model.SpousePassportCountryIssued, (IEnumerable<SelectListItem>)ViewBag.ddlCountry, "-- Select --", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.SpousePassportCountryIssued, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="passport_self">Upload passport image (Front)</label>
                         <input id="spousePassportPicfile" type="file" title="Upload Your Spouse Passport" name="spousePassportPicfile" onchange="imgValidateEdit('spousePassportPicfile', 'SpousePassportImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
@@ -126,7 +141,7 @@
         </div>
     </div>
 
-    <div class="card mt-4">
+    <div class="card mt-4 p-3">
         <div class="card-header" style="background-color:#fff">
             VISA DETAIL
         </div>
@@ -137,12 +152,12 @@
                     @Html.EditorFor(model => model.SpouseVisaNo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.SpouseVisaNo, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Date of Issue</Label>
                     @Html.EditorFor(model => model.SpouseVisaIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.SpouseVisaIssueDate, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Valid Upto</Label>
                     @Html.EditorFor(model => model.SpouseVisaValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.SpouseVisaValidUpto, "", new { @class = "text-danger" })
@@ -165,12 +180,12 @@
                     @Html.EditorFor(model => model.SpouseFRRONo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.SpouseFRRONo, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Date of Issue</Label>
                     @Html.EditorFor(model => model.SpouseFRROIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.SpouseFRROIssueDate, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Valid Upto</Label>
                     @Html.EditorFor(model => model.SpouseFRROValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.SpouseFRROValidUpto, "", new { @class = "text-danger" })
@@ -184,116 +199,224 @@
             </div>
         </div>
     </div>
-    <div class="card mt-4">
-        <div class="card-header" style="background-color:#fff">
+    <div class="card mt-4 shadow-sm p-3">
+        <div class="card-header bg-white fw-bold">
             QUALIFICATION
         </div>
+
         <div class="card-body">
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <Label class="control-label">Higher education</Label>
-                    @Html.EditorFor(model => model.EduHigher, new { htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.ValidationMessageFor(model => model.EduHigher, "", new { @class = "text-danger" })*@
-                </div>
-                <div class="form-group col-md-2">
-                    <Label class="control-label">Subject</Label>
-                    @Html.EditorFor(model => model.EduSubject, new { htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.ValidationMessageFor(model => model.EduSubject, "", new { @class = "text-danger" })*@
-                </div>
-                <div class="form-group col-md-2">
-                    <Label class="control-label">Grade/Division</Label>
-                    @Html.EditorFor(model => model.EduDivision, new { htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.ValidationMessageFor(model => model.EduDivision, "", new { @class = "text-danger" })*@
-                </div>
-                <div class="form-group col-md-3">
-                    <Label class="control-label">Board/University</Label>
-                    @Html.EditorFor(model => model.EduUniversity, new { htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.ValidationMessageFor(model => model.EduUniversity, "", new { @class = "text-danger" })*@
+            <!-- Header Row -->
+            <div class="form-row font-weight-bold mb-2">
+                <div class="col-md-3">Professional Qualification</div>
+                <div class="col-md-3">Academic Achievement</div>
+                <div class="col-md-2">Grade/Division</div>
+                <div class="col-md-3">Institute</div>
+                <div class="col-md-1 text-center">Action</div>
+            </div>
+
+            <!-- Container for dynamic rows -->
+            <div id="qualificationContainer">
+                <div class="form-row align-items-center mb-2 qualificationRow">
+                    <div class="col-md-3">
+                        <input type="text" name="quSProfessionalEdu_1" class="form-control form-control-sm" placeholder="Professional Qualification">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" name="quSAcademicAchievement_1" class="form-control form-control-sm" placeholder="Academic Achievement">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" name="quSDivision_1" class="form-control form-control-sm" placeholder="Grade/Division">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" name="quSInstitute_1" class="form-control form-control-sm" placeholder="Institute">
+                    </div>
+                    <div class="col-md-1 text-center">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-danger btn-sm removeRow" style="display:none;"><i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-outline-success btn-sm addRow"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card-body">
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <input type="text" name="quSProfessionalEdu" id="quSProfessionalEdu_1" class="form-control" placeholder="Professional Qualification">
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="text" name="quSAcademicAchievement" id="quSAcademicAchievement_1" class="form-control" placeholder="Academic Achievement">
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="text" name="quSDivision" id="quSDivision_1" class="form-control" placeholder="Grade/Division">
-                </div>
-                <div class="form-group col-md-3">
-                    <input type="text" name="quSInstitute" id="quSInstitute_1" class="form-control" placeholder="Institute">
-                </div>
-
-                <div class="form-group col-md-2">
-                    <button type="button" class="add-SpouseQualification btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
-                    <button type="button" class="remove-SpouseQualification btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i> </button>
-                </div>
-
-            </div>
-            <div id="new_quS"></div>
-            <input type="hidden" value="1" id="total_quS">
         </div>
     </div>
 
-    <div class="card mt-4">
-        <div class="card-header" style="background-color:#fff">
+    <script>
+        $(document).ready(function () {
+            let totalRows = 1;
+
+            function updateButtons() {
+                const rows = $("#qualificationContainer .qualificationRow");
+                rows.each(function (index) {
+                    const addBtn = $(this).find(".addRow");
+                    const removeBtn = $(this).find(".removeRow");
+
+                    // Only last row shows Add button
+                    if (index === rows.length - 1) {
+                        addBtn.show();
+                    } else {
+                        addBtn.hide();
+                    }
+
+                    // Show remove button if more than 1 row
+                    if (rows.length > 1) {
+                        removeBtn.show();
+                    } else {
+                        removeBtn.hide();
+                    }
+                });
+            }
+
+            // Add new row
+            $("#qualificationContainer").on("click", ".addRow", function () {
+                totalRows++;
+                const newRow = `
+                                            <div class="form-row align-items-center mb-2 qualificationRow">
+                                                <div class="col-md-3">
+                                                    <input type="text" name="quSProfessionalEdu_${totalRows}" class="form-control form-control-sm" placeholder="Professional Qualification">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" name="quSAcademicAchievement_${totalRows}" class="form-control form-control-sm" placeholder="Academic Achievement">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <input type="text" name="quSDivision_${totalRows}" class="form-control form-control-sm" placeholder="Grade/Division">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" name="quSInstitute_${totalRows}" class="form-control form-control-sm" placeholder="Institute">
+                                                </div>
+                                                <div class="col-md-1 text-center">
+                                                    <div class="btn-group" role="group">
+                                                        <button type="button" class="btn btn-outline-danger btn-sm removeRow"><i class="fa fa-minus"></i></button>
+                                                        <button type="button" class="btn btn-outline-success btn-sm addRow"><i class="fa fa-plus"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                $("#qualificationContainer").append(newRow);
+                updateButtons();
+            });
+
+            // Remove row
+            $("#qualificationContainer").on("click", ".removeRow", function () {
+                $(this).closest(".qualificationRow").remove();
+                totalRows--;
+                updateButtons();
+            });
+
+            updateButtons(); // initial button setup
+        });
+    </script>
+
+
+    <div class="card mt-4 shadow-sm p-3">
+        <div class="card-header bg-white fw-bold">
             LANGUAGE KNOWN
         </div>
+
         <div class="card-body">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <Label class="control-label">Language</Label>
-                    <input type="text" name="laSLanguage" id="laSLanguage_1" class="form-control" placeholder="Language">
-                </div>
-                <div class="form-group col-md-1">
-                    <Label class="control-label pb-4" style="width:100%"></Label>
-                    <label>
-                        Read
-                        <input type="checkbox" name="laSRead" id="laSRead_1" class="custom-checkbox">
-                    </label>
-                </div>
-                <div class="form-group col-md-1">
-                    <Label class="control-label pb-4" style="width:100%"></Label>
-                    <label>
-                        Write
-                        <input type="checkbox" name="laSWrite" id="laSWrite_1" class="custom-checkbox">
-                    </label>
-                </div>
-                <div class="form-group col-md-1">
-                    <Label class="control-label pb-4" style="width:100%"></Label>
-                    <label>
-                        Speak
-                        <input type="checkbox" name="laSSpeak" id="laSSpeak_1" class="custom-checkbox">
-                    </label>
-                </div>
-                @*<div class="form-group col-md-3">
-                        <Label class="control-label">Qualification</Label>
-                        <input type="text" name="laSQualification" id="laSQualification_1" required title="Enter Qualification" class="form-control" placeholder="Qualification">
-                    </div>*@
-                <div class="form-group col-md-2">
-                    <Label class="control-label pb-3" style="width:100%"></Label>
-                    <button type="button" class="add-SpouseLanguage btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i></button>
-                    <button type="button" class="remove-SpouseLanguage btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i></button>
+            <!-- Header Row -->
+            <div class="row fw-bold mb-2">
+                <div class="col-md-4">Language</div>
+                <div class="col-md-2 text-center">Read</div>
+                <div class="col-md-2 text-center">Write</div>
+                <div class="col-md-2 text-center">Speak</div>
+                <div class="col-md-2 text-center">Action</div>
+            </div>
+
+            <!-- Container for dynamic rows -->
+            <div id="languageContainer">
+                <div class="row align-items-center mb-2 languageRow">
+                    <div class="col-md-4">
+                        <input type="text" name="laSLanguage_1" class="form-control form-control-sm" placeholder="Language">
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <input type="checkbox" name="laSRead_1" class="form-check-input">
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <input type="checkbox" name="laSWrite_1" class="form-check-input">
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <input type="checkbox" name="laSSpeak_1" class="form-check-input">
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-danger btn-sm removeLanguage" style="display:none;"><i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-outline-success btn-sm addLanguage"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="new_laS"></div>
             <input type="hidden" value="1" id="total_laS">
         </div>
     </div>
 
-    <div class="form-group mt-4 text-center">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" id="btnSaveSpouse" value="Submit" onclick="addSpouse()" class="btn btn-primary btn-lg" />
-            @*<input type="submit" value="Create" class="btn btn-default" />
-                <a href="#" class="btn btn-primary btn-lg btnPrevious">Go Back</a>
-                <button id="btnSave" onclick="SpouseAdd(this)" class="btn btn-default">Save</button>
-                <a href="#" class="btn btn-primary btn-lg btnNext">Next</a>*@
-        </div>
+    <script>
+        $(document).ready(function () {
+            let totalLanguages = 1;
+
+            function updateLanguageButtons() {
+                const rows = $("#languageContainer .languageRow");
+                rows.each(function (index) {
+                    const addBtn = $(this).find(".addLanguage");
+                    const removeBtn = $(this).find(".removeLanguage");
+
+                    addBtn.toggle(index === rows.length - 1);
+                    removeBtn.toggle(rows.length > 1);
+                });
+            }
+
+            $("#languageContainer").on("click", ".addLanguage", function () {
+                totalLanguages++;
+                const newRow = `
+                                    <div class="row align-items-center mb-2 languageRow">
+                                        <div class="col-md-4">
+                                            <input type="text" name="laSLanguage_${totalLanguages}" class="form-control form-control-sm" placeholder="Language">
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <input type="checkbox" name="laSRead_${totalLanguages}" class="form-check-input">
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <input type="checkbox" name="laSWrite_${totalLanguages}" class="form-check-input">
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <input type="checkbox" name="laSSpeak_${totalLanguages}" class="form-check-input">
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-outline-danger btn-sm removeLanguage"><i class="fa fa-minus"></i></button>
+                                                <button type="button" class="btn btn-outline-success btn-sm addLanguage"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                $("#languageContainer").append(newRow);
+                updateLanguageButtons();
+            });
+
+            $("#languageContainer").on("click", ".removeLanguage", function () {
+                $(this).closest(".languageRow").remove();
+                totalLanguages--;
+                updateLanguageButtons();
+            });
+
+            updateLanguageButtons();
+        });
+    </script>
+  
+    <div class="card-footer text-center bg-white">
+        <input type="button" id="btnSaveSpouse" value="Submit" onclick="addSpouse()" class="btn btn-outline-danger " />
     </div>
-    <div class="card-header">
+
+
+
+    <!--<div class="form-group mt-4 text-center">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="button" id="btnSaveSpouse" value="Submit" onclick="addSpouse()" class="btn btn-outline-danger" />-->
+    @*<input type="submit" value="Create" class="btn btn-default" />
+        <a href="#" class="btn btn-primary btn-lg btnPrevious">Go Back</a>
+        <button id="btnSave" onclick="SpouseAdd(this)" class="btn btn-default">Save</button>
+        <a href="#" class="btn btn-primary btn-lg btnNext">Next</a>*@
+    <!--</div>
+    </div>-->
+    <div class="card-body">
         @Html.ValidationSummary(false, "Please fix the following error and then submit the form:-", new { @class = "text-danger" })
     </div>
 
@@ -368,101 +491,131 @@
         }
     }
     // #endregion
-
-    // #region Language
     function storeSpouseLanguage() {
-        let ttlla = $('#total_laS').val();
         let languages = [];
-        for (i = 1, j = 0; i <= ttlla; i++, j++) {
-            languages[j] = {
-                Language: $('#laSLanguage_' + i).val(),
-                Read: document.getElementById('laSRead_' + i).checked,
-                Write: document.getElementById('laSWrite_' + i).checked,
-                Speak: document.getElementById('laSSpeak_' + i).checked,
-                //Qualification: $('#laSQualification_' + i).val(),
-            };
-        }
+        $("#languageContainer .languageRow").each(function (index) {
+            const rowIndex = index + 1;
+            languages.push({
+                Language: $(this).find(`input[name="laSLanguage_${rowIndex}"]`).val(),
+                Read: $(this).find(`input[name="laSRead_${rowIndex}"]`).is(":checked"),
+                Write: $(this).find(`input[name="laSWrite_${rowIndex}"]`).is(":checked"),
+                Speak: $(this).find(`input[name="laSSpeak_${rowIndex}"]`).is(":checked")
+            });
+        });
         return languages;
     }
 
-    $('.add-SpouseLanguage').on('click', addSpouseLanguage);
-    $('.remove-SpouseLanguage').on('click', removeSpouseLanguage);
-    function addSpouseLanguage() {
-        let new_la_no = parseInt($('#total_laS').val()) + 1;
-        let new_inputLa = `<div id="Language_${new_la_no}" class="form-row">
-                               <div class="form-group col-md-4">
-                                   <input type="text" name="laSLanguage" id="laSLanguage_${new_la_no}" class="form-control" placeholder="Language">
-                               </div>
-                               <div class="form-group col-md-1">
-                                   <label>Read
-                                   <input type="checkbox" name="laSRead" id="laSRead_${new_la_no}" class="custom-checkbox"></label>
-                               </div>
-                               <div class="form-group col-md-1">
-                                   <label>Write
-                                   <input type="checkbox" name="laSWrite" id="laSWrite_${new_la_no}" class="custom-checkbox"></label>
-                               </div>
-                               <div class="form-group col-md-1">
-                                   <label>Speak
-                                   <input type="checkbox" name="laSSpeak" id="laSSpeak_${new_la_no}" class="custom-checkbox"></label>
-                               </div>
+    //// #region Language
+    //function storeSpouseLanguage() {
+    //    let ttlla = $('#total_laS').val();
+    //    let languages = [];
+    //    for (i = 1, j = 0; i <= ttlla; i++, j++) {
+    //        languages[j] = {
+    //            Language: $('#laSLanguage_' + i).val(),
+    //            Read: document.getElementById('laSRead_' + i).checked,
+    //            Write: document.getElementById('laSWrite_' + i).checked,
+    //            Speak: document.getElementById('laSSpeak_' + i).checked,
+    //            //Qualification: $('#laSQualification_' + i).val(),
+    //        };
+    //    }
+    //    return languages;
+    //}
 
-                           </div>`
-        $('#new_laS').append(new_inputLa);
-        $('#total_laS').val(new_la_no);
-    }
-    function removeSpouseLanguage() {
-        let last_la_no = $('#total_laS').val();
+    //$('.add-SpouseLanguage').on('click', addSpouseLanguage);
+    //$('.remove-SpouseLanguage').on('click', removeSpouseLanguage);
+    //function addSpouseLanguage() {
+    //    let new_la_no = parseInt($('#total_laS').val()) + 1;
+    //    let new_inputLa = `<div id="Language_${new_la_no}" class="form-row">
+    //                           <div class="form-group col-md-4">
+    //                               <input type="text" name="laSLanguage" id="laSLanguage_${new_la_no}" class="form-control" placeholder="Language">
+    //                           </div>
+    //                           <div class="form-group col-md-1">
+    //                               <label>Read
+    //                               <input type="checkbox" name="laSRead" id="laSRead_${new_la_no}" class="custom-checkbox"></label>
+    //                           </div>
+    //                           <div class="form-group col-md-1">
+    //                               <label>Write
+    //                               <input type="checkbox" name="laSWrite" id="laSWrite_${new_la_no}" class="custom-checkbox"></label>
+    //                           </div>
+    //                           <div class="form-group col-md-1">
+    //                               <label>Speak
+    //                               <input type="checkbox" name="laSSpeak" id="laSSpeak_${new_la_no}" class="custom-checkbox"></label>
+    //                           </div>
 
-        if (last_la_no > 1) {
-            $('#Language_' + last_la_no).remove();
-            $('#total_laS').val(last_la_no - 1);
-        }
-    }
-    // #endregion
+    //                       </div>`
+    //    $('#new_laS').append(new_inputLa);
+    //    $('#total_laS').val(new_la_no);
+    //}
+    //function removeSpouseLanguage() {
+    //    let last_la_no = $('#total_laS').val();
 
+    //    if (last_la_no > 1) {
+    //        $('#Language_' + last_la_no).remove();
+    //        $('#total_laS').val(last_la_no - 1);
+    //    }
+    //}
+    //// #endregion
+
+    //// #region Qualification
+    //function storeSpouseQualification() {
+    //    let ttlrows = $('#total_quS').val();
+    //    let qualifications = [];
+    //    for (i = 1, j = 0; i <= ttlrows; i++, j++) {
+    //        qualifications[j] = {
+    //            ProfessionalEdu: $('#quSProfessionalEdu_' + i).val(),
+    //            AcademicAchievement: $('#quSAcademicAchievement_' + i).val(),
+    //            Division: $('#quSDivision_' + i).val(),
+    //            Institute: $('#quSInstitute_' + i).val(),
+    //        };
+    //    }
+    //    return qualifications;
+    //}
+    //$('.add-SpouseQualification').on('click', addSpouseQualification);
+    //$('.remove-SpouseQualification').on('click', removeQualification);
+    //function addSpouseQualification() {
+    //    let new_row_no = parseInt($('#total_quS').val()) + 1;
+    //    let new_row_inputs = `<div id="SpouseQualification_${new_row_no}" class="form-row">
+    //                           <div class="form-group col-md-3">
+    //                               <input type="text" name="quSProfessionalEdu" id="quSProfessionalEdu_${new_row_no}" class="form-control" placeholder="Professional Qualification">
+    //                           </div>
+    //                           <div class="form-group col-md-2">
+    //                               <input type="text" name="quSAcademicAchievement" id="quSAcademicAchievement_${new_row_no}" class="form-control" placeholder="Academic Achievement">
+    //                           </div>
+    //                           <div class="form-group col-md-2">
+    //                               <input type="text" name="quSDivision" id="quSDivision_${new_row_no}" class="form-control" placeholder="Grade/Division">
+    //                           </div>
+    //                           <div class="form-group col-md-3">
+    //                               <input type="text" name="quSInstitute" id="quSInstitute_${new_row_no}" class="form-control" placeholder="Institute">
+    //                           </div>
+    //                       </div>`
+    //    $('#new_quS').append(new_row_inputs);
+    //    $('#total_quS').val(new_row_no);
+    //}
+    //function removeQualification() {
+    //    let last_row_no = $('#total_quS').val();
+    //    if (last_row_no > 1) {
+    //        $('#SpouseQualification_' + last_row_no).remove();
+    //        $('#total_quS').val(last_row_no - 1);
+    //    }
+    //}
+    //// #endregion
     // #region Qualification
     function storeSpouseQualification() {
-        let ttlrows = $('#total_quS').val();
         let qualifications = [];
-        for (i = 1, j = 0; i <= ttlrows; i++, j++) {
-            qualifications[j] = {
-                ProfessionalEdu: $('#quSProfessionalEdu_' + i).val(),
-                AcademicAchievement: $('#quSAcademicAchievement_' + i).val(),
-                Division: $('#quSDivision_' + i).val(),
-                Institute: $('#quSInstitute_' + i).val(),
-            };
-        }
+
+        // Loop through each qualificationRow inside the container
+        $("#qualificationContainer .qualificationRow").each(function (index) {
+            qualifications.push({
+                ProfessionalEdu: $(this).find("input[name^='quSProfessionalEdu']").val(),
+                AcademicAchievement: $(this).find("input[name^='quSAcademicAchievement']").val(),
+                Division: $(this).find("input[name^='quSDivision']").val(),
+                Institute: $(this).find("input[name^='quSInstitute']").val(),
+            });
+        });
+
         return qualifications;
     }
-    $('.add-SpouseQualification').on('click', addSpouseQualification);
-    $('.remove-SpouseQualification').on('click', removeQualification);
-    function addSpouseQualification() {
-        let new_row_no = parseInt($('#total_quS').val()) + 1;
-        let new_row_inputs = `<div id="SpouseQualification_${new_row_no}" class="form-row">
-                               <div class="form-group col-md-3">
-                                   <input type="text" name="quSProfessionalEdu" id="quSProfessionalEdu_${new_row_no}" class="form-control" placeholder="Professional Qualification">
-                               </div>
-                               <div class="form-group col-md-2">
-                                   <input type="text" name="quSAcademicAchievement" id="quSAcademicAchievement_${new_row_no}" class="form-control" placeholder="Academic Achievement">
-                               </div>
-                               <div class="form-group col-md-2">
-                                   <input type="text" name="quSDivision" id="quSDivision_${new_row_no}" class="form-control" placeholder="Grade/Division">
-                               </div>
-                               <div class="form-group col-md-3">
-                                   <input type="text" name="quSInstitute" id="quSInstitute_${new_row_no}" class="form-control" placeholder="Institute">
-                               </div>
-                           </div>`
-        $('#new_quS').append(new_row_inputs);
-        $('#total_quS').val(new_row_no);
-    }
-    function removeQualification() {
-        let last_row_no = $('#total_quS').val();
-        if (last_row_no > 1) {
-            $('#SpouseQualification_' + last_row_no).remove();
-            $('#total_quS').val(last_row_no - 1);
-        }
-    }
-    // #endregion
+
 
     function fillSpouse() {
         let spouse = {
