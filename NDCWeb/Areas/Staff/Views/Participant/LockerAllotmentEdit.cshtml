@@ -52,12 +52,12 @@
     }
 
     .custom-scroll {
-        height: 65vh;
+        height: 75vh;
         overflow-y: scroll;
     }
 </style>
 
-<div class="container mt-4 mb-4 custom-scroll">
+
     <div class="card shadow">
         @*<div class="card-header">
             <span class="pl-2">@ViewBag.Title</span>
@@ -65,17 +65,17 @@
         </div>*@
         <div class="card-body custom-scroll">
             <div class="form-group row">
-                <label class="col-sm-1 col-form-label">Course </label>
+                <label class="col-sm-1 col-form-label" style="font-weight:500; font-size:18px">Course </label>
                 <div class="col-sm-2">
                     @Html.DropDownList("CourseId", (IEnumerable<SelectListItem>)ViewBag.Courses, "Select Course", htmlAttributes: new { @class = "form-control" })
                 </div>
                 <div class="col-sm-6"></div>
                 <div class="col-sm-2">
-                    <a href="~/staff/participant/lockerallotmentprint/" class="btn btn-primary">View to Print</a>
+                    <a href="~/staff/participant/lockerallotmentprint/" class="btn btn-outline-danger">View to Print</a>
                 </div>
             </div>
             <table class="table w-100 text-left" id="tblLocker">
-                <thead class="">
+                <thead>
                     <tr>
                         <th style="vertical-align: middle; white-space: nowrap; width:10%">SNo.</th>
                         <th style="vertical-align: middle; white-space: nowrap">Rank & Name</th>
@@ -91,7 +91,7 @@
                 <button type="button" class="btn btn-primary btn-sm" onclick="updateLockerAllotment(LockerAllotmentId, this)">Update</button>
             </div>*@
     </div>
-</div>
+
 @*<button type="button" class="btn btn-transparent red btn-xs" onclick="updateLockerAllotment(LockerAllotmentId, this)"><i class="fa fa-pencil"></i></button>*@
 @section Scripts{
     <script src="~/Scripts/ASPSnippets_Pager.min.js"></script>
@@ -157,7 +157,7 @@
                         <td style="text-align:center">${i + 1}<input type="hidden" name="hdnLockerAllotmentId" value="${lockerAllotment.LockerAllotmentId}"></td>
                         <td>${lockerAllotment.FullName}<input type="hidden" name="hdnCourseMemberId" value="${lockerAllotment.CourseMemberId}"></td>
                         <td style="text-align:center"><input type="text" id="LockerNo_${i}" name="lockerNo" value="${lockerAllotment.LockerNo}"/></td>
-                        <td style="text-align:center"><button type="button" class="btn btn-primary btn-sm" onclick="updateLockerAllotment(${lockerAllotment.LockerAllotmentId}, this)">Update</button></td>
+                        <td style="text-align:center"><button type="button" class="btn btn-outline-danger btn-sm" onclick="updateLockerAllotment(${lockerAllotment.LockerAllotmentId}, this)">Update</button></td>
                     </tr>
                 `);
                 //$('#ddliag_' + i).val(lockerAllotment.IAG);
