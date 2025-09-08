@@ -66,26 +66,22 @@
     </div>*@
 
 
-<style>
+@*<style>
     /* Sidebar container */
     #main-nav {
-        display: block !important; /* Make sure it's visible */
+        display: block !important;
         width: 250px;
         height: 100vh;
         position: fixed;
         top: 0;
         left: 0;
-        background: #9b030c;
+        background: #9b030c; /* Red background */
         padding-top: 20px;
         z-index: 1000;
+        overflow-y: auto;
     }
 
-    ul {
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* Reset menu style */
+    /* Remove default list styling */
     .sf-menu {
         list-style: none;
         margin: 0;
@@ -93,47 +89,66 @@
         text-transform: uppercase;
     }
 
+        /* Top-level items */
         .sf-menu > li {
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Increase height of menu items */
+        /* Links */
         .sf-menu li a {
             display: block;
-            padding: 18px 20px; /* ⬅ Increased height */
+            padding: 14px 20px;
             font-size: 15px;
             color: #fff;
             text-decoration: none;
             transition: all 0.3s ease;
-            border-left: none;
         }
 
-            /* Hover effect: white background + black text */
+            /* Hover effect */
             .sf-menu li a:hover {
                 background: #fff;
                 color: #000;
             }
 
-        /* Submenu */
+        /* Submenu (hidden by default) */
         .sf-menu li ul {
             display: none;
             list-style: none;
-            background: #34495e;
+            background: #7a0a0f;
             padding: 0;
             margin: 0;
         }
 
+            /* Submenu links */
             .sf-menu li ul li a {
-                padding-left: 40px;
+                padding: 12px 40px;
                 font-size: 14px;
+                color: #f1f1f1;
             }
+
+                /* Hover inside submenu */
+                .sf-menu li ul li a:hover {
+                    background: #fff;
+                    color: #000;
+                }
 
         /* Show submenu when parent has .active */
         .sf-menu li.active > ul {
             display: block;
         }
 
-</style>
+        /* Optional: Add arrow indicator */
+        .sf-menu li.has-sub > a::after {
+            content: "\25B6"; /* right arrow */
+            float: right;
+            transition: transform 0.3s;
+        }
+
+        .sf-menu li.active > a::after {
+            transform: rotate(90deg);
+        }
+
+</style>*@
 
 <!-- Sidebar with dynamic menu -->
 <div id="main-nav" class="navigation-bg">
@@ -179,14 +194,14 @@
 </div>
 
 <script>
-    // Toggle submenu on click
-    //document.addEventListener("DOMContentLoaded", function () {
-    //    document.querySelectorAll(".sf-menu > li > a").forEach(link => {
-    //        link.addEventListener("click", function (e) {
-    //            let parentLi = this.parentElement;
-    //            parentLi.classList.toggle("active");
-    //            e.preventDefault();
-    //        });
-    //    });
-    //});
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".sf-menu li.has-sub > a").forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+                let parentLi = this.parentElement;
+                parentLi.classList.toggle("active");
+            });
+        });
+    });
+
 </script>

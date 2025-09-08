@@ -1,71 +1,233 @@
 ﻿@using Microsoft.AspNet.Identity
 
-    <div class="container">
-        <nav class="">
-            <ul class='clearfix sf-menu' id='example'>
-                <li><a title='Home' href='/Staff/'><i class='fa fa-home'></i></a></li>
-                <li class='has-sub'>
-                    <a title='My Profile' href='/staff/profile' class='has-sub'>My Profile</a>
-                    <ul>
-                        <li><a href='/staff/MessBill/StaffBillDetail'>Mess Bill Detail</a></li>
-                    </ul>
-                </li>
-                @*<li class='has-sub'>
-        <a title='My Course' href='#' class='has-sub'>Course</a>
-        <ul>
-            <li><a href='/staff/CourseStaff/CourseHandbook/'>Course Handbook </a></li>
-            <li><a href='/staff/CourseStaff/TrainingCalendar/'>Training Calendar</a></li>
-            <li><a href='/staff/trainingactivity/'>Training Activities</a></li>
-            <li><a href='/staff/CourseStaff/IAGPaperGuidline/'>IAG Papers Guiding Notes</a></li>
-            <li><a href='/staff/CourseStaff/ThesisGuidline/'>Thesis Guiding Notes</a></li>
-            <li class='has-sub'>
-                <a href='/staff/underconstruction/'>Tour Report Samples</a>
-                <ul>
-                    <li><a href='/staff/underconstruction/'>Domestic Tour</a></li>
-                    <li><a href='/staff/underconstruction/'>Foreign Tour</a></li>
-                    <li><a href='/staff/underconstruction/'>Service Tour</a></li>
-                </ul>
-            </li>
-        </ul>
-        </li>*@
+<style>
+    /* Sidebar Container */
+    #sidebar {
+        width: 260px;
+        height: 100vh;
+        background: #fff;
+        border-right: 1px solid #eee;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
 
-                @*<li class='has-sub'>
-            <a title='About NDC' href='/staff/underconstruction/' class='has-sub'>Feedback</a>
-            <ul>
-                <li><a href='/staff/feedbacks/speechfeedbacklist'>Speaker Feedback</a></li>
-                <li><a href='/staff/feedbacks/module'>Module Feedback</a></li>
-                <li><a href='/staff/feedbacks/course'>Course End Feedback</a></li>
-            </ul>
-        </li>*@
+    /* Sidebar Header */
+    .sidebar-header {
+        padding: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #5a2d82;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
 
-                <li class='has-sub'>
-                    <a href='/staff/memberverify/participants'>Verification</a>
-                </li>
+        .sidebar-header .logo {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-                <li class='has-sub'>
-                    <a href='/staff/participant/participantlist'>Participant List</a>
-                </li>
+    /* Menu List */
+    .sidebar-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex: 1;
+        background: #9b030c !important;
+    }
 
-                <li class='has-sub'>
-                    <a href='/staff/participant/lockerallotment'>Locker Allotment</a>
-                </li>
+        .sidebar-menu li {
+            position: relative;
+            list-style-type:none;
+        }
 
-                @*<li class='has-sub'>
-            <a href='/Member/ForumBlog/'>Online Uploads</a>
-            <ul>
-                <li><a href='/staff/assignment/index/asat'>ASAT</a></li>
-                <li><a href='/staff/assignment/index/thesis'>Thesis</a></li>
-                <li><a href='/staff/assignment/index/iag papers'>IAG Papers</a></li>
-                <li><a href='/staff/assignment/index/other inputs'>Misc</a></li>
-            </ul>
-        </li>*@
-                @*<li class='selected'><a href='/staff/participant/participantlist/'>Participant Details</a></li>*@
+            .sidebar-menu li a {
+                display: flex;
+                align-items: center;
+                padding: 12px 20px;
+                font-size: 15px;
+                color: #333;
+                text-decoration: none;
+                transition: all 0.3s;
+                border-radius: 8px;
+                margin: 4px 8px;
+                color: #fff;
+            }
 
-                <li><a href="/staff//circular/circularEntry/">Upload Orders</a></li>
+                .sidebar-menu li a i {
+                    margin-right: 12px;
+                    font-size: 18px;
+                    min-width: 20px;
+                    text-align: center;
+                    color: #fff;
+                }
+                .sidebar-menu li a:hover i{
+                    color:#000;
+                }
+                /* Hover + Active */
+                .sidebar-menu li a:hover,
+                .sidebar-menu li.active > a {
+                    background: #fff;
+                    color: #000;
+                }
 
-                <li><a href='/staff/profile/changeuserpassword/'>Change Password</a></li>
-               
+    /* Submenu */
+    .submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding-left: 15px;
+    }
 
-            </ul>
-        </nav>
+        .submenu li a {
+            font-size: 14px;
+            padding: 10px 20px;
+            margin: 2px 8px;
+            
+        }
+
+    /* Toggle Arrow */
+    .toggle {
+        margin-left: auto;
+        font-size: 12px;
+        transition: transform 0.3s;
+    }
+
+    .has-sub.active .toggle {
+        transform: rotate(180deg);
+    }
+
+    /* Footer */
+    .sidebar-footer {
+        border-top: 1px solid #eee;
+        padding: 15px;
+        text-align: center;
+    }
+
+        .sidebar-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5a2d82;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .sidebar-footer a:hover {
+                color: #000;
+            }
+
+    /* Remove unwanted black background on active/focus */
+    /* Fix for menu-toggle unwanted black background */
+    .menu-toggle {
+        background: none !important;
+        color: inherit !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    .menu-toggle li a{
+        color:#fff;
+    }
+
+</style>
+
+<div id="sidebar">
+    <div class="sidebar-header">
+        <h2 class="logo"><i class="fa fa-shield"></i> NDC</h2>
     </div>
+
+    <ul class="sidebar-menu pt-3">
+        <li>
+            <a href="/Staff/">
+                <i class="fa fa-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        <li class="has-sub">
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="fa fa-user"></i>
+                <span class="text-white">My Profile</span>
+                <i class="fa fa-chevron-down toggle"></i>
+            </a>
+            <ul class="submenu">
+                <li><a href="/staff/profile"><i class="fa fa-id-card"></i> Profile Overview</a></li>
+                <li><a href="/staff/MessBill/StaffBillDetail"><i class="fa fa-cutlery"></i> Mess Bill Detail</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="/staff/memberverify/participants">
+                <i class="fa fa-check-circle"></i>
+                <span>Verification</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/staff/participant/participantlist">
+                <i class="fa fa-users"></i>
+                <span>Participant List</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/staff/participant/lockerallotment">
+                <i class="fa fa-lock"></i>
+                <span>Locker Allotment</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/staff/circular/circularEntry/">
+                <i class="fa fa-upload"></i>
+                <span>Upload Orders</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/staff/profile/changeuserpassword/">
+                <i class="fa fa-key"></i>
+                <span>Change Password</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="sidebar-footer">
+        <a href="#">
+            <i class="fa fa-life-ring"></i>
+            <span>Need Help?</span>
+        </a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".menu-toggle").forEach(toggle => {
+            toggle.addEventListener("click", function (e) {
+                e.preventDefault();
+                let parent = this.parentElement;
+                let submenu = parent.querySelector(".submenu");
+
+                if (parent.classList.contains("active")) {
+                    submenu.style.maxHeight = null;
+                    parent.classList.remove("active");
+                } else {
+                    // Close other submenus (accordion behavior)
+                    document.querySelectorAll(".has-sub").forEach(item => {
+                        item.classList.remove("active");
+                        let sub = item.querySelector(".submenu");
+                        if (sub) sub.style.maxHeight = null;
+                    });
+
+                    parent.classList.add("active");
+                    submenu.style.maxHeight = submenu.scrollHeight + "px";
+                }
+            });
+        });
+    });
+</script>
