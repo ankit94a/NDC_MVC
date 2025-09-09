@@ -1,93 +1,230 @@
-﻿
-<div class="card mt-4">
-    <div class="card-header bg-white">
+﻿@*<div class="card mt-4 p-3">
+        <div class="card-header bg-white">
+            QUALIFICATIONS
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <input type="text" name="quCourse" id="quCourse_1" required title="Enter Course" class="form-control" placeholder="Course">
+                </div>
+                <div class="form-group col-md-2">
+                    <select class="form-control" id="quType_1" required name="quType">
+                        <option disabled selected>--Type of Qualification--</option>
+                        <option value="Service">Service</option>
+                        <option value="Civil">Civil</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <input type="text" name="quYear" id="quYear_1" required title="Enter Year" class="form-control" placeholder="Year">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="text" name="quLocation" id="quLocation_1" required title="Stream/Courses/Location" class="form-control" placeholder="Stream/Courses/Location">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="text" name="quCountry" id="quCountry_1" required title="Enter Country" class="form-control" placeholder="Country">
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" class="add-Qualification btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i> Add more</button>
+                    <button type="button" class="remove-Qualification btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i> Remove</button>
+                </div>
+            </div>
+            <div id="new_qu"></div>
+            <input type="hidden" value="1" id="total_qu">
+        </div>
+    </div>*@
+
+<div class="card mt-4 p-3">
+    <div class="card-header bg-white font-weight-bold">
         QUALIFICATIONS
     </div>
     <div class="card-body">
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <input type="text" name="quCourse" id="quCourse_1" required title="Enter Course" class="form-control" placeholder="Course">
-            </div>
-            <div class="form-group col-md-2">
-                <select class="form-control" id="quType_1" required name="quType">
-                    <option disabled selected>--Type of Qualification--</option>
-                    <option value="Service">Service</option>
-                    <option value="Civil">Civil</option>
-                </select>
-            </div>
-            <div class="form-group col-md-1">
-                <input type="text" name="quYear" id="quYear_1" required title="Enter Year" class="form-control" placeholder="Year">
-            </div>
-            <div class="form-group col-md-2">
-                <input type="text" name="quLocation" id="quLocation_1" required title="Stream/Courses/Location" class="form-control" placeholder="Stream/Courses/Location">
-            </div>
-            <div class="form-group col-md-2">
-                <input type="text" name="quCountry" id="quCountry_1" required title="Enter Country" class="form-control" placeholder="Country">
-            </div>
-            <div class="form-group col-md-2">
-                <button type="button" class="add-Qualification btn btn-outline-primary btn-sm"><i class="fa fa-plus"></i> Add more</button>
-                <button type="button" class="remove-Qualification btn btn-outline-danger ml-2 btn-sm"><i class="fa fa-minus"></i> Remove</button>
-            </div>
-        </div>
-        <div id="new_qu"></div>
+        <table class="table table-bordered table-sm" id="qualificationTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>Course</th>
+                    <th>Type</th>
+                    <th>Year</th>
+                    <th>Stream/Location</th>
+                    <th>Country</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="qualificationBody">
+                <!-- Initial row -->
+                <tr id="row_1">
+                    <td><input type="text" name="quCourse" id="quCourse_1" required class="form-control" placeholder="Course" /></td>
+                    <td>
+                        <select class="form-control" id="quType_1" required name="quType">
+                            <option disabled selected>--Type--</option>
+                            <option value="Service">Service</option>
+                            <option value="Civil">Civil</option>
+                        </select>
+                    </td>
+                    <td><input type="text" name="quYear" id="quYear_1" required class="form-control" placeholder="Year" /></td>
+                    <td><input type="text" name="quLocation" id="quLocation_1" required class="form-control" placeholder="Stream/Courses/Location" /></td>
+                    <td><input type="text" name="quCountry" id="quCountry_1" required class="form-control" placeholder="Country" /></td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-outline-primary btn-sm add-Qualification"><i class="fa fa-plus"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <input type="hidden" value="1" id="total_qu">
     </div>
 </div>
 
+
 @Scripts.Render("~/bundles/jqueryval")
+@*<script>
+        // #region Qualification
+        function storeQualification() {
+            let ttlqu = $('#total_qu').val();
+            let qualifications = [];
+            for (i = 1, j = 0; i <= ttlqu; i++, j++) {
+                qualifications[j] = {
+                    Course: $('#quCourse_' + i).val(),
+                    QualificationType: $('#quType_' + i).val(),
+                    Year: $('#quYear_' + i).val(),
+                    Location: $('#quLocation_' + i).val(),
+                    Country: $('#quCountry_' + i).val(),
+                };
+            }
+            return qualifications;
+        }
+        $('.add-Qualification').on('click', addQualification);
+        $('.remove-Qualification').on('click', removeQualification);
+        function addQualification() {
+            let new_qu_no = parseInt($('#total_qu').val()) + 1;
+            let new_inputQu = `<div id="Qualification_${new_qu_no}" class="form-row">
+                                   <div class="form-group col-md-3">
+                                       <input type="text" name="quCourse" id="quCourse_${new_qu_no}" required title="Enter Course" class="form-control error" placeholder="Course">
+                                   </div>
+                                   <div class="form-group col-md-2">
+                                        <select class="form-control" id="quType_${new_qu_no}" required name="quType">
+                                        <option disabled selected>--Type of Qualification--</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Civil">Civil</option>
+                                        </select>
+                                   </div>
+                                   <div class="form-group col-md-1">
+                                       <input type="text" name="quYear" id="quYear_${new_qu_no}" required title="Enter Year" class="form-control" placeholder="Year">
+                                   </div>
+                                   <div class="form-group col-md-2">
+                                       <input type="text" name="quLocation" id="quLocation_${new_qu_no}" required title="Enter Stream/Courses/Location" class="form-control" placeholder="Stream/Courses/Location">
+                                   </div>
+                                   <div class="form-group col-md-2">
+                                       <input type="text" name="quCountry" id="quCountry_${new_qu_no}" required title="Enter Country" class="form-control" placeholder="Country">
+                                   </div>
+                               </div>`
+            $('#new_qu').append(new_inputQu);
+            $('#total_qu').val(new_qu_no);
+        }
+        function removeQualification() {
+            let last_qu_no = $('#total_qu').val();
+            if (last_qu_no > 1) {
+                $('#Qualification_' + last_qu_no).remove();
+                $('#total_qu').val(last_qu_no - 1);
+            }
+        }
+        // #endregion
+
+        function addMemberQualfication() {
+            if ($("#formCMQualification").valid()) {
+                let qualificationList = storeQualification();
+                let qualifications = JSON.stringify(qualificationList);
+                $.ajax({
+                    type: 'post',
+                    url: '/api/courseMembers/Qualification',
+                    data: qualifications,
+                    contentType: "application/json; charset=utf-8",
+                    datatype: 'json',
+                    success: function (data, textStatus, xhr) {
+                        toastr.info(textStatus);
+                        //displayTab('QualificationPartial');
+                        displayTab('ServicePartial');
+                    },
+                    error: function () {
+                        toastr.error('Operation Failed!');
+                    }
+                });
+            }
+        }
+    </script>*@
+
 <script>
-    // #region Qualification
     function storeQualification() {
-        let ttlqu = $('#total_qu').val();
+        let total = $('#total_qu').val();
         let qualifications = [];
-        for (i = 1, j = 0; i <= ttlqu; i++ , j++) {
-            qualifications[j] = {
-                Course: $('#quCourse_' + i).val(),
-                QualificationType: $('#quType_' + i).val(),
-                Year: $('#quYear_' + i).val(),
-                Location: $('#quLocation_' + i).val(),
-                Country: $('#quCountry_' + i).val(),
-            };
+        for (let i = 1; i <= total; i++) {
+            if ($(`#row_${i}`).length) {
+                qualifications.push({
+                    Course: $(`#quCourse_${i}`).val(),
+                    QualificationType: $(`#quType_${i}`).val(),
+                    Year: $(`#quYear_${i}`).val(),
+                    Location: $(`#quLocation_${i}`).val(),
+                    Country: $(`#quCountry_${i}`).val()
+                });
+            }
         }
         return qualifications;
     }
-    $('.add-Qualification').on('click', addQualification);
-    $('.remove-Qualification').on('click', removeQualification);
-    function addQualification() {
-        let new_qu_no = parseInt($('#total_qu').val()) + 1;
-        let new_inputQu = `<div id="Qualification_${new_qu_no}" class="form-row">
-                               <div class="form-group col-md-3">
-                                   <input type="text" name="quCourse" id="quCourse_${new_qu_no}" required title="Enter Course" class="form-control error" placeholder="Course">
-                               </div>
-                               <div class="form-group col-md-2">
-                                    <select class="form-control" id="quType_${new_qu_no}" required name="quType">
-                                    <option disabled selected>--Type of Qualification--</option>
-                                    <option value="Service">Service</option>
-                                    <option value="Civil">Civil</option>
-                                    </select>
-                               </div>
-                               <div class="form-group col-md-1">
-                                   <input type="text" name="quYear" id="quYear_${new_qu_no}" required title="Enter Year" class="form-control" placeholder="Year">
-                               </div>
-                               <div class="form-group col-md-2">
-                                   <input type="text" name="quLocation" id="quLocation_${new_qu_no}" required title="Enter Stream/Courses/Location" class="form-control" placeholder="Stream/Courses/Location">
-                               </div>
-                               <div class="form-group col-md-2">
-                                   <input type="text" name="quCountry" id="quCountry_${new_qu_no}" required title="Enter Country" class="form-control" placeholder="Country">
-                               </div>
-                           </div>`
-        $('#new_qu').append(new_inputQu);
-        $('#total_qu').val(new_qu_no);
-    }
-    function removeQualification() {
-        let last_qu_no = $('#total_qu').val();
-        if (last_qu_no > 1) {
-            $('#Qualification_' + last_qu_no).remove();
-            $('#total_qu').val(last_qu_no - 1);
-        }
-    }
-    // #endregion
 
+    // Event delegation for dynamic buttons
+    $('#qualificationTable').on('click', '.add-Qualification', function () {
+        let total = parseInt($('#total_qu').val());
+        let newId = total + 1;
+
+        // Add new row
+        let newRow = `<tr id="row_${newId}">
+            <td><input type="text" name="quCourse" id="quCourse_${newId}" required class="form-control" placeholder="Course" /></td>
+            <td>
+                <select class="form-control" id="quType_${newId}" required name="quType">
+                    <option disabled selected>--Type--</option>
+                    <option value="Service">Service</option>
+                    <option value="Civil">Civil</option>
+                </select>
+            </td>
+            <td><input type="text" name="quYear" id="quYear_${newId}" required class="form-control" placeholder="Year" /></td>
+            <td><input type="text" name="quLocation" id="quLocation_${newId}" required class="form-control" placeholder="Stream/Courses/Location" /></td>
+            <td><input type="text" name="quCountry" id="quCountry_${newId}" required class="form-control" placeholder="Country" /></td>
+            <td class="text-center">
+                <button type="button" class="btn btn-outline-danger btn-sm remove-Qualification"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-outline-primary btn-sm add-Qualification"><i class="fa fa-plus"></i></button>
+            </td>
+        </tr>`;
+
+        $('#qualificationBody').append(newRow);
+        $('#total_qu').val(newId);
+
+        // Update previous row to show only Remove
+        if (newId > 1) {
+            let prevBtnCell = $(`#row_${newId - 1} td:last`);
+            prevBtnCell.html(`<button type="button" class="btn btn-outline-danger btn-sm remove-Qualification"><i class="fa fa-minus"></i></button>`);
+        }
+    });
+
+    $('#qualificationTable').on('click', '.remove-Qualification', function () {
+        let row = $(this).closest('tr');
+        let rowId = row.attr('id').split('_')[1];
+        let total = parseInt($('#total_qu').val());
+
+        row.remove();
+
+        // Re-enable Add button on new last row
+        let rows = $('#qualificationBody tr');
+        if (rows.length > 0) {
+            let lastRow = rows.last();
+            let lastRowId = lastRow.attr('id').split('_')[1];
+            lastRow.find('td:last').html(`
+                <button type="button" class="btn btn-outline-danger btn-sm remove-Qualification"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-outline-primary btn-sm add-Qualification"><i class="fa fa-plus"></i></button>
+            `);
+        }
+
+        $('#total_qu').val(rows.length);
+    });
+
+    // You can still use this on form submit
     function addMemberQualfication() {
         if ($("#formCMQualification").valid()) {
             let qualificationList = storeQualification();
@@ -97,10 +234,9 @@
                 url: '/api/courseMembers/Qualification',
                 data: qualifications,
                 contentType: "application/json; charset=utf-8",
-                datatype: 'json',
+                dataType: 'json',
                 success: function (data, textStatus, xhr) {
                     toastr.info(textStatus);
-                    //displayTab('QualificationPartial');
                     displayTab('ServicePartial');
                 },
                 error: function () {
@@ -110,4 +246,3 @@
         }
     }
 </script>
-

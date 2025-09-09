@@ -25,20 +25,31 @@
     { Html.RenderPartial("Add/ServiceAdd/_ImportantAssignment"); }
 
     <div class="card-footer text-center">
-        <input type="button" id="btnSave" value="Submit" onclick="servicesAdd()" class="btn btn-primary btn-lg" />
+        <input type="button" id="btnSave" value="Submit" onclick="servicesAdd()" class="btn btn-outline-danger" />
     </div>
-    <div class="card-header">
-        @Html.ValidationSummary(false, "Please fix the following error and then submit the form:-", new { @class = "text-danger" })
-    </div>
+
 }
 
+<div class="panel-footer d-flex justify-content-between align-items-center p-3 bg-light border-top rounded-bottom shadow-sm">
+    <button type="button" class="btn btn-outline-primary btnPrevious">
+        <i class="fa fa-arrow-left mr-1"></i> Previous
+    </button>
 
+    @*<button type="button" class="btn btn-secondary disabled" disabled>
+        <i class="fa fa-ellipsis-h"></i>
+    </button>*@
 
-<div class="panel-footer">
-    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious text-white">Previous</a>
-    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-secondary" disabled>&nbsp;</a>
-    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext text-white">Next</a>
+    <button type="button" class="btn btn-outline-primary btnNext">
+        Next <i class="fa fa-arrow-right ml-1"></i>
+    </button>
 </div>
+
+
+@*<div class="panel-footer">
+        <a class="btn btn-outline-primary btn-info btnPrevious text-white">Previous</a>
+        <a class="btn  btn-secondary" disabled>&nbsp;</a>
+        <a class="btn btn-outline-primary btnNext text-white">Next</a>
+    </div>*@
 
 
 <script>

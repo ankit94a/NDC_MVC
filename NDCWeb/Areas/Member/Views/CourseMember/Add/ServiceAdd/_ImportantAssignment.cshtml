@@ -1,5 +1,4 @@
-﻿
-<div class="card mt-4">
+﻿<!--<div class="card mt-4">
     <div class="card-header" style="background-color:#fff">
         ASSIGNMENT/APPOINTMENTS
     </div>
@@ -10,11 +9,11 @@
             </div>
             <div class="form-group col-md-2">
                 <input type="text" name="aaOrganisation" id="aaOrganisation_1" required title="Enter Organisation" class="form-control" placeholder="Organisation">
-            </div>
-            @*<div class="form-group col-md-1">
-                <input type="text" name="aaDuration" id="aaDuration_1" required title="Enter Duration" class="form-control" placeholder="Duration">
-            </div>*@
-            <div class="form-group col-md-2">
+            </div>-->
+@*<div class="form-group col-md-1">
+        <input type="text" name="aaDuration" id="aaDuration_1" required title="Enter Duration" class="form-control" placeholder="Duration">
+    </div>*@
+<!--<div class="form-group col-md-2">
                 <input type="text" name="aaLocation" id="aaLocation_1" required title="Enter Location" class="form-control" placeholder="Location">
             </div>
 
@@ -112,4 +111,128 @@
         });
         }
     }
+</script>-->
+<div class="card mt-4 p-3">
+    <div class="card-header bg-white font-weight-bold">
+        ASSIGNMENT/APPOINTMENTS
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-sm" id="appointmentTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>Appointment</th>
+                    <th>Organisation</th>
+                    <th>Location</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th style="width:90px;">Action</th>
+                </tr>
+            </thead>
+            <tbody id="appointmentBody">
+                <tr id="aa_row_1">
+                    <td><input type="text" name="aaAppointment" id="aaAppointment_1" required class="form-control" placeholder="Appointment" /></td>
+                    <td><input type="text" name="aaOrganisation" id="aaOrganisation_1" required class="form-control" placeholder="Organisation" /></td>
+                    <td><input type="text" name="aaLocation" id="aaLocation_1" required class="form-control" placeholder="Location" /></td>
+                    <td><input type="text" name="aaFrom" id="aaFrom_1" required class="form-control datepickerJq1" placeholder="From" autocomplete="off" /></td>
+                    <td><input type="text" name="aaTo" id="aaTo_1" required class="form-control datepickerJq1" placeholder="To" autocomplete="off" /></td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-outline-primary btn-sm add-Appointment"><i class="fa fa-plus"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" value="1" id="total_aa">
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        getDatepickerf1('.datepickerJq1');
+    });
+
+    function storeAppointment() {
+        let ttlaa = $('#total_aa').val();
+        let appointments = [];
+
+        for (let i = 1; i <= ttlaa; i++) {
+            if ($(`#aa_row_${i}`).length) {
+                appointments.push({
+                    Appointment: $(`#aaAppointment_${i}`).val(),
+                    Organisation: $(`#aaOrganisation_${i}`).val(),
+                    Location: $(`#aaLocation_${i}`).val(),
+                    From: $(`#aaFrom_${i}`).val(),
+                    To: $(`#aaTo_${i}`).val()
+                });
+            }
+        }
+        return appointments;
+    }
+
+    // Add new row
+    $('#appointmentTable').on('click', '.add-Appointment', function () {
+        let total = parseInt($('#total_aa').val());
+        let newId = total + 1;
+
+        let newRow = `<tr id="aa_row_${newId}">
+            <td><input type="text" name="aaAppointment" id="aaAppointment_${newId}" required class="form-control" placeholder="Appointment" /></td>
+            <td><input type="text" name="aaOrganisation" id="aaOrganisation_${newId}" required class="form-control" placeholder="Organisation" /></td>
+            <td><input type="text" name="aaLocation" id="aaLocation_${newId}" required class="form-control" placeholder="Location" /></td>
+            <td><input type="text" name="aaFrom" id="aaFrom_${newId}" required class="form-control datepickerJq1" placeholder="From" autocomplete="off" /></td>
+            <td><input type="text" name="aaTo" id="aaTo_${newId}" required class="form-control datepickerJq1" placeholder="To" autocomplete="off" /></td>
+            <td class="text-center">
+                <button type="button" class="btn btn-outline-danger btn-sm remove-Appointment"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-outline-primary btn-sm add-Appointment"><i class="fa fa-plus"></i></button>
+            </td>
+        </tr>`;
+
+        $('#appointmentBody').append(newRow);
+        $('#total_aa').val(newId);
+
+        // Only keep remove button on previous row
+        if (newId > 1) {
+            $(`#aa_row_${newId - 1} td:last`).html(`
+                <button type="button" class="btn btn-outline-danger btn-sm remove-Appointment"><i class="fa fa-minus"></i></button>
+            `);
+        }
+
+        getDatepickerf1(`#aaFrom_${newId}, #aaTo_${newId}`);
+    });
+
+    // Remove row
+    $('#appointmentTable').on('click', '.remove-Appointment', function () {
+        $(this).closest('tr').remove();
+
+        let rows = $('#appointmentBody tr');
+        $('#total_aa').val(rows.length);
+
+        if (rows.length > 0) {
+            let lastRow = rows.last();
+            let lastId = lastRow.attr('id').split('_')[2];
+            lastRow.find('td:last').html(`
+                <button type="button" class="btn btn-outline-danger btn-sm remove-Appointment"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-outline-primary btn-sm add-Appointment"><i class="fa fa-plus"></i></button>
+            `);
+        }
+    });
+
+    function addMemberAssignment() {
+        if ($("#formCMAssignment").valid()) {
+            let assignmentList = storeAppointment();
+            let assignments = JSON.stringify(assignmentList);
+            $.ajax({
+                type: 'post',
+                url: '/api/courseMembers/ImportantAssignment',
+                data: assignments,
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    toastr.info(textStatus);
+                    displayTab('ServicePartial');
+                },
+                error: function () {
+                    toastr.error('Operation Failed!');
+                }
+            });
+        }
+    }
 </script>
+

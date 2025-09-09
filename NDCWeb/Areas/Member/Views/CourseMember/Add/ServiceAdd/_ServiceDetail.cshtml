@@ -1,90 +1,94 @@
 ﻿@model NDCWeb.Areas.Member.View_Models.CrsMbrAppointmentCrtVM
 
-<div class="card mt-4">
-    <div class="card-body">
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label class="control-label">Branch off Service</label>
-                @Html.DropDownListFor(model => model.Service, (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
-                @Html.ValidationMessageFor(model => model.Service, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-4">
-                @Html.LabelFor(model => model.ServiceNo, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.ServiceNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ServiceNo, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-4">
-                <label class="control-label">Rank/Status</label>
-                @Html.DropDownList("RankId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
-                @Html.ValidationMessageFor(model => model.RankId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label class="control-label">Branch</label>
-                @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-4">
-                <label class="control-label" for="DOJoining">Date of Joining</label>
-                @Html.EditorFor(model => model.DOJoining, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
-                @Html.ValidationMessageFor(model => model.DOJoining, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-4">
-                @Html.LabelFor(model => model.DOSeniority, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.DOSeniority, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
-                @Html.ValidationMessageFor(model => model.DOSeniority, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="card-header" style="background-color:#fff">
-        Present Appointment Details
-    </div>
-    <div class="card-body">
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
 
-            </div>
-            <div class="form-group col-md-3">
-                @Html.LabelFor(model => model.Organisation, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Organisation, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                @Html.ValidationMessageFor(model => model.Organisation, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-md-6">
-                <label class="control-label"><b>Are you working as DA/MA?</b></label>
-                <div class="form-inline">
-                    <label class="containerchk col-md-1">
-                        Yes @Html.RadioButtonFor(model => model.WorkingAsDAMA, "Yes", new { id = "workingasdama-true" })
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="containerchk col-md-1">
-                        No @Html.RadioButtonFor(model => model.WorkingAsDAMA, "No", new { id = "workingasdama-false" })
-                        <span class="checkmark"></span>
-                    </label>
-                    @Html.ValidationMessageFor(model => model.WorkingAsDAMA, "", new { @class = "text-danger" })
+    <div class="card shadow p-3 mt-4">
+        <div class="card-header">
+            Service Details
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="control-label">Branch of Service</label>
+                    @Html.DropDownListFor(model => model.Service, (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.Service, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.ServiceNo, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.ServiceNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ServiceNo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">Rank/Status</label>
+                    @Html.DropDownList("RankId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.RankId, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group col-md-12 dvDaMa">
-                @Html.LabelFor(model => model.WorkingAsDAMADetails, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.WorkingAsDAMADetails, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WorkingAsDAMADetails, "", new { @class = "text-danger" })
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="control-label">Branch</label>
+                    @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label" for="DOJoining">Date of Joining</label>
+                    @Html.EditorFor(model => model.DOJoining, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.DOJoining, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.DOSeniority, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.DOSeniority, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.DOSeniority, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
+        <div class="card-header p-3" style="background-color:#fff">
+            Present Appointment Details
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.Organisation, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Organisation, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Organisation, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="control-label"><b>Are you working as DA/MA?</b></label>
+                    <div class="form-inline">
+                        <label class="containerchk col-md-6">
+                            Yes @Html.RadioButtonFor(model => model.WorkingAsDAMA, "Yes", new { id = "workingasdama-true" })
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="containerchk col-md-6">
+                            No @Html.RadioButtonFor(model => model.WorkingAsDAMA, "No", new { id = "workingasdama-false" })
+                            <span class="checkmark"></span>
+                        </label>
+                        @Html.ValidationMessageFor(model => model.WorkingAsDAMA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-12 dvDaMa">
+                    @Html.LabelFor(model => model.WorkingAsDAMADetails, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.WorkingAsDAMADetails, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.WorkingAsDAMADetails, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
     </div>
 
-</div>
+    @Scripts.Render("~/bundles/jqueryval")
 
-@Scripts.Render("~/bundles/jqueryval")
-
-<script>
+    <script>
     $(document).ready(function () {
         $('#Service').val('@Model.Service');
         getDatepickerf1('.datepickerJq1');
@@ -169,4 +173,4 @@
             $(".dvDaMa").hide();
     }
     // #endregion
-</script>
+    </script>
