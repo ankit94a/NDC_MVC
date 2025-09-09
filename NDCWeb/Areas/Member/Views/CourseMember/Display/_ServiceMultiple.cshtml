@@ -8,11 +8,24 @@
 <br />
 @{ Html.RenderAction("ImportantAssignmentPartial", new { mode = "R" }); }
 
-<div class="panel-footer text-white">
-    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious text-white">Previous</a>
-    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-secondary" disabled>&nbsp;</a>
-    <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext text-white">Next</a>
+@*<div class="panel-footer text-white">
+        <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnPrevious text-white">Previous</a>
+        <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-secondary" disabled>&nbsp;</a>
+        <a class="btn jui-btn col-md-4 col-xs-12 btn-lg btn-info btnNext text-white">Next</a>
+    </div>*@
+<div class="panel-footer bg-light p-3 shadow-sm rounded d-flex justify-content-between">
+    <!-- Previous Button -->
+    <a class="btn btn-outline-secondary rounded-pill px-4 btnPrevious">
+        <i class="bi bi-arrow-left-circle"></i> Previous
+    </a>
+
+    <!-- Next Button -->
+    <a class="btn btn-outline-primary rounded-pill px-4 btnNext">
+        Next <i class="bi bi-arrow-right-circle"></i>
+    </a>
 </div>
+
+
 
 <script>
     $(document).ready(function () {

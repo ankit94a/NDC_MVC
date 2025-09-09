@@ -1,58 +1,53 @@
 ﻿@model NDCWeb.Areas.Member.View_Models.CrsMemberPersonalIndxVM
-    <style>
-        .panel-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px; /* space between buttons */
-            padding: 10px;
-            background: #f8f9fa; /* light gray footer background */
-            border-top: 1px solid #dee2e6;
+<style>
+    .panel-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px; /* space between buttons */
+        padding: 10px;
+        background: #f8f9fa; /* light gray footer background */
+        border-top: 1px solid #dee2e6;
+    }
+
+        .panel-footer .btn {
+            flex: 1; /* equal width for all buttons */
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 10px 0;
+            border-radius: 8px;
         }
 
-            .panel-footer .btn {
-                flex: 1; /* equal width for all buttons */
-                font-size: 0.95rem;
-                font-weight: 600;
-                padding: 10px 0;
-                border-radius: 8px;
-              
+        /* Edit button (success) */
+        .panel-footer .btn-success {
+            background: #0d6efd;
+            border: none;
+            color: white;
+        }
+
+            .panel-footer .btn-success:hover {
+                background: linear-gradient(45deg, #218838, #1e7e34);
             }
 
-            /* Edit button (success) */
-            .panel-footer .btn-success {
-                background: #0d6efd;
-                border: none;
-                color: white;
+        /* Previous & Next (info) */
+        .panel-footer .btn-info {
+            background: #0d6efd;
+            border: none;
+            color: white;
+        }
+
+            .panel-footer .btn-info:hover {
+                background: linear-gradient(45deg, #138496, #117a8b);
             }
 
-                .panel-footer .btn-success:hover {
-                    background: linear-gradient(45deg, #218838, #1e7e34);
-                    
-                }
-
-            /* Previous & Next (info) */
-            .panel-footer .btn-info {
-                background: #0d6efd;
-                border: none;
-                color: white;
-            }
-
-                .panel-footer .btn-info:hover {
-                    background: linear-gradient(45deg, #138496, #117a8b);
-                   
-                }
-
-            /* Disabled state */
-            .panel-footer .btn:disabled {
-                background: #d6d6d6 !important;
-                color: #7a7a7a !important;
-                border: none;
-                cursor: not-allowed;
-             
-            }
-
-    </style>
+        /* Disabled state */
+        .panel-footer .btn:disabled {
+            background: #d6d6d6 !important;
+            color: #7a7a7a !important;
+            border: none;
+            cursor: not-allowed;
+        }
+</style>
 <table class="table table-condensed table-bordered">
     <tr>
         <td>
@@ -349,11 +344,28 @@
         <td class="juipfvalue text-justify" colspan="6">@Html.DisplayFor(model => model.BioSketch)</td>
     </tr>
 </table>
-<div class="panel-footer text-white">
-    <a class="btn jui-btn   btn-info" disabled>Previous</a>
-    <a class="btn jui-btn   btn-success" id="btnEdit" onclick="editTab('PersonalDetailPartial')">Edit</a>
-    <a class="btn jui-btn  btn-info btnNext">Next</a>
+@*<div class="panel-footer text-white">
+        <a class="btn  btn-outline-primary" disabled>Previous</a>
+        <a class="btn  btn-outline-success" id="btnEdit" onclick="editTab('PersonalDetailPartial')">Edit</a>
+        <a class="btn  btn-outline-primary btnNext">Next</a>
+    </div>*@
+<div class="panel-footer text-center bg-light p-3 shadow-sm rounded">
+    <!-- Previous Button -->
+    <a class="btn btn-outline-secondary rounded-pill px-4 me-2" disabled>
+        <i class="bi bi-arrow-left-circle"></i> Previous
+    </a>
+
+    <!-- Edit Button -->
+    <a class="btn btn-outline-success rounded-pill px-4 me-2" id="btnEdit" onclick="editTab('PersonalDetailPartial')">
+        <i class="bi bi-pencil-square"></i> Edit
+    </a>
+
+    <!-- Next Button -->
+    <a class="btn btn-outline-primary rounded-pill px-4 btnNext">
+        Next <i class="bi bi-arrow-right-circle"></i>
+    </a>
 </div>
+
 
 
 <script>
