@@ -3,8 +3,8 @@
 }
 
 .footer-bottom {
-    background: #04225a !important;
-    border-top: 1px solid #5da6d3;
+    background: #9b030c !important;
+    border-top: 1px solid #9b030c;
     /*position: fixed;*/
     left: 0;
     bottom: 0;
@@ -15,7 +15,7 @@
     position: fixed;
     min-width: 150px;
     height: fit-content;
-    top: 97px;
+    top: 210px;
     right: 0px;
     background-color: #ff0000;
     color: #FFF;
@@ -75,7 +75,10 @@
 
 .c5Comdt {
     /*padding-bottom: 34px;*/
-    background-color: #5da6d3 !important
+    /*background-color: #5da6d3 !important;*/
+    background-color: #5f69e1 !important;
+    height: 370px;
+    border-radius: 5px;
 }
 
 .c6Comdt {
@@ -110,6 +113,14 @@ c12Welcome {
     padding: 0.3333em;
     height: 511px;
 }
+.welndc {
+    /*border: 1px solid #ddd;*/
+    border: 1px solid #001b1b;
+    border-radius: 5px;
+    min-height: 366px;
+    max-height: 350px;
+    overflow: hidden;
+}
 .c14LatestNews {
     padding-right: 3px !important;
     padding-left: 6px !important;
@@ -127,8 +138,15 @@ c12Welcome {
     padding-left: 25px !important;
     padding-right: 25px !important;
     color: white;
-    border: 1px solid white;
+    border: 1px solid #b7141e;
+    background-color: #9b030c; /* your select bg */
 }
+
+    .c17Master option {
+        background-color: #b11c1c; 
+        color: #fff;
+    }
+
 .c18Master {
     font-size: inherit !important
 }

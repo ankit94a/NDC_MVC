@@ -6,111 +6,76 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 top-acess">
-                    <div class="pull-left hidden-xs hidden-sm res_pb5">
-                        <!--<a href='/' title="Home"><span></span></a>
-                        <a href='#' title='Subscribe Release'></a>-->
-                        @*<div class="useridentity">
-                            @if (Request.IsAuthenticated)
-                            {
-                                <i class="fa fa-user ml-2 opacity-8"></i>@: Welcome
-                                var fname = ((ClaimsIdentity)User.Identity).FindFirst("FName");
-                                @: @fname.Value &nbsp;
-                                using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-danger btn-xs"><i class="fa fa-power-off ml-2"></i> Log off</a>
-                                }
-                            }
-                        </div>*@
-                    </div>
-                    <div class="pull-right">
-                        <ul id="example1">
-                            <li class="skin-reader hidden-xs"><a href='/content2/footer/screen-reader-access/' title='Screen Reader Access '>Screen Reader Access  </a></li>
-                            <li class="language res_pb5">
-                                <select name="ddlLang" onchange="" id="ddlLang" class="c17Master">
-                                    <option selected="selected" value="1">English</option>
+                    <div class="d-flex align-items-center gap-3">
+                        <ul id="example1" class="d-flex align-items-center list-unstyled mb-0 gap-3">
+                            <li class="skin-reader d-none d-sm-block">
+                                <a href='/content2/footer/screen-reader-access/' title='Screen Reader Access'>Screen Reader Access</a>
+                            </li>
+                            <li>
+                                <select name="ddlLang" id="ddlLang" class="c17Master form-select form-select-sm">
+                                    <option selected value="1">English</option>
                                     <option value="2">Hindi</option>
                                 </select>
                             </li>
-                            <li class="icon"><a href="#main-nav" class="c6Comdt" title="Skip to Content"><i class="fa fa-share ml-2"></i></a></li>
-                            <li class="icon dropdown">
-                                <a href="javascript:void(0)" class="c6Comdt">
-                                    <i class="fa fa-wheelchair ml-2"></i>
-                                </a>
+                            <li><a href="#main-nav" class="c6Comdt" title="Skip to Content"><i class="fa fa-share"></i></a></li>
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="c6Comdt"><i class="fa fa-wheelchair"></i></a>
                                 <ul class="dropdown-content">
-                                    <li>
-                                        <a href="#" title="Decrease Font Size" onClick="set_font_size('decrease')">
-                                            <img src='/images/decrease-font-size.png'
-                                                 alt="Normal Font Size" title="Decrease Font Size" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="Normal Font Size" onclick="set_font_size('')" class="">
-                                            <img src='/images/standard-view.png'
-                                                 alt="Normal Font Size" title="Normal Font Size" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="Increase Font Size" onclick="set_font_size('increase')">
-                                            <img src='/images/increase-text-size.png'
-                                                 alt="Normal Font Size" title="Increase Font Size" />
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="javascript:void(0)" title="High Contrast" onclick="setActiveStyleSheet('change'); return false;">
-                                            <img src='/images/high-contrast.png'
-                                                 alt="High Contrast" title="High Contrast" />
-                                        </a>
-                                    </li>
-                                    <li class=""><a href="javascript:void(0)" title="Normal Theme" onclick="setActiveStyleSheet('normal'); return false;"><img src='/images/standard-view.png' alt="Normal Theme" title="Normal Theme" /></a></li>
+                                    <li><a href="#" onClick="set_font_size('decrease')"><img src='/images/decrease-font-size.png' alt="Decrease Font Size"></a></li>
+                                    <li><a href="#" onclick="set_font_size('')"><img src='/images/standard-view.png' alt="Normal Font Size"></a></li>
+                                    <li><a href="#" onclick="set_font_size('increase')"><img src='/images/increase-text-size.png' alt="Increase Text Size"></a></li>
+                                    <li><a href="javascript:void(0)" onclick="setActiveStyleSheet('change')"><img src='/images/high-contrast.png' alt="High Contrast"></a></li>
+                                    <li><a href="javascript:void(0)" onclick="setActiveStyleSheet('normal')"><img src='/images/standard-view.png' alt="Normal Theme"></a></li>
                                 </ul>
-                            </li>              
-                            <li class="icon"><a href='#' class="c6Comdt"><i class="fa fa-sitemap ml-2"></i></a></li>      
+                            </li>
+                            <li><a href='#' class="c6Comdt"><i class="fa fa-sitemap"></i></a></li>
                         </ul>
+                        <!-- Login pushed to extreme right -->
+                        <div class="login-dropdown d-flex align-items-center ms-auto">
+                            <span class="c6Comdt me-2">Login</span>
+                            <select name="ddlLang" id="ddlLogin" class="c17Master form-select form-select-sm"
+                                    onchange="if(this.value) window.location.href=this.value;">
+                                <option value="0" selected disabled>Select Login</option>
+                                <option value="/member/">Course Participant</option>
+                                <option value="/staff/">Faculty & Staff</option>
+                                <option value="/alumni/">Alumni</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
+
     <div class="mid-head">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                    <div class="indian-emblem pull-left">
+            <div class="row align-items-center">
+                <!-- Left emblem -->
+                <div class="col-3 col-md-2 col-lg-1 text-start">
+                    <div class="indian-emblem">
                         <a href='/'>
-                            <img src='/images/1200px-Emblem_of_India.png' class="bg-white" alt="Indian Emblem" title="Indian Emblem" height="100" />
+                            <img src='/images/1200px-Emblem_of_India.png' class="bg-white img-fluid" alt="Indian Emblem" title="Indian Emblem" />
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                            <div class="useridentity d-none d-md-block" style="font-style:italic">
-                                <a href="https://www.g20.org/en/"><img src="/images/G20_logo.jpg" height="80" /></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
-                            <div class="logo">
-                                <h2 lang="hi"><strong>राष्ट्रीय रक्षा महाविद्यालय</strong></h2>
-                                <h1><a class="c18Master" href='/' title="National Defence College">National Defence College</a> </h1>
-                                <h2>Ministry of Defence, Government of India</h2>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                            <div class="useridentity d-none d-md-block c19Master">
-
-                            </div>
-                        </div>
-
+                <!-- Center logo -->
+                <div class="col-6 col-md-8 col-lg-10 text-center">
+                    <div class="logo">
+                        <h2 lang="hi"><strong>राष्ट्रीय रक्षा महाविद्यालय</strong></h2>
+                        <h1>
+                            <a class="c18Master" href='/' title="National Defence College">
+                                National Defence College
+                            </a>
+                        </h1>
+                        <h2>Ministry of Defence, Government of India</h2>
                     </div>
                 </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                    <img class="pull-right" src="/images/NDC-Logo1.png" height="100" alt="">
+                <!-- Right emblem -->
+                <div class="col-3 col-md-2 col-lg-1 text-end">
+                    <img src="/images/NDC-Logo1.png" class="img-fluid" alt="NDC Logo">
                 </div>
             </div>
         </div>
     </div>
+
 </header>

@@ -48,7 +48,7 @@ $(document).ready(function () {
         nextButton: $('#next-button')
     });
     $('.lastmonthlide').newsTicker({
-        row_height: 35,
+        row_height: 70,
         max_rows: 4,
         speed: 800,
         direction: 'down',
@@ -187,7 +187,7 @@ $(document).ready(function () {
                 if ($('#ServiceId').val() == "INTERNATIONAL OFFICER") {
                     //$('#StudentType').val("OC");
                     //$('select option[value="105"]').attr("selected", true);
-                    
+
                 }
                 else {
                 }
@@ -235,7 +235,7 @@ $("input[name=rdcat]").on("change", function () {
         $("#divinstepcourse").show();
         $('#divinstepcourse').addClass('required');
     }
-    
+
 
 });
 $("#MobileNo").intlTelInput();

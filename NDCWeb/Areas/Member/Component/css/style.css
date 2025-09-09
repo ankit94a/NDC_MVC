@@ -1,4 +1,4 @@
-@font-face {
+﻿@font-face {
     font-family: "Open Sans";
     src: url(../fonts/Light/OpenSans-Light9f1e.eot?v=1.1.0);
     src: url(../fonts/Light/OpenSans-Lightd41d.eot?#iefix&v=1.1.0) format("embedded-opentype"), url(../fonts/Light/OpenSans-Light9f1e.html?v=1.1.0) format("woff2"), url(../fonts/Light/OpenSans-Light9f1e.woff?v=1.1.0) format("woff"), url(../fonts/Light/OpenSans-Light9f1e.ttf?v=1.1.0) format("truetype"), url(../fonts/Light/OpenSans-Light9f1e.svg?v=1.1.0#Light) format("svg");
@@ -799,8 +799,7 @@ span.rss {
 }
 
 .bg-2 {
-    /*    background: #3480cb;*/
-    background: #9b030c;
+    background: #3480cb;
 }
 
 .bg-3 {
@@ -5121,6 +5120,7 @@ a {
     display: block;
     max-width: 100%;
     height: auto;
+    height:500px;
 }
 
 .img-rounded {
@@ -9372,7 +9372,7 @@ pre code {
     }
 
 
-    /*Kamal Css Stsrt*/
+    /*============ Kamal Css Stsrt =======*/
 
     .top-header {
         position: fixed;
@@ -9387,6 +9387,109 @@ pre code {
         background: #fff url('/images/header.png') center center no-repeat;
         background-size: cover;
     }
+
+
+        /* Keep your existing CSS unchanged, just add this */
+
+        .top-header img {
+            max-height: 60px;
+            height: auto;
+            width: auto;
+        }
+
+        .top-header a.ND {
+            font-size: 1.2rem;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .top-header .logo h2 {
+            font-size: 1.1rem;
+            margin: 0;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .top-header .d-flex img {
+            max-height: 60px;
+            height: auto;
+        }
+
+    /* Responsive rules */
+    @media (max-width: 992px) {
+        .top-header {
+            flex-wrap: wrap;
+            height: auto;
+            text-align: center;
+            padding: 10px;
+        }
+
+            .top-header .logo {
+                flex: 1 0 100%;
+                margin: 10px 0;
+            }
+
+            .top-header a.ND {
+                flex: 1 0 100%;
+                font-size: 1rem;
+            }
+
+            .top-header img {
+                max-height: 50px;
+            }
+    }
+
+    @media (max-width: 768px) {
+        .top-header {
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            padding: 15px;
+        }
+
+            .top-header img {
+                margin: 5px auto;
+                max-height: 45px;
+            }
+
+            .top-header .logo h2 {
+                font-size: 0.95rem;
+            }
+
+            .top-header a.ND {
+                font-size: 0.9rem;
+                margin: 8px 0;
+            }
+
+            .top-header .d-flex {
+                flex-direction: column;
+                margin: 0 !important;
+                gap: 10px;
+            }
+    }
+
+    @media (max-width: 480px) {
+        .top-header .logo h2 {
+            font-size: 0.8rem;
+        }
+
+        .top-header a.ND {
+            font-size: 0.8rem;
+        }
+
+        .top-header img {
+            max-height: 40px;
+        }
+    }
+
+
+
+
+
+
+
+    /*End kamal*/
+
 
     .content {
         margin-top: 60px;
@@ -9456,6 +9559,35 @@ pre code {
         .sidebar .has-sub.open > a .arrow {
             transform: rotate(90deg);
         }
+
+    @media (max-width: 991px) {
+        .sidebar {
+            left: -220px;
+            transition: left 0.3s ease;
+            z-index: 1050;
+            position: fixed;
+            top: 0;
+            height: 100%;
+            background: #fff;
+        }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1049;
+        }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+    }
+
 
     .main-area {
         margin-left: 220px;
@@ -9667,6 +9799,115 @@ pre code {
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
     }
+
+    /* ================= Responsive Only Additions ================= */
+
+    /* Tablet & Small Laptops (≤991px) */
+    @media (max-width: 991px) and (min-width: 270px) {
+        .sidebar {
+            left: -240px; /* hide by default */
+            width: 220px;
+            top: 100px;
+            height: auto;
+            position: fixed; /* keep sliding effect */
+        }
+
+            .sidebar.active {
+                left: 0; /* show when toggled */
+            }
+
+            .sidebar ul li a {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+        .menu-toggle {
+            display: block;
+            font-size: 22px;
+            color: #fff;
+            background: #9b030c;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            z-index: 2100;
+        }
+
+        .main-area {
+            margin-left: 0; /* sidebar hide hone par content pura */
+            margin-top: 110px; /* Header ki height adjust */
+        }
+    }
+
+    /* Mobile (≤576px) */
+    @media (max-width: 576px) and (min-width: 270px) {
+        .sidebar {
+            width: 200px;
+        }
+
+        .top-header {
+            flex-direction: column;
+            height: auto; /* Fixed height hatao */
+            padding: 10px;
+            text-align: center;
+        }
+
+            .top-header img {
+                max-height: 45px;
+                margin-bottom: 8px;
+            }
+
+        .main-area {
+            margin-left: 0;
+            margin-top: 120px;
+            padding: 12px;
+        }
+
+        .banner {
+            flex-direction: column;
+            height: auto;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+            .banner img {
+                height: 40px;
+                margin: 5px 0;
+            }
+
+        .sub-bar {
+            font-size: 14px;
+            text-align: center;
+            padding: 6px 10px;
+        }
+
+        footer {
+            font-size: 12px;
+            padding: 6px;
+        }
+    }
+
+    /* Very Small Devices (≤320px) */
+    @media (max-width: 320px) {
+        .top-header img {
+            max-height: 35px;
+        }
+
+        .sidebar ul li a {
+            font-size: 12px;
+            padding: 8px;
+        }
+
+        .main-area {
+            margin-top: 100px;
+            padding: 8px;
+        }
+    }
+
+
+
     /*Kamal Css End*/
 
 }
