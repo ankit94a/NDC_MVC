@@ -4,65 +4,64 @@
 {
     @Html.AntiForgeryToken()
     <div class="card shadow p-3">
-        <div class="card-header">
-            Personal Details
-        </div>
-        <div class="card-body">
-            <style>
-                .validation-summary-valid {
-                    display: none;
-                }
+    <div class="card-header">
+        Personal Details
+    </div>
+    <div class="card-body">
+        <style>
+            .validation-summary-valid {
+                display: none;
+            }
 
-                .required::before {
-                    content: "*";
-                    font-weight: bold;
-                    color: red;
-                }
-            </style>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label required" })
-                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-3">
-                    @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-3">
-                    @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", @placeholder = "Family/Surname" } })
-                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-3">
-                    @Html.LabelFor(model => model.FatherName, htmlAttributes: new { @class = "control-label required" })
-                    @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
-                </div>
+            .required::before {
+                content: "*";
+                font-weight: bold;
+                color: red;
+            }
+        </style>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label required" })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
-            <div class="form-row">
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", @placeholder = "Family/Surname" } })
+                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.FatherName, htmlAttributes: new { @class = "control-label required" })
+                @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-row">
 
-                <div class="form-group col-md-3">
-                    @Html.LabelFor(model => model.FatherMiddleName, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.FatherMiddleName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FatherMiddleName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-3">
-                    @Html.LabelFor(model => model.FatherSurname, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.FatherSurname, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FatherSurname, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-3">
-                    @Html.LabelFor(model => model.MotherName, htmlAttributes: new { @class = "control-label required" })
-                    @Html.EditorFor(model => model.MotherName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group col-md-3">
-                    @Html.LabelFor(model => model.MotherMiddleName, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.MotherMiddleName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MotherMiddleName, "", new { @class = "text-danger" })
-                </div>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.FatherMiddleName, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.FatherMiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FatherMiddleName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.FatherSurname, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.FatherSurname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FatherSurname, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.MotherName, htmlAttributes: new { @class = "control-label required" })
+                @Html.EditorFor(model => model.MotherName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MotherName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-3">
+                @Html.LabelFor(model => model.MotherMiddleName, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.MotherMiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MotherMiddleName, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-row">
@@ -180,6 +179,7 @@
             </div>
         </div>
     </div>
+</div>
     <div class="card shadow p-3">
         <div class="card-header">
             <b> Address </b>
