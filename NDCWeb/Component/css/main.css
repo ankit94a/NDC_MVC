@@ -73,8 +73,9 @@ body{
     right:1em;
     margin-top:-3px;height:0;width:0;border:4px solid transparent;border-top-color:#dFeEFF;border-top-color:rgba(255,255,255,.9)}
 
-.active{
-    background: #1253ca !important;
+.active {
+    /*background: #1253ca !important;*/
+    background: #9b030c !important;
 }
 .whats-new-section {
     /*background: #5da6d3;*/
