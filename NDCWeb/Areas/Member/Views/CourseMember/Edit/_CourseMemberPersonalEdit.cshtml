@@ -189,7 +189,8 @@
         <div class="card-body">
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label class="control-label"><b>Address for Communication</b></label>
+                    <label class="control-label"><b>Address for Communication</b>(please tick as applicable)</label>
+                    @*<p class="control-label col-md-4">(please tick as applicable)</p>*@
                     <div class="form-inline">
                         <label class="containerchk col-md-6">
                             Residential
@@ -201,8 +202,8 @@
                             <input type="radio" value="Official" name="CommunicationAddress">
                             <span class="checkmark"></span>
                         </label>
-                        <label class="control-label col-md-4">(please tick as applicable)</label>
                     </div>
+
                     @Html.ValidationMessageFor(model => model.CommunicationAddress, "", new { @class = "text-danger" })
                 </div>
             </div>

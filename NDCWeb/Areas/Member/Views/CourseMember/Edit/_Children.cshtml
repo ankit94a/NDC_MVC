@@ -7,7 +7,7 @@
     @Html.HiddenFor(model => model.ChildId, new { @id = "hdnChildId" })
 
     <div class="form-horizontal">
-        <div class="card mt-4">
+        <div class="card shadow p-3 mt-4">
             <div class="card-header" style="background-color:#fff">
                 Children DETAILS
             </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mt-4">
+        <div class="card shadow p-3 mt-4">
             <div class="card-header" style="background-color:#fff">
                 PASSPORT DETAILS OF CHILDREN
             </div>
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mt-4">
+        <div class="card shadow p-3 mt-4">
             <div class="card-header" style="background-color:#fff">
                 VISA DETAILS (CHILDREN)
             </div>
@@ -131,7 +131,7 @@
         </div>
     </div>
     <div class="card-footer text-center bg-white">
-        <button type="button" class="btn btn-lg btn-primary" onclick="editChildrenDetail()">Update</button>
+        <button type="button" class="btn btn-lg btn-outline-danger" onclick="editChildrenDetail()">Update</button>
     </div>
 }
 

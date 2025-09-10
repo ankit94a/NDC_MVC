@@ -88,9 +88,9 @@
                 </div>
             </div>
             <div class="card-footer text-center bg-white">
-                <input type="button" id="btnSave" value="Save" onclick="appointmentAdd()" class="btn btn-primary btn-lg" />
+                <input type="button" id="btnSave" value="Save" onclick="appointmentAdd()" class="btn btn-outline-danger" />
             </div>
-            <div class="card-header">
+            <div class="card-body">
                 @Html.ValidationSummary(false, "Please fix the following error and then submit the form:-", new { @class = "text-danger" })
             </div>
         </div>
