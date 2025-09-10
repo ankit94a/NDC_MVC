@@ -7,51 +7,53 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.SpouseId, new { @id = "hdnSpouseId" })
-        <div class="card mt-4">
+        <div class="card shadow p-3 mt-4">
             <div class="card-header" style="background-color:#fff">
                 PARTICULARS
             </div>
             <div class="card-body">
                 <div class="form-row">
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4">
                         <Label class="control-label">Name</Label>
                         @Html.EditorFor(model => model.SpouseName, new { htmlAttributes = new { @class = "form-control required" } })
                         @Html.ValidationMessageFor(model => model.SpouseName, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-1">
+                    <div class="form-group col-md-4">
                         <Label class="control-label required">Blood Group</Label>
                         @Html.DropDownListFor(model => model.SpouseBloodGroup, (IEnumerable<SelectListItem>)ViewBag.BloodGroup, "-- Select --", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.SpouseBloodGroup, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4">
                         <Label class="control-label required">Contact No</Label>
                         @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
                         @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-2">
-                        <Label class="control-label required">Date of Birth</Label>
-                        @Html.EditorFor(model => model.SpouseDOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
-                        @Html.ValidationMessageFor(model => model.SpouseDOBirth, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group col-md-2">
-                        <Label class="control-label">Occupation</Label>
-                        @Html.EditorFor(model => model.Occupation, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                    <div class="form-group col-md-3">
-                        <Label class="control-label">Spouse staying with officer during course?</Label>
-                        @Html.EditorFor(model => model.SpouseStay, new { htmlAttributes = new { @class = "custom-checkbox" } })
+                </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <Label class="control-label required">Date of Birth</Label>
+                            @Html.EditorFor(model => model.SpouseDOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.SpouseDOBirth, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <Label class="control-label">Occupation</Label>
+                            @Html.EditorFor(model => model.Occupation, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <Label class="control-label">Spouse staying with officer during course?</Label>
+                            @Html.EditorFor(model => model.SpouseStay, new { htmlAttributes = new { @class = "custom-checkbox" } })
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
 
-        <div class="card mt-4">
+        <div class="card shadow p-3 mt-4">
             <div class="card-header" style="background-color:#fff">
                 EDUCATIONAL QUALIFICATIONS
             </div>
             <div class="card-body">
                 <div class="form-row">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <Label class="control-label">Higher education</Label>
                         @Html.EditorFor(model => model.EduHigher, new { htmlAttributes = new { @class = "form-control" } })
                         @*@Html.ValidationMessageFor(model => model.EduHigher, "", new { @class = "text-danger" })*@
@@ -66,7 +68,7 @@
                         @Html.EditorFor(model => model.EduDivision, new { htmlAttributes = new { @class = "form-control" } })
 
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <Label class="control-label">Board/University</Label>
                         @Html.EditorFor(model => model.EduUniversity, new { htmlAttributes = new { @class = "form-control" } })
                         @*@Html.ValidationMessageFor(model => model.EduUniversity, "", new { @class = "text-danger" })*@
@@ -76,20 +78,20 @@
         </div>
     </div>
 
-    <div class="card mt-4">
+    <div class="card shadow p-3 mt-4">
         <div class="card-header" style="background-color:#fff">
             PASSPORT DETAIL (to be filled by Foreign Officers only)
         </div>
         <div class="card-body">
             <div class="form-row">
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-12">
                     <label class="control-label"><b>Are you holding any Passport</b></label>
                     <div class="form-inline">
-                        <label class="containerchk col-md-1">
+                        <label class="containerchk col-md-6">
                             Yes @Html.RadioButtonFor(model => model.HoldingPassport, "Yes", new { id = "spousepassport-true" })
                             <span class="checkmark"></span>
                         </label>
-                        <label class="containerchk col-md-1">
+                        <label class="containerchk col-md-6">
                             No @Html.RadioButtonFor(model => model.HoldingPassport, "No", new { id = "spousepassport-false" })
                             <span class="checkmark"></span>
                         </label>
@@ -110,16 +112,18 @@
                         @Html.EditorFor(model => model.SpousePassportName, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.SpousePassportName, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <Label class="control-label">Date of Issue</Label>
                         @Html.EditorFor(model => model.SpousePassportIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.SpousePassportIssueDate, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <Label class="control-label">Valid Upto</Label>
                         @Html.EditorFor(model => model.SpousePassportValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.SpousePassportValidUpto, "", new { @class = "text-danger" })
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group col-md-2">
                         <label for="citizencountry">Passport Type</label>
                         @Html.DropDownListFor(model => model.SpousePassportType, (IEnumerable<SelectListItem>)ViewBag.PassportType, "-- Select --", htmlAttributes: new { @class = "form-control" })
@@ -130,9 +134,6 @@
                         @Html.DropDownListFor(model => model.SpousePassportCountryIssued, (IEnumerable<SelectListItem>)ViewBag.ddlCountry, "-- Select --", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.SpousePassportCountryIssued, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="passport_self">Upload passport image (Front)</label>
                         <input id="spousePassportPicfile" type="file" title="Upload Your Spouse Passport" name="spousePassportPicfile" onchange="imgValidateEdit('spousePassportPicfile', 'SpousePassportImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
@@ -146,11 +147,11 @@
                         @Html.EditorFor(model => model.SpousePassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
     </div>
 
-    <div class="card mt-4">
+    <div class="card shadow p-3 mt-4">
         <div class="card-header" style="background-color:#fff">
             VISA DETAIL
         </div>
@@ -161,12 +162,12 @@
                     @Html.EditorFor(model => model.SpouseVisaNo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.SpouseVisaNo, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Date of Issue</Label>
                     @Html.EditorFor(model => model.SpouseVisaIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.SpouseVisaIssueDate, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Valid Upto</Label>
                     @Html.EditorFor(model => model.SpouseVisaValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.SpouseVisaValidUpto, "", new { @class = "text-danger" })
@@ -190,12 +191,12 @@
                     @Html.EditorFor(model => model.SpouseFRRONo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.SpouseFRRONo, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Date of Issue</Label>
                     @Html.EditorFor(model => model.SpouseFRROIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.SpouseFRROIssueDate, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <Label class="control-label">Valid Upto</Label>
                     @Html.EditorFor(model => model.SpouseFRROValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.SpouseFRROValidUpto, "", new { @class = "text-danger" })
@@ -209,7 +210,7 @@
             </div>
         </div>
         <div class="card-footer text-center bg-white">
-            <input type="button" value="Submit" onclick="editSpouse()" class="btn btn-primary" />
+            <input type="button" value="Submit" onclick="editSpouse()" class="btn btn-outline-danger" />
         </div>
     </div>
 }
