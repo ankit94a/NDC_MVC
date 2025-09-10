@@ -135,7 +135,7 @@ namespace NDCWeb.Areas.Staff.Controllers
 		{
 			return View();
 		}
-		
+
 		public ViewResult Maps()
 		{
 			return View();
@@ -293,6 +293,65 @@ namespace NDCWeb.Areas.Staff.Controllers
 			}
 		}
 
+		[HttpGet]
+		public async Task<ActionResult> GetNotificationWithCount()
+		{
+			var notificationList = new List<NotificationModel>();
+			string uId = User.Identity.GetUserId();
+			using (var uow = new UnitOfWork(new NDCWebContext()))
+			{
+
+				var staffMember = uow.StaffMasterRepo.Find(x => x.LoginUserId == uId, fk => fk.Faculties).FirstOrDefault();
+				string staffType = staffMember.Faculties.StaffType;
+				// active leave
+				var course = uow.CourseRepo.Find(x => x.IsCurrent == true).OrderByDescending(x => x.CourseId).FirstOrDefault();
+				var leaveinfoAdd = await uow.LeaveRepo.GetAddStatusLeaveInfoByAppointmentAsync(staffMember.StaffId, course.CourseId, staffType);
+				if (leaveinfoAdd.Count() > 0)
+				{
+					var notif = new NotificationModel();
+					notif.Title = "New Leaves Applied";
+					notif.Count = leaveinfoAdd.Count();
+					notificationList.Add(notif);
+				}
+
+				// getting leave is senction or rejected
+				var leaveinfo = uow.LeaveRepo.GetViewCourseWiseLeaveCount(course.CourseId);
+				if (leaveinfo.Count() > 0)
+				{
+					var notif = new NotificationModel();
+					notif.Title = "View Leaves Status Pending";
+					notif.Count = leaveinfo.Count();
+					notificationList.Add(notif);
+				}
+				// getting unverified members
+				var unvalumni = uow.AlumniRepo.Find(x => x.Verified == false);
+				if (unvalumni.Count() > 0)
+				{
+					var notif = new NotificationModel();
+					notif.Title = "Unverified Members";
+					notif.Count = unvalumni.Count();
+					notificationList.Add(notif);
+				}
+				// getting instep registraiton count
+				var unvalumniinstep = uow.AlumniRepo.Find(x => x.Verified == false && x.InStepCourseId != null);
+				if (unvalumniinstep.Count() > 0)
+				{
+					var notif = new NotificationModel();
+					notif.Title = "InStep Registration Members";
+					notif.Count = unvalumniinstep.Count();
+					notificationList.Add(notif);
+				}
+
+				//ViewBag.UnverifiedCount = unvalumni.Count();
+				return Json(new
+				{
+					success = true,
+					data = notificationList
+				}, JsonRequestBehavior.AllowGet);
+			};
+		}
+
+
 		#endregion
 
 		#region Alerts
@@ -347,7 +406,7 @@ namespace NDCWeb.Areas.Staff.Controllers
 		}
 		#endregion
 
-	
+
 	}
 
 }
