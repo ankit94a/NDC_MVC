@@ -10,10 +10,10 @@
                 font-weight: bold;
             }
         </style>
-        <div class="card-header" text-uppercase h4 text-center border-0">
-            <u>@ViewBag.Title</u>
-            <span class="pull-right">
-                @Html.ActionLink("Edit", "Edit", new { id = Model.ITId })
+        <div class="card-header text-uppercase h4 text-center border-0" style="background-color: #9b030c">
+            <u style="color: #ffff" >@ViewBag.Title</u>
+            <span class="pull-right" >
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ITId }, new { @class = "text-white" })
 
                 @*@Html.ActionLink("Edit Requirement", "Edit", null, new { @class = "btn btn-primary btn-sm" })*@
             </span>
@@ -110,7 +110,7 @@
                 </ol>*@
             </div>
             <div class="panel-footer mb-4 text-center">
-                <input type="button" class="btn btn-primary btn-sm" onclick="printdoc()" value="Print" />
+                <input type="button" class="btn btn-outline-primary btn-sm" onclick="printdoc()" value="Print" />
             </div>
         </div>
     </div>

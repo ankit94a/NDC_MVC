@@ -1,36 +1,12 @@
 ﻿@model NDCWeb.Areas.Member.View_Models.MemberCompletePreviewVM
     <style>
-        .custom-btn {
-            border-radius: 30px;
-            padding: 0.45rem 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-/*            transition: all 0.3s ease-in-out;*/
-            color: #fff;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-        }
+ 
 
-        /* Previous button (cool blue) */
-        .btn-previous {
-            background: linear-gradient(135deg, #457fca, #5691c8);
-            border: none;
-        }
 
-            .btn-previous:hover {
-                background: linear-gradient(135deg, #3769a5, #457fca);
-/*                transform: translateY(-2px);*/
-            }
+         
 
-        /* Print button (green) */
-        .btn-print {
-            background: linear-gradient(135deg, #11998e, #38ef7d);
-            border: none;
-        }
 
-            .btn-print:hover {
-                background: linear-gradient(135deg, #0d776d, #2bc76d);
-/*                transform: translateY(-2px);*/
-            }
+          
 
 
     </style>
@@ -95,10 +71,13 @@
 </div>
 
 <div class="panel-footer text-white d-flex justify-content-between">
-        <a class="btn custom-btn btn-info btn-previous btnPrevious">Previous</a>
-        <a class="btn custom-btn btn-lg btn-print " onclick="printdoc()">Print</a>
+    <a class="btn btn-outline-secondary rounded-pill px-4 me-2 btnPrevious">
+        <i class="bi bi-arrow-left-circle"></i> Previous
+    </a>
+    @*<a class="btn custom-btn btn-info btn-previous btnPrevious">Previous</a>*@
+<a class="btn btn-outline-primary rounded-pill px-4 me-2 btn-print " onclick="printdoc()"> <i class="bi bi-arrow-left-circle"></i>Print</a>
 
-    </div>
+</div>
 
 
 

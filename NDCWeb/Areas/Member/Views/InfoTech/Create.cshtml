@@ -9,9 +9,9 @@
     @using (Html.BeginForm("Create", "InfoTech", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
-        <div class="card">
-            <div class="card-header" style="margin-left: 12px;">
-                <h4>@ViewBag.Title </h4>
+        <div class="card p-3 shadow">
+            <div class="card-header " style=" background-color: #9b030c" >
+                <h4 style="color:#ffff; margin-left:12px">@ViewBag.Title </h4>
             </div>
             <div class="card-body">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -117,6 +117,11 @@
                         @Html.EditorFor(model => model.CBag, new { htmlAttributes = new { @class = "custom-checkbox", @readonly = "readonly" } })
                         @Html.LabelFor(model => model.CBag, htmlAttributes: new { @class = "control-label" })
                     </div>
+
+                </div>
+                <div class="form-group col-md-12">
+                    <input name="decdeclations" id="decdeclations" type="checkbox" required />
+                    <label for="decdeclations"><b>Declaration:-</b> I agree with all terms and conditions and will comply with HQ IDS Cyberb guidelines.</label>
                 </div>
             </div>
         </div>
@@ -145,14 +150,14 @@
                         <p class="text-info">Proforma download and upload post approval (Admin)</p>
                         @*@Html.EditorFor(model => model.OutsidePermissionDocPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })*@
                     </div>-->
-                    <div class="form-group col-md-12">
+                    @*<div class="form-group col-md-12">
                         <input name="decdeclations" id="decdeclations" type="checkbox" required />
                         <label for="decdeclations"><b>Declaration:-</b> I agree with all terms and conditions and will comply with HQ IDS Cyberb guidelines.</label>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="panel-footer mb-4 text-center">
-                <button type="submit" id="btnSave" value="Submit" class="btn btn-primary btn-sm">Submit</button>
+                <button type="submit" id="btnSave" value="Submit" class="btn btn-outline-danger">Submit</button>
                @*@Html.ActionLink("View Filled Form", "index", null, new { @class = "btn btn-primary btn-sm" })*@
             </div>
         </div>
@@ -319,6 +324,7 @@
         }
 
         $(function () {
+         
             $("#dialog").dialog({
                 title: 'IT Section Requirements',
                 autoOpen: false,
@@ -329,6 +335,7 @@
                 modal: true,
                 buttons: {
                     Ok: function () {
+                        debugger
                         //Add();
                         $("[id*=btnSave]").click();
                     },
@@ -341,6 +348,7 @@
             });
         });
         function AcceptTermAndcondition() {
+            debugger
             if ($("#decdeclations").is(':checked')) {
                 return true;
             }

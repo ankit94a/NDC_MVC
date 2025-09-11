@@ -3,49 +3,96 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.4rem 0.8rem;
+        margin: 0 2px;
+        border-radius: 0.25rem;
+        border: 1px solid #dee2e6;
+        background: #f8f9fa;
+        color: #0d6efd !important;
+    }
 
-<h3 style="text-align:center"> Training Activities</h3>
-
-<table class="table table-hover table-bordered tab w-100" id="myTable">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Module")
-            </th>
-            <th>
-                @Html.DisplayName("Activities")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Module)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Activity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-
-                <td>
-                    <a class="btn btn-outline-primary" href="@Url.Action("ShowMediaFiles", new { id = item.TrainingActivityId })" target="_blank"><i class="fa fa-eye"></i></a>
-                    @*<a class="btn btn-outline-primary" href="@Url.Action("ShowActivity", new { id = item.TrainingActivityId })" target="_blank"><i class="fa fa-eye"></i>Show</a>*@
-                </td>
-            </tr>
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: #0d6efd !important;
+            color: #fff !important;
         }
-    </tbody>
-</table>
-@section Scripts {
-    <script>
-    LoadJDT('#myTable');
-    </script>
-}
+
+</style>
+
+<div class="container my-4">
+    <div class="card shadow p-3 border-0 rounded-3">
+
+        <!-- Table Wrapper -->
+        <div class="card-header custom-header text-center text-white rounded-top">
+            <!-- Page Title -->
+               Training Activities
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered align-middle w-100 mb-0" id="dataGrid">
+                        <thead class="table-light text-center">
+                            <tr>
+                                <th>@Html.DisplayName("Module")</th>
+                                <th>@Html.DisplayName("Activities")</th>
+                                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Module)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Activity)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                    <td>
+                                        <a class="btn btn-outline-success btn-sm" href="@Url.Action("ShowMediaFiles", new { id = item.TrainingActivityId })" target="_blank">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+     </div>
+ </div>
+
+    @section Scripts {
+        <script>
+            LoadJDT('#dataGrid');
+            function LoadJDT(TableId) {
+                oTable = $(TableId).DataTable({
+                    "processing": true,
+                    "order": [[0, "desc"]],
+                    "scrollX": false,
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
+                    "language": {
+                        "search": "🔍 Search:",
+                        "lengthMenu": "Show _MENU_ entries",
+                        "info": "Showing <b>_START_</b> to <b>_END_</b> of <b>_TOTAL_</b> entries",
+                        "infoEmpty": "No entries available",
+                        "infoFiltered": "(filtered from _MAX_ total entries)",
+                        "paginate": {
+                            "previous": "&laquo; Prev",
+                            "next": "Next &raquo;"
+                        }
+                    },
+                    "dom":
+                        '<"row mb-2"<"col-sm-6"l><"col-sm-6 text-end"f>>' +
+                        'rt' +
+                        '<"row mt-2"<"col-sm-6"i><"col-sm-6"p>>'
+                });
+            }
+
+        </script>
+    }

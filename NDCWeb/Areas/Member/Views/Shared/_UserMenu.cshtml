@@ -11,16 +11,16 @@
             @Html.SiteMenuAsUnorderedList(ViewBag.SiteMenuItems as List<MenuControlVM>)
 
 
-            @if (ViewBag.SiteMenuItems != null)
+            @*@if (ViewBag.SiteMenuItems != null)
                     {
                         var menuItemsJson = JsonConvert.SerializeObject(ViewBag.SiteMenuItems, Formatting.None);
 
                         <script>
-                var siteMenuItems = @Html.Raw(menuItemsJson);
-                console.log("SiteMenuItems:", siteMenuItems);
+                        var siteMenuItems = @Html.Raw(menuItemsJson);
+                        console.log("SiteMenuItems:", siteMenuItems);
                         </script>
 
-                    }
+                    }*@
 
 
             @*@if (ViewBag.SiteMenuItems != null)
