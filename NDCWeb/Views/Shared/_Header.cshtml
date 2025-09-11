@@ -33,8 +33,8 @@
                         <!-- Login pushed to extreme right -->
                         <div class="login-dropdown d-flex align-items-center ms-auto">
                             <span class="c6Comdt me-2">Login</span>
-                            <select name="ddlLang" id="ddlLogin" class="c17Master form-select form-select-sm"
-                                    onchange="if(this.value) window.location.href=this.value;">
+                            <select name="ddlLogin" id="ddlLogin" class="c17Master form-select form-select-sm">
+                                @*onchange="if(this.value) window.location.href=this.value;"*@
                                 <option value="0" selected disabled>Select Login</option>
                                 <option value="/member/">Course Participant</option>
                                 <option value="/staff/">Faculty & Staff</option>
@@ -77,5 +77,21 @@
             </div>
         </div>
     </div>
-
+    <script>
+        const ddlLogin = document.getElementById("ddlLogin");
+        function resetDropdown(e) {
+            if (e.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+                ddlLogin.value = "0";
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            ddlLogin.value = "0";
+        });
+        window.addEventListener("pageshow", resetDropdown);
+        ddlLogin.addEventListener("change", function () {
+            if (this.value !== "0") {
+                window.location.href = this.value;
+            }
+        });
+    </script>
 </header>
