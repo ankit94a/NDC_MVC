@@ -100,7 +100,7 @@ namespace NDCWeb.Controllers
 			//if (clientCaptcha.Equals(serverCaptcha) && ModelState.IsValid)
 			//if (!clientCaptcha.Equals(serverCaptcha))
 
-			if (!this.IsCaptchaValid("Validate your captcha"))
+			if (this.IsCaptchaValid("Validate your captcha"))
 			{
 				//ViewBag.ShowCAPTCHA = serverCaptcha;
 				ViewBag.CaptchaErrorMessage = "Invalid Captcha";

@@ -9,9 +9,14 @@ namespace NDCWeb
         public static void RegisterBundles(BundleCollection bundles)
         {
 
-            bundles.Add(new ScriptBundle("~/bundles/mainjs").Include("~/Component/js/jquery/jquery-{version}.js"));
+			//  bundles.Add(new ScriptBundle("~/bundles/mainjs").Include("~/Component/js/jquery/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Component/js/jquery.validate*"));
+			bundles.Add(new ScriptBundle("~/bundles/mainjs").Include(
+	"~/Component/js/jquery/jquery-3.7.1.min.js"
+));
+
+
+			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Component/js/jquery.validate*"));
 
             bundles.Add(new StyleBundle("~/bundles/jquistyle").Include("~/Component/js/jquery-ui/jquery-ui.css", new CssRewriteUrlTransform()));
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Component/js/jquery-ui/jquery-ui.js"));
@@ -21,12 +26,18 @@ namespace NDCWeb
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Component/js/modernizr-*"));
 
-                bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                          "~/Component/js/bootstrap.js"));
+			var bootstrapBundle = new ScriptBundle("~/bundles/bootstrap")
+	 .Include("~/Component/js/popper.min.js",
+			  "~/Component/js/bootstrap.min.js");
+
+			// Remove minification (so ES6 JS like Bootstrap 5 works)
+			bootstrapBundle.Transforms.Clear();
+
+			bundles.Add(bootstrapBundle);
 
 
-           
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+
+			bundles.Add(new StyleBundle("~/Content/css").Include(
                           "~/Component/css/bootstrap.min.css",
                           "~/Component/css/style.css",
                           "~/Component/css/index.css",

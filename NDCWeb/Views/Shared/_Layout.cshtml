@@ -9,36 +9,32 @@
     <title>
         National Defence College
     </title>
-    @*<meta http-equiv="Content-Security-Policy" content="default-src 'self'">*@
 
     <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="keywords" />
     <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="description" />
     <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="DC.Subject.Keyword" />
     <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="NDC.Description" />
     <link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
-    <link href="~/Component/css/bootstrap.min.css" rel="stylesheet" />
+
+
+
+
     <link rel="stylesheet" type="text/css" href="~/Component/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/Component/css/index.css" />
     <link rel="stylesheet" type="text/css" href="/Component/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/Component/css/ndcforms.css" />
-    <!-- Color Theme CSS -->
 
     <link rel="stylesheet" href="/Component/css/gallery/css/animate.min.css" />
     <link rel="stylesheet" href="/Component/css/gallery/css/jquery.desoslide.min.css">
     <link href="/Component/Custom/css/intlTelInput.css" rel="stylesheet" />
+
+
+
+    @Styles.Render("~/Content/css")        <!-- Bootstrap + main styles -->
+    @Styles.Render("~/bundles/jquistyle") <!-- jQuery UI -->
+    @Styles.Render("~/bundles/toastr/css")
     <link href="/Component/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
-    @Styles.Render("~/bundles/jquistyle")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/mainjs")
-
-
     <link href="~/Component/css/ndcstyle.css" rel="stylesheet" />
-
-
-    <!-- jQuery -->
-    @*<script src="~/Component/js/jquery/jquery-3.6.0.min.js"></script>*@
-    <!-- Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -74,33 +70,34 @@
             </div>
         </div>
     </footer>
-    <script src='~/Component/js/font-size.js' type="text/javascript"></script>
-    <script src='~/Component/js/light-box.js' type="text/javascript"></script>
-    <script src='~/Component/js/focus.js' type="text/javascript"></script>
-    <script src='~/Component/js/html5lightbox.js' type="text/javascript"></script>
+    <!-- Core JS -->
+    @Scripts.Render("~/bundles/mainjs")   <!-- jQuery -->
+    <script src="~/Component/js/jquery-migrate-1.2.1.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
 
-    <script src="~/Component/js/jquery/jquery-3.7.1.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryui") <!-- jQuery UI if needed -->
+    @Scripts.Render("~/bundles/custom")   <!-- your custom + intlTelInput -->
+    <!-- Plugins -->
     <script src="~/Component/js/jquery.flexisel.js"></script>
-    <script src='~/Component/js/jquery.meanmenu.js' type="text/javascript"></script>
-
-
-    <script src="~/Component/js/bootstrap.bundle.min.js"></script>
-    <script src='~/Component/js/jquery.cycle.all.min.js' type="text/javascript"></script>
-    <script src='~/Component/js/superfish.min.js' type="text/javascript"></script>
-    <script src='~/Component/js/imagelightbox.min.js' type="text/javascript"></script>
+    <script src="~/Component/js/jquery.meanmenu.js"></script>
+    <script src="~/Component/js/jquery.cycle.all.min.js"></script>
+    <script src="~/Component/js/superfish.min.js"></script>
+    <script src="~/Component/js/imagelightbox.min.js"></script>
     <script src="~/Component/js/carousel.js"></script>
 
+    <!-- Toastr -->
+    <script src="~/Component/js/toastr.min.js"></script>
 
-    <script src='~/Component/js/custom.js' type="text/javascript"></script>
-    <script src='~/Component/Custom/js/customScript.js' type="text/javascript"></script>
-    <script src='~/Component/js/ace-responsive-menu.js' type="text/javascript"></script>
-    <script src="~/Component/js/newsTicker.js" type="text/javascript"></script>
-
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/custom")
+    <!-- Custom -->
+    <script src="~/Component/js/custom.js"></script>
+    <script src="~/Component/Custom/js/customScript.js"></script>
+    <script src="~/Component/js/ace-responsive-menu.js"></script>
+    <script src="~/Component/js/newsTicker.js"></script>
     <script src="~/Component/js/ndcv3.js"></script>
+    <script src="~/Component/js/font-size.js"></script>
+    <script src="~/Component/js/light-box.js"></script>
+    <script src="~/Component/js/focus.js"></script>
+    <script src="~/Component/js/html5lightbox.js"></script>
     @RenderSection("scripts", required: false)
-
-   
 </body>
 </html>
