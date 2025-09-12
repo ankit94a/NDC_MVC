@@ -1,0 +1,137 @@
+﻿<div class="shadow-sm mt-2" style="clear:both">
+    @if (ViewBag.StaffType != null)
+    {
+        <h4 class="fw-bold py-2 btlr text-white pr-5" style="border-bottom: 1px solid #ab131c; ">
+            <i class="bi bi-list-task me-2 mx-2"></i> TASKS
+        </h4>
+        if (ViewBag.StaffType == 15)//"AQ"
+        {
+            <a class="list-group-item list-group-item-line text-white d-block" href="@Url.Action("ArrivalAll", "Participant")"><i class="bi bi-airplane me-2 text-primary"></i>Arrival Detail</a>
+            <a class="list-group-item list-group-item-line text-white d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+            <a class="list-group-item list-group-item-line text-white d-block" href="~/staff/participant/CrsMbrRoleAssignment/"><i class="bi bi-person-badge me-2 text-warning"></i>Role Assignment</a>
+            <a class="list-group-item list-group-item-line text-white d-block" href="~/staff/instepcourse/index/"><i class="bi bi-journal-text me-2 text-info"></i>In-Step Course</a>
+        }
+        else if (ViewBag.StaffType == 2 || ViewBag.StaffType == 3 || ViewBag.StaffType == 4 || ViewBag.StaffType == 5 || ViewBag.StaffType == 6 || ViewBag.StaffType == 7 || ViewBag.StaffType == 8 || ViewBag.StaffType == 9 || ViewBag.StaffType == 23)//"SDS"
+        {
+            <a class="list-group-item list-group-item-line text-white d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">
+                <i class="bi bi-calendar-check me-2 text-success"></i>Leave History
+            </a>
+        }
+        else if (ViewBag.StaffType == 11)//"DS (Coord)"
+        {
+            <a href="~/staff/participant/participantlist/" class="list-group-item list-group-item-line text-white d-block"><i class="bi bi-people me-2 text-primary"></i>View Participants</a>
+            <a href="~/staff/participant/CrsMbrRoleAssignment/" class="list-group-item list-group-item-line text-white d-block"><i class="bi bi-person-badge me-2 text-warning"></i>Role Assignment</a>
+            <a href="~/staff/speakers/" class="list-group-item list-group-item-line text-white d-block"><i class="bi bi-mic me-2 text-info"></i>Speaker Biodata</a>
+            <a class="btn-link list-group-item list-group-item-line text-white d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+        }
+        else if (ViewBag.StaffType == 13)//"JDS (R&R)"
+        {
+            <a href="~/staff/library/" class="list-group-item list-group-item-line list-group-item-actionalign-items-center text-white d-block">
+                <i class="bi bi-journals me-2 text-primary"></i> Library Application
+            </a>
+            <a href="~/staff/participant/participantlist/" class="list-group-item list-group-item-line text-white d-block"><i class="bi bi-people me-2 text-primary"></i>View Participants</a>
+        }
+        else if (ViewBag.StaffType == 14)//"JDS (ADM)"
+        {
+            <a class="list-group-item list-group-item-line list-group-item-actionalign-items-center text-white d-block" href="~/staff/event/">
+                <i class="bi bi-calendar-event me-2 text-warning"></i> Create Party/Function
+            </a>
+
+            <a class="list-group-item list-group-item-line list-group-item-actionalign-items-center text-white d-block" href="@Url.Action("LatestEvent", "Event")">
+                <i class="bi bi-megaphone me-2 text-success"></i> Latest Event
+            </a>
+
+            <a class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white" href="@Url.Action("ArrivalAll", "Participant")">
+                <i class="bi bi-airplane me-2 text-info"></i> Arrival Detail
+            </a>
+            <a class="btn-link list-group-item list-group-item-line text-white d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+        }
+        else if (ViewBag.StaffType == 24)//"(Consultant 1)"
+        {
+            <a href="~/staff/memberverify/alumnilist/" class="list-group-item list-group-item-line list-group-item-action d-block justify-content-between align-items-center text-white">
+                <span><i class="bi bi-people-fill me-2 text-primary"></i> Alumni List</span>
+                <span class="badge bg-danger rounded-pill">Unverified - @ViewBag.UnverifiedCount</span>
+            </a>
+
+            <a href="~/Staff/AlumniMaster/AlumniFeedBack" class="list-group-item list-group-item-line list-group-item-action d-block justify-content-between align-items-center text-white">
+                <span><i class="bi bi-chat-dots-fill me-2 text-success"></i> Alumni Feedback List</span>
+                <span class="badge bg-danger rounded-pill">Total Feedback - @ViewBag.FeedbackCount</span>
+            </a>
+
+            <a href="~/Staff/AlumniArticleAll/Index" class="list-group-item list-group-item-line list-group-item-action d-block justify-content-between align-items-center text-white">
+                <span><i class="bi bi-file-earmark-text-fill me-2 text-info"></i> Alumni Articles List</span>
+                <span class="badge bg-danger rounded-pill">Total Article - @ViewBag.ArticleCount</span>
+            </a>
+            <a class="btn-link list-group-item d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+        }
+        else if (ViewBag.StaffType == 17)//"OIC (Archive)"
+        {
+            <a href="~/staff/memberverify/alumnilist/" class="list-group-item list-group-item-line list-group-item-action d-block justify-content-between align-items-center text-white">
+                <span><i class="bi bi-people-fill me-2 text-primary"></i> Alumni List</span>
+                <span class="badge bg-danger rounded-pill">Unverified - @ViewBag.UnverifiedCount</span>
+            </a>
+
+            <a href="~/Staff/AlumniMaster/AlumniFeedBack" class="list-group-item list-group-item-line list-group-item-action d-block justify-content-between align-items-center text-white">
+                <span><i class="bi bi-chat-dots-fill me-2 text-success"></i> Alumni Feedback List</span>
+                <span class="badge bg-danger rounded-pill">Total Feedback - @ViewBag.FeedbackCount</span>
+            </a>
+
+            <a href="~/Staff/AlumniArticleAll/Index" class="list-group-item list-group-item-line list-group-item-action d-block justify-content-between align-items-center text-white">
+                <span><i class="bi bi-file-earmark-text-fill me-2 text-info"></i> Alumni Articles List</span>
+                <span class="badge bg-danger rounded-pill">Total Article - @ViewBag.ArticleCount</span>
+            </a>
+
+            <a href="~/staff/memberverify/InStepCourse/" class="list-group-item list-group-item-line list-group-item-action d-block justify-content-between align-items-center text-white">
+                <span><i class="bi bi-person-badge-fill me-2 text-warning"></i> In-Step Alumni</span>
+                <span class="badge bg-danger rounded-pill">Unverified - @ViewBag.UnverifiedInStepCount</span>
+            </a>
+        }
+        else if (ViewBag.StaffType == 18)//"OIC (Univ Div)"
+        {
+            <a href="~/staff/universitydiv/mphil" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-book me-2 text-info"></i> MPhil Application
+            </a>
+            <a href="~/staff/universitydiv/mumphil" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-mortarboard me-2 text-warning"></i> MPhil Degree Application
+            </a>
+        }
+        else if (ViewBag.StaffType == 16)//"GSO (Sys)"
+        {
+            <a href="~/staff/SInfoTech/index" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-pc-display-horizontal me-2 text-info"></i> IT Equipment Requirements
+            </a>
+
+            <a href="~/staff/MiscRequirementAll/index" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-wifi me-2 text-success"></i> Tele. & Internet Requisition
+            </a>
+        }
+        else if (ViewBag.StaffType == 10)//"Secretary"
+        {
+            <a href="~/staff/memberverify/alumnilist/" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-people-fill me-2 text-primary"></i> Alumni List
+            </a>
+
+            <a href="~/Staff/AlumniMaster/AlumniFeedBack" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-chat-dots-fill me-2 text-success"></i> Alumni Feedback List
+            </a>
+            <a class="list-group-item list-group-item-line d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+        }
+        else if (ViewBag.StaffType == 2)//"Comdt"
+        {
+            <a class="list-group-item list-group-item-line text-white d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+        }
+        else if (ViewBag.StaffType == 12) //"Research coord"
+        {
+            <a href="~/staff/participant/participantlist/" class="list-group-item text-white d-block"><i class="bi bi-people me-2 text-primary"></i>View Participants</a>
+        }
+    }
+</div>
+
+
+<style>
+    .list-group-item-line {
+        border-bottom: 1px solid #ab131c;
+    }
+</style>
+
+

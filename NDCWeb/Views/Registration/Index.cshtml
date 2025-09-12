@@ -10,221 +10,195 @@
 </style>
 <div class="bg-contact2" style="background-image: url('/Component/css/images/bg_01.jpg');">
     <div class="container-contact2">
-        <div class="wrap-contact2">
+        @*<div class="wrap-contact2">*@
             @*@using (Html.BeginForm())*@
             @using (Html.BeginForm("Register", "Registration", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
-            @Html.AntiForgeryToken()
-            <form class="contact2-form validate-form">
-                <span class="contact2-form-title">
+                @Html.AntiForgeryToken()
 
-                    COURSE REGISTRATION FORM :  @if (ViewBag.Course != null)
-                    {
-                        @ViewBag.Course<sup>th</sup>
-                    }
-                    NDC
-                </span>
-                <div class="infobox" style="margin-left:-25px;">
-                    <ol>
-                        <li>   Fill up your details, given below, which are required for registration & click on register button. Once the basic Information is provided, your account will be verified at NDC.</li>
-                        <li>   Post verfication, you will be forwarded with user name & password in your email to log on to NDC website.</li>
-                    </ol>
-                    <a href="/writereaddata/media/documents/REGISTRATION-ONLY.pdf" style="color:red" target="_blank"> <h3 class="text-center" style="color:red"><img src="~/Component/images/Exclamation-mark-1-animated.gif" height="32" /> How to register</h3></a>
+                <div class="container my-4">
+                    <div class="card shadow-lg border-0 rounded-3">
+                        <!-- Header -->
+                        <div class="card-header custom-header text-center py-3">
+                            <h4 class="mb-0 text-uppercase text-white">
+                                COURSE REGISTRATION FORM :
+                                @if (ViewBag.Course != null)
+                                {
+                                    @ViewBag.Course<sup>th</sup>
+                                }
+                                NDC
+                            </h4>
+                        </div>
+
+                        <div class="card-body p-4">
+                            <!-- Info Box -->
+                            <div class="alert alert-info mb-4">
+                                <ol class="mb-0">
+                                    <li>
+                                        Fill up your details, given below, which are required for registration & click on
+                                        <strong>Register</strong>. Once the basic Information is provided, your account will be verified at NDC.
+                                    </li>
+                                    <li>
+                                        Post verification, you will be forwarded with username & password in your email to log on to NDC website.
+                                    </li>
+                                </ol>
+                                <a href="/writereaddata/media/documents/REGISTRATION-ONLY.pdf" target="_blank" class="d-block text-center mt-2 text-danger fw-bold">
+                                    <img src="~/Component/images/Exclamation-mark-1-animated.gif" height="32" />
+                                    How to register
+                                </a>
+                            </div>
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <!-- ================= CONTACT DETAILS ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">📧 Contact Details</div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.EmailId, "Email Id", new { @class = "form-label fw-semibold" })<span class = "text-danger">*</span>
+                                            @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                            @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                            <small class="text-muted">Preferably use <b>gov.in</b> or <b>nic.in</b> (for Indian officers).</small>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Re-type Email Id</label>
+                                            @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                            @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.MobileNo, new { @class = "form-label fw-semibold" })<span class="text-danger">*</span>
+                                            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
+                                            @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Re-type Mobile No</label>
+                                            @Html.EditorFor(model => model.ConfirmMobileNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
+                                            @Html.ValidationMessageFor(model => model.ConfirmMobileNo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        @Html.LabelFor(model => model.WhatsappNo, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.WhatsappNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
+                                        @Html.ValidationMessageFor(model => model.WhatsappNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ================= PERSONAL DETAILS ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">👤 Personal Details</div>
+                                <div class="card-body row g-3">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.FirstName, new { @class = "form-label fw-semibold" })<span class="text-danger">*</span>
+                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.MiddleName, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.LastName, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Honour, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.Honour, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Honour, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.NICName, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.NICName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.NICName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.DOBirth, new { @class = "form-label fw-semibold" })<span class="text-danger">*</span>
+                                        @Html.EditorFor(model => model.DOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", autocomplete = "off" } })
+                                        @Html.ValidationMessageFor(model => model.DOBirth, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Gender, new { @class = "form-label fw-semibold" })<span class="text-danger">*</span>
+                                        @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, "-- Select --", new { @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Service, new { @class = "form-label fw-semibold" })<span class="text-danger">*</span>
+                                        @Html.DropDownList("Service", (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", new { @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.Service, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.RankId, new { @class = "form-label fw-semibold" })<span class="text-danger">*</span>
+                                        @Html.DropDownList("RankId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", new { @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.RankId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.Branch, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.DOCommissioning, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.DOCommissioning, new { htmlAttributes = new { @class = "form-control datepickerJq1", autocomplete = "off" } })
+                                        @Html.ValidationMessageFor(model => model.DOCommissioning, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.SeniorityYear, new { @class = "form-label fw-semibold" })
+                                        @Html.DropDownListFor(model => model.SeniorityYear, Enumerable.Range(1960, 65).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.SeniorityYear, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ================= APPOINTMENT DETAILS ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">📌 Appointment (Present, for Indian Officers Only)</div>
+                                <div class="card-body row g-3">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ApptDesignation, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.ApptDesignation, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ApptOrganisation, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.ApptOrganisation, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ApptLocation, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.ApptLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-check mx-3">
+                                    <input class="form-check-input" type="checkbox" id="GFG" value="1" required />
+                                    <label class="form-check-label" for="GFG">
+                                        I hereby declare that I have read and understood the Indemnity Bond. I am willing to sign the same for the course.
+                                        <a href="~/writereaddata/banner/FOR OF INDEMNITY.pdf" target="_blank"><b>Click here for Indemnity Bond</b></a>
+                                    </label>
+                                </div>
+                                <p class="text-danger fw-bold mx-3">
+                                    NOTE: Kindly tick the checkbox before submitting the registration form for successful registration.
+                                </p>
+                            </div>
+
+                            <!-- ================= CAPTCHA & SUBMIT ================= -->
+                            <div class="text-center">
+                                <div class="mb-3">
+                                    @Html.Partial("_Captcha")
+                                </div>
+                                <button class="btn btn-lg btn-danger px-5" type="submit" id="btnSave">
+                                    <i class="bi bi-check-circle"></i> Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-horizontal">
-                    <fieldset class="sec-border">
-                        <legend class="sec-border"> Contact Details</legend>
-                        <div class="form-group required">
-                            <label class="control-label col-sm-4" for="EmailId">Email Id <span class="small"> (preferably use gov.in or nic.in in respect of Indian officer)</span></label>
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", value = "", autocomplete = "off" } })
-                                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
-                            </div>
-                            <label class="control-label col-sm-2">Re-type Email Id</label>
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", value = "" } })
-                                @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
 
-                            </div>
-                        </div>
-                        <div class="form-group required">
-
-                        </div>
-                        <div class="form-group required">
-                            @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label col-sm-4" })
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
-                                @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
-                            </div>
-                            <label class="control-label col-sm-2">Re-type Mobile No</label>
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.ConfirmMobileNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
-                                @Html.ValidationMessageFor(model => model.ConfirmMobileNo, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group required">
-
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.WhatsappNo, htmlAttributes: new { @class = "control-label col-sm-4" })
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.WhatsappNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
-                                @Html.ValidationMessageFor(model => model.WhatsappNo, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset class="sec-border">
-                        <legend class="sec-border">Personal Details</legend>
-                        <div class="form-group required">
-                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Honour, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.Honour, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Honour, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            @Html.LabelFor(model => model.NICName, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.NICName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.NICName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group required">
-                            @Html.LabelFor(model => model.DOBirth, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.DOBirth, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
-                                @Html.ValidationMessageFor(model => model.DOBirth, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, "-- Select --", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group required">
-                            @Html.LabelFor(model => model.Service, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.DropDownList("Service", (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Service, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.RankId, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.DropDownList("RankId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.RankId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Branch, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.DOCommissioning, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.DOCommissioning, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
-                                @Html.ValidationMessageFor(model => model.DOCommissioning, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.SeniorityYear, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @*@Html.EditorFor(model => model.SeniorityYear, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @maxlength = "4", @type = "number"    } })*@
-                                @Html.DropDownListFor(model => model.SeniorityYear, Enumerable.Range(1960, 65).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.SeniorityYear, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                    </fieldset>
-                    <fieldset class="sec-border">
-                        <legend class="sec-border">Appointment (Present, for Indian Officers Only) </legend>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ApptDesignation, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.ApptDesignation, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ApptDesignation, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ApptOrganisation, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.ApptOrganisation, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ApptOrganisation, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ApptLocation, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.ApptLocation, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ApptLocation, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="check" id="GFG" value="1" required />
-                               I hereby declare that I have read and Understand the Indemnity Bond. I am Willing to Sign the Same for the Course.
-                              <a href="~/writereaddata/banner/FOR OF INDEMNITY.pdf" target="_blank"><b>Click here for Indemnity Bond</b></a>
-                        </div>
-                        <div>
-                            <h5 class="text-danger">NOTE: Kindly tick the Checkbox before Submitting the registration form for successful registration.</h5>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="_Captcha"></label>
-                            <div class="col-md-8">
-
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-                <fieldset class="sec-border">
-                    <legend class="sec-border"></legend>
-                    <div class="container-contact2-form-btn">
-                        @Html.Partial("_Captcha")
-                    </div>
-                    <hr />
-                    <div class="card-footer text-center">
-                        <a style="visibility:hidden" onclick="viewAck()"></a><br />
-                        <button class="btn btn-primary btn-lg" type="submit" id="btnSave" value="Register">Submit</button>
-                    </div>
-                    <div class="container-contact2-form-btn">
-                        <div class="wrap-contact2-form-btn">
-                            <div class="contact2-form-bgbtn"></div>
-                            @*<button type="reset" class="btn contact2-form-btn">Submit</button>*@
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
             }
-        </div>
+        @*</div>*@
     </div>
 </div>
 <div id="dialog"></div>

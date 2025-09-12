@@ -11,7 +11,7 @@
 <div class="modal-dialog w-100 mx-auto">
     <div class="modal-content">
         <div class="modal-header bg-white" style="text-align:center !important">
-            <h3> Forgot Password Request</h3>
+            <h3 class="modal-title w-100 fw-bold " style="color:rgba(220,53,69,1) !important"> Forgot Password Request</h3>
         </div>
         @using (Html.BeginForm())
         {
@@ -21,32 +21,32 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-row">
                     <div class="col-md-12">
-                        <div class="position-relative input-group ">
+                        <div class="position-relative input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                             </div>
                             @Html.TextBoxFor(model => model.UserId, new { @class = "form-control", @placeholder = "Enter Username/Login Id", autocomplete = "off", autocorrect = "off", value = "", oncopy = "return false", onpaste = "return false" })
                             @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
                         </div>
-                        <div class="position-relative input-group ">
+                        <div class="position-relative input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon2"><i class="fa fa-user-lock"></i></span>
                             </div>
                             @Html.TextBoxFor(model => model.LockerNo, new { @class = "form-control", @placeholder = "Enter Locker No.", autocomplete = "off", autocorrect = "off", value = "", oncopy = "return false", onpaste = "return false" })
 
                         </div>
-                        <div class="position-relative input-group ">
+                        <div class="position-relative input-group mb-2">
                             @Html.ValidationMessageFor(model => model.LockerNo, "", new { @class = "text-danger" })
                         </div>
-                        <div class="position-relative input-group ">
+                        <div class="position-relative input-group mb-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon2"><i class="fa fa-mobile"></i></span>
                             </div>
                             @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", @placeholder = "Enter Mobile No.", autocomplete = "off", autocorrect = "off", value = "", oncopy = "return false", onpaste = "return false" })
                             @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
                         </div>
-                        <div class="position-relative input-group  d-flex justify-content-center alert alert-info">
-                            <div style="margin: auto;">
+                        <div class="position-relative input-group mb-2 pt-1 ">
+                            <div style="float:left">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon2"><i class="fa fa-robot mr-2"></i> <img src="/Captcha/GetCaptchaImage" title="Captcha" class="img-responsive img-thumbnail mr-2" /><a class="btn btn-outline-dark" href="forgot"><i class="fa fa-recycle"></i></a></span>
                                 </div>
@@ -58,11 +58,23 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer clearfix bg-white">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button class="submit btn-block btn-lg" style="background-color: #5a0005; color:white;"  type="submit">Submit</button>
+                </div>
+            </div>
+            <div class="modal-footer clearfix bg-white badge text-bg-primary text-wrap pr-20 " style="margin-right:140px; font-size:15px;">
+                <div class="icon m-2">
+                    <a href="@Url.Action("Login","Auth")" style="color:rgba(220,53,69,1) !important"><i class="fa fa-home"> </i></a>
+                    <i class="fa-hand-back" style="color:red;"></i>
+                    <a href="@Url.Action("Login","Auth")" style="color:rgba(220,53,69,1) !important">Back to Login Page</a>
+                </div>
+            </div>
+            @*<div class="modal-footer clearfix bg-white">
                 <input type="submit" value="Submit" class="btn btn-primary" />
                 <a href="@Url.Action("Login","Auth")" class="btn-link">Back to Login Page</a>
                 <a href="/" class="btn-lg btn btn-link"><i class="fa fa-home"></i></a>
-            </div>
+            </div>*@
 
         }
 

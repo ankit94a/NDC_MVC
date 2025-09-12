@@ -19,378 +19,286 @@
 @*<div class="overlay-spinner"></div>*@
 <div class="bg-contact2" style="background-image: url('/Component/css/images/bg_01.jpg');">
     <div class="container-contact2">
-        <div class="wrap-contact2">
+        @*<div class="wrap-contact2">*@
             @using (Html.BeginForm("Register", "InStep", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
                 @Html.AntiForgeryToken()
-                <div class="contact2-form validate-form">
-                    <span class="contact2-form-title">
+                <div class="container my-4">
+                    <div class="card shadow-lg border-0 rounded-3">
+                        <!-- Header -->
+                        <div class="card-header custom-header text-center py-3">
+                            <h4 class="mb-0 text-uppercase text-white ">
+                                @if (ViewBag.Course != null)
+                                {
+                                    @ViewBag.Course
+                                }
+                                REGISTRATION FORM
+                            </h4>
+                        </div>
 
-                        @if (ViewBag.Course != null)
-                        {
-                            @ViewBag.Course @*<sup>st</sup>*@
-                        }
-                        REGISTRATION FORM
-                    </span>
-                    <div class="infobox" style="margin-left:-25px;">
-                        <ol>
-                            <li>   Fill up your details, given below, which are required for registration & click on register button. </li>
-                            <li>   Post verfication, if any issue/amendment is required, please contact aq[dot]ndc-mod[at]nic[dot]in.</li>
-                        </ol>
-                        @*<a href="/writereaddata/media/documents/REGISTRATION-ONLY.pdf" style="color:red" target="_blank"> <h3 class="text-center" style="color:red"><img src="~/Component/images/Exclamation-mark-1-animated.gif" height="32" /> How to register</h3></a>*@
-                    </div>
+                        <div class="card-body p-4">
+                            <!-- Info Box -->
+                            <div class="alert alert-info mb-4">
+                                <ol class="mb-0">
+                                    <li>Fill up your details below and click on <strong>Register</strong>.</li>
+                                    <li>If any issue/amendment is required post verification, please contact <strong>aq[dot]ndc-mod[at]nic[dot]in</strong>.</li>
+                                </ol>
+                            </div>
 
-                    <div class="form-horizontal">
-                        @Html.HiddenFor(model => model.BaseId)
-                        @Html.HiddenFor(m => m.hdns)
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <fieldset class="sec-border">
-                            <legend class="sec-border"> Contact Details</legend>
-                            <div class="form-group required">
-                                <label class="control-label col-sm-4" for="EmailId">Email Id <span class="small"> (preferably use gov.in or nic.in in respect of Indian officer)</span></label>
-                                <div class="col-md-3">
-                                    <input type="hidden" name="StudentType" id="StudentType" value="IN" />
-                                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", value = "", autocomplete = "off" } })
-                                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
-                                </div>
-                                <label class="control-label col-sm-2">Re-type Email Id</label>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control", autocomplete = "off", value = "" } })
-                                    @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.BaseId)
+                            @Html.HiddenFor(m => m.hdns)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                                </div>
-                            </div>
-                            <div class="form-group required">
-
-                            </div>
-                            <div class="form-group required">
-                                @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label col-sm-4" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
-                                    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
-                                </div>
-                                <label class="control-label col-sm-2">Re-type Mobile No</label>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.ConfirmMobileNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
-                                    @Html.ValidationMessageFor(model => model.ConfirmMobileNo, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group required">
-
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.WhatsappNo, htmlAttributes: new { @class = "control-label col-sm-4" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.WhatsappNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
-                                    @Html.ValidationMessageFor(model => model.WhatsappNo, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </fieldset>
-                        <!--Personnel Detail-->
-                        <fieldset class="sec-border">
-                            <legend class="sec-border">Personal Details</legend>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group required">
-                                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <!-- ================= CONTACT DETAILS ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">📧 Contact Details</div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
                                         <div class="col-md-6">
+                                            @Html.LabelFor(model => model.EmailId, "Email Id", new { @class = "form-label fw-semibold" })
+                                            @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                            @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                            <small class="text-muted">Preferably use <b>gov.in</b> or <b>nic.in</b> (for Indian officers).</small>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Re-type Email Id</label>
+                                            @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                                            @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.MobileNo, new { @class = "form-label fw-semibold" })
+                                            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
+                                            @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Re-type Mobile No</label>
+                                            @Html.EditorFor(model => model.ConfirmMobileNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
+                                            @Html.ValidationMessageFor(model => model.ConfirmMobileNo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        @Html.LabelFor(model => model.WhatsappNo, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.WhatsappNo, new { htmlAttributes = new { @class = "form-control", type = "tel" } })
+                                        @Html.ValidationMessageFor(model => model.WhatsappNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ================= PERSONAL DETAILS ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">👤 Personal Details</div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(model => model.FirstName, new { @class = "form-label fw-semibold" })
                                             @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-6" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(model => model.MiddleName, new { @class = "form-label fw-semibold" })
                                             @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-6" })
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(model => model.LastName, new { @class = "form-label fw-semibold" })
                                             @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="form-group required">
-                                        @Html.LabelFor(model => model.FatherName, htmlAttributes: new { @class = "control-label col-md-6" })
                                         <div class="col-md-6">
+                                            @Html.LabelFor(model => model.FatherName, new { @class = "form-label fw-semibold" })
                                             @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.HonourAward, htmlAttributes: new { @class = "control-label col-md-6" })
                                         <div class="col-md-6">
+                                            @Html.LabelFor(model => model.HonourAward, new { @class = "form-label fw-semibold" })
                                             @Html.EditorFor(model => model.HonourAward, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.HonourAward, "", new { @class = "text-danger" })
                                         </div>
-                                    </div>
-                                    <div class="form-group required">
-                                        @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-6" })
                                         <div class="col-md-6">
-                                            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
+                                            @Html.LabelFor(model => model.DOB, new { @class = "form-label fw-semibold" })
+                                            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control datepickerJq1", autocomplete = "off" } })
                                             @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                                         </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Upload Photo</label>
+                                            <input id="picfile" type="file" name="picfile" onchange="imgValidateEdit('picfile','PhotoPath','@Url.Action("ImageUpload")')" class="form-control" accept="image/jpeg,image/png" />
+                                            <span class="small text-muted">Max 250 KB (.jpg, .jpeg, .png)</span>
+                                            @Html.EditorFor(model => model.PhotoPath, new { htmlAttributes = new { @class = "form-control d-none" } })
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group required">
-                                        <div class="col-md-12">
-                                            @*<input type="hidden" id="PhotoPath" name="PhotoPath" />
-                            <input id="Files" type="file" name="Files" multiple accept="application/image" onchange="imgValidateEdit('Files', 'PhotoPath');" class="uploadify-button form-control-file" />
-                            <span class="text-info text-center imgtext">Upload Your Photo. Max size upto 250 KB, File Type (.jpg, .jpeg, .png)</span>*@
-                                            <div class="tb-container">
-                                                <div class="tb-img-view">
-                                                    <img id="tb_image" height=120 />
-                                                    @*<canvas id="can">
-                                                    </canvas>*@
-                                                </div>
-                                                <input type="hidden" id="PhotoPath" name="PhotoPath" />
-                                                <input id="picfile" type="file" name="picfile" multiple onchange="imgValidateEdit('picfile', 'PhotoPath','@Url.Action("ImageUpload")');" class="uploadify-button form-control-file" accept="image/jpeg,image/png" /> <!--upload();-->
-                                                <span class="text-info text-center imgtextPhotoPath">Upload Your Photo. Max size upto 250 KB, File Type (.jpg, .jpeg, .png)</span>
-                                                @*<input type="file" id="PhotoPathA" name="PhotoPathA" style="visibility:hidden" />*@
-                                            </div>
+                                    <hr />
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.Gender, new { @class = "form-label fw-semibold" })
+                                            @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, "-- Select --", new { @class = "form-select" })
+                                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.ServicesCategory, new { @class = "form-label fw-semibold" })
+                                            @Html.DropDownList("ServicesCategory", (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", new { @class = "form-select" })
+                                            @Html.ValidationMessageFor(model => model.ServicesCategory, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.ServiceNo, new { @class = "form-label fw-semibold" })
+                                            @Html.EditorFor(model => model.ServiceNo, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.RankId, new { @class = "form-label fw-semibold" })
+                                            @Html.DropDownList("RankId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", new { @class = "form-select" })
+                                            @Html.EditorFor(model => model.OtherRank, new { htmlAttributes = new { @class = "form-control mt-2", placeholder = "Enter Rank/Designation" } })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.BranchDepartment, new { @class = "form-label fw-semibold" })
+                                            @Html.EditorFor(model => model.BranchDepartment, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.DateOfCommissioning, new { @class = "form-label fw-semibold" })
+                                            @Html.EditorFor(model => model.DateOfCommissioning, new { htmlAttributes = new { @class = "form-control datepickerJq1", autocomplete = "off" } })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.LabelFor(model => model.SeniorityYear, new { @class = "form-label fw-semibold" })
+                                            @Html.DropDownListFor(model => model.SeniorityYear, Enumerable.Range(1960, 64).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "form-select" })
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group required">
-                                @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, "-- Select --", htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group required">
-                                @Html.LabelFor(model => model.ServicesCategory, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @Html.DropDownList("ServicesCategory", (IEnumerable<SelectListItem>)ViewBag.Service, "-- Select --", htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.ServicesCategory, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ServiceNo, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.ServiceNo, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ServiceNo, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group required">
-                                @Html.LabelFor(model => model.RankId, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-3">
-                                   @Html.DropDownList("RankId", new SelectList(string.Empty, "Value", "Text"), "-- Select --", htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.RankId, "", new { @class = "text-danger" })
-                                </div>
-                                <div id="OtherRankReq">
-                                    @Html.LabelFor(model => model.OtherRank, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-3">
-                                        @Html.EditorFor(model => model.OtherRank, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Rank/Designation Name" } })
-                                        @Html.ValidationMessageFor(model => model.OtherRank, "", new { @class = "text-danger" })
+
+                            <!-- ================= NOK DETAILS ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">👨‍👩‍👦 Next of Kin (NOK) Details</div>
+                                <div class="card-body row g-3">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.NOKName, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.NOKName, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.NOKContact, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.NOKContact, new { htmlAttributes = new { @class = "form-control" } })
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.BranchDepartment, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.BranchDepartment, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.BranchDepartment, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DateOfCommissioning, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.DateOfCommissioning, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
-                                    @Html.ValidationMessageFor(model => model.DateOfCommissioning, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.SeniorityYear, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @*@Html.EditorFor(model => model.SeniorityYear, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @maxlength = "4", @type = "number"    } })*@
-                                    @Html.DropDownListFor(model => model.SeniorityYear, Enumerable.Range(1960, 64).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.SeniorityYear, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </fieldset>
-                        <!--NOk Detail-->
-                        <fieldset class="sec-border">
-                            <legend class="sec-border">Next of Kin (NOK) Details</legend>
-                            <div class="form-group required">
-                                @Html.LabelFor(model => model.NOKName, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.NOKName, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.NOKName, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group required">
-                                @Html.LabelFor(model => model.NOKContact, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.NOKContact, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.NOKContact, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </fieldset>
-                        <!--Address-->
-                        <fieldset class="sec-border">
-                            <legend class="sec-border">Address</legend>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.AddressLocal, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.AddressLocal, new { htmlAttributes = new { @class = "form-control" } })
-                                    @*@Html.ValidationMessageFor(model => model.AddressLocal, "", new { @class = "text-danger" })*@
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.AddressPermanent, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.AddressPermanent, new { htmlAttributes = new { @class = "form-control" } })
-                                    @*@Html.ValidationMessageFor(model => model.AddressPermanent, "", new { @class = "text-danger" })*@
-                                </div>
-                            </div>
-                        </fieldset>
-                        <!--Passport-->
-                        <fieldset class="sec-border" id="fsPassport">
-                            <legend class="sec-border">Passport Details</legend>
-                            <div class="form-group" id="PassportNoReq">
-                                <label class="control-label col-sm-4" for="PassportNo">Passport No </label>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.PassportNo, new { htmlAttributes = new { @class = "form-control", value = "", autocomplete = "off" } })
-                                    @Html.ValidationMessageFor(model => model.PassportNo, "", new { @class = "text-danger" })
-                                </div>
-                                <label class="control-label col-sm-2" for="PassportAuthority">Issuing Authority</label>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.PassportAuthority, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.PassportAuthority, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group was-validated" id="PassportDocPathReq">
-                                @Html.LabelFor(model => model.PassportDocPath, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @*<input type="hidden" id="PassportDocPath" name="PassportDocPath" />
-                                    <input id="passportfile" required type="file" name="passportfile" multiple onchange="docValidateEdit('passportfile', 'PassportDocPath','@Url.Action("DocumentUpload")');" class="uploadify-button form-control-file" accept="application/pdf" />
-                                    <div class="valid-feedback">Uploaded.</div>
-                                    <div class="invalid-feedback imgtextPassportDocPath">Please upload a Copy of Passport in PDF format only. Max size upto 500 KB.</div>*@
 
-
-                                    <input id="passportfile" type="file" title="Please upload a Copy of Passport in PDF format only. Max size upto 500 KB." name="passportfile" onchange="docValidateEdit('passportfile', 'PassportDocPath','@Url.Action("DocumentUpload")')" class="uploadify-button form-control-file" accept="application/pdf" required/>
-                                    <div class="invalid-feedback">Please upload a Copy of Passport in PDF format only. Max size upto 500 KB.</div>
-                                    @Html.EditorFor(model => model.PassportDocPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-
+                            <!-- ================= ADDRESS ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">🏠 Address</div>
+                                <div class="card-body row g-3">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.AddressLocal, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.AddressLocal, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.AddressPermanent, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.AddressPermanent, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
                                 </div>
                             </div>
-                        </fieldset>
-                        <!--Aadhaar-->
-                        <fieldset class="sec-border" id="fsAadhaar">
-                            <legend class="sec-border">AADHAAR Details (for Indian Course Students only)</legend>
-                            <div class="form-group" id="AadhaarNoReq">
-                                <label class="control-label col-sm-4" for="AadhaarNo">AADHAAR No </label>
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.AadhaarNo, new { htmlAttributes = new { @class = "form-control", value = "", autocomplete = "off" } })
-                                    @Html.ValidationMessageFor(model => model.AadhaarNo, "", new { @class = "text-danger" })
+
+                            <!-- ================= PASSPORT ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">🛂 Passport Details</div>
+                                <div class="card-body row g-3">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.PassportNo, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.PassportNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.PassportAuthority, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.PassportAuthority, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(model => model.PassportDocPath, new { @class = "form-label fw-semibold" })
+                                        <input id="passportfile" type="file" class="form-control" accept="application/pdf" onchange="docValidateEdit('passportfile','PassportDocPath','@Url.Action("DocumentUpload")')" required />
+                                        @Html.EditorFor(model => model.PassportDocPath, new { htmlAttributes = new { @class = "form-control d-none" } })
+                                        <div class="invalid-feedback">Please upload a copy of Passport (PDF, max 500KB).</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group was-validated" id="AadhaarDocPathReq">
-                                <label class="control-label col-sm-4" for="AadhaarDocPath">Upload Copy of Aadhaar/e-Aadhaar in Pdf</label>
-                                <div class="col-md-8">
-                                    @*<input type="hidden" id="AadhaarDocPath" name="AadhaarDocPath" />
-                                    <input id="aadhaarfile" required type="file" name="aadhaarfile" multiple onchange="docValidateEdit('aadhaarfile', 'AadhaarDocPath','@Url.Action("DocumentUpload")');" class="uploadify-button form-control-file" accept="application/pdf" />
-                                    <div class="valid-feedback">Uploaded.</div>
-                                    <div class="invalid-feedback imgtextAadhaarDocPath">Please upload a Copy of AADHAAR in PDF format only. Max size upto 500 KB.</div>*@
 
-                                    <input id="aadhaarfile" type="file" title="Please upload a Copy of AADHAAR in PDF." name="aadhaarfile" onchange="docValidateEdit('aadhaarfile', 'AadhaarDocPath','@Url.Action("DocumentUpload")')" class="uploadify-button form-control-file" accept="application/pdf" required/>
-                                    <div class="invalid-feedback imgtextApprovedNominationDocPath">Please upload a Copy of AADHAAR in PDF format only. Max size upto 500 KB.</div>
-                                    @Html.EditorFor(model => model.AadhaarDocPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-
+                            <!-- ================= AADHAAR ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">🪪 Aadhaar Details (for Indian Students only)</div>
+                                <div class="card-body row g-3">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.AadhaarNo, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.AadhaarNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Upload Aadhaar (PDF)</label>
+                                        <input id="aadhaarfile" type="file" class="form-control" accept="application/pdf" onchange="docValidateEdit('aadhaarfile','AadhaarDocPath','@Url.Action("DocumentUpload")')" required />
+                                        @Html.EditorFor(model => model.AadhaarDocPath, new { htmlAttributes = new { @class = "form-control d-none" } })
+                                        <div class="invalid-feedback">Upload Aadhaar (PDF, max 500KB)</div>
+                                    </div>
                                 </div>
                             </div>
-                        </fieldset>
-                        <!--Photograph-->
-                        @*<fieldset class="sec-border">
-            <legend class="sec-border">Photograph</legend>
 
-        </fieldset>*@
-                        <!--Pen Picture-->
-                        <fieldset class="sec-border">
-                            <legend class="sec-border">Pen-Picture/Bio-data (Not more than 500 words, Do not use ALL capital letters) <label class="text-danger">*</label></legend>
-                            <div class="form-group">
-                                @*@Html.LabelFor(model => model.BioData, htmlAttributes: new { @class = "control-label col-md-4" })*@
-                                <div class="col-md-12">
-                                    @Html.TextAreaFor(model => model.BioData, htmlAttributes: new { @class = "form-control editorHtml", rows = "10", autocomplete = "off", autocorrect = "off", value = "" })
+                            <!-- ================= BIO DATA ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">📝 Pen-Picture / Bio-data</div>
+                                <div class="card-body">
+                                    @Html.TextAreaFor(model => model.BioData, new { @class = "form-control editorHtml", rows = "6", placeholder = "Not more than 500 words. Do not use ALL capital letters." })
                                     @Html.ValidationMessageFor(model => model.BioData, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </fieldset>
-                        <!--Travel Details-->
-                        <fieldset class="sec-border">
-                            <legend class="sec-border">Travel Details</legend>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ArrivalMode, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ArrivalMode, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ArrivalMode, "", new { @class = "text-danger" })
-                                </div>
-                                @Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label col-md-1" })
-                                <div class="col-md-3">
-                                    @Html.TextBoxFor(x => x.ArrivalTime, "{0:dd/MM/yyyyTHH:mm}", new { @class = "form-control", @type = "datetime-local", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
-                                </div>
 
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DepartureMode, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.DepartureMode, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.DepartureMode, "", new { @class = "text-danger" })
-                                </div>
-                                @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-1" })
-                                <div class="col-md-3">
-                                    @Html.TextBoxFor(x => x.DepartureTime, "{0:dd/MMM/yyyyTHH:mm}", new { @class = "form-control", @type = "datetime-local", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
-                                </div>
-
-                            </div>
-                        </fieldset>
-                        <fieldset class="sec-border">
-                            <legend class="sec-border"></legend>
-                            <div class="form-group required was-validated">
-                                @Html.LabelFor(model => model.ApprovedNominationDocPath, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
-                                    @*<input type="hidden" id="approvednominationdocpath" name="approvednominationdocpath" />
-                                    <input id="approvedfile" required type="file" name="approvedfile" multiple onchange="docValidateEdit('approvedfile', 'ApprovedNominationDocPath','@Url.Action("DocumentUpload")');" class="uploadify-button form-control-file" accept="application/pdf" />
-                                    @Html.ValidationMessageFor(model => model.ApprovedNominationDocPath, "", new { @class = "text-danger" })
-                                    <div class="valid-feedback">Uploaded.</div>
-                                    <div class="invalid-feedback imgtextApprovedNominationDocPath">Please upload a Copy of Approval/Nomination in PDF format only. Max size upto 500 KB.</div>*@
-
-                                   
-                                    <input id="approvedfile" type="file" title="Upload Approval/Nomination Letter" name="approvedfile" onchange="docValidateEdit('approvedfile', 'ApprovedNominationDocPath','@Url.Action("DocumentUpload")')" class="uploadify-button form-control-file" accept="application/pdf" required/>
-                                    <div class="invalid-feedback imgtextApprovedNominationDocPath">Please upload a Copy of Approval/Nomination in PDF format only. Max size upto 500 KB.</div>
-                                    @Html.EditorFor(model => model.ApprovedNominationDocPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-
+                            <!-- ================= TRAVEL DETAILS ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">✈️ Travel Details</div>
+                                <div class="card-body row g-3">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ArrivalMode, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.ArrivalMode, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.ArrivalTime, new { @class = "form-label fw-semibold" })
+                                        @Html.TextBoxFor(x => x.ArrivalTime, "{0:dd/MM/yyyyTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.DepartureMode, new { @class = "form-label fw-semibold" })
+                                        @Html.EditorFor(model => model.DepartureMode, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.DepartureTime, new { @class = "form-label fw-semibold" })
+                                        @Html.TextBoxFor(x => x.DepartureTime, "{0:dd/MMM/yyyyTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.AnyOtherRequirement, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
+
+                            <!-- ================= APPROVAL DOC ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">📄 Approval/Nomination Document</div>
+                                <div class="card-body">
+                                    <input id="approvedfile" type="file" class="form-control" accept="application/pdf" onchange="docValidateEdit('approvedfile','ApprovedNominationDocPath','@Url.Action("DocumentUpload")')" required />
+                                    @Html.EditorFor(model => model.ApprovedNominationDocPath, new { htmlAttributes = new { @class = "form-control d-none" } })
+                                    <div class="invalid-feedback">Upload Approval/Nomination letter (PDF, max 500KB)</div>
+                                </div>
+                            </div>
+
+                            <!-- ================= OTHER REQUIREMENTS ================= -->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header bg-5 fw-bold">📌 Any Other Requirement</div>
+                                <div class="card-body">
                                     @Html.EditorFor(model => model.AnyOtherRequirement, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.AnyOtherRequirement, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <hr />
-                            <div class="container-contact2-form-btn">
-                                @Html.Partial("_Captcha")
-                            </div>
-                            <div class="card-footer text-center bg-white">
-                                <a style="visibility:hidden" onclick="viewAck()"></a><br />
-                                <button class="btn btn-primary btn-lg" type="submit" id="btnSave" value="Register">Submit</button>
-                            </div>
 
-                        </fieldset>
+                            <!-- ================= CAPTCHA & SUBMIT ================= -->
+                            <div class="text-center">
+                                <div class="mb-3">
+                                    @Html.Partial("_Captcha")
+                                </div>
+                                <button class="btn btn-lg btn-danger px-5" type="submit" id="btnSave">
+                                    <i class="bi bi-check-circle"></i> Submit
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             }
 
-        </div>
+        @*</div>*@
     </div>
 </div>
 <div id="dialog"></div>
