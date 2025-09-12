@@ -5,6 +5,106 @@
     Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
 }
 <style>
+    /* General container */
+    .container {
+        max-width: 1000px;
+    }
+    .row{
+        margin-top:3px;
+    }
+
+    /* Card styling */
+    .card {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        text-align:center;
+        color:white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        padding: 12px 15px;
+        border-radius: 8px 8px 0 0 !important;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    /* Labels and inputs */
+    .form-group label {
+        font-weight: 600;
+        color: #333;
+        margin-top: 6px;
+    }
+
+    .form-control {
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+        transition: all 0.2s ease;
+    }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 6px rgba(13,110,253,.25);
+        }
+
+    /* Radio & checkbox customization */
+    .custom-control-label {
+        font-size: 0.95rem;
+        padding-left: 4px;
+    }
+
+    input[type="radio"], input[type="checkbox"] {
+        transform: scale(1.2);
+        cursor: pointer;
+        accent-color: #0d6efd;
+    }
+
+    /* File inputs */
+    input[type="file"] {
+        border: 1px solid #ccc;
+        padding: 6px;
+        border-radius: 6px;
+        background: #f8f9fa;
+        cursor: pointer;
+    }
+
+    /* Terms & conditions text */
+    .card-body p {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+        line-height: 1.5;
+        text-align: justify;
+    }
+
+    /* Submit & back buttons */
+    .card-footer {
+        border-top: 1px solid #eee;
+        padding: 1rem;
+    }
+
+        .card-footer .btn {
+            min-width: 100px;
+            border-radius: 20px;
+            padding: 6px 18px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+            .card-footer .btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+            }
+
+    .form-control:disabled {
+        background-color: #f5bcbc57;
+        opacity: 1;
+    }
+</style>
+@*<style>
     table {
         border: transparent !important;
         width: 50%;
@@ -31,7 +131,9 @@
             font-size: 1.2em;
         }
 
-</style>
+</style>*@
+
+
 <div class="container mt-4 mb-4">
     @using (Html.BeginForm("Entry", "Accomodation", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -40,13 +142,13 @@
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="card shadow border p-3">
-                <div class="card-header custom-header"style="color:white">@ViewBag.Title</div>
+                <div class="card-header custom-header" style="color:white">@ViewBag.Title</div>
                 <div class="card-body">
                     <p class="card-title required">
                         Fill up your details, given below, which are required for Accommodation & click on register button. Once the basic Information is provided, your account will be verified at NDC.
                     </p>
 
-                    <div class="card-header">Personal Details:-</div>
+                    <div class="card-header custom-header">Personal Details:-</div>
                     <div class="card-body">
                         <div class="form-group row">
                             <label id="surname" for="txtName" class="control-label col-sm-4">1.Name</label>
@@ -190,13 +292,16 @@
                             <div class="form-group col-md-5">
                                 <input id="Files" type="file" name="medDocFile" multiple class="uploadify-button" accept="application/pdf" />
                             </div>
-                            <label for="Files" name="Files" class="control-label col-sm-4">9. Upload Signature (Not more than 250KB) jpeg/jpg/png format only. </label>
+                            <label for="Files" name="Files" class="control-label col-sm-4">
+                                9. Upload Signature  <span class="text-danger">*</span><br />
+                                <small>(Not more than 250KB, jpeg/jpg/png only)</small>
+                            </label>
                             <div class="form-group col-md-5">
-                                <input id="Files" type="file" name="signFile" required class="uploadify-button" accept="image/jpeg,image/png" />
+                                <input id="Files" type="file" name="SignatureDoc" required class="uploadify-button" accept="image/jpeg,image/png" />
                             </div>
                         </div>
                     </div>
-                    <div class="card-header">Contact Details</div>
+                    <div class="card-header custom-header">Contact Details</div>
                     <div class="card-body">
                         <div class="form-group row">
                             <label id="surname" for="txtName" class="control-label col-sm-4">10. Address (Complete address with Pin Code)</label>
@@ -217,7 +322,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-header">Terms & Conditions</div>
+                    <div class="card-header custom-header">Terms & Conditions</div>
                     <div class="card-body">
                         <p>1.   	<b>Rules.</b> As per MoD Office of the JS (AD) & CAO Accommodation Rules for Service Officers dated 15 July 1991, accommodation at Raksha Bhawan/Vikram Vihar can only be provided to Army/Navy/Air Force officers.</p>
                         <p>2.   	<b>Officers Posted to Delhi.</b> Officers Posted to Delhi detailed for the course from units in Delhi <b>will not be allotted NDC accomodation.</b> They should apply to the CAO/allotting authority for retention of defence/general pool accommodation. However officers who are staying in Officers Mess/temporary accn/appointment house alongwith family may apply for the same for the duration of the Course.</p>
@@ -237,11 +342,15 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white text-center">
-                    <input type="submit" onclick="javascript:if(!this.form.checkbox1.checked){alert('You must agree to the terms before proceeding ahead.');return false};" value="Submit" class="btn btn-primary btn-sm" />
-                    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary btn-sm" })
+                    <input type="submit" onclick="javascript:if(!this.form.checkbox1.checked){alert('You must agree to the terms before proceeding ahead.');return false};" value="Submit" class="btn btn-outline-danger" />
+                    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-outline-primary" })
                 </div>
             </div>
+
+
         </div>
+     
+
     }
 </div>
 @section Scripts{
