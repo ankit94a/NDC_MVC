@@ -1,71 +1,10 @@
 ﻿@using NDCWeb.Infrastructure.Helpers.Menu;
 @using NDCWeb.View_Models;
-@using Newtonsoft.Json;
-
 
 <div id="main-nav" class="navigation-bg">
-
-
     <nav>
-        <div class="sidebar border-end d-flex flex-column">
+        <div class="container">
             @Html.SiteMenuAsUnorderedList(ViewBag.SiteMenuItems as List<MenuControlVM>)
-
-
-            @*@if (ViewBag.SiteMenuItems != null)
-                    {
-                        var menuItemsJson = JsonConvert.SerializeObject(ViewBag.SiteMenuItems, Formatting.None);
-
-                        <script>
-                        var siteMenuItems = @Html.Raw(menuItemsJson);
-                        console.log("SiteMenuItems:", siteMenuItems);
-                        </script>
-
-                    }*@
-
-
-            @*@if (ViewBag.SiteMenuItems != null)
-            {
-                var menuItemsJson = JsonConvert.SerializeObject(ViewBag.SiteMenuItems, Formatting.None);
-
-                <script>
-        // Deserialize SiteMenuItems from Razor
-        var siteMenuItems = @Html.Raw(menuItemsJson);
-        console.log("SiteMenuItems:", siteMenuItems);
-
-        // Build sidebar dynamically
-        document.addEventListener("DOMContentLoaded", function () {
-            const sidebar = document.querySelector("#dynamicSidebar");
-            if (!sidebar) return;
-
-            let html = `<ul class="list-unstyled flex-grow-1">`;
-
-            siteMenuItems.forEach(item => {
-                if (item.ParentId === 0) {
-                    // top-level item
-                    html += `
-                        <li>
-                            <a href="${item.ExternalUrl || '#'}"
-                               class="d-flex align-items-center px-3 py-2">
-                                <i class="fa fa-link me-2"></i> ${item.MenuName}
-                            </a>
-                        </li>
-                    `;
-                }
-            });
-
-            html += `</ul>`;
-            sidebar.innerHTML = html;
-        });
-                </script>
-
-                <div id="dynamicSidebar" class="sidebar border-end d-flex flex-column"></div>
-            }*@
-
-
-            </div>
-        </nav>
-    </div>
-
-
-
-
+        </div>
+    </nav>
+</div>
