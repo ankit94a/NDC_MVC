@@ -86,9 +86,10 @@
 
     @Scripts.Render("~/bundles/mainjs")   <!-- jQuery -->
     <script src="~/Component/js/jquery-migrate-1.2.1.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryui") <!-- jQuery UI if needed -->
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryui") <!-- jQuery UI if needed -->
+
     @Scripts.Render("~/bundles/custom")   <!-- your custom + intlTelInput -->
     <!-- Plugins -->
     <script src="~/Component/js/jquery.flexisel.js"></script>
@@ -101,7 +102,7 @@
     <!-- Toastr -->
     <script src="~/Component/js/toastr.min.js"></script>
     <!-- Custom -->
-    <script src="~/Component/js/custom.js"></script>
+    @*<script src="~/Component/js/custom.js"></script>*@
     <script src='~/Component/Custom/js/customScript.js' type="text/javascript"></script>
     <script src="~/Component/js/font-size.js"></script>
     <script src="~/Component/dataTable4/js/select2.min.js"></script>

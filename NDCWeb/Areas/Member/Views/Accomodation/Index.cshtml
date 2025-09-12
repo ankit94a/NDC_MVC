@@ -4,252 +4,193 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
 }
-@*@Styles.Render("~/bundles/datatables/ButtonCss")
-    <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
-    <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />*@
+<div class="container my-4">
+    <div class="card shadow-lg border-0 rounded-3">
+        <!-- Card Header -->
+        <div class="card-header custom-header d-flex justify-content-between align-items-center text-white rounded-top">
+            <h5 class="mb-0 d-flex align-items-center">
+                <i class="fa fa-file-text-o me-2 ms-2"></i>  Accommodation Form
+            </h5>
+            <div class="d-flex align-items-center">
+                <a href="@Url.Action("Entry","Accomodation")" class="btn btn-primary btn-sm pull-right">Add New</a>
+            </div>
+        </div>
 
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle w-100 mb-0" id="dataGrid">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>
+                                Married Accn Required
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AccomodationDate)
+                            </th>
+                            <th>
+                                Retaining Accn/Own Arrangement
+                            </th>
+                            <th>
+                                Preference of Accn, Priority 1
+                            </th>
+                            <th>
+                                Preference of Accn, Priority 2
+                            </th>
+                            <th>
+                                Remarks
+                            </th>
+                            <th>
+                                Document(s)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SignatureDoc)
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccomReq)
+                                </td>
+                                <td>
+                                    @if (item.AccomodationDate != null)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.AccomodationDate)
+                                    }
+                                    else
+                                    {
+                                        <span>Nil</span>
+                                    }
 
-
-
-<div class="container mt-4">
-
-    @*<p>
-            @Html.ActionLink("Create New", "Entry")
-        </p>*@
-    <table class="table">
-        <tr>
-            <th>
-                Married Accn Required
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AccomodationDate)
-            </th>
-            <th>
-                Retaining Accn/Own Arrangement
-            </th>
-            <th>
-                Preference of Accn, Priority 1
-            </th>
-            <th>
-                Preference of Accn, Priority 2
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SpecialRequestWithReason)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SignatureDoc)
-            </th>
-            <th colspan="3">Action</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AccomReq)
-                </td>
-                <td>
-                    @if (item.AccomodationDate != null)
-                    {
-                        @Html.DisplayFor(modelItem => item.AccomodationDate)
-                    }
-                    else
-                    {
-                        <span>Nil</span>
-                    }
-                </td>
-                <td>
-                    @if (item.ArrangeType != null)
-                    {
-                        @Html.DisplayFor(modelItem => item.ArrangeType)
-                    }
-                    else
-                    {
-                        <span>Nil</span>
-                    }
-                </td>
-                <td>
-                    @if (item.PriorityFirst != null)
-                    {
-                        @Html.DisplayFor(modelItem => item.PriorityFirst)
-                    }
-                    else
-                    {
-                        <span>Nil</span>
-                    }
-                </td>
-                <td>
-                    @if (item.PrioritySecond != null)
-                    {
-                        @Html.DisplayFor(modelItem => item.PrioritySecond)
-                    }
-                    else
-                    {
-                        <span>Nil</span>
-                    }
-                </td>
-                <td>
-                    @if (item.SpecialRequestWithReason != null)
-                    {
-                        @Html.DisplayFor(modelItem => item.SpecialRequestWithReason)
-                    }
-                    else
-                    {
-                        <span>Nil</span>
-                    }
-                </td>
-                <td>
-                    @if (item.SignatureDoc != null && item.SignatureDoc != "")
-                    {
-                        <button type="button" class="btn btn-info btn-sm"
-                                data-toggle="modal"
-                                data-target="#signatureModal"
-                                onclick="showSignature('@Url.Content(item.SignatureDoc)')"
-                                data-placement="bottom" title="View Signature">
-                            <i class="fa fa-eye"></i>
-                        </button>
-                    }
-
-
-                </td>
-                @*change start*@
-            <td>
-                @*@Html.DisplayFor(modelItem => item.iAccomodationMedias.Count)*@
-
-                <!-- View Button -->
-                <button type="button" class="btn btn-info btn-sm"
-                        data-toggle="modal"
-                        data-target="#pdfModal"
-                        onclick="showPDF('@Url.Action("ShowMediaFiles", new { id = item.AccomodationId })')">
-                    <i class="fa fa-eye"></i>
-                </button>
-                </td>
-                <td>
-                <!-- Delete Button -->
-                <button type="button" class="btn btn-danger btn-sm"
-                        onclick="Delete(@item.AccomodationId)">
-                    <i class="fa fa-trash"></i>
-                </button></td>
-               
-                <td>
-                @*<a href="@Url.Action("Print", new { id=item.AccomodationId })"><i class="fa fa-print"></i></a>|*@
-                    <button type="button" class="btn btn-primary btn-sm">
-                        @Html.EncodedActionLink("", "Print", "Accomodation", "member", new { id = item.AccomodationId }, new { @class = "" }, "fa fa-print")
-                    </button>
-            </td>
-
-
-
-
-
-
-
-                @*change end*@
-            </tr>
-        }
-
-    </table>
-    @*open model for signature*@
-    <div class="modal fade" id="signatureModal" tabindex="-1" role="dialog" aria-labelledby="signatureModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Signature Preview</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center">
-                    <img id="signatureImage" src="" class="img-fluid" alt="Signature Image" />
-                    <!-- For PDF, you can use <iframe> (optional logic if PDF needed) -->
-                </div>
+                                </td>
+                                <td>
+                                    @if (item.ArrangeType != null)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.ArrangeType)
+                                    }
+                                    else
+                                    {
+                                        <span>Nil</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.PriorityFirst != null)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.PriorityFirst)
+                                    }
+                                    else
+                                    {
+                                        <span>Nil</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.PrioritySecond != null)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.PrioritySecond)
+                                    }
+                                    else
+                                    {
+                                        <span>Nil</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.SpecialRequestWithReason != null)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.SpecialRequestWithReason)
+                                    }
+                                    else
+                                    {
+                                        <span>Nil</span>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.iAccomodationMedias.Count)
+                                    @Html.EncodedActionLink(" View", "ShowMediaFiles", "Accomodation", "member", new { id = item.AccomodationId }, new { @class = "" }, "fa fa-eye")
+                                </td>
+                                <td>
+                                    @if (item.SignatureDoc != null && item.SignatureDoc != "")
+                                    {
+                                        <a href="@Url.Content(item.SignatureDoc)">View</a>
+                                    }
+                                </td>
+                                <td width="10%">
+                                    <a class="btn btn-xs" onclick="Delete(@item.AccomodationId, this)"><i class="fa fa-trash"></i></a>
+                                    @Html.EncodedActionLink("", "Print", "Accomodation", "member", new { id = item.AccomodationId }, new { @class = "btn btn-xs" }, "fa fa-print")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-
-    @*open pdf model*@
-    <div class="modal fade" id="pdfModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">PDF Viewer</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <iframe id="pdfViewer" src="" style="width:100%; height:80vh;" frameborder="0"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @*print model*@
-    <div class="modal fade" id="printModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Print Preview</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body" id="printModalBody">
-                    <!-- Print Data will load here dynamically -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
 </div>
+
 @section Scripts {
-    @Scripts.Render("~/bundles/datatables/ButtonJs")
-
-    <script>
-    LoadJDT('#myTable');
-
-        function Delete(id, event) {
-        var TableId = "myTable";
-        var Jsonurl = '@Url.Action("DeleteOnConfirm")';
-        DeleteJDTRow(id, event, TableId, Jsonurl)
-        }
-
-    </script>
-    <script>
-        function showSignature(filePath) {
-            
-            // Check if it's a PDF or Image
-            if (filePath.endsWith(".pdf")) {
-                $('#signatureImage').hide();
-                $('#signatureModal .modal-body').html('<iframe src="' + filePath + '" style="width:100%; height:500px;" frameborder="0"></iframe>');
-            } else {
-                $('#signatureModal .modal-body').html('<img id="signatureImage" src="' + filePath + '" class="img-fluid" alt="Signature Image" />');
-            }
-        }
-
+    <script type="text/javascript">
         $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();  // Initialize tooltips
-        });
-    </script>
-    <script>
-    function showPDF(pdfPath) {
-        $('#pdfViewer').attr('src', pdfPath);
-    }
+            LoadJDT('#dataGrid');
 
-     
+            function LoadJDT(TableId) {
+                oTable = $(TableId).DataTable({
+                    "processing": false,
+                    "paging": false,        // ❌ No pagination
+                    "searching": false,     // ❌ No search box
+                    "lengthChange": false,  // ❌ No page size dropdown
+                    "ordering": false,      // ❌ Disable column sorting (optional)
+                    "info": false,          // ❌ Hide "Showing 1 of 1 entries"
+                    "scrollX": false,
+                    "autoWidth": false,
+                    "responsive": true,
+                    "dom": "t"              // ✅ Only table (no extra controls)
+                });
+            }
 
-    function loadPrintView(accomodationId) {
-        $.ajax({
-            url: '@Url.Action("PrintPreview", "Accomodation", new { area = "member" })',
-            data: { id: accomodationId },
-            success: function (result) {
-                $('#printModalBody').html(result);
-            },
-            error: function () {
-                $('#printModalBody').html('<p class="text-danger">Failed to load print view.</p>');
+
+            // ✅ Create a reusable SweetAlert2 toast instance
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',   // top-end, bottom-end, bottom-start, etc.
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer
+                    toast.onmouseleave = Swal.resumeTimer
+                }
+            });
+
+            // ✅ Trigger toaster from TempData
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <text>
+                Toast.fire({
+                    icon: 'success',
+                    title: '@TempData["SuccessMessage"]'
+                });
+                </text>
+            }
+
+            @if (TempData["WarningMessage"] != null)
+            {
+                <text>
+                Toast.fire({
+                    icon: 'warning',
+                    title: '@TempData["WarningMessage"]'
+                });
+                </text>
+            }
+
+            // ✅ Expose Delete globally
+            window.Delete = function (id, event) {
+                var TableId = "#dataGrid";
+                var Jsonurl = '@Url.Action("DeleteOnConfirm")';
+                DeleteJDTRow(id, event, TableId, Jsonurl);
             }
         });
-    }
     </script>
-
-
-
 }
