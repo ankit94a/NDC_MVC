@@ -4,7 +4,7 @@
     ViewBag.Title = "Print Accommodation Form";
     Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
 }
-<div class="container shadow mt-4 mb-4">
+<div class="container shadow p-3 mt-4 mb-4">
     <div id="printableArea" class="">
         <div class="text-center pt-4">
             <h4><u>ACCOMMODATION FORM : FOR INDIAN ARMED FORCES OFFICER’S ONLY</u></h4>
@@ -37,12 +37,12 @@
                 <div class="col-md-6 col-lg-6">@Html.DisplayFor(model => model.MaritalStatus)</div>
                 <p class="col-md-6 col-lg-6"><b>7. Married accommodation Required (choose one) : </b></p>
                 <div class="col-md-6 col-lg-6">@Html.DisplayFor(model => model.AccomReq)</div>
-                @*@if (Model.SpecialRequestWithReason != null)
+                @if (Model.SpecialRequestWithReason != null)
                 {<p class="col-md-6 col-lg-6"></p>
                     <div class="col-md-6 col-lg-6">
                         @Html.DisplayFor(model => model.SpecialRequestWithReason)
                     </div>
-                }*@
+                }
 
                 @*<p class="col-md-12 col-lg-12"><b>8. If yes, preference of accommodation (Select either Raksha Bhawan or Vikram Vihar as priority 1/2) : </b></p>
         <p class="col-md-6 col-lg-6"><b>(a) Priority-1 : </b></p>
@@ -52,31 +52,26 @@
         <p class="col-md-6 col-lg-6"><b>(c) Any special request : </b></p>*@
                 @*<div class="col-md-6 col-lg-6">@Html.DisplayFor(model => model.SpecialRequest)</div>*@
                 @*<div class="col-md-6 col-lg-6">
-            @if (Model.SpecialRequest != null)
-            {
-                @Html.DisplayFor(model => model.SpecialRequest)
-            }
-        </div>*@
-                <p class="col-md-6 col-lg-6"><b>8. Remarks</b></p>
-                <div class="col-md-6 col-lg-6">
-                    @Html.DisplayFor(model => model.SpecialRequestWithReason)
-                </div>
-                <p class="col-md-6 col-lg-6"><b>9. Your contact address: </b></p>
+                    @if (Model.SpecialRequest != null)
+                    {
+                        @Html.DisplayFor(model => model.SpecialRequest)
+                    }
+                </div>*@
+                <p class="col-md-6 col-lg-6"><b>8. Your contact address: </b></p>
                 <div class="col-md-6 col-lg-6">@ViewBag.Address</div>
 
-                <p class="col-md-6 col-lg-6"><b>10. Mobile number : </b></p>
+                <p class="col-md-6 col-lg-6"><b>9. Mobile number : </b></p>
                 <div class="col-md-6 col-lg-6">@ViewBag.MobileNo</div>
-                <p class="col-md-6 col-lg-6"><b>11. E-mail : </b></p>
+                <p class="col-md-6 col-lg-6"><b>10. E-mail : </b></p>
                 <div class="col-md-6 col-lg-6">@ViewBag.EmailId</div>
 
                 <p class="col-md-6 col-lg-6">
-        <!--<b>12. Medical documents for ground floor or any other special request: </b>-->
-                    <b>12. Upload Document</b>
-    </p>
+                    <b>11. Medical documents for ground floor or any other special request: </b>
+                </p>
                 <div class="col-md-6 col-lg-6">
                     @Html.DisplayFor(modelItem => Model.iAccomodationMedias.Count)
-                    <a href="@Url.Action("ShowMediaFiles", new { id = Model.AccomodationId })" target="_blank" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i></a>
-                    @Html.EncodedActionLink("", "ShowMediaFiles", "Accomodation", "member", new { id = Model.AccomodationId }, new { @class = "" }, "")
+                    @*<a href="@Url.Action("ShowMediaFiles", new { id = Model.AccomodationId })" target="_blank" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i></a>*@
+                    @Html.EncodedActionLink("", "ShowMediaFiles", "Accomodation", "member", new { id = Model.AccomodationId }, new { @class = "" }, "fa fa-eye")
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -89,7 +84,7 @@
 
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    @{ int hiddenFileId = 1;}
+                                    @{ int hiddenFileId = 1; }
                                     <table>
                                         <thead>
                                             <tr>
@@ -97,25 +92,17 @@
                                                 <th>File Name</th>
                                             </tr>
                                         </thead>
-                                        @if (Model.iAccomodationMedias == null)
-                                        {  <tr>
-                                              <td>No Any Document</td>
-                                           </tr>
-                                            
-                                        }
-                                        else
+                                        @foreach (var mdfl in Model.iAccomodationMedias)
                                         {
-                                            foreach (var mdfl in Model.iAccomodationMedias)
-                                            {
-                                                <tr>
-                                                    <td>@hiddenFileId</td>
-                                                    <td>
-                                                        <a href="@Url.Content(mdfl.FilePath)" target="_blank">@mdfl.FileName</a>
-                                                    </td>
-                                                </tr>
-                                                hiddenFileId++;
-                                            }
+                                            <tr>
+                                                <td>@hiddenFileId</td>
+                                                <td>
+                                                    <a href="@Url.Content(mdfl.FilePath)" target="_blank">@mdfl.FileName</a>
+                                                </td>
+                                            </tr>
+                                            hiddenFileId++;
                                         }
+
                                     </table>
                                 </div>
 
@@ -128,43 +115,45 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <p class="col-md-6 col-lg-6">
-                        <b>13. Signature: </b>
-                        <div class="col-md-6 col-lg-6">
-                            @*<img src="@Url.Content(Model.SignatureDoc)" height="180" />
-                    @if (Model.SignatureDoc != null && Model.SignatureDoc != "")*@
-                            <img src="@Url.Content(Model.SignatureDoc)" height="180" />
-                        </div>
-                    </p>
-                    <div>
-                    </div>
-                    <hr />
-                    <div class="row">
-                        <div class="col-md-12 col-lg-10">
-                            <h4><b><u>Terms & Conditions</u></b></h4>
-                            <br />
-                            <p>1.   	<b>Rules.</b> As per MoD Office of the JS (AD) & CAO Accommodation Rules for Service Officers dated 15 July 1991, accommodation at Nav Raksha Bhawan/Vikram Vihar can only be provided to Army/Navy/Air Force officers.</p>
-                            <p>2.   	<b>Officers Posted to Delhi.</b> Officers Posted to Delhi detailed for the course from units in Delhi <b>will not be allotted NDC accomodation.</b> They should apply to the CAO/allotting authority for retention of defence/general pool accommodation. However officers who are staying in Officers Mess/temporary accn/appointment house alongwith family may apply for the same for the duration of the Course.</p>
-                            <p>3.	    <b>Allotment.</b>	Accommodation will be allotted by <b>31 Dec</b>, and can be taken over from <b>03/04 Jan</b> onwards only. Kindly plan move & transportation accordingly.</p>
-                            <p>4.    	<b>Personal Help. Under no circumstances personal maid/help will stay in Nav Raksha Bhawan. Maid/help can come in morning & will leave in evening by 2000 hrs. </b></p>
-                            <p>5.    	<b>Attachment.</b>	NDC does not have any arrangement/facility for attachment of buddies/ NCEs/retinue staff.</p>
-                            <p>6. 	    <b>Subscription of NRB.</b>	Subscription for NRB residents will be deducted from Mess Bill towards NRB fund every month.</p>
-                            <p>7.    	<b>Hospitals and Schools.</b>	R & R Hospotal/Base Hospital and Schools are located towards <b>Shankar Vihar (SV).</b></p>
-                            <p>8.   	<b>Vacation.</b>  Accommodation to be vacated on termination of the course i.e <b>29 Nov</b>. Maximum retention upto 07 days permitted ie <b>06 Dec</b> after approval of Commandant, NDC. Since the accommodation is required to be prepared for the next course, <b>retention Of NDC Pool Accommodation on any grounds </b>(education/academic reasons, medical issues) <b>is not permitted).</b> </p>
 
-                            <label>
-                                <input type="checkbox" checked />
-                                I have read and agreed to the Terms & Conditions of NDC Pool Accommodation
-                            </label>
-                        </div>
+                <p class="col-md-6 col-lg-6">
+                    <b>12. Signature: </b>
+                    <div class="col-md-6 col-lg-6">
+                        @*<img src="@Url.Content(Model.SignatureDoc)" height="180" />
+                @if (Model.SignatureDoc != null && Model.SignatureDoc != "")*@
+                        <img src="@Url.Content(Model.SignatureDoc)" height="180" />
                     </div>
+                </p>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 col-lg-10">
+                    <h4><b><u>Terms & Conditions</u></b></h4>
+                    <br />
+                    <p>1.   	<b>Rules.</b> As per MoD Office of the JS (AD) & CAO Accommodation Rules for Service Officers dated 15 July 1991, accommodation at Raksha Bhawan/Vikram Vihar can only be provided to Army/Navy/Air Force officers.</p>
+                    <p>2.   	<b>Officers Posted to Delhi.</b> Officers Posted to Delhi detailed for the course from units in Delhi <b>will not be allotted NDC accomodation.</b> They should apply to the CAO/allotting authority for retention of defence/general pool accommodation. However officers who are staying in Officers Mess/temporary accn/appointment house alongwith family may apply for the same for the duration of the Course.</p>
+                    <p>3.	    <b>Single Accommodation. No single accommodation is available with the College. Indian officers planning to stay single during the entire duration of the course are required to make arrangements for single accommodation through their respective Service HQs messes in Delhi.</b></p>
+                    <p>4.	    <b>Allotment.</b>	Accommodation will be allotted by <b>23 Dec</b>, and can be taken over from <b>27/28 Dec</b> onwards only. Kindly plan move & transportation accordingly.</p>
+                    <p>5.    	<b>Personal Help. Under no circumstances personal maid/help will stay in Raksha Bhawan. Maid/help can come in morning & will leave in evening by 2000 hrs. If any officer wishes to bring personal maid/help, kindly fill Vikram Vihar as Priority -1.</b></p>
+                    <p>6.    	<b>Attachment.</b>	NDC does not have any arrangement/facility for attachment of buddies/ NCEs/retinue staff.</p>
+                    <p>7.    	<b>Ground Floor.</b>	Request for Ground Floor accommodation <b>will not be entertained</b>. In case, ground floor accommodation is <b>required for medical reasons</b>, the officer must furnish an application, <b>countersigned by the IO/immediate superior officer alongwith medical documents duly endorsed/ recommended by the CO Military Hospital.</b></p>
+                    <p>8.    	<b>Maids in RB.</b>	House maids will be on sharing basis in Raksha Bhawan (RB).</p>
+                    <p>9. 	    <b>Subscription of RB.</b>	Subscription for RB residents will be deducted from Mess Bill towards RB fund every month.</p>
+                    <p>10.    	<b>Hospitals and Schools.</b>	R & R Hospotal/Base Hospital and Schools are located towards <b>Shankar Vihar (SV).</b></p>
+                    <p>11.   	<b>Vacation.</b>  Accommodation to be vacated on termination of the course i.e <b>24 Nov</b>. Maximum retention upto 07 days permitted ie <b>01 Dec</b> after approval of Commandant, NDC. Since the accommodation is required to be prepared for the next course, <b>retention Of NDC Pool Accommodation on any grounds </b>(education/academic reasons, medical issues) <b>is not permitted).</b> </p>
+                    <p>12.      <b>Mid Course Relocation.</b> On completion of new NDC accommodation i.e. NDC suites in KG Marg, all officers will shift to NDC suites from Raksha Bhawan and Vikram Vihar in Feb/Mar 2023 under own arrangements. No representation on medical, educational grounds to avoid shifting will be accepted.</p>
+                    <label>
+                        <input type="checkbox" checked />
+                        I have read and agreed to the Terms & Conditions of NDC Pool Accommodation
+                    </label>
                 </div>
             </div>
-    <div class="card-footer bg-white">
+        </div>
+    </div>
+    <div class="card-footer bg-white text-center">
         @*<button type="button" class="btn btn-primary btn-sm" onclick="return confirm('Record successfully submitted')">Submit</button>*@
         @*@Html.ActionLink("Edit", "Edit", new { id = Model.AccomodationId }, new {@class = "btn btn-primary btn-sm" })*@
-        <button type="reset" class="btn btn-primary btn-sm" onclick="printDiv('printableArea')">Print</button>
+        <button type="reset" class="btn btn-outline-primary" onclick="printDiv('printableArea')">Print</button>
     </div>
 </div>
 
