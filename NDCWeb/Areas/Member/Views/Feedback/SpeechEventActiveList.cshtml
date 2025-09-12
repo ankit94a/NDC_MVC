@@ -4,95 +4,99 @@
     ViewBag.Title = "List of Current Speakers";
 }
 @Styles.Render("~/bundles/datatables/ButtonCss")
+
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
-<div class="container mb-4 mt-4">
-    <div class="card">
-        <div class="card-header">
-            <a href=@Url.Action("SpeechFeedbackList") class="btn btn-outline-info btn-sm pull-right">Feedback History</a>&nbsp;
+
+<div class="container pt-2 shadow">
+    <div class="card mb-4 px-3 ">
+        <div class="card-header" style=" text-transform: uppercase; background-color: #9b030c !important; border-bottom: 1px solid #7a0707;">
+            <a href=@Url.Action("SpeechFeedbackList") class="btn btn-outline-info btn-sm pull-right" style="margin: 12px; background: #0d6efd; color: #fff; border: none; text-decoration: none;">Feedback History</a>&nbsp;
             @*@if (ViewBag.NoParticipation == "Yes")
-            {
-                <a href=@Url.Action("PastActiveSpeechFeedbackList") class="btn btn-outline-warning btn-sm pull-right">Past Feedback</a>
-            }*@
-            <div class="card-title">@ViewBag.Title</div>
+        {
+            <a href=@Url.Action("PastActiveSpeechFeedbackList") class="btn btn-outline-warning btn-sm pull-right">Past Feedback</a>
+        }*@
+            <div class="card-title" style="color: #fff; font-size: 19px; margin-left: 16px; }">@ViewBag.Title</div>
         </div>
-
-        <table class="table w-100" id="myTable">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th style="vertical-align:middle">SNo.</th>
-
-                    <!--<th style="vertical-align:middle">
-                        Date
-                        @*@Html.DisplayNameFor(model => model.SpeechDate)*@
-                    </th>-->
-                    <th style="vertical-align:middle">
-                        @Html.DisplayName("Subject")
-                    </th>
-                    <th style="vertical-align:middle">
-                        @Html.DisplayName("Topic")
-                    </th>
-                    <th style="vertical-align:middle">
-                        @Html.DisplayName("Speaker")
-                    </th>
-                    <th style="vertical-align:middle">
-                        Start Date
-                        @*@Html.DisplayNameFor(model => model.FeedbackStartDate)*@
-                    </th>
-                    <th style="vertical-align:middle">
-                        End Date
-                        @*@Html.DisplayNameFor(model => model.FeedbackEndDate)*@
-                    </th>
-                    <th style="vertical-align:middle">
-                        @Html.DisplayNameFor(model => model.Active)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @{int sno = 0;}
-                @foreach (var item in Model)
-                {
-
+        <div class="card-body">
+            <table class="m-0 table table-hover table-bordered tab w-100"  id="myTable">
+                <thead>
                     <tr>
-                        
-                        <td>
-                            @*@{ sno++;}
-                            @sno*@
-                        </td>
-                        <td>
-                            @*@Html.DisplayFor(modelItem => item.SpeechDate)*@
-                            @{ sno++;}
-                            @sno
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Speakers.Topics.Subjects.SubjectName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Speakers.Topics.TopicName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Speakers.FullName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FeedbackStartDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FeedbackEndDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Active)
-                        </td>
-                        <td>
-                            @Html.EncodedActionLink("Add Feedback", "AddSpeakerFeedback", "Feedback", "member", new { speechId = item.SpeechEventId }, new { @class = "btn btn-primary btn-sm" }, "")
-                        </td>
+                        <th></th>
+                        <th style="vertical-align:middle">SNo.</th>
 
+                        <!--<th style="vertical-align:middle">
+                    Date
+                    @*@Html.DisplayNameFor(model => model.SpeechDate)*@
+                </th>-->
+                        <th style="vertical-align:middle">
+                            @Html.DisplayName("Subject")
+                        </th>
+                        <th style="vertical-align:middle">
+                            @Html.DisplayName("Topic")
+                        </th>
+                        <th style="vertical-align:middle">
+                            @Html.DisplayName("Speaker")
+                        </th>
+                        <th style="vertical-align:middle">
+                            Start Date
+                            @*@Html.DisplayNameFor(model => model.FeedbackStartDate)*@
+                        </th>
+                        <th style="vertical-align:middle">
+                            End Date
+                            @*@Html.DisplayNameFor(model => model.FeedbackEndDate)*@
+                        </th>
+                        <th style="vertical-align:middle">
+                            @Html.DisplayNameFor(model => model.Active)
+                        </th>
+                        <th></th>
                     </tr>
-                    
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @{int sno = 0;}
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+
+                            <td>
+                                @*@{ sno++;}
+                            @sno*@
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.SpeechDate)*@
+                                @{ sno++;}
+                                @sno
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Speakers.Topics.Subjects.SubjectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Speakers.Topics.TopicName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Speakers.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FeedbackStartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FeedbackEndDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+                            <td>
+                                @Html.EncodedActionLink("Add Feedback", "AddSpeakerFeedback", "Feedback", "member", new { speechId = item.SpeechEventId }, new { @class = "btn btn-primary btn-sm" }, "")
+                            </td>
+
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+ 
     </div>
 </div>
 @section Scripts {

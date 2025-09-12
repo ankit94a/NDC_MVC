@@ -1,11 +1,139 @@
 ﻿@using Microsoft.AspNet.Identity;
 
+
+<style>
+    /* ================== SIDEBAR ================== */
+    #sidebar {
+        grid-area: sidebar;
+        width: 260px;
+        height: 85vh;
+        background: #fff;
+        border-right: 1px solid #eee;
+        transition: width 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+        /* collapsed sidebar */
+        #sidebar.collapsed {
+            width: 80px; /* shrink */
+            overflow: visible; /* allow icons to show */
+        }
+
+            /* collapsed: hide text + submenu */
+            #sidebar.collapsed .sidebar-menu li a
+            #sidebar.collapsed .sidebar-menu li a span,
+            #sidebar.collapsed .sidebar-menu li a .menu-text,
+            #sidebar.collapsed .sidebar-menu li a .toggle,
+            #sidebar.collapsed .submenu,
+            #sidebar.collapsed .sidebar-footer span {
+                display: none !important;
+            }
+
+            #sidebar.collapsed .sidebar-menu li {
+                width: 80px
+            }
+                /* collapsed: center only icons */
+                #sidebar.collapsed .sidebar-menu li a {
+                    /*                justify-content: center;*/
+                    padding: 5px;
+                    margin: 5px;
+                    /*                background: transparent !important; */
+                }
+
+                    /* collapsed icon styling */
+                    #sidebar.collapsed .sidebar-menu li a i {
+                        margin: 0;
+                        padding: 14px;
+                        border-radius: 10px;
+                        font-size: 20px;
+                        color: #000 !important; /* ensure black */
+                        background: #fff !important; /* remove white square */
+                        display: inline-block;
+                        line-height: 1; /* vertically center */
+                    }
+
+            /* collapsed: footer only icon */
+            #sidebar.collapsed .sidebar-footer a {
+                justify-content: center;
+                background: transparent !important;
+            }
+
+
+    /* ================== MENU STYLES ================== */
+    .sidebar-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex: 1;
+        background: #9b030c;
+    }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-radius: 8px;
+            margin: 4px 8px;
+            color: #fff;
+        }
+
+        .sidebar-menu li:hover {
+            color: #000;
+        }
+
+        .sidebar-menu li a i {
+            margin-right: 12px;
+            font-size: 18px;
+            min-width: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .sidebar-menu li a:hover,
+        .sidebar-menu li.active > a {
+            background: #fff;
+            color: #000;
+        }
+
+        .sidebar-menu li i:hover {
+            color: #000;
+        }
+
+    .submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        padding-left: 15px;
+        list-style: none;
+    }
+
+    .has-sub {
+        color: #fff;
+    }
+
+    .menu-toggle {
+        background: rgb(155, 3, 12);
+    }
+
+    .has-sub.active > .submenu {
+        max-height: 1000px;
+    }
+</style>
+
+
 <div id="sidebar">
     <ul class="sidebar-menu  pt-3">
         <li><a title='Home' href='/Staff/'><i class='fa fa-home'></i> Home</a></li>
 
         <!-- My Profile -->
-        <li class="has-sub">
+        @*<li class="has-sub">
             <a href="javascript:void(0);" class="menu-toggle">
                 <i class="fa fa-user"></i> <span class="menu-text">My Profile</span>
                 <i class="fa fa-chevron-down toggle"></i>
@@ -14,7 +142,7 @@
                 <li><a href="/staff/Profile"><i class="fa-solid fa-address-card"></i> OverView</a></li>
                 <li><a href="/staff/MessBill/StaffBillDetail"><i class="fa fa-cutlery"></i> Mess Bill Detail</a></li>
             </ul>
-        </li>
+        </li>*@
 
         <!-- Course -->
         <li class="has-sub">
@@ -201,11 +329,18 @@
         </li>
 
         <!-- Change Password -->
-        <li>
+        @*<li>
             <a href="/staff/profile/changeuserpassword/"><i class="fa fa-key"></i> <span class="menu-text">Change Password</span></a>
-        </li>
+        </li>*@
+
+       @Html.Partial("_Task")                
     </ul>
 
+
+    @*<div class="shadow-sm mt-2" style="clear:both">*@
+
+    
+    @*</div>*@
 </div>
 
 

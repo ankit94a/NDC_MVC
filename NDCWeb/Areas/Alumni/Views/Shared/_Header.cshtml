@@ -15,14 +15,17 @@
         @if (Request.IsAuthenticated)
         {
             <div class="d-flex align-items-center">
-                <span class="me-2">
-                    Welcome, <strong>
-                        @(((ClaimsIdentity)User.Identity).FindFirst("FName")?.Value)
-                    </strong>
-                </span>
-
                 @using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "m-0" }))
                 {
+                    <span>
+                        <strong>Logout in :</strong> <span id="remainingTime"  style="font-weight:bold; color:red;"></span>
+                    </span>
+                    <div id="sessionTimer" data-timeout="@Session.Timeout"></div>
+                    <span class="me-2">
+                        Welcome, <strong>
+                            @(((ClaimsIdentity)User.Identity).FindFirst("FName")?.Value)
+                        </strong>
+                    </span>
                     @Html.AntiForgeryToken()
                     <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-sm btn-danger ms-2">
                         <i class="fa fa-power-off"></i> Log off

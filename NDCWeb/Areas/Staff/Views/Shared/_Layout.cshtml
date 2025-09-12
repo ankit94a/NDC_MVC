@@ -3,7 +3,6 @@
 <head id="Head1">
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
-    <meta charset="utf-8" />
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>
@@ -13,25 +12,33 @@
     <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="description" />
     <meta content="National Defence College, NDC,New Delhi,NDC DELHI, Delhi, MPhil, Affiliated to Madras University, Defence Education, AI, warfare, modern, warfare, army, army college, raksha bhawan,civil,service,air force, navy, police" name="DC.Subject.Keyword" />
     <meta content="NDC is a pioneering institute of its type in Asia. The role of the college has remained largely unchanged since 1959, when the President of India sanctioned the setting up of a National Defence College for providing instruction to senior service and civil service officers in the wider aspects of higher direction and strategy of warfare." name="NDC.Description" />
-    <link rel="stylesheet" type="text/css" href="~/Component/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/style.css" />
 
-    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="~/Areas/Member/Component/css/index.css" />
 
     <link rel="icon" href="/images/NDC-Logo.png" type="image/x-icon">
 
+    <!-- ✅ CSS -->
+    <link rel="stylesheet" href="~/Component/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Areas/Member/Component/css/style.css" />
+    <link rel="stylesheet" href="~/Areas/Member/Component/css/main.css" />
+    <link rel="stylesheet" href="~/Areas/Member/Component/css/index.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
-
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-2.1.6/b-3.1.2/b-html5-3.1.2/datatables.min.css" />
 
+    @{
+        var timeoutMinutes = Session.Timeout;
+    }
 
     @Styles.Render("~/bundles/jquistyle")
     @Styles.Render("~/bundles/datatables/css")
     @Styles.Render("~/bundles/toastr/css")
+
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/mainjs")
+
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("#respMenu").aceResponsiveMenu({
@@ -44,177 +51,6 @@
             $('#main-nav nav').meanmenu()
         });
     </script>
-
-    <style>
-        /* ================== SIDEBAR ================== */
-        #sidebar {
-            grid-area: sidebar;
-            width: 260px;
-            height: 85vh;
-            background: #fff;
-            border-right: 1px solid #eee;
-            transition: width 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-            /* collapsed sidebar */
-            #sidebar.collapsed {
-                width: 80px; /* shrink */
-                overflow: visible; /* allow icons to show */
-            }
-
-                /* collapsed: hide text + submenu */
-                #sidebar.collapsed .sidebar-menu li a
-                #sidebar.collapsed .sidebar-menu li a span,
-                #sidebar.collapsed .sidebar-menu li a .menu-text,
-                #sidebar.collapsed .sidebar-menu li a .toggle,
-                #sidebar.collapsed .submenu,
-                #sidebar.collapsed .sidebar-footer span {
-                    display: none !important;
-                }
-
-                #sidebar.collapsed .sidebar-menu li {
-                    width: 80px
-                }
-                    /* collapsed: center only icons */
-                    #sidebar.collapsed .sidebar-menu li a {
-                        /*                justify-content: center;*/
-                        padding: 5px;
-                        margin: 5px;
-                        /*                background: transparent !important; */
-                    }
-
-                        /* collapsed icon styling */
-                        #sidebar.collapsed .sidebar-menu li a i {
-                            margin: 0;
-                            padding: 14px;
-                            border-radius: 10px;
-                            font-size: 20px;
-                            color: #000 !important; /* ensure black */
-                            background: #fff !important; /* remove white square */
-                            display: inline-block;
-                            line-height: 1; /* vertically center */
-                        }
-
-                /* collapsed: footer only icon */
-                #sidebar.collapsed .sidebar-footer a {
-                    justify-content: center;
-                    background: transparent !important;
-                }
-
-
-        /* ================== MENU STYLES ================== */
-        .sidebar-menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex: 1;
-            background: #9b030c;
-        }
-
-            .sidebar-menu li a {
-                display: flex;
-                align-items: center;
-                padding: 12px 20px;
-                font-size: 15px;
-                text-decoration: none;
-                transition: all 0.3s;
-                border-radius: 8px;
-                margin: 4px 8px;
-                color: #fff;
-            }
-
-            .sidebar-menu li:hover {
-                color: #000;
-            }
-
-            .sidebar-menu li a i {
-                margin-right: 12px;
-                font-size: 18px;
-                min-width: 20px;
-                text-align: center;
-                color: inherit;
-            }
-
-            .sidebar-menu li a:hover,
-            .sidebar-menu li.active > a {
-                background: #fff;
-                color: #000;
-            }
-
-            .sidebar-menu li i:hover {
-                color: #000;
-            }
-
-        .submenu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            padding-left: 15px;
-            list-style: none;
-        }
-
-        .has-sub {
-            color: #fff;
-        }
-
-        .menu-toggle {
-            background: rgb(155, 3, 12);
-        }
-
-        .has-sub.active > .submenu {
-            max-height: 1000px;
-        }
-
-        .submenu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-in-out;
-        }
-
-        /* arrow default */
-        .menu-toggle .toggle {
-            margin-left: auto;
-            transition: transform 0.3s ease;
-        }
-
-            /* rotate arrow when open */
-            .menu-toggle .toggle.rotated {
-                transform: rotate(180deg);
-            }
-
-        .sidebar-footer {
-            margin-top: auto; /* pushes footer to bottom */
-            background: linear-gradient(135deg, rgb(68, 212, 198), rgb(0, 150, 136));
-            border-top: 1px solid #333; /* subtle separation */
-        }
-
-            .sidebar-footer a {
-                display: flex;
-                align-items: center;
-                padding: 12px 20px;
-                color: #fff;
-                font-weight: 500;
-                text-decoration: none;
-                transition: all 0.3s ease;
-            }
-
-                .sidebar-footer a i {
-                    margin-right: 10px;
-                    font-size: 16px;
-                    color: inherit;
-                }
-
-                .sidebar-footer a:hover {
-                    background: #fff;
-                    color: #000;
-                }
-    </style>
-
 
     <style>
         body {
@@ -262,7 +98,7 @@
 
             /* collapsed sidebar */
             #sidebar.collapsed {
-                width: 0px;
+                width: 80px;
             }
 
         .navbar {
@@ -292,7 +128,7 @@
             width: 94% !important;
         }
         /* Responsive */
-        /*        media (max-width: 992px) {
+        media (max-width: 992px) {
             .grid-container
 
         {
@@ -304,7 +140,7 @@
                 "sidebar"
                 "main"
                 "footer";
-        }*/
+        }
 
         .grid-container.collapsed {
             grid-template-columns: 1fr;
@@ -314,101 +150,9 @@
             height: auto;
             max-height: 200px;
         }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* pushes left & right */
-            padding: 0 20px;
-            background: #fff; /* optional */
-        }
-
-        /* Center the search box */
-        .search-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Notification bell */
-        .notification-dropdown .fa-bell {
-            font-size: 22px;
-            color: #FFD93D;
-        }
-
-        /* Notification count (badge) */
-        .notification-count {
-            position: absolute;
-            top: -5px;
-            right: 6px;
-            font-size: 12px;
-            padding: 2px 6px;
-        }
-
-        /* Dropdown styling */
-        .notification-dropdown .dropdown-menu {
-            min-width: 220px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border-radius: 8px;
-        }
-
-
-        .has-notification .fa-bell {
-            animation: swing 1s ease infinite; /* infinite makes it repeat */
-            transform-origin: top center; /* pivot from the top */
-        }
-
-        @@keyframes swing {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            25% {
-                transform: rotate(15deg);
-            }
-
-            50% {
-                transform: rotate(-15deg);
-            }
-
-            75% {
-                transform: rotate(5deg);
-            }
-
-            100% {
-                transform: rotate(0deg);
-            }
         }
     </style>
 
-    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/v/dt/dt-2.1.6/b-3.1.2/b-html5-3.1.2/datatables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.6/b-3.1.2/b-html5-3.1.2/datatables.min.css" rel="stylesheet">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        var notificationList;
-        $(document).ready(function () {
-            getUserData();
-
-            function getUserData() {
-                $.ajax({
-                    url: '/Staff/Home/GetNotificationWithCount',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (response) {
-                        notificationList = response.data;
-                    },
-                    error: function (xhr) {
-                        console.error("Error:", xhr.responseText);
-                    }
-                });
-            }
-        });
-    </script>
 </head>
 
 <body id="fontSize">
@@ -423,26 +167,7 @@
 
             }
         </div>
-        <div class="navbar d-flex align-items-center justify-content-between">
-            <div class="search-container mx-auto">
-                @Html.Partial("_MasterSearch")
-            </div>
-
-            <!-- Notification Dropdown -->
-            <div class="dropdown notification-dropdown has-notification">
-                <button class="btn btn-link position-relative" type="button" data-bs-toggle="dropdown">
-                    <i class="fa fa-bell"></i>
-                    <span class="bg-danger rounded-pill notification-count">5</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">New message</a></li>
-                    <li><a class="dropdown-item" href="#">Another notification</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-
+        <div class="navbar"> @Html.Partial("_MasterSearch")</div>
         <div class="main">
             @Html.Partial("_Notifications")
             @Html.AntiForgeryToken()
@@ -450,43 +175,38 @@
         </div>
         <div class="footer"> @Html.Partial("_Footer")</div>
     </div>
-    <!-- Core JS -->
+    <!-- ✅ JS -->
     <script src="~/Component/js/jquery/jquery-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <script src="~/Component/js/jquery.flexisel.js"></script>
     <script src="~/Component/js/ace-responsive-menu.js"></script>
-
-    <script src="~/Component/js/bootstrap.bundle.min.js"></script>
-
-    <script src='~/Component/js/font-size.js' type="text/javascript"></script>
-    <script src='~/Component/js/superfish.js' type="text/javascript"></script>
-    <script src='~/Component/js/jquery.meanmenu.js' type="text/javascript"></script>
-    <script src='~/Component/js/custom.js' type="text/javascript"></script>
-
-
-    @Scripts.Render("~/bundles/bootstrap")
-
+    <script src="~/Component/js/font-size.js"></script>
+    <script src="~/Component/js/superfish.js"></script>
+    <script src="~/Component/js/jquery.meanmenu.js"></script>
+    <script src="~/Component/js/custom.js"></script>
 
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/toastr/js")
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
-
+    <!-- Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
     <script src="~/Areas/Staff/Component/Custom/js/script-custom-calendar.js"></script>
-    <script>
-        toastrOptDefault();
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-2.1.6/b-3.1.2/b-html5-3.1.2/datatables.min.js"></script>
     <script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.6/b-3.1.2/b-html5-3.1.2/datatables.min.js"></script>
 
+    <!-- ✅ Keep only one Bootstrap include -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Icons (for caret up/down) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
     <script>
+        toastrOptDefault();
+
         document.addEventListener("DOMContentLoaded", function () {
             const toggleBtn = document.getElementById("sidebarToggle");
             const grid = document.querySelector(".grid-container");
@@ -499,46 +219,67 @@
                 });
             }
 
-
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
+            // submenu toggle
             document.querySelectorAll('.sidebar-menu li.has-sub > a.menu-toggle').forEach(item => {
                 item.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const parentLi = this.parentElement;
-                    const submenu = parentLi.querySelector(".submenu");
-                    const arrow = this.querySelector(".toggle");
-
-                    if (parentLi.classList.contains("active")) {
-                        // === Collapse ===
-                        submenu.style.maxHeight = submenu.scrollHeight + "px"; // lock current height
-                        requestAnimationFrame(() => {
-                            submenu.style.maxHeight = "0";
-                        });
-                        parentLi.classList.remove("active");
-                        if (arrow) arrow.classList.remove("rotated");
-                    } else {
-                        // === Expand ===
-                        submenu.style.maxHeight = submenu.scrollHeight + "px";
-                        parentLi.classList.add("active");
-                        if (arrow) arrow.classList.add("rotated");
-
-                        // reset to auto after transition
-                        submenu.addEventListener("transitionend", function handler() {
-                            if (parentLi.classList.contains("active")) {
-                                submenu.style.maxHeight = "none";
-                            }
-                            submenu.removeEventListener("transitionend", handler);
-                        });
-                    }
+                    this.parentElement.classList.toggle('active');
                 });
             });
         });
+    </script>
 
 
+    <script>
+        const dropdown = document.getElementById("profileDropdown");
+        const arrow = dropdown.querySelector(".dropdown-arrow");
+
+        dropdown.addEventListener("click", function () {
+            setTimeout(() => {
+                if (dropdown.getAttribute("aria-expanded") === "true") {
+                    arrow.classList.remove("bi-caret-right-fill");
+                    arrow.classList.add("bi-caret-down-fill");
+                } else {
+                    arrow.classList.remove("bi-caret-down-fill");
+                    arrow.classList.add("bi-caret-right-fill");
+                }
+            }, 100); // let Bootstrap update aria-expanded first
+        });
+    </script>
+
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var remainingSeconds = 60 * 60; // 1 hour = 3600 seconds
+            var remainingTimeEl = document.getElementById("remainingTime");
+            var logoutForm = document.getElementById("logoutForm");
+
+            function updateRemaining() {
+                if (remainingSeconds <= 0) {
+                    remainingTimeEl.innerText = "Time Out";
+                    if (logoutForm) {
+                        logoutForm.submit(); // auto logout
+                        window.location.href = '/Auth/Login'; // redirect to login
+                    }
+                    return;
+                }
+
+                var minutes = Math.floor(remainingSeconds / 60);
+                var seconds = remainingSeconds % 60;
+                remainingTimeEl.innerText =
+                    minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s left";
+
+                remainingSeconds--;
+            }
+
+            setInterval(updateRemaining, 1000);
+            updateRemaining();
+        });
 
     </script>
+
 
     @Scripts.Render("~/bundles/custom")
     @RenderSection("scripts", required: false)

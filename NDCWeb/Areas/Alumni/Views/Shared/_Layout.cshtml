@@ -16,6 +16,10 @@
     <link href="~/Component/dataTable4/css/select2.min.css" rel="stylesheet" />
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    @{
+        var timeoutMinutes = Session.Timeout;
+    }
+
 </head>
 
 <body id="fontSize">
@@ -93,6 +97,35 @@
             }
         });
 
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var remainingSeconds = 60 * 60; // 1 hour = 3600 seconds
+            var remainingTimeEl = document.getElementById("remainingTime");
+            var logoutForm = document.getElementById("logoutForm");
+
+            function updateRemaining() {
+                if (remainingSeconds <= 0) {
+                    remainingTimeEl.innerText = "Time Out";
+                    if (logoutForm) {
+                        logoutForm.submit(); // auto logout
+                        window.location.href = '/Auth/Login'; // redirect to login
+                    }
+                    return;
+                }
+
+                var minutes = Math.floor(remainingSeconds / 60);
+                var seconds = remainingSeconds % 60;
+                remainingTimeEl.innerText =
+                    minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s left";
+
+                remainingSeconds--;
+            }
+
+            setInterval(updateRemaining, 1000);
+            updateRemaining();
+        });
     </script>
 
     @RenderSection("scripts", required: false)

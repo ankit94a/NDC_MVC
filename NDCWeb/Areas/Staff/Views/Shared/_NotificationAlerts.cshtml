@@ -1,0 +1,334 @@
+﻿<!-- Notification Bell in Header -->
+<li class="nav-item dropdown ms-5 me-4">
+    <a class="nav-link p-0" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="line-height:1;">
+        <span class="position-relative d-inline-block">
+            <i class="fa fa-bell text-danger fs-5"></i>
+
+            @* Calculate total notifications *@
+            @{
+                int totalNotifications =
+                    (ViewBag.OnlineUploadPndngCount ?? 0) +
+                    (ViewBag.SpeakerFBCount ?? 0) +
+                    (ViewBag.ModuleFBCount ?? 0) +
+                    (ViewBag.CourseEndFBCount ?? 0) +
+                    (ViewBag.EventCount ?? 0) +
+                    (ViewBag.LifeMemCount ?? 0) +
+                    (ViewBag.ItEqptReqCount ?? 0) +
+                    (ViewBag.InternetReqCount ?? 0) +
+                    (ViewBag.MPhilApp ?? 0) +
+                    (ViewBag.MPhilDegree ?? 0) +
+                    (ViewBag.UnverifiedMbrCount ?? 0) +
+                    (ViewBag.ActiveLeave ?? 0) +
+                    (ViewBag.SanctionActiveLeave ?? 0) +
+                    (ViewBag.GenCirculars ?? 0) +
+                    (ViewBag.GenCertPending ?? 0);
+            }
+
+            @if (totalNotifications > 0)
+            {
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger blink-badge" style="font-size:0.65rem;">
+                    @totalNotifications
+                    <span class="visually-hidden">unread notifications</span>
+                </span>
+            }
+        </span>
+    </a>
+
+    <!-- Dropdown Menu -->
+    <ul class="dropdown-menu dropdown-menu-end shadow p-2" aria-labelledby="notificationDropdown" style="width: 350px; max-height: 400px; overflow-y: auto; background-color: #fff;">
+        <li class="dropdown-header fw-bold text-danger">
+            <i class="fa fa-bell"></i> Alerts
+        </li>
+        <li><hr class="dropdown-divider"></li>
+
+        <!-- Your existing conditions, no functionality changed -->
+        @if (ViewBag.StaffType != null)
+        {
+            if ((ViewBag.StaffType == 3 || ViewBag.StaffType == 4 || ViewBag.StaffType == 5 || ViewBag.StaffType == 6 ||
+                 ViewBag.StaffType == 7 || ViewBag.StaffType == 8 || ViewBag.StaffType == 9 ||
+                 ViewBag.StaffType == 23 || ViewBag.StaffType == 24) && Convert.ToString(ViewBag.OnlineUpld) != "0")
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("Index", "Assignment")">
+                        <span><img src="/images/new.gif" class="me-2"> Online Uploads</span>
+                        <span class="badge bg-danger">@ViewBag.OnlineUploadPndngCount</span>
+                    </a>
+                </li>
+                <tr>
+                    <td>
+                        <a class="btn-link list-group-item text-danger" href="@Url.Action("SpeechEventList", "feedbacks")">
+                            <img src="/images/new.gif" style="text-align:left"> Speaker Feedback <span class="badge badge-danger">@ViewBag.SpeakerFBCount</span>
+
+
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn-link list-group-item text-danger" href="@Url.Action("module", "feedbacks")">
+                            <img src="/images/new.gif" style="text-align:left"> Module Feedback <span class="badge badge-danger">@ViewBag.ModuleFBCount</span>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn-link list-group-item text-danger" href="@Url.Action("course", "feedbacks")">
+                            <img src="/images/new.gif" style="text-align:left"> Course End Feedback <span class="badge badge-danger">@ViewBag.CourseEndFBCount</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if (ViewBag.StaffType == 10) // "Secy"
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("SpeechEventList", "feedbacks")">
+                        <span><img src="/images/new.gif" class="me-2"> Speaker Feedback</span>
+                        <span class="badge bg-danger">@ViewBag.SpeakerFBCount</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("module", "feedbacks")">
+                        <span><img src="/images/new.gif" class="me-2"> Module Feedback</span>
+                        <span class="badge bg-danger">@ViewBag.ModuleFBCount</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("course", "feedbacks")">
+                        <span><img src="/images/new.gif" class="me-2"> Course End Feedback</span>
+                        <span class="badge bg-danger">@ViewBag.CourseEndFBCount</span>
+                    </a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if (ViewBag.StaffType == 2) // "Comdt"
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("SpeechEventList", "feedbacks")">
+                        <span><img src="/images/new.gif" class="me-2"> Speaker Feedback</span>
+                        <span class="badge bg-danger">@ViewBag.SpeakerFBCount</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("module", "feedbacks")">
+                        <span><img src="/images/new.gif" class="me-2"> Module Feedback</span>
+                        <span class="badge bg-danger">@ViewBag.ModuleFBCount</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("course", "feedbacks")">
+                        <span><img src="/images/new.gif" class="me-2"> Course End Feedback</span>
+                        <span class="badge bg-danger">@ViewBag.CourseEndFBCount</span>
+                    </a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if (ViewBag.StaffType == 11) // "DS (Coord)"
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("Index", "Assignment")">
+                        <span><img src="/images/new.gif" class="me-2"> Online Uploads</span>
+                        <span class="badge bg-danger">@ViewBag.OnlineUploadPndngCount</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("SpeechEventList", "feedbacks")">
+                        <span><img src="/images/new.gif" class="me-2"> Speaker Feedback</span>
+                        <span class="badge bg-danger">@ViewBag.SpeakerFBCount</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("module", "feedbacks")">
+                        <span><img src="/images/new.gif" class="me-2"> Module Feedback</span>
+                        <span class="badge bg-danger">@ViewBag.ModuleFBCount</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("course", "feedbacks")">
+                        <span><img src="/images/new.gif" class="me-2"> Course End Feedback</span>
+                        <span class="badge bg-danger">@ViewBag.CourseEndFBCount</span>
+                    </a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if (ViewBag.StaffType == 14) // "JDS (ADM)"
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("LatestEvent", "Event")">
+                        <span><img src="/images/new.gif" class="me-2"> Event/Function Notifications</span>
+                        <span class="badge bg-danger">@ViewBag.EventCount</span>
+                    </a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if (ViewBag.StaffType == 13) // "JDS (R&R)"
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("Index", "Library")">
+                        <span><img src="/images/new.gif" class="me-2"> Life Membership Notification</span>
+                        <span class="badge bg-danger">@ViewBag.LifeMemCount</span>
+                    </a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if (ViewBag.StaffType == 16) // "GSO (Sys)"
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("index", "SInfoTech")">
+                        <span><img src="/images/new.gif" class="me-2"> IT Eqpt Req. Notification</span>
+                        <span class="badge bg-danger">@ViewBag.ItEqptReqCount</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("index", "MiscRequirementAll")">
+                        <span><img src="/images/new.gif" class="me-2"> Tele. & Internet Notification</span>
+                        <span class="badge bg-danger">@ViewBag.InternetReqCount</span>
+                    </a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if (ViewBag.StaffType == 18) // "Univ Div"
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("mphil", "universitydiv")">
+                        <span><img src="/images/new.gif" class="me-2"> Total MPhil Application</span>
+                        <span class="badge bg-danger">@ViewBag.MPhilApp</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("mumphil", "universitydiv")">
+                        <span><img src="/images/new.gif" class="me-2"> Total MPhil Degree</span>
+                        <span class="badge bg-danger">@ViewBag.MPhilDegree</span>
+                    </a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if ((ViewBag.StaffType == 15) && ViewBag.UnverifiedMbrCount > 0) // "AQ"
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("ParticipantsPending", "memberverify")">
+                        <span><img src="/images/new.gif" class="me-2"> Verification Pending</span>
+                        <span class="badge bg-danger">@ViewBag.UnverifiedMbrCount</span>
+                    </a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.ActiveLeave != null && ViewBag.ActiveLeave > 0)
+        {
+            <li>
+                <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("AddStatusLeaveInfoList", "StaffLeaveInfo")">
+                    <span><img src="/images/new.gif" class="me-2"> Leave Notifications</span>
+                    <span class="badge bg-danger">@ViewBag.ActiveLeave</span>
+                </a>
+            </li>
+        }
+
+        @if (ViewBag.SanctionActiveLeave != null && ViewBag.SanctionActiveLeave > 0)
+        {
+            <li>
+                <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")">
+                    <span><img src="/images/new.gif" class="me-2"> Leave Sanctioned</span>
+                    <span class="badge bg-danger">@ViewBag.SanctionActiveLeave</span>
+                </a>
+            </li>
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if (ViewBag.GenCirculars > 0)
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("Index", "Circular")">
+                        <span><img src="/images/new.gif" class="me-2"> Order / Circular Notifications</span>
+                        <span class="badge bg-danger">@ViewBag.GenCirculars</span>
+                    </a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.StaffType != null)
+        {
+            if ((ViewBag.StaffType == 15) && ViewBag.GenCertPending > 0) // "AQ"
+            {
+                <li>
+                    <a class="dropdown-item d-flex justify-content-between align-items-center text-danger" href="@Url.Action("ShowGenerateLeaveCertList", "StaffLeaveInfo")">
+                        <span><img src="/images/new.gif" class="me-2"> Generate Leave Certificate</span>
+                        <span class="badge bg-danger">@ViewBag.GenCertPending</span>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</li>
+
+<style>
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #ffe6e6 !important;
+        text-decoration: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+    #notificationDropdown {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .blink-badge {
+        animation: blink 1s infinite;
+    }
+
+    @@keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+    .animate-blink {
+        animation: blink 1s infinite;
+    }
+
+    @@keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    .animate-blink {
+        animation: blink 1s infinite;
+    }
+</style>
