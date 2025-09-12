@@ -64,11 +64,10 @@
             color: #353535;
             text-align: center;
         }
-      
     </style>
 </head>
 <body id="fontSize">
-    @Html.Partial("_Header")   
+    @Html.Partial("_Header")
     <div class="mean-container">
     </div>
     @if (ViewBag.SiteMenuItems != null)
@@ -78,21 +77,21 @@
     <!-- Menu Part End -->
     <div class="clearfix">
     </div>
-   
-        @Html.Partial("_Notifications")
 
-        <div class="container-fluid">
-            @RenderBody()
-        </div>
+    @Html.Partial("_Notifications")
 
-        @Html.Partial("_Footer")
- 
-    <!-- Core JS -->
-    <script src="~/Component/js/jquery/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <script src="~/Component/js/bootstrap.bundle.min.js"></script>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
 
+    @Html.Partial("_Footer")
+
+    @Scripts.Render("~/bundles/mainjs")   <!-- jQuery -->
+    <script src="~/Component/js/jquery-migrate-1.2.1.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui") <!-- jQuery UI if needed -->
+    @Scripts.Render("~/bundles/custom")   <!-- your custom + intlTelInput -->
     <!-- Plugins -->
     <script src="~/Component/js/jquery.flexisel.js"></script>
     <script src="~/Component/js/jquery.cycle.all.min.js"></script>

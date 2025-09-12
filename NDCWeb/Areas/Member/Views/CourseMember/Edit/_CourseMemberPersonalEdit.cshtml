@@ -65,7 +65,7 @@
                     @Html.ValidationMessageFor(model => model.MotherMiddleName, "", new { @class = "text-danger" })
                 </div>
             </div>
-        
+
             <div class="form-row">
                 <div class="form-group col-md-3">
                     @Html.LabelFor(model => model.MotherSurname, htmlAttributes: new { @class = "control-label" })
@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="form-row">
-                
+
                 <div class="form-group col-md-3">
                     @Html.LabelFor(model => model.VoterIdNo, htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.VoterIdNo, new { htmlAttributes = new { @class = "form-control" } })
@@ -359,18 +359,18 @@
                         @Html.Label("Sample Passport Image", htmlAttributes: new { @class = "control-label label-info" })
                         <img src="~/Areas/Member/Component/images/PassportSample.jpg" class="img-fluid" />
                     </div>
-                    </div>
-                    <div class="form-row">
-
-
-                        @*<div class="form-group col-md-3">
-                <label>Upload passport Images (Back)</label>
-                <input id="mbrPassportBackPicfile" type="file" title="Upload Your Self Passport" name="mbrPassportBackPicfile" onchange="imgValidateEdit('mbrPassportBackPicfile', 'MemberPassportBackImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
-                <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
-                @Html.EditorFor(model => model.MemberPassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-            </div>*@
-                    </div>
                 </div>
+                <div class="form-row">
+
+
+                    @*<div class="form-group col-md-3">
+                            <label>Upload passport Images (Back)</label>
+                            <input id="mbrPassportBackPicfile" type="file" title="Upload Your Self Passport" name="mbrPassportBackPicfile" onchange="imgValidateEdit('mbrPassportBackPicfile', 'MemberPassportBackImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                            <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                            @Html.EditorFor(model => model.MemberPassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                        </div>*@
+                </div>
+            </div>
 
             <div class="form-row">
                 <div class="form-group col-md-12">
@@ -431,14 +431,14 @@
                         <img src="~/Areas/Member/Component/images/PassportSample.jpg" class="img-fluid" />
                     </div>
 
-                        @*<div class="form-group col-md-3">
-                <label>Upload passport Images (Back)</label>
-                <input id="mbrPersonalPassportBackPicfile" type="file" title="Upload Your Self Passport" name="mbrPersonalPassportBackPicfile" onchange="imgValidateEdit('mbrPersonalPassportBackPicfile', 'MemberPersonalPassportBackImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
-                <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
-                @Html.EditorFor(model => model.MemberPersonalPassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-            </div>*@
-                    </div>
+                    @*<div class="form-group col-md-3">
+                            <label>Upload passport Images (Back)</label>
+                            <input id="mbrPersonalPassportBackPicfile" type="file" title="Upload Your Self Passport" name="mbrPersonalPassportBackPicfile" onchange="imgValidateEdit('mbrPersonalPassportBackPicfile', 'MemberPersonalPassportBackImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                            <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                            @Html.EditorFor(model => model.MemberPersonalPassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                        </div>*@
                 </div>
+            </div>
         </div>
     </div>
     <div class="card mt-4 shadow-sm p-3">
@@ -541,7 +541,7 @@
 
 <div id="dialog" style="display: none">
 </div>
-@Scripts.Render("~/bundles/jqueryval")
+
 <script>
         $(document).ready(function () {
             $('#Gender').val('@Model.Gender');
@@ -806,7 +806,7 @@
 
 
     // #region Upload Helper
-    function imgValidateEdit(fileUploadId, fileLocId) {     
+    function imgValidateEdit(fileUploadId, fileLocId) {
         let fileTypes = ['jpg', 'jpeg', 'png'];
         let extValidate = fileExtensionValidation(fileUploadId, fileTypes);
         let sizeValidate = fileSizeValidation(fileUploadId, 1024);

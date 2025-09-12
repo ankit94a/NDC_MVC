@@ -3373,7 +3373,6 @@
     <Content Include="Component\js\jquery-ui\jquery-ui.js" />
     <Content Include="Component\js\jquery.cycle.all.min.js" />
     <Content Include="Component\js\jquery\jquery-3.7.1.min.js" />
-    <Content Include="Component\js\jquery\jquery-3.7.1.min.min.js" />
     <Content Include="Component\js\superfish.min.js" />
     <Content Include="Component\js\toastr.min.js" />
     <Content Include="Component\js\xlsx\shim.min.js" />
@@ -6510,7 +6509,6 @@
     <Content Include="Component\js\jquery.flexisel.js" />
     <Content Include="Component\js\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Component\js\jquery.meanmenu.js" />
-    <Content Include="Component\js\jquery\jquery-3.5.1.js" />
     <Content Include="Component\js\jquery\jquery.min.js" />
     <Content Include="Component\js\jquery.js" />
     <Content Include="Component\js\jquery.shorten.js" />
