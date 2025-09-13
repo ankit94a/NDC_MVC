@@ -323,11 +323,19 @@
             <a href="/staff/participant/participantlist/"><i class="fa fa-users"></i> <span class="menu-text">Participant Details</span></a>
         </li>
 
-        <!-- Change Password -->
-        @*<li>
-            <a href="/staff/profile/changeuserpassword/"><i class="fa fa-key"></i> <span class="menu-text">Change Password</span></a>
-        </li>*@
-        @Html.Partial("_Task")
+        <div class="shadow-sm mt-2" style="clear:both">
+            <h4 class="fw-bold py-2 btlr text-white pr-5" style="border-bottom: 1px solid #ab131c; ">
+                <i class="bi bi-list-task me-2 mx-2"></i> TASKS
+            </h4>
+            <a href="~/staff/memberverify/alumnilist/" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-people-fill me-2 text-primary"></i> Alumni List
+            </a>
+
+            <a href="~/Staff/AlumniMaster/AlumniFeedBack" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-chat-dots-fill me-2 text-success"></i> Alumni Feedback List
+            </a>
+            <a class="list-group-item list-group-item-line d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+        </div>
     </ul>
 </div>
 

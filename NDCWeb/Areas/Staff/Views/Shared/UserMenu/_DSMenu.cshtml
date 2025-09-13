@@ -327,20 +327,24 @@
         <li>
             <a href="/staff/participant/participantlist/"><i class="fa fa-users"></i> <span class="menu-text">Participant Details</span></a>
         </li>
-
+        <div class="shadow-sm mt-2" style="clear:both">
+            <h4 class="fw-bold py-2 btlr text-white pr-5" style="border-bottom: 1px solid #ab131c; ">
+                <i class="bi bi-list-task me-2 mx-2"></i> TASKS
+            </h4>
+            <a href="~/staff/participant/participantlist/" class="list-group-item list-group-item-line text-white d-block"><i class="bi bi-people me-2 text-primary"></i>View Participants</a>
+            <a href="~/staff/participant/CrsMbrRoleAssignment/" class="list-group-item list-group-item-line text-white d-block"><i class="bi bi-person-badge me-2 text-warning"></i>Role Assignment</a>
+            <a href="~/staff/speakers/" class="list-group-item list-group-item-line text-white d-block"><i class="bi bi-mic me-2 text-info"></i>Speaker Biodata</a>
+            <a class="btn-link list-group-item list-group-item-line text-white d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+        </div>
+    </ul>
         <!-- Change Password -->
         @*<li>
             <a href="/staff/profile/changeuserpassword/"><i class="fa fa-key"></i> <span class="menu-text">Change Password</span></a>
         </li>*@
 
-       @Html.Partial("_Task")                
-    </ul>
 
+        @*@Html.Partial("_Task")*@
 
-    @*<div class="shadow-sm mt-2" style="clear:both">*@
-
-    
-    @*</div>*@
 </div>
 
 

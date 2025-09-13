@@ -278,7 +278,12 @@
         <li>
             <a href="/staff/participant/participantlist/"><i class="fa fa-users"></i> <span class="menu-text">Participant Details</span></a>
         </li>
-        @Html.Partial("_Task")
+        <div class="shadow-sm mt-2" style="clear:both">
+            <h4 class="fw-bold py-2 btlr text-white pr-5" style="border-bottom: 1px solid #ab131c; ">
+                <i class="bi bi-list-task me-2 mx-2"></i> TASKS
+            </h4>
+            <a href="~/staff/participant/participantlist/" class="list-group-item text-white d-block"><i class="bi bi-people me-2 text-primary"></i>View Participants</a>
+        </div>
     </ul>
 </div>
 

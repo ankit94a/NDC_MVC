@@ -274,7 +274,24 @@
                 <li><a href="/Member/participant/library/opac"><i class="fa fa-search"></i> OPAC</a></li>
             </ul>
         </li>
-        @Html.Partial("_Task")
+        <div class="shadow-sm mt-2" style="clear:both">
+            <h4 class="fw-bold py-2 btlr text-white pr-5" style="border-bottom: 1px solid #ab131c; ">
+                <i class="bi bi-list-task me-2 mx-2"></i> TASKS
+            </h4>
+            <a class="list-group-item list-group-item-line list-group-item-actionalign-items-center text-white d-block" href="~/staff/event/">
+                <i class="bi bi-calendar-event me-2 text-warning"></i> Create Party/Function
+            </a>
+
+            <a class="list-group-item list-group-item-line list-group-item-actionalign-items-center text-white d-block" href="@Url.Action("LatestEvent", "Event")">
+                <i class="bi bi-megaphone me-2 text-success"></i> Latest Event
+            </a>
+
+            <a class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white" href="@Url.Action("ArrivalAll", "Participant")">
+                <i class="bi bi-airplane me-2 text-info"></i> Arrival Detail
+            </a>
+            <a class="btn-link list-group-item list-group-item-line text-white d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+            @*@Html.Partial("_Task")*@
+        </div>
     </ul>
 </div>
 

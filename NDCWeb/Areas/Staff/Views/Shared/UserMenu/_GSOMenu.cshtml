@@ -151,6 +151,18 @@
                 <li><a href="/Member/participant/library/opac"><i class="fa fa-search"></i> OPAC</a></li>
             </ul>
         </li>
-        @Html.Partial("_Task")
+        <div class="shadow-sm mt-2" style="clear:both">
+            <h4 class="fw-bold py-2 btlr text-white pr-5" style="border-bottom: 1px solid #ab131c; ">
+                <i class="bi bi-list-task me-2 mx-2"></i> TASKS
+            </h4>
+            <a href="~/staff/SInfoTech/index" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-pc-display-horizontal me-2 text-info"></i> IT Equipment Requirements
+            </a>
+
+            <a href="~/staff/MiscRequirementAll/index" class="list-group-item list-group-item-line list-group-item-action d-block align-items-center text-white">
+                <i class="bi bi-wifi me-2 text-success"></i> Tele. & Internet Requisition
+            </a>
+        </div>
+        @*@Html.Partial("_Task")*@
     </ul>
 </div>

@@ -128,15 +128,15 @@
         </li>
         <!-- My Profile -->
         @*<li class="has-sub">
-                <a href="javascript:void(0);" class="menu-toggle">
-                    <i class="fa fa-user"></i> <span class="menu-text">My Profile</span>
-                    <i class="fa fa-chevron-down toggle"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="/staff/Profile"><i class="fa-solid fa-address-card"></i> OverView</a></li>
-                    <li><a href="/staff/MessBill/StaffBillDetail"><i class="fa fa-cutlery"></i> Mess Bill Detail</a></li>
-                </ul>
-            </li>*@
+            <a href="javascript:void(0);" class="menu-toggle">
+                <i class="fa fa-user"></i> <span class="menu-text">My Profile</span>
+                <i class="fa fa-chevron-down toggle"></i>
+            </a>
+            <ul class="submenu">
+                <li><a href="/staff/Profile"><i class="fa-solid fa-address-card"></i> OverView</a></li>
+                <li><a href="/staff/MessBill/StaffBillDetail"><i class="fa fa-cutlery"></i> Mess Bill Detail</a></li>
+            </ul>
+        </li>*@
 
 
         <!-- Verification -->
@@ -160,24 +160,17 @@
         </li>
 
         @*<li>
-                <a href="/staff/profile/changeuserpassword/"><i class="fa fa-key"></i> <span class="menu-text">Change Password</span></a>
-            </li>*@
+            <a href="/staff/profile/changeuserpassword/"><i class="fa fa-key"></i> <span class="menu-text">Change Password</span></a>
+        </li>*@
+        <div class="shadow-sm mt-2" style="clear:both">
+            <h4 class="fw-bold py-2 btlr text-white pr-5" style="border-bottom: 1px solid #ab131c; ">
+                <i class="bi bi-list-task me-2 mx-2"></i> TASKS
+            </h4>
+            <a class="list-group-item list-group-item-line text-white d-block" href="@Url.Action("ArrivalAll", "Participant")"><i class="bi bi-airplane me-2 text-primary"></i>Arrival Detail</a>
+            <a class="list-group-item list-group-item-line text-white d-block" href="@Url.Action("ShowCompleteLeaveStatusList", "StaffLeaveInfo")"><i class="bi bi-calendar-check me-2 text-success"></i>Leave History</a>
+            <a class="list-group-item list-group-item-line text-white d-block" href="~/staff/participant/CrsMbrRoleAssignment/"><i class="bi bi-person-badge me-2 text-warning"></i>Role Assignment</a>
+            <a class="list-group-item list-group-item-line text-white d-block" href="~/staff/instepcourse/index/"><i class="bi bi-journal-text me-2 text-info"></i>In-Step Course</a>
+        </div>
     </ul>
-    @Html.Partial("_Task")
-    @*<div class="sidebar-footer">
-            <li>
-                <a href="/staff/profile/changeuserpassword/"><i class="fa fa-key"></i> <span class="menu-text">Change Password</span></a>
-            </li>
-        </div>*@
-</div>
+  
 
-<script>
-    //document.querySelectorAll('.sidebar-menu li.has-sub > a.menu-toggle').forEach(item => {
-    //    item.addEventListener('click', function (e) {
-    //        e.preventDefault();
-    //        const parentLi = this.parentElement;
-    //        parentLi.classList.toggle('active');
-    //    });
-    //});
-
-</script>
