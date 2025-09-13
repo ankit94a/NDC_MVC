@@ -312,7 +312,7 @@
             </div>
             <div class="dvOfficialPassportSelf">
                 <div class="form-row">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <Label class="control-label">Passport No</Label>
                         @Html.EditorFor(model => model.MemberPassportNo, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.MemberPassportNo, "", new { @class = "text-danger" })
@@ -327,35 +327,39 @@
                         @Html.EditorFor(model => model.MemberPassportIssueDate, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.MemberPassportIssueDate, "", new { @class = "text-danger" })
                     </div>
+
                     <div class="form-group col-md-2">
                         <Label class="control-label">Valid Upto</Label>
                         @Html.EditorFor(model => model.MemberPassportValidUpto, new { htmlAttributes = new { @class = "form-control datepickerJq1", @autocomplete = "off" } })
                         @Html.HiddenFor(model => model.MemberPassportType, new { Value = "Diplomatic" })
                         @Html.ValidationMessageFor(model => model.MemberPassportValidUpto, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="citizencountry">Country that issued your passport</label>
                         @Html.DropDownListFor(model => model.CountryIssued, (IEnumerable<SelectListItem>)ViewBag.ddlCountry, "-- Select --", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.CountryIssued, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label>Upload Passport Image (Front & Back)</label>
-                        <input id="mbrPassportPicfile" type="file" title="Upload Your Self Passport" name="mbrPassportPicfile" onchange="docValidate('mbrPassportPicfile', 'MemberPassportImgPath')" class="uploadify-button form-control-file" accept="application/pdf" />
-                        <p class="text-info">Max size 3 MB, PDF Only</p>
-                        @Html.EditorFor(model => model.MemberPassportImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label>Upload Passport Image (Front & Back)</label>
+                            <input id="mbrPassportPicfile" type="file" title="Upload Your Self Passport" name="mbrPassportPicfile" onchange="docValidate('mbrPassportPicfile', 'MemberPassportImgPath')" class="uploadify-button form-control-file" accept="application/pdf" />
+                            <p class="text-info">Max size 3 MB, PDF Only</p>
+                            @Html.EditorFor(model => model.MemberPassportImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                            @Html.Label("Sample Passport Image", htmlAttributes: new { @class = "control-label label-info" })
+                            <img src="~/Areas/Member/Component/images/PassportSample.jpg" class="img-fluid" />
 
-                        @Html.Label("Sample Passport Image", htmlAttributes: new { @class = "control-label label-info" })
-                        <img src="~/Areas/Member/Component/images/PassportSample.jpg" class="img-fluid" />
 
+                        </div>
                     </div>
+                <div class="form-row">
+                   
                     @*<div class="form-group col-md-3">
-                            <label>Upload passport Images (Back)</label>
-                            <input id="mbrPassportBackPicfile" type="file" title="Upload Your Self Passport" name="mbrPassportBackPicfile" onchange="imgValidateEdit('mbrPassportBackPicfile', 'MemberPassportBackImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
-                            <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
-                            @Html.EditorFor(model => model.MemberPassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-                        </div>*@
+                <label>Upload passport Images (Back)</label>
+                <input id="mbrPassportBackPicfile" type="file" title="Upload Your Self Passport" name="mbrPassportBackPicfile" onchange="imgValidateEdit('mbrPassportBackPicfile', 'MemberPassportBackImgPath')" class="uploadify-button form-control-file" accept="image/jpeg,image/png" />
+                <p class="text-info">Max size 250 KB, File Type (.jpg, .jpeg, .png)</p>
+                @Html.EditorFor(model => model.MemberPassportBackImgPath, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+            </div>*@
                 </div>
                 @if (ViewBag.ServiceCategory == "INDIAN ARMY" || ViewBag.ServiceCategory == "INDIAN AIR FORCE" || ViewBag.ServiceCategory == "INDIAN NAVY" || ViewBag.ServiceCategory == "INDIAN CIVIL SERVICES")
                 {
@@ -375,10 +379,10 @@
                 }
             </div>
             <div class="form-row">
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-12">
                     <label class="control-label"><b>Holding Personal Passport?</b></label>
                     <div class="form-inline">
-                        <label class="containerchk col-md-3">
+                        <label class="containerchk col-md-6">
                             Yes
                             @Html.CheckBoxFor(m => m.HoldingPersonalPassportSelf)
                             <span class="checkmark"></span>

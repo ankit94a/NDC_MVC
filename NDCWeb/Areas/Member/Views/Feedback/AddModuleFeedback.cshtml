@@ -4,77 +4,126 @@
     ViewBag.Title = "Add Module Feedback";
     Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .card-body {
+        background-color: #fdfdfd;
+    }
+
+    .card-title {
+        font-size: 16px;
+        border-left: 4px solid #0d6efd;
+        padding-left: 8px;
+    }
+
+    .form-label {
+        color: #444;
+    }
+
+    textarea.form-control,
+    .form-control,
+    .form-select {
+        border-radius: 8px;
+        transition: all 0.2s ease-in-out;
+    }
+
+        textarea.form-control:focus,
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+
+    .text-danger.small {
+        font-size: 0.85rem;
+    }
+
+</style>
 
 <div class="container mb-4 mt-4">
-    <div class="card">
-        <div class="card-header">
+    <div class="card shadow p-3">
+        <div class="card-header custom-header text-center" style="color:#ffff">
             @ViewBag.Title
         </div>
         @using (Html.BeginForm())
         {
             <div class="card-body">
+
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "control-label" })
-                        @Html.DropDownListFor(model => model.SubjectId, (IEnumerable<SelectListItem>)ViewBag.Course, "-- Select --", htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger" })
+
+                <!-- Row 1 -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.SubjectId, htmlAttributes: new { @class = "form-label fw-bold" })
+                            @Html.DropDownListFor(model => model.SubjectId,
+                                (IEnumerable<SelectListItem>)ViewBag.Course,
+                                "-- Select --",
+                                htmlAttributes: new { @class = "form-select shadow-sm" })
+                            @Html.ValidationMessageFor(model => model.SubjectId, "", new { @class = "text-danger small" })
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.CoordChairperson, htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.CoordChairperson, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CoordChairperson, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-row">
-                    <p class="card-title">1.       Lectures (Topics) for Deletion/Addition (Indicate a minimum of two each - one topic for deletion for every topic proposed for addition) </p>
-                    <div class="form-group col-md-12">
-                        <b> <label for="TopicForDelete" class="control-label">Deletion</label></b>
-                        @Html.TextAreaFor(model => model.TopicForDelete, htmlAttributes: new { @class = "form-control editorHtml", rows = "5", autocomplete = "off", autocorrect = "off", value = "" })
-                        @Html.ValidationMessageFor(model => model.TopicForDelete, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <b> <label for="TopicForAdition" class="control-label">Addition</label></b>
-                        @Html.TextAreaFor(model => model.TopicForAdition, htmlAttributes: new { @class = "form-control editorHtml", rows = "5", autocomplete = "off", autocorrect = "off", value = "" })
-                        @Html.ValidationMessageFor(model => model.TopicForAdition, "", new { @class = "text-danger" })
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.CoordChairperson, htmlAttributes: new { @class = "form-label fw-bold" })
+                            @Html.EditorFor(model => model.CoordChairperson,
+                                new { htmlAttributes = new { @class = "form-control shadow-sm" } })
+                            @Html.ValidationMessageFor(model => model.CoordChairperson, "", new { @class = "text-danger small" })
+                        </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <b> <label for="Suggestions" class="control-label">2.      Suggestion on books, periodicals, articles and other study materials</label></b>
-                        @Html.TextAreaFor(model => model.Suggestions, htmlAttributes: new { @class = "form-control editorHtml", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
-                        @Html.ValidationMessageFor(model => model.Suggestions, "", new { @class = "text-danger" })
+
+                <!-- Section 1 -->
+                <div class="mb-4">
+                    <h6 class="card-title fw-bold text-primary mb-3">
+                        1. Lectures (Topics) for Deletion/Addition
+                    </h6>
+                    <p class="text-muted small">Indicate a minimum of two each - one topic for deletion for every topic proposed for addition.</p>
+
+                    <div class="mb-3">
+                        <label for="TopicForDelete" class="form-label fw-semibold">Deletion</label>
+                        @Html.TextAreaFor(model => model.TopicForDelete, new { @class = "form-control shadow-sm", rows = "4", placeholder = "Enter topics for deletion..." })
+                        @Html.ValidationMessageFor(model => model.TopicForDelete, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="TopicForAdition" class="form-label fw-semibold">Addition</label>
+                        @Html.TextAreaFor(model => model.TopicForAdition, new { @class = "form-control shadow-sm", rows = "4", placeholder = "Enter topics for addition..." })
+                        @Html.ValidationMessageFor(model => model.TopicForAdition, "", new { @class = "text-danger small" })
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group  col-md-12">
-                        <b> <label for="SuggestChanges" class="control-label">3.      Suggested changes in framing of IAG Assignments (including changes of IAG Assignments)</label></b>
-                        @Html.TextAreaFor(model => model.SuggestChanges, htmlAttributes: new { @class = "form-control editorHtml", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
-                        @Html.ValidationMessageFor(model => model.SuggestChanges, "", new { @class = "text-danger" })
-                    </div>
+
+                <!-- Section 2 -->
+                <div class="mb-4">
+                    <h6 class="card-title fw-bold text-primary mb-3">2. Suggestions on study materials</h6>
+                    <label for="Suggestions" class="form-label fw-semibold">Books, periodicals, articles and other study materials</label>
+                    @Html.TextAreaFor(model => model.Suggestions, new { @class = "form-control shadow-sm", rows = "3", placeholder = "Enter your suggestions..." })
+                    @Html.ValidationMessageFor(model => model.Suggestions, "", new { @class = "text-danger small" })
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <b> <label for="SuggestionOther" class="control-label">4.      Any other Suggestion?</label></b>
-                        @Html.TextAreaFor(model => model.SuggestionOther, htmlAttributes: new { @class = "form-control editorHtml", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
-                        @Html.ValidationMessageFor(model => model.SuggestionOther, "", new { @class = "text-danger" })
-                    </div>
+
+                <!-- Section 3 -->
+                <div class="mb-4">
+                    <h6 class="card-title fw-bold text-primary mb-3">3. Suggested changes in framing of IAG Assignments</h6>
+                    <label for="SuggestChanges" class="form-label fw-semibold">Including changes of IAG Assignments</label>
+                    @Html.TextAreaFor(model => model.SuggestChanges, new { @class = "form-control shadow-sm", rows = "3", placeholder = "Enter suggested changes..." })
+                    @Html.ValidationMessageFor(model => model.SuggestChanges, "", new { @class = "text-danger small" })
                 </div>
-                @*<div class="form-row">
-                    <div class="form-group col-md-12">
-                        @Html.LabelFor(model => model.CommentsAndRecomedation, htmlAttributes: new { @class = "control-label" })
-                        @Html.TextAreaFor(model => model.CommentsAndRecomedation, htmlAttributes: new { @class = "form-control editorHtml disabled", rows = "2", autocomplete = "off", autocorrect = "off", value = "" })
-                        @Html.ValidationMessageFor(model => model.CommentsAndRecomedation, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
+
+                <!-- Section 4 -->
+                <div class="mb-4">
+                    <h6 class="card-title fw-bold text-primary mb-3">4. Any other Suggestion?</h6>
+                    @Html.TextAreaFor(model => model.SuggestionOther, new { @class = "form-control shadow-sm", rows = "3", placeholder = "Enter other suggestions..." })
+                    @Html.ValidationMessageFor(model => model.SuggestionOther, "", new { @class = "text-danger small" })
+                </div>
+
             </div>
+
+           
+
             <div class="card-footer">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Submit" class="btn btn-primary" />
-                    @Html.ActionLink("Back to List", "modulefeedback", null, new { @class = "btn btn-primary" })
+                <div class="col-md-offset-2 col-md-10 text-center">
+                    <input type="submit" value="Submit" class="btn btn-outline-danger" />
+                    @Html.ActionLink("Back to List", "modulefeedback", null, new { @class = "btn btn-outline-primary" })
                 </div>
             </div>
         }

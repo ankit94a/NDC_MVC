@@ -13,8 +13,8 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.ForumBlogId)
-            <div class="card mt-4  mb-4">
-                <div class="card-header" style="background-color:#fff">
+            <div class="card shadow mt-4 p-3 mb-4">
+                <div class="card-header custom-header text-center" style="color:#fff">
                     @ViewBag.Title
                 </div>
                 <div class="card-body">
@@ -49,9 +49,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                    <a class="btn btn-primary" href="@Url.Action("Index")">Back to List</a>
+                <div class="card-footer bg-white d-flex justify-content-center gap-2">
+                    <input type="submit" value="Save" class="btn btn-outline-danger" />
+                    <a class="btn btn-outline-primary " href="@Url.Action("Index")">Back to List</a>
                 </div>
             </div>
         </div>

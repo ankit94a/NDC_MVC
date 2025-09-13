@@ -6,12 +6,56 @@
 @Styles.Render("~/bundles/datatables/ButtonCss")
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+<style>
+    /* Pagination buttons look */
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.4rem 0.8rem;
+        margin: 0 2px;
+        border-radius: 0.25rem;
+        border: 1px solid #dee2e6;
+        background: #f8f9fa;
+        color: #0d6efd !important;
+    }
+
+        /* Active page button */
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: #0d6efd !important;
+            color: #fff !important;
+        }
+
+    /* Align pagination container to the right */
+    .dataTables_wrapper .dataTables_paginate {
+        text-align: right !important;
+        margin-right: 0 !important;
+    }
+
+        /* Make pagination buttons flex to the right */
+        .dataTables_wrapper .dataTables_paginate .pagination {
+            justify-content: flex-end !important;
+        }
+
+    /* Search box styling */
+    .dataTables_wrapper .dataTables_filter {
+        text-align: right !important;
+    }
+
+        .dataTables_wrapper .dataTables_filter input {
+            margin-left: 6px;
+            border-radius: 4px;
+            padding: 4px 8px;
+            border: 1px solid #dee2e6;
+        }
+
+</style>
+
 <div class="card pt-2">
-    <div class="card mb-4">
-        <div class="card-header" style="background-color:#fff">
-            @ViewBag.Title
-            <span class="pull-right">@Html.ActionLink("New Feedback", "addmodulefeedback", null, new { @class = "btn btn-primary btn-sm" })</span>
+    <div class="card shadow p-3 mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center custom-header"
+             style="background-color:#fff; color:#fff;">
+            <h5 class="mb-0 text-center flex-grow-1">@ViewBag.Title</h5>
+            <span>@Html.ActionLink("New Feedback", "addmodulefeedback", null, new { @class = "btn btn-danger" })</span>
         </div>
+
         <div class="card-body">
             <table class="mb-0 table table-hover table-bordered tab w-100" id="myTable">
                 <thead>

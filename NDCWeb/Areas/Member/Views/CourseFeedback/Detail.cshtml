@@ -6,18 +6,18 @@
 @Styles.Render("~/bundles/datatables/ButtonCss")
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
-<div class="container pt-2">
-    <div class="card" id="printDiv" style="font-family:Arial; font-size:13px">
+<div class="container p-3 pt-2">
+    <div class="card shadow p-3 " id="printDiv" style="font-family:Arial; font-size:13px">
         <style>
             tr :nth-child(1) {
                 font-weight: bold;
             }
         </style>
-        <div class="card-header text-uppercase h4 text-center border-0"><u>@ViewBag.Title</u></div>
+        <div class="card-header custom-header text-uppercase h4 text-center border-0 text-white"><u>@ViewBag.Title</u></div>
         <div class="card-body">
-            <fieldset class="container p-2">
+            <fieldset class="container-inner p-3 p-2">
 
-                <legend>PART I - TRAINING</legend>
+                <legend class="custom-header p-1 w-100 text-center text-white  text-center text-white">PART I - TRAINING</legend>
                 <p class="h4">1. Comments/ Suggestions on Training Syllabus</p>
                 <table class="dl-horizontal">
                     <tr>
@@ -182,8 +182,8 @@
                 </table>
             </fieldset>
             <br />
-            <fieldset class="container">
-                <legend>PART ll- ADMINISTRATION AT NDC</legend>
+            <fieldset class="container-inner p-3">
+                <legend class="custom-header p-1 w-100 text-center text-white  text-center text-white">PART ll- ADMINISTRATION AT NDC</legend>
                 <p class="h4">4. Social Functions</p>
                 <table class="dl-horizontal">
                     <tr>
@@ -448,8 +448,8 @@
                 </table>
             </fieldset>
             <br />
-            <fieldset class="container">
-                <legend>PART III - UNIVERSITY DIVISION</legend>
+            <fieldset class="container-inner p-3">
+                <legend class="custom-header p-1 w-100 text-center text-white  text-center text-white">PART III - UNIVERSITY DIVISION</legend>
                 <label class="h4">13. Thesis</label>
                 <table class="dl-horizontal">
                     @*<tr>
@@ -536,8 +536,8 @@
                 </table>
             </fieldset>
             <br />
-            <fieldset class="container">
-                <legend>PART IV - LIBRARY</legend>
+            <fieldset class="container-inner p-3">
+                <legend class="custom-header p-1 w-100 text-center text-white  text-center text-white">PART IV - LIBRARY</legend>
                 <label class="h4">15. Availability of Reading Resources</label>
                 <table class="dl-horizontal">
                     <tr>
@@ -572,7 +572,7 @@
 
                 </table>
             </fieldset>
-            <fieldset class="container">
+            <fieldset class="container-inner p-3">
                 <legend>&nbsp;</legend>
                 <table>
                     <tr>
@@ -617,8 +617,8 @@
         </div>
     </div>
     <div class="panel-footer bg-white text-center mb-4">
-        @Html.ActionLink("Update", "Edit", "CourseFeedback", new { id = Model.FeedbackId }, new { @class = "btn btn-primary btn-sm" })
-        <input type="button" class="btn btn-primary btn-sm" onclick="printdoc()" value="Print" />
+        @Html.ActionLink("Update", "Edit", "CourseFeedback", new { id = Model.FeedbackId }, new { @class = "btn btn-outline-danger" })
+        <input type="button" class="btn btn-outline-primary " onclick="printdoc()" value="Print" />
         @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-sm" })*@
     </div>
 </div>

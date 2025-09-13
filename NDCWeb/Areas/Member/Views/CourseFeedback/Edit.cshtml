@@ -1,6 +1,6 @@
 ﻿@model NDCWeb.Areas.Member.View_Models.CourseFeedbackUpVM
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Course End Feedback";
 }
 <style>
     .form-group {
@@ -9,8 +9,8 @@
     }
 </style>
 <div class="container pt-2">
-    <div class="card">
-        <div class="card-header text-uppercase h4 text-center border-0 "><u>@ViewBag.Title</u></div>
+    <div class="card shadow p-3">
+        <div class="card-header custom-header text-uppercase h4 text-center border-0 " style="color:#fff"><u>@ViewBag.Title</u></div>
         @using (Html.BeginForm())
         {
             <div class="card-body">
@@ -19,8 +19,8 @@
                 <div class="card-body">
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <fieldset class="container">
-                        <legend>PART I - TRAINING</legend>
+                    <fieldset class="container-inner p-3" class="container">
+                       <legend class="custom-header p-1 w-100 text-center text-white  text-center text-white ">PART I - TRAINING</legend>
                         <p class="h4">1. Comments/ Suggestions on Training Syllabus</p>
                         <div class="form-group row">
                             @Html.LabelFor(model => model.ConductOfStudy, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
@@ -118,8 +118,8 @@
                         </div>
                     </fieldset>
                     <br />
-                    <fieldset class="container">
-                        <legend>PART ll- ADMINISTRATION AT NDC</legend>
+                    <fieldset class="container-inner p-3" class="container">
+                       <legend class="custom-header p-1 w-100 text-center text-white  text-center text-white ">PART ll- ADMINISTRATION AT NDC</legend>
                         <label class="h4">4. Social Functions</label>
                         <div class="form-group row">
                             @Html.LabelFor(model => model.AdminSocialFuncA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
@@ -240,8 +240,8 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset class="container">
-                        <legend>PART III - UNIVERSITY DIVISION</legend>
+                    <fieldset class="container-inner p-3" class="container">
+                       <legend class="custom-header p-1 w-100 text-center text-white  text-center text-white ">PART III - UNIVERSITY DIVISION</legend>
                         <label class="h4">13. Thesis</label>
                         <div class="form-group row">
                             @Html.LabelFor(model => model.UDThesisA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
@@ -300,8 +300,8 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset class="container">
-                        <legend>PART IV - LIBRARY</legend>
+                    <fieldset class="container-inner p-3" class="container">
+                       <legend class="custom-header p-1 w-100 text-center text-white  text-center text-white ">PART IV - LIBRARY</legend>
                         <label class="h4">15. Availability of Reading Resources</label>
                         <div class="form-group row">
                             @Html.LabelFor(model => model.LibraryA, htmlAttributes: new { @class = "col-sm-4 col-form-label col-form-label-sm" })
@@ -327,16 +327,18 @@
                     </fieldset>
                 </div>
                 <div class="card-footer bg-white text-center">
-                    @Html.HiddenFor(m => m.IsSubmit) 
+                    @Html.HiddenFor(m => m.IsSubmit)
                     @if (!Model.IsSubmit)
                     {
-                        <button type="submit" name="submitType" value="Save" class="btn btn-primary">Save</button>
-                        <button type="submit" name="submitType" value="Submit" class="btn btn-success">Submit</button>
+                        <button type="submit" name="submitType" value="Save" class="btn btn-outline-danger">Save</button>
+                        <button type="submit" name="submitType" value="Submit" class="btn btn-outline-success">Submit</button>
                     }
                     else
                     {
                         <h1 class="label-danger text-danger">Feedback submitted. Changes are not permitted.</h1>
-                        @Html.ActionLink("Back to List", "Index")
+                        @*@Html.ActionLink("Back to List", "Index")*@
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-primary btn-lg" })
+
                     }
 
 

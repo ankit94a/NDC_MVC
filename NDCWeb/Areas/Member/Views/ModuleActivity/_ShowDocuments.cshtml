@@ -1,10 +1,12 @@
 ﻿@model NDCWeb.Areas.Staff.View_Models.TrainingActivityIndxVM
 <link href="~/Areas/Admin/Component/css/main.css" rel="stylesheet" />
 <div class="container-fluid">
-    <div class="main-card card">
-        <div class="card-header">
-            <h5 class="card-title">List of Uploads</h5>
+    <div class="main-card shadow p-3 card">
+        <div class="card-header d-flex justify-content-center align-items-center"
+             style="background: linear-gradient(135deg, #c7151ff7, #600208);">
+            <h5 class="text-white mb-0">List of Uploads</h5>
         </div>
+
         <div class="card-body">
             @{
                 bool isExists = false;
@@ -33,7 +35,7 @@
                         }
                     </tbody>
                 </table>*@
-                @foreach (var mdfl in Model.iTrainingActivityMedias.OrderByDescending(x=> x.TrainingActivityId))
+                @foreach (var mdfl in Model.iTrainingActivityMedias.OrderByDescending(x => x.TrainingActivityId))
                 {
                     isExists = true;
 

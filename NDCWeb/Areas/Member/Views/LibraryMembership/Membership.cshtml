@@ -4,9 +4,9 @@
     ViewBag.Title = "LIBRARY MEMBERSHIP FOR COURSE PARTICIPANTS";
     Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
 }
-<div class="container shadow pt-2 mb-4">
-    <div class="card">
-        <div class="card-header">
+<div class="container  pt-2 mb-4">
+    <div class="card shadow p-3">
+        <div class="card-header custom-header text-center" style="color:#fff">
             <h4>@ViewBag.Title </h4>
         </div>
         <style>
@@ -86,7 +86,7 @@
         </div>
 
         <div class="card-footer text-center bg-white">
-            <a class="btn btn-primary btn-sm text-white" onclick="printdoc();"><i class="fa fa-print"></i>  Print</a>
+            <a class="btn btn-outline-danger" onclick="printdoc();"><i class="fa fa-print"></i>  Print</a>
             @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary btn-sm" })*@
         </div>
     </div>

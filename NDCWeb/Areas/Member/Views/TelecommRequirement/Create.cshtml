@@ -7,7 +7,7 @@
 
 <div class="container mb-4 mt-4">
     <div class="card shadow-sm p-4">
-        <div class="card-header" style="padding-left:0 !important">
+        <div class="card-header custom-header text-white text-center" style="padding-left:0 !important">
             @ViewBag.Title
         </div>
         @using (Html.BeginForm())
@@ -68,8 +68,8 @@
                 </div>
             </div>
             <div class="card-footer bg-white text-center mt-2">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+                <input type="submit" value="Create" class="btn btn-outline-danger" />
+                @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-outline-primary" })
             </div>
         }
     </div>

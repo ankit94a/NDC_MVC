@@ -4,9 +4,35 @@
     ViewBag.Title = "Add Speaker Feedback";
     Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .custom-header {
+        background: linear-gradient(135deg, #c7151f, #600208);
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    .form-label {
+        margin-bottom: 6px;
+        color: #333;
+    }
+
+    .form-check-label {
+        margin-left: 4px;
+        margin-right: 15px;
+    }
+
+    textarea.form-control {
+        resize: none;
+    }
+
+</style>
 <div class="container mb-4 mt-4">
-    <div class="card">
-        <div class="card-header">
+    <div class="card shadow p-3">
+
+        <!-- Card Header -->
+        <div class="card-header text-center custom-header">
             @ViewBag.Title
         </div>
 
@@ -14,95 +40,92 @@
         {
             <div class="card-body">
                 @Html.AntiForgeryToken()
-
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.SpeechEventId)
 
-                <div class="form-row">
+                <!-- Event Details -->
+                <div class="form-row mb-3">
                     @Html.Partial("_SpeechEventDetails", (NDCWeb.Areas.Staff.View_Models.SpeechEventDetailVM)@ViewBag.SpeechEventDetail)
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12 mt-3">
-                        <b>
-                            <label class="control-label col-md-5" for="LectureAttend">Have you attended this lecture?</label>
 
-                        </b>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="LectureAttend" id="LectureAttend" value="Y">
-                            <label class="form-check-label" for="LectureAttend">Yes</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="LectureAttend" id="LectureAttend" value="N">
-                            <label class="form-check-label" for="LectureAttend">No</label>
-                        </div>
-                        @Html.ValidationMessageFor(model => model.LectureAttend, "", new { @class = "text-danger" })
+                <!-- Lecture Attend -->
+                <div class="form-group mb-4">
+                    <label class="form-label fw-bold d-block">Have you attended this lecture?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="LectureAttend" value="Y">
+                        <label class="form-check-label">Yes</label>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12 mt-3">
-                        <b>  @Html.LabelFor(model => model.QualityTalk, htmlAttributes: new { @class = "control-label col-md-5" })</b>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="QualityTalk" id="QualityTalk" value="4">
-                            <label class="form-check-label" for="QualityTalk">Excellent</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="QualityTalk" id="QualityTalk" value="3">
-                            <label class="form-check-label" for="QualityTalk">Very Good</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="QualityTalk" id="QualityTalk" value="2">
-                            <label class="form-check-label" for="QualityTalk">Average</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="QualityTalk" id="QualityTalk" value="1">
-                            <label class="form-check-label" for="QualityTalk">Poor</label>
-                        </div>
-                        @Html.ValidationMessageFor(model => model.QualityTalk, "", new { @class = "text-danger" })
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="LectureAttend" value="N">
+                        <label class="form-check-label">No</label>
                     </div>
+                    @Html.ValidationMessageFor(model => model.LectureAttend, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12 mt-3">
 
-                        <b>  <label class="control-label col-md-5" for="RecomendForNextCourse">Do you recommend the speaker for next course</label>
-                        @*@Html.LabelFor(model => model.RecomendForNextCourse, htmlAttributes: new { @class = "control-label col-md-5" })*@
-                        </b>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="RecomendForNextCourse" id="RecomendForNextCourse" value="Y">
-                            <label class="form-check-label" for="RecomendForNextCourse">Yes</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="RecomendForNextCourse" id="RecomendForNextCourse" value="N">
-                            <label class="form-check-label" for="RecomendForNextCourse">No</label>
-                        </div>
-                        @Html.ValidationMessageFor(model => model.RecomendForNextCourse, "", new { @class = "text-danger" })
+                <!-- Quality of Talk -->
+                <div class="form-group mb-4">
+                    <label class="form-label fw-bold d-block">Quality of Talk</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="QualityTalk" value="4">
+                        <label class="form-check-label">Excellent</label>
                     </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="QualityTalk" value="3">
+                        <label class="form-check-label">Very Good</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="QualityTalk" value="2">
+                        <label class="form-check-label">Average</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="QualityTalk" value="1">
+                        <label class="form-check-label">Poor</label>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.QualityTalk, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        @Html.LabelFor(model => model.Suggetions, htmlAttributes: new { @class = "control-label col-md-4" })
-                        @Html.TextAreaFor(model => model.Suggetions, htmlAttributes: new { @class = "form-control editorHtml", rows = "3", autocomplete = "off", autocorrect = "off", value = "" })
-                        @Html.ValidationMessageFor(model => model.Suggetions, "", new { @class = "text-danger" })
+
+                <!-- Recommend Speaker -->
+                <div class="form-group mb-4">
+                    <label class="form-label fw-bold d-block">Do you recommend the speaker for the next course?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="RecomendForNextCourse" value="Y">
+                        <label class="form-check-label">Yes</label>
                     </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="RecomendForNextCourse" value="N">
+                        <label class="form-check-label">No</label>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.RecomendForNextCourse, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Suggestions -->
+                <div class="form-group mb-4">
+                    @Html.LabelFor(model => model.Suggetions, htmlAttributes: new { @class = "form-label fw-bold" })
+                    @Html.TextAreaFor(model => model.Suggetions, new { @class = "form-control", rows = "3", placeholder = "Enter your suggestions..." })
+                    @Html.ValidationMessageFor(model => model.Suggetions, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <!-- Footer -->
             <div class="card-footer text-center bg-white">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Submit" class="btn btn-primary btn-sm" />
-                    @Html.ActionLink("Back to List", "SpeechEventActiveList", null, new { @class = "btn btn-primary btn-sm" })
-                </div>
+                <button type="submit" class="btn btn-outline-danger">Submit</button>
+                @Html.ActionLink("Back to List", "SpeechEventActiveList", null, new { @class = "btn btn-outline-primary" })
             </div>
-
         }
     </div>
 </div>
+
+
+
+
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
-<script>
+    <script>
     $(document).ready(function () {
         @*$('#TopicId').val('@Model.TopicId');*@
         //getDatepickerf1('.datepickerJq1');
 
-        
+
     });
     $("#SubjectId").change(function () {
         $("#TopicId").empty();
@@ -148,6 +171,6 @@
         });
     }
 
-   
-</script>
+
+    </script>
 }

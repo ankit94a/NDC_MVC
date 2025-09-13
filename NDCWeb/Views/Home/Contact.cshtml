@@ -1,17 +1,77 @@
-﻿@{
+﻿@*@{
+        ViewBag.Title = "Contact";
+    }
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <address>
+        One Microsoft Way<br />
+        Redmond, WA 98052-6399<br />
+        <abbr title="Phone">P:</abbr>
+        425.555.0100
+    </address>
+
+    <address>
+        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    </address>*@
+
+@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5 text-center">
+                    <h2 class="fw-bold text-primary mb-3">@ViewBag.Title</h2>
+                    <h5 class="text-muted mb-4">@ViewBag.Message</h5>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+                    <div class="mb-4">
+                        <h6 class="fw-bold">Our Address</h6>
+                        <p class="mb-1">One Microsoft Way</p>
+                        <p class="mb-1">Redmond, WA 98052-6399</p>
+                        <p class="mb-0"><i class="bi bi-telephone text-primary"></i> 425.555.0100</p>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 border rounded bg-light">
+                                <h6 class="fw-bold">Support</h6>
+                                <a href="mailto:Support@example.com" class="text-decoration-none">
+                                    Support@example.com
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="p-3 border rounded bg-light">
+                                <h6 class="fw-bold">Marketing</h6>
+                                <a href="mailto:Marketing@example.com" class="text-decoration-none">
+                                    Marketing@example.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        @Html.ActionLink(
+     "Back to Home",
+     "Index",
+     "Home",
+     new { },
+     new { @class = "btn btn-outline-danger rounded-pill px-4 py-2 fw-bold shadow-sm" }
+ )
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-body h2 {
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+    }
+</style>

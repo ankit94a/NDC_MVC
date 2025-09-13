@@ -3,58 +3,164 @@
     ViewBag.Title = "Participant of NDC Course";
     Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
 }
-<div class="container mt-4">
-    <div class="panel-heading border-bottom">
-        <h3 class="h3 text-primary">Coursemates of NDC @ViewBag.Course course</h3>
+
+<div class="container shadow p-3 mt-4">
+    <!-- Header -->
+    <div class="d-flex custom-header justify-content-between align-items-center border-bottom p-3 pb-2 mb-3">
+        <h3 class="h3 text-white"><i class="fa fa-users"></i> Coursemates of NDC @ViewBag.Course course</h3>
+        <a href="/member/home/" class="btn btn-danger btn-sm rounded-pill"><i class="fa fa-arrow-left"></i> Back</a>
     </div>
-    @using (Html.BeginForm("participant", "connectwith", FormMethod.Post))
-    {
-        <div class="card-block">
-            <div class='form-group row'>
-                <div class="col-md-8">
-                    <label class="col-form-label">Search Text</label>
-                    <input type="text" name="searchText" placeholder="Search by Name, Email or MobileNo " class="form-control" required />
-                </div>
-                <div class="col-md-2">
-                    <label class="col-form-label col-md-4">&nbsp;.</label>
-                    <button type="submit" value="OK" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Search </button>
-                </div>
-            </div>
+
+    <!-- Search + PageSize -->
+    <div class="row g-2 align-items-end mb-3">
+        <div class="col-md-6">
+            <label class="form-label fw-bold">Search</label>
+            <input type="text" id="searchBox" placeholder="Search by Name, Email or Mobile No"
+                   class="form-control" />
         </div>
-    }
-    <div class="card-body">
+        <div class="col-md-2">
+            <label class="form-label fw-bold">Page Size</label>
+            <select id="pageSize" class="form-select">
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Participants List -->
+    <div id="participantsContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
         @foreach (var item in Model)
         {
-        <table class="table table-info">
-            <tr>
-                <td rowspan="6" width="180">
-                    <img src="@Url.Content(item.MemberImgPath ?? "/Areas/Member/Component/images/avatars/profile-blank.png")" height="120" alt="@item.FirstName @item.Surname">
-                </td>
-            </tr>
-            <tr>
-                <td width="180">Full Name</td>
-                <td>@item.FirstName @item.Surname</td>
-            </tr>
-            <tr>
-                <td>Coutry / Service</td>
-                <td>@item.CitizenshipCountries.CountryName</td>
-            </tr>
-            <tr>
-                <td> Mobile No</td>
-                <td>@item.MobileNo</td>
-            </tr>
-            <tr>
-                <td>Email Id</td>
-                <td>@item.EmailId</td>
-            </tr>
-            @*<tr>
-                <td>Address</td>
-            <td>@item.CommunicationAddress</td>
-        </tr>*@
-        </table>
-            <br />
+            <div class="col participant-card"
+                 data-name="@($"{item.FirstName} {item.Surname}".ToLower())"
+                 data-email="@item.EmailId.ToLower()"
+                 data-mobile="@item.MobileNo">
+                <div class="card shadow-sm h-100 border-0 rounded-3">
+                    <div class="card-body d-flex flex-column text-center">
+                        <img src="@Url.Content(!string.IsNullOrEmpty(item.MemberImgPath)
+                                ? item.MemberImgPath
+                                : "/Areas/Member/Component/images/avatars/profile-blank.png")"
+                             class="rounded-circle mx-auto mb-3 shadow"
+                             width="120" height="120"
+                             alt="@item.FirstName @item.Surname"
+                             onerror="this.src='/Areas/Member/Component/images/avatars/profile-blank.png';" />
+
+                        <h5 class="card-title text-primary fw-bold">@item.FirstName @item.Surname</h5>
+                        <p class="text-muted mb-1"><i class="fa fa-flag"></i> @item.CitizenshipCountries.CountryName</p>
+                        <p class="mb-1"><i class="fa fa-phone"></i> @item.MobileNo</p>
+                        <p class="mb-3"><i class="fa fa-envelope"></i> @item.EmailId</p>
+
+                        <div class="mt-auto">
+                            <a href="mailto:@item.EmailId" class="btn btn-outline-primary btn-sm rounded-pill">
+                                <i class="fa fa-paper-plane"></i> Contact
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
-    </div>        <div class="panel-footer mb-4 text-center">
-        <a href="/member/home/" class="btn btn-primary"> Back</a>
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center mt-4">
+        <ul id="pagination" class="pagination pagination-sm"></ul>
     </div>
 </div>
+@section Scripts{
+  
+    <script>
+        let currentPage = 1;
+        let pageSize = parseInt($("#pageSize").val() || 10);
+
+        function renderPagination(totalItems) {
+            let totalPages = Math.ceil(totalItems / pageSize) || 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+            let $pagination = $("#pagination");
+            $pagination.empty();
+
+            if (totalPages <= 1) return;
+
+            // Previous Button
+            let prevClass = currentPage === 1 ? "disabled" : "";
+            $pagination.append(`<li class="page-item ${prevClass}"><a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a></li>`);
+
+            // Numbered Pages (show all, or you can limit to a window)
+            for (let i = 1; i <= totalPages; i++) {
+                let activeClass = i === currentPage ? "active" : "";
+                $pagination.append(`<li class="page-item ${activeClass}"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`);
+            }
+
+            // Next Button
+            let nextClass = currentPage === totalPages ? "disabled" : "";
+            $pagination.append(`<li class="page-item ${nextClass}"><a class="page-link" href="#" data-page="${currentPage + 1}">Next</a></li>`);
+        }
+
+        function renderParticipants() {
+            let searchText = ($("#searchBox").val() || "").toLowerCase();
+            let $cards = $(".participant-card");
+            $cards.hide();
+
+            // filter (use attr(...) to ensure strings; fallback to empty string and toLowerCase)
+            let filtered = $cards.filter(function () {
+                let name = String($(this).attr("data-name") || "").toLowerCase();
+                let email = String($(this).attr("data-email") || "").toLowerCase();
+                let mobileRaw = $(this).data("mobile");
+                let mobile = (mobileRaw === undefined || mobileRaw === null) ? "" : String(mobileRaw).toLowerCase();
+
+                return name.includes(searchText) || email.includes(searchText) || mobile.includes(searchText);
+            });
+
+            let totalItems = filtered.length;
+            if (totalItems === 0) {
+                $("#participantsContainer").find(".no-results").remove();
+                $("#participantsContainer").append('<div class="col-12 text-center no-results"><p class="text-muted">No participants found.</p></div>');
+                $("#pagination").empty();
+                return;
+            } else {
+                $("#participantsContainer").find(".no-results").remove();
+            }
+
+            let totalPages = Math.ceil(totalItems / pageSize) || 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            let start = (currentPage - 1) * pageSize;
+            let end = start + pageSize;
+            filtered.slice(start, end).show();
+
+            renderPagination(totalItems);
+        }
+
+        // Page click
+        $(document).on("click", "#pagination li a", function (e) {
+            e.preventDefault();
+            let page = parseInt($(this).data("page"));
+            if (!isNaN(page) && page > 0) {
+                currentPage = page;
+                renderParticipants();
+                // scroll to top of list (optional)
+                $('html, body').animate({ scrollTop: $("#participantsContainer").offset().top - 80 }, 200);
+            }
+        });
+
+        // Search & Page Size Change
+        $("#searchBox").on("input", function () {
+            currentPage = 1;
+            renderParticipants();
+        });
+
+        $("#pageSize").change(function () {
+            pageSize = parseInt($(this).val()) || 10;
+            currentPage = 1;
+            renderParticipants();
+        });
+
+        // initial render (run after DOM ready)
+        $(function () {
+            pageSize = parseInt($("#pageSize").val() || 10);
+            renderParticipants();
+        });
+    </script>
+}
+

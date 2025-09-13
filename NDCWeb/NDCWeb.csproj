@@ -3758,6 +3758,8 @@
     <Content Include="Flipbook\pflip\fonts\themify.woff" />
     <Content Include="Flipbook\06 Oct newsletter final version.pdf" />
     <Content Include="Areas\Staff\Views\Shared\_MasterSearch.cshtml" />
+    <Content Include="Areas\Staff\Views\Shared\_Task.cshtml" />
+    <Content Include="Areas\Staff\Views\Shared\_NotificationAlerts.cshtml" />
     <None Include="Properties\PublishProfiles\NIC Cloud.pubxml" />
     <None Include="Properties\PublishProfiles\TEST-STAGING.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

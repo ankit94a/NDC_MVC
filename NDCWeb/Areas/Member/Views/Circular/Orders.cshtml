@@ -4,11 +4,14 @@
     ViewBag.Title = "Orders";
 
     int counter = 1;
-    string textColor = "text-primary";
+    string textColor = "text-white";
 }
 
-<div class="container mt-4">
-    <h3 class="text-primary" style="text-align: center;"><span style="text-decoration: underline;"><strong>Orders</strong></span></h3>
+<div class="container shadow p-3 mt-4">
+    <div class="card-header  custom-header">
+
+    <h3 class="text-white" style="text-align: center;"><span style="text-decoration: underline;"><strong>Orders</strong></span></h3>
+    </div>
 
     <p style="text-align: justify;">
         @foreach (var item in Model)

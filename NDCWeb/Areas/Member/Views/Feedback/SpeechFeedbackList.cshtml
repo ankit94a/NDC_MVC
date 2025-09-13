@@ -4,11 +4,52 @@
     ViewBag.Title = "Member's Feedback on Speech ";
 
 }
+<style>
+    /* Pagination buttons look */
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.4rem 0.8rem;
+        margin: 0 2px;
+        border-radius: 0.25rem;
+        border: 1px solid #dee2e6;
+        background: #f8f9fa;
+        color: #0d6efd !important;
+    }
+
+        /* Active page button */
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: #0d6efd !important;
+            color: #fff !important;
+        }
+
+    /* Align pagination container to the right */
+    .dataTables_wrapper .dataTables_paginate {
+        text-align: right !important;
+        margin-right: 0 !important;
+    }
+
+        /* Make pagination buttons flex to the right */
+        .dataTables_wrapper .dataTables_paginate .pagination {
+            justify-content: flex-end !important;
+        }
+
+    /* Search box styling */
+    .dataTables_wrapper .dataTables_filter {
+        text-align: right !important;
+    }
+
+        .dataTables_wrapper .dataTables_filter input {
+            margin-left: 6px;
+            border-radius: 4px;
+            padding: 4px 8px;
+            border: 1px solid #dee2e6;
+        }
+</style>
+
 
 <div class="container pt-2">
-    <div class="card mb-4">
-        <div class="card-header" style="background-color:#fff">
-            <a href=@Url.Action("SpeechEventActiveList") class="btn btn-outline-info btn-sm pull-right">Add Feedback</a>
+    <div class="card shadow p-3">
+        <div class="card-header custom-header text-center" style="color:#fff">
+            <a href=@Url.Action("SpeechEventActiveList") class="btn btn-danger btn-sm pull-right ">Add Feedback</a>
             <div class="card-title">@ViewBag.Title</div>
         </div>
         <div class="card-body">
@@ -77,8 +118,8 @@
                                     <span>Excellent</span>
                                 }
                             </td>
-                            <td>                              
-                                
+                            <td>
+
                                 @{
                                     if (item.RecomendForNextCourse == "N")
                                     {

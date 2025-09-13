@@ -3,12 +3,41 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    /* Pagination buttons look */
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.4rem 0.8rem;
+        margin: 0 2px;
+        border-radius: 0.25rem;
+        border: 1px solid #dee2e6;
+        background: #f8f9fa;
+        color: #0d6efd !important;
+    }
+
+        /* Active page button */
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: #0d6efd !important;
+            color: #fff !important;
+        }
+
+    /* Align pagination container to the right */
+    .dataTables_wrapper .dataTables_paginate {
+        text-align: right !important;
+        margin-right: 0 !important;
+    }
+
+        /* Make pagination buttons flex to the right */
+        .dataTables_wrapper .dataTables_paginate .pagination {
+            justify-content: flex-end !important;
+        }
+
+</style>
 
 <div class="container mb-4 mt-4">
-    <div class="card">
-        <div class="card-header">
+    <div class="card shadow p-3">
+        <div class="card-header custom-header">
             <div class="card-title">
-                <h3 style="text-align:center">
+                <h3 style="text-align:center ; color:white">
                     @if (Session["module"] != null)
                     {<text>@Session["module"].ToString().ToUpper()</text>}
                 </h3>
@@ -51,6 +80,37 @@
 
 @section Scripts {
     <script>
-    LoadJDT('#myTable');
+        //LoadJDT('#myTable');
+        LoadJDT('#myTable');
+        function LoadJDT(TableId) {
+            oTable = $(TableId).DataTable({
+                "processing": true,
+                "order": [[0, "desc"]],
+                "scrollX": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                "language": {
+                    "search": "🔍 Search:",
+                    "lengthMenu": "Show _MENU_ entries",
+                    "info": "Showing <b>_START_</b> to <b>_END_</b> of <b>_TOTAL_</b> entries",
+                    "infoEmpty": "No entries available",
+                    "infoFiltered": "(filtered from _MAX_ total entries)",
+                    "paginate": {
+                        "previous": "&laquo; Prev",
+                        "next": "Next &raquo;"
+                    }
+                },
+                "dom":
+                    '<"row mb-2"<"col-sm-6"l><"col-sm-6 text-end"f>>' +
+                    'rt' +
+                    '<"row mt-2"<"col-sm-6"i><"col-sm-6"p>>'
+            });
+        }
+
     </script>
 }

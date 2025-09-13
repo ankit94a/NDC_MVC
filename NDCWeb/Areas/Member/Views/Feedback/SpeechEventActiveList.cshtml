@@ -7,11 +7,52 @@
 
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" />
 <link href="~/Component/DataTable2/Buttons-1.6.1/css/buttons.jqueryui.min.css" rel="stylesheet" />
+<style>
+    /* Pagination buttons look */
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.4rem 0.8rem;
+        margin: 0 2px;
+        border-radius: 0.25rem;
+        border: 1px solid #dee2e6;
+        background: #f8f9fa;
+        color: #0d6efd !important;
+    }
+
+        /* Active page button */
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: #0d6efd !important;
+            color: #fff !important;
+        }
+
+    /* Align pagination container to the right */
+    .dataTables_wrapper .dataTables_paginate {
+        text-align: right !important;
+        margin-right: 0 !important;
+    }
+
+        /* Make pagination buttons flex to the right */
+        .dataTables_wrapper .dataTables_paginate .pagination {
+            justify-content: flex-end !important;
+        }
+
+    /* Search box styling */
+    .dataTables_wrapper .dataTables_filter {
+        text-align: right !important;
+    }
+
+        .dataTables_wrapper .dataTables_filter input {
+            margin-left: 6px;
+            border-radius: 4px;
+            padding: 4px 8px;
+            border: 1px solid #dee2e6;
+        }
+
+</style>
 
 <div class="container pt-2 shadow">
     <div class="card mb-4 px-3 ">
         <div class="card-header" style=" text-transform: uppercase; background-color: #9b030c !important; border-bottom: 1px solid #7a0707;">
-            <a href=@Url.Action("SpeechFeedbackList") class="btn btn-outline-info btn-sm pull-right" style="margin: 12px; background: #0d6efd; color: #fff; border: none; text-decoration: none;">Feedback History</a>&nbsp;
+            <a href=@Url.Action("SpeechFeedbackList") class="btn btn-outline-info btn-sm pull-right" style="margin: 12px; background: #dc3545; color: #fff; border: none; text-decoration: none;">Feedback History</a>&nbsp;
             @*@if (ViewBag.NoParticipation == "Yes")
         {
             <a href=@Url.Action("PastActiveSpeechFeedbackList") class="btn btn-outline-warning btn-sm pull-right">Past Feedback</a>
@@ -87,7 +128,7 @@
                                 @Html.DisplayFor(modelItem => item.Active)
                             </td>
                             <td>
-                                @Html.EncodedActionLink("Add Feedback", "AddSpeakerFeedback", "Feedback", "member", new { speechId = item.SpeechEventId }, new { @class = "btn btn-primary btn-sm" }, "")
+                                @Html.EncodedActionLink("Add Feedback", "AddSpeakerFeedback", "Feedback", "member", new { speechId = item.SpeechEventId }, new { @class = "btn btn-danger btn-sm" }, "")
                             </td>
 
                         </tr>
@@ -117,8 +158,8 @@
             oTable = $('#myTable').DataTable({
                 "scrollX": true,
                 "processing": true,
-                //"order": [[0, "desc"]],
-                "order":[[1,""]],
+                "order": [[0, "desc"]],
+                //"order":[[1,""]],
                 "columnDefs": [{ "targets": [0], "visible": false, "searchable": false }],
                 dom: 'Bfrtip',
                 buttons: [
