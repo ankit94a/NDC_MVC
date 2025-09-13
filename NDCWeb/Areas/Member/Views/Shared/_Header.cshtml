@@ -1,60 +1,104 @@
 ﻿@using Microsoft.AspNet.Identity
 @using System.Security.Claims
 
-<header>
-    <div class="top_head">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 top-acess">
-                </div>
-            </div>
-        </div>
+<div class="top-header d-flex justify-content-between align-items-center px-4 py-2 border-bottom">
+    <button id="sidebarToggle" class="btn btn-sm btn-light me-3">
+        <i class="fa fa-bars"></i>
+    </button>
+    <img class="pull-left" src="/images/1200px-Emblem_of_India.png" height="70" alt="Emblem_of_India">
+    <a href="/" title="NATIONAL DEFENCE COLLEGE" class="fw-bold ND"> NATIONAL DEFENCE COLLEGE </a>
+    <div class="logo ps">
+        <h2><strong style="margin-left: 65px;">राष्ट्रीय रक्षा महाविद्यालय</strong></h2>
+        <br /><h2>Ministry of Defence, Government of India</h2>
     </div>
-    <div class="mid-head">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                    <div class="indian-emblem pull-left">
-                        <a href='/'>
-                            <img src='/images/1200px-Emblem_of_India.png' class="bg-white" alt="Indian Emblem" title="Indian Emblem" height="100" />
+
+    <div class="d-flex align-items-center ms-auto" style="margin-right: 3.4rem !important;">
+        @Html.Partial("_NotificationAlerts")
+        <img class="pull-left" src="/images/NDC-Logo.png" height="70" alt="NDC-Logo" style="margin-right: 50px;">
+        @if (Request.IsAuthenticated)
+        {
+            <div class="d-flex align-items-center">
+                @using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "m-0" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <p> Time left: <span style="font-weight:bold; color:red;" id="remainingTime"></span> </p>
+                    <div id="sessionTimer" data-timeout="@Session.Timeout"></div>
+                    <span class="me-2">
+                        Welcome, <strong>@(((ClaimsIdentity)User.Identity).FindFirst("FName")?.Value)</strong>
+                    </span>
+                    <div class="dropdown d-inline-block">
+                        <!-- Profile image (not a toggle) -->
+                        <a href="#" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"
+                           class="d-flex align-items-center text-decoration-none">
+                            @if (ViewBag.ProfilePic != null)
+                            {
+                                <img src="@Url.Content(ViewBag.ProfilePic ?? "#")" alt="@ViewBag.fullname" title="@ViewBag.fullname"
+                                     class="img-thumbnail rounded-circle avatar-img me-1" width="50" height="50" style="object-fit: cover; cursor: pointer;">
+                            }
+                            else
+                            {
+                                <img src="~/images/avatars/default-avatar.png" class="img-thumbnail rounded-circle avatar-img me-1"
+                                     width="50" height="50" style="object-fit: cover; cursor: pointer;" />
+                            }
+                            <i class="bi bi-caret-right-fill dropdown-arrow ms-1"></i>
                         </a>
-                    </div>
-                </div>
-                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                            
-                        </div>   
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
-                            <div class="logo">
-                                <h2 lang="hi"><strong>राष्ट्रीय रक्षा महाविद्यालय</strong></h2>
-                                <h1><a style="font-size:inherit !important" href='/' title="National Defence College">National Defence College</a> </h1>
-                                <h2>Ministry of Defence, Government of India</h2>
-                            </div>
 
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                            <div class="useridentity d-none d-md-block" style="font-style:italic">
-                                @if (Request.IsAuthenticated)
-                                {
-                                    <i class="fa fa-user ml-2 opacity-8"></i><span> </span>
-                                    var fname = ((ClaimsIdentity)User.Identity).FindFirst("FName");
-                                    @: @fname.Value
-                                    using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-power-off ml-2"></i> Log off</a>
-                                    }
-                                }
-                            </div>
-                        </div>
-
+                        <ul class="dropdown-menu dropdown-menu-end text-center shadow bg-light text-dark p-3"
+                            aria-labelledby="profileDropdown">
+                            <li><strong>@ViewBag.fullname</strong></li>
+                            <li><span class="text-secondary">@ViewBag.Course</span></li>
+                            <li><hr class="dropdown-divider border-light" /></li>
+                            <li><a class="capsule-link text-danger" href='/staff/profile'>👤 My Profile</a></li>
+                            <li><i class="fa fa-circle text-success"></i> Course Locker No: @ViewBag.LockerNo</li>
+                            <li>@ViewBag.RolesAssign</li>
+                            <li><a class="capsule-link text-danger" href="/member/coursemember/changeuserpassword">🔑 Change Password</a></li>
+                            <li>
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="capsule-link text-danger">
+                                    <i class="fa fa-power-off text-danger"></i> Log off
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                    <img class="pull-right" src="/images/NDC-Logo1.png" height="100" alt="">
-                </div>
+
+                }
             </div>
-        </div>
+        }
     </div>
-</header>
+</div>
+<style>
+    .capsule-link {
+        display: inline-block;
+        margin: 6px 0;
+        padding: 6px 16px;
+        border-radius: 50px;
+        background-color: #f8f9fa;
+        text-decoration: none !important;
+        transition: all 0.2s ease-in-out;
+        border: none !important;
+    }
+
+        .capsule-link:hover {
+            background-color: #ffe6e6 !important;
+            text-decoration: none !important;
+            border: none !important;
+        }
+
+    .dropdown-menu {
+        min-width: 220px !important;
+        white-space: nowrap;
+    }
+
+    .dropdown-divider {
+        border-top: 1px solid #dddddd !important;
+    }
+
+    .dropdown-arrow {
+        font-size: 12px;
+        color: #fff;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .dropdown.show .dropdown-arrow {
+        transform: rotate(90deg); /* rotate when dropdown is open */
+    }
+</style>

@@ -53,6 +53,13 @@
     #dvinstr {
         z-index: 100001;
     }
+
+    .grid-container {
+        padding-right: 0px;
+        padding-left: 170px;
+        padding-top: 80px;
+    }
+
 </style>
 
 @if (ViewBag.Flash.Count != 0)
@@ -77,15 +84,13 @@
         </div>
     </div>
 }
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"></h5>
-               
+
             </div>
             <div class="modal-body">
                 <div class="d-grid gap-2 col-6 mx-auto">
@@ -103,79 +108,16 @@
 
 
 <section class="pt20 pb30">
-    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
-                <div class="pcard text-center">
-                    <div class="overlay">
-                        <button class="btn btn-primary">sign up</button>
-                    </div>
-                    @if (Request.IsAuthenticated)
-                    {
-                        using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                        {
-                            @Html.AntiForgeryToken()
-
-                            <img src="@Url.Content(ViewBag.ProfilePic ?? "#")" alt="@ViewBag.fullname" title="@ViewBag.fullname">
-                            <div class="pcard-container text-center">
-                                <h4 class=card-title><b>@ViewBag.fullname</b></h4>
-                                <p>
-                                    @ViewBag.Course Course <i class="fa fa-circle text-success"></i> Locker No: @if (ViewBag.LockerNo != null)
-                                    {@ViewBag.LockerNo}
-                                </p>
-                                <p>
-                                    @if (ViewBag.RolesAssign != null)
-                                    {@ViewBag.RolesAssign}
-                                </p>
-                                <p>
-                                    <a href="/member/coursemember/changeuserpassword" class="text-lg-center text-success"> <i class="fa fa-key"></i> Change Password</a>
-                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="text-lg-center text-danger"> <i class="fa fa-power-off"></i> Log off</a>
-
-                                </p>
-                            </div>
-                        }
-                    }
-
-                </div>
-
-                <div class="list-group p-3 shadow" style="clear:both; ">
-                    <h4 class="list-group-item active " style="background-color: #9b030c">MY TASKS</h4>
-                    <a href="/member/accomodation/entry" class="list-group-item"> Accommodation Form</a>
-                    <a href="~/member/coursemember/courseenrol" class="list-group-item">Personal/Service Details</a>
-                 
-                    <!--Pop Up-->
-                    <a href="~/member/infotech/" class="list-group-item">IT Hardware Requisitions</a>                 
-
-                    <a href="~/member/moduleactivity/index/" class="list-group-item">Training Activities</a>
-
-                    <a href="/home/faqs" target="_blank" class="list-group-item">FAQs</a>
-                    <a href="~/member/home/DocAlert" target="_blank" class="list-group-item">Presentation Global Issue</a>
-                </div>
-
-
-
-                <div class="list-group p-3 shadow" style="clear:both">
-                    <div class="list-group shadow-sm" style="clear:both">
-                        <h4 class="list-group-item active" style="background-color: #9b030c">MAPS</h4>
-                        <p style="margin-left:22px">@Html.ActionLink("Maps for Reference", "Maps")</p>
-                        <h4 class="list-group-item active" style="background-color: #9b030c">UPLOAD PROCEDURES</h4>
-                        <p style="margin-left:22px">@Html.ActionLink("Videos on Upload Procedures", "UploadProcedure")</p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-6">
-
+            <div class="col-md-9">
                 @if (ViewBag.WeeklyTrainingProgramme != null)
                 {
                     string path = ViewBag.WeeklyTrainingProgramme;
                     path = path.Replace("~", "");
-                    <div class="pdf-container">                 
+                    <div class="pdf-container">
                         <embed src="@path" type="application/pdf">
                     </div>
-                   
                 }
-
             </div>
             <div class="col-md-3">
                 <div class="calendarr">
@@ -183,35 +125,10 @@
                     {
                         string path = ViewBag.TrainingCalendar;
                         path = path.Replace("~", "");
-                       
                         <div class="pdf-container2">
                             <embed src="@path" type="application/pdf">
                         </div>
-
                     }
-                </div>
-                <div class="card  p-3 shadow">
-                    <div class="card-header  text-danger">
-                        &nbsp;&nbsp; <i class="fa fa-bell"></i> Alerts
-                    </div>
-                   
-                    <div class="card-body">
-                        <table>
-                            <tr class="bg-2 text-white">
-                                <td> <span class="card-title"><i class="fa fa-plane"></i> Leave Notification</span></td>
-                            </tr>
-                            <tr>
-                                @if (ViewBag.LeaveAlert != null)
-                                {
-                                    <td>
-                                        <a class="btn-link list-group-item" href="@Url.Action("IndividualLeaveList", "Leave")">
-                                            <img src="/images/new.gif"> Leave @ViewBag.LeaveAlert
-                                        </a>
-                                    </td>
-                                }
-                            </tr>
-                        </table>
-                    </div>
                 </div>
                 <div class="card  p-3 shadow">
                     <div class="card-header  text-primary">
@@ -227,7 +144,7 @@
                 </div>
             </div>
         </div>
-    </div>
+   
 </section>
 
 <!-- Modal for video -->
@@ -309,22 +226,22 @@
                 $.each($file, function (j, mf) {
                     var mfPath = (mf.FilePath).replace("~", "");
                     $DocsDiv.append(`
-                    <a href="${mg.Caption}">
-                            <img src="${mfPath}" alt="Commandant NDC" title="Commandant NDC">
-                            <p class="pm-name"><b>${mg.Description}</b></p>
-                            <p style="margin-bottom: 7px;">Commandant NDC</p>
-                        </a>
-                        `);
+                        <a href="${mg.Caption}">
+                                <img src="${mfPath}" alt="Commandant NDC" title="Commandant NDC">
+                                <p class="pm-name"><b>${mg.Description}</b></p>
+                                <p style="margin-bottom: 7px;">Commandant NDC</p>
+                            </a>
+                            `);
                     indx++;
                 });
             });
         }
 
-      
+
 
         //POPUP
         $(document).ready(function () {
-            var CC = document.getElementById("CC_id").value.toString(); 
+            var CC = document.getElementById("CC_id").value.toString();
             if (CC == null || CC == "") {
                 $('#exampleModal').modal('show')
 

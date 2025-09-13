@@ -1,0 +1,98 @@
+﻿<!-- Notification Bell in Header -->
+<li class="nav-item dropdown ms-5 me-4">
+    <a class="nav-link p-0" href="#" id="notificationDropdown" role="button"
+       data-bs-toggle="dropdown" aria-expanded="false" style="line-height:1;">
+        <span class="position-relative d-inline-block">
+            <i class="fa fa-bell text-danger fs-5"></i>
+
+            @* Calculate total leave notifications *@
+
+            @{
+                int leaveNotifications = (ViewBag.ActiveLeave ?? 0) + (ViewBag.SanctionActiveLeave ?? 0);
+            }
+
+            @if (leaveNotifications > 0)
+            {
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger blink-badge"
+                      style="font-size:0.65rem;">
+                    @leaveNotifications
+                    <span class="visually-hidden">unread notifications</span>
+                </span>
+            }
+        </span>
+    </a>
+
+    <!-- Dropdown Menu -->
+    <ul class="dropdown-menu dropdown-menu-end shadow p-2"
+        aria-labelledby="notificationDropdown"
+        style="width: 300px; max-height: 300px; overflow-y: auto; background-color: #fff;">
+        <li class="dropdown-header fw-bold text-danger">
+            <i class="fa fa-plane"></i> Leave Notifications
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        @if (ViewBag.LeaveAlert != null)
+        {
+            <li>
+                <a class="btn-link list-group-item" href="@Url.Action("IndividualLeaveList", "Leave")">
+                    <img src="/images/new.gif" alt="new"> Leave @ViewBag.LeaveAlert
+                </a>
+            </li>
+        }
+        else
+        {
+            <li class="text-center text-muted">No new leave notifications</li>
+        }
+    </ul>
+</li>
+
+
+<style>
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #ffe6e6 !important;
+        text-decoration: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    #notificationDropdown {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .blink-badge {
+        animation: blink 1s infinite;
+    }
+
+    @@keyframes blink {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    .animate-blink {
+        animation: blink 1s infinite;
+    }
+
+    @@keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    .animate-blink {
+        animation: blink 1s infinite;
+    }
+</style>

@@ -21,7 +21,9 @@
                 @using (Html.BeginForm("LogOff", "Account", new { area = "Admin" }, FormMethod.Post, new { id = "logoutForm", @class = "m-0" }))
                 {
                     @Html.AntiForgeryToken()
-                    <p id="remainingTime" style="font-weight:bold; color:red;"></p>
+                    <p>
+                        Time left : <span style="font-weight:bold; color:red;" id="remainingTime"></span>
+                    </p>
                     <div id="sessionTimer" data-timeout="@Session.Timeout"></div>
                     <span class="me-2">
                         Welcome, <strong>@(((ClaimsIdentity)User.Identity).FindFirst("FName")?.Value)</strong>
@@ -29,9 +31,16 @@
                     <div class="dropdown d-inline-block">
                         <a href="#" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"
                            class="d-flex align-items-center text-decoration-none">
-                            <img src="~/images/avatars/default-avatar.png"
-                                 class="img-thumbnail rounded-circle avatar-img me-1"
-                                 width="50" height="50" style="object-fit: cover; cursor: pointer;" />
+                            @if (ViewBag.ProfilePic != null)
+                            {
+                                <img src="@Url.Content(ViewBag.ProfilePic ?? "#")" alt="@ViewBag.fullname" title="@ViewBag.fullname"
+                                     class="img-thumbnail rounded-circle avatar-img me-1" width="50" height="50" style="object-fit: cover; cursor: pointer;">
+                            }
+                            else
+                            {
+                                <img src="~/images/avatars/default-avatar.png" class="img-thumbnail rounded-circle avatar-img me-1"
+                                     width="50" height="50" style="object-fit: cover; cursor: pointer;" />
+                            }
                             <i class="bi bi-caret-right-fill dropdown-arrow ms-1"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-center shadow bg-light text-dark p-3"
