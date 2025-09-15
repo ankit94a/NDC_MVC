@@ -57,27 +57,37 @@
         .list-group-item:hover {
             box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
         }
-
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
     var myModal;
     function getUserData(id) {
+        $('#userModal').data('userid', id); 
         $.ajax({
             url: '/Staff/Event/MemberCompletePreviewPartial',
             type: 'GET',
             data: { userId: id },
-            dataType: 'json',
+         
+            //dataType: 'json',
             success: function (response) {
-                console.log("User:", response);
+                var data = typeof response === 'string' ? JSON.parse(response) : response;
 
-                bindPersonalDetails(response.data.PersonalVM)
-                //bindServiceDetails(response.data.AppointmentVM)
-                //bindSpouseDetails(response.data.SpouseVM)
+                console.log("User:", data);
+
+                // Now you can safely access properties
+                bindPersonalDetails(data.personalVM);
+                //bindAppointmentDetails(data.appointmentVM);
+                //bindQualifications(data.QualificationsVM);
                 //bindChildrenDetails(response.data.ChildrensVM)
                 //bindAdministrtionDetails(response.data.TallyVM)
                 //bindAccountDetails(response.data)
                 myModal = new bootstrap.Modal(document.getElementById('userModal'));
                 myModal.show();
+            },
+            failure: function (response) {
+                alert(response.responseText);
             },
             error: function (xhr) {
                 console.error("Error:", xhr.responseText);
@@ -91,56 +101,60 @@
 
     function bindPersonalDetails(user) {
         $('#personalInfoBody').html(`
-        <p><strong>Full Name:</strong> ${user.FirstName} ${user.MiddleName ?? ''} ${user.Surname ?? ''}</p>
-        <p><strong>Nick Name:</strong> ${user.NickName ?? ''}</p>
-        <p><strong>Father’s Name:</strong> ${user.FatherName ?? ''} ${user.FatherMiddleName ?? ''} ${user.FatherSurname ?? ''}</p>
-        <p><strong>Mother’s Name:</strong> ${user.MotherName ?? ''} ${user.MotherMiddleName ?? ''} ${user.MotherSurname ?? ''}</p>
-        <p><strong>Date of Birth:</strong> ${formatDate(user.DOBirth)}</p>
-        <p><strong>Gender:</strong> ${user.Gender ?? ''}</p>
-        <p><strong>Marital Status:</strong> ${user.MaritalStatus ?? ''}</p>
-        <p><strong>Blood Group:</strong> ${user.BloodGroup ?? ''}</p>
-        <p><strong>Height:</strong> ${user.Height ?? ''}</p>
-        <p><strong>Identification Mark:</strong> ${user.IndentificationMark ?? ''}</p>
-        <p><strong>Citizenship Country:</strong> ${user.CitizenshipCountries?.CountryName ?? ''}</p>
-        <p><strong>Medical Condition/Category:</strong> ${user.MedicalCategory ?? ''}</p>
-        <p><strong>NOK:</strong> ${user.NOK ?? ''}</p>
-    `);
+ <p><strong>Full Name:</strong> ${user.firstName ?? ''} ${user.middleName ?? ''} ${user.surname ?? ''}</p>
+ <p><strong>Nick Name:</strong> ${user.nickName ?? ''}</p>
+ <p><strong>Father’s Name:</strong> ${user.fatherName ?? ''} ${user.fatherMiddleName ?? ''} ${user.fatherSurname ?? ''}</p>
+ <p><strong>Mother’s Name:</strong> ${user.motherName ?? ''} ${user.motherMiddleName ?? ''} ${user.motherSurname ?? ''}</p>
+ <p><strong>Date of Birth:</strong> ${formatDate(user.dOBirth)}</p>
+ <p><strong>Gender:</strong> ${user.gender ?? ''}</p>
+ <p><strong>Marital Status:</strong> ${user.maritalStatus ?? ''}</p>
+ <p><strong>Blood Group:</strong> ${user.bloodGroup ?? ''}</p>
+ <p><strong>Height:</strong> ${user.height ?? ''}</p>
+ <p><strong>Identification Mark:</strong> ${user.indentificationMark ?? ''}</p>
+ <p><strong>Citizenship Country:</strong> ${user.citizenshipCountries?.countryName ?? ''}</p>
+ <p><strong>Medical Condition/Category:</strong> ${user.medicalCategory ?? ''}</p>
+ <p><strong>NOK:</strong> ${user.nok ?? ''}</p>
+`);
+
+
         $('#communicationInfoBody').html(`
-        <p><strong>Mobile Number:</strong> ${user.MobileNo ?? ''}</p>
-        <p><strong>Alternate Mobile:</strong> ${user.AlternateMobileNo ?? ''}</p>
-        <p><strong>Email:</strong> ${user.EmailId ?? ''}</p>
-        <p><strong>Alternate Email:</strong> ${user.AlternateEmailId ?? ''}</p>
-        <p>
+    <p><strong>Mobile Number:</strong> ${user.mobileNo ?? ''}</p>
+    <p><strong>Alternate Mobile:</strong> ${user.alternateMobileNo ?? ''}</p>
+    <p><strong>Email:</strong> ${user.emailId ?? ''}</p>
+    <p><strong>Alternate Email:</strong> ${user.alternateEmailId ?? ''}</p>
+    <p>
         <strong>Address:</strong><br>
-        ${user.CommunicationAddress ?? ''}<br>
-        ${user.OfficeHouseNo ?? ''}, ${user.OfficePremisesName ?? ''}<br>
-        ${user.OfficeStreet ?? ''}, ${user.OfficeArea ?? ''}<br>
-        ${user.OfficeCity ?? ''}, ${user.OfficeState?.Name ?? ''} - ${user.OfficeZipCode ?? ''}<br>
-        ${user.OfficeCountry?.Name ?? ''}
-    </p>`);
+        ${user.communicationAddress ?? ''}<br>
+        ${user.officeHouseNo ?? ''}, ${user.officePremisesName ?? ''}<br>
+        ${user.officeStreet ?? ''}, ${user.officeArea ?? ''}<br>
+        ${user.officeCity ?? ''}, ${user.officeState?.name ?? ''} - ${user.officeZipCode ?? ''}<br>
+        ${user.officeCountry?.name ?? ''}
+    </p>
+`);
 
         $('#passportBody').html(`
-        <p><strong>Holding Passport:</strong> ${user.HoldingPassport ?? ''}</p>
-        <p><strong>Passport No:</strong> ${user.MemberPassportNo ?? ''}</p>
-        <p><strong>Passport Type:</strong> ${user.MemberPassportType ?? ''}</p>
-        <p><strong>Issue Date:</strong> ${formatDate(user.MemberPassportIssueDate)}</p>
-        <p><strong>Valid Upto:</strong> ${formatDate(user.MemberPassportValidUpto)}</p>
-        <p><strong>Issued Country:</strong> ${user.CountryIssued ?? ''}</p>
-    `);
+    <p><strong>Holding Passport:</strong> ${user.holdingPassport ?? ''}</p>
+    <p><strong>Passport No:</strong> ${user.memberPassportNo ?? ''}</p>
+    <p><strong>Passport Type:</strong> ${user.memberPassportType ?? ''}</p>
+    <p><strong>Issue Date:</strong> ${formatDate(user.memberPassportIssueDate)}</p>
+    <p><strong>Valid Upto:</strong> ${formatDate(user.memberPassportValidUpto)}</p>
+    <p><strong>Issued Country:</strong> ${user.countryIssued ?? ''}</p>
+`);
 
         $('#visaDetail').html(`
-        <p><strong>Visa No:</strong> ${user.VisaNo ?? ''}</p>
-        <p><strong>Visa Issue Date:</strong> ${formatDate(user.VisaIssueDate)}</p>
-        <p><strong>Visa Valid Upto:</strong> ${formatDate(user.VisaValidUpto)}</p>
-    `);
+    <p><strong>Visa No:</strong> ${user.visaNo ?? ''}</p>
+    <p><strong>Visa Issue Date:</strong> ${formatDate(user.visaIssueDate)}</p>
+    <p><strong>Visa Valid Upto:</strong> ${formatDate(user.visaValidUpto)}</p>
+`);
 
         $('#otherInfo').html(`
-        <p><strong>Dietary Preferences (V/NV):</strong> ${user.DietaryPref ?? ''}</p>
-        <p><strong>Aadhaar Copy:</strong> ${user.AadhaarPath ? 'Available' : 'N/A'}</p>
-        <p><strong>PAN Number:</strong> ${user.PANCardNo ?? ''}</p>
-        <p><strong>Spouse Name:</strong> ${user.SpouseName ?? ''}</p>
-        <p><strong>Biographical Sketch:</strong> ${user.BioSketch ?? 'To be uploaded'}</p>
-    `);
+    <p><strong>Dietary Preferences (V/NV):</strong> ${user.dietaryPref ?? ''}</p>
+    <p><strong>Aadhaar Copy:</strong> ${user.aadhaarPath ? 'Available' : 'N/A'}</p>
+    <p><strong>PAN Number:</strong> ${user.panCardNo ?? ''}</p>
+    <p><strong>Spouse Name:</strong> ${user.spouseName ?? ''}</p>
+    <p><strong>Biographical Sketch:</strong> ${user.bioSketch ?? 'To be uploaded'}</p>
+`);
+
 
 
     }
@@ -350,6 +364,7 @@
     }
 </script>
 
+
 <div class="master-search-wrapper">
     @using (Html.BeginForm("MasterSearch", "Event", FormMethod.Get, new { @class = "input-box d-flex align-items-center position-relative" }))
     {
@@ -401,7 +416,7 @@
                         <button class="nav-link" id="children-tab" data-bs-toggle="tab" data-bs-target="#children" type="button" role="tab">Children</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="college-tab" style="width:210px" data-bs-toggle="tab" data-bs-target="#college" type="button" role="tab">College Administration</button>
+                        <button class="nav-link" id="college-tab" style="width:250px" data-bs-toggle="tab" data-bs-target="#college" type="button" role="tab">College Administration</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="accounts-tab" data-bs-toggle="tab" data-bs-target="#accounts" type="button" role="tab">Accounts</button>
@@ -413,7 +428,7 @@
                         <div class="row">
                             <div class="col-md-8 ">
                                 <div class="card h-100">
-                                    <div class="card-header fw-bold fs-2">Personal Information</div>
+                                    <div class="card-header fw-bold">Personal Information</div>
                                     <div class="card-body" id="personalInfoBody">
 
                                     </div>
@@ -421,7 +436,7 @@
                             </div>
                             <div class="col-md-4 ">
                                 <div class="card h-100">
-                                    <div class="card-header fw-bold fs-2">Communication</div>
+                                    <div class="card-header fw-bold">Communication</div>
                                     <div class="card-body" id="communicationInfoBody">
 
                                     </div>

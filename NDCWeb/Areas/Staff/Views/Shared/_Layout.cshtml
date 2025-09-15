@@ -61,7 +61,7 @@
         .grid-container {
             display: grid;
             grid-template-columns: 260px 1fr; /* sidebar + content */
-            grid-template-rows: 10vh 5vh 1fr 5vh;
+            grid-template-rows: auto 5vh 1fr 5vh;
             grid-template-areas:
                 "header header"
                 "sidebar navbar"
@@ -84,6 +84,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height:100px;
+            height:100px;
         }
 
         /* sidebar */

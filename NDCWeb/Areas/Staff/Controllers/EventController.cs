@@ -10,6 +10,8 @@ using NDCWeb.Infrastructure.Filters;
 using NDCWeb.Models;
 using NDCWeb.Persistence;
 using NDCWeb.Persistence.Repositories;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,99 +67,121 @@ namespace NDCWeb.Areas.Staff.Controllers
 
 
 		[HttpGet]
-		public ActionResult MemberCompletePreviewPartial(string userId)
+		public JsonResult MemberCompletePreviewPartial(string userId)
 		{
-			MemberCompletePreviewVM objCompletePreview = new MemberCompletePreviewVM();
-			string uId = userId;
-			using (var uow = new UnitOfWork(new NDCWebContext()))
+			try
 			{
-				var personalDetail = uow.CrsMbrPersonalRepo.FirstOrDefault(x => x.CreatedBy == uId, np => np.OfficeStates, np2 => np2.OfficeStates.Countries);
-				var appointment = uow.CrsMbrAppointmentRepo.FirstOrDefault(x => x.CreatedBy == uId);
-				var qualification = uow.CrsMbrQualificationRepo.Find(x => x.CreatedBy == uId);
-				var countryVisits = uow.CountryVisitRepo.Find(x => x.CreatedBy == uId);
-				var languages = uow.CrsMbrLanguageRepo.Find(x => x.CreatedBy == uId);
-				var asgnmntAppointments = uow.AsgmtAppointmentRepo.Find(x => x.CreatedBy == uId);
-				//var biography = uow.CrsMbrBiographyRepo.FirstOrDefault(x => x.CreatedBy == uId);
-				var visa = uow.VisaDetailRepo.FirstOrDefault(x => x.CreatedBy == uId);
-				var accountinfo = uow.AccountInfoRepo.FirstOrDefault(x => x.CreatedBy == uId);
-				var tally = uow.TallyDetailRepo.FirstOrDefault(x => x.CreatedBy == uId);
-				var vehicleSticker = uow.CrsMbrVehicleStickerRepo.Find(x => x.CreatedBy == uId);
-				var spouse = uow.CrsMbrSpouseRepo.FirstOrDefault(x => x.CreatedBy == uId, np2 => np2.iSpouseLanguages, np4 => np4.iSpouseQualifications);
-				var passport = uow.PassportDetailRepo.FirstOrDefault(x => x.CreatedBy == uId, np => np.iChildrenPassports);
-				var spouseQualification = uow.SpouseQualificationRepo.Find(x => x.CreatedBy == uId);
-				var spouseChildren = uow.SpouseChildrenRepo.Find(x => x.CreatedBy == uId);
-				var spouseLanguage = uow.SpouseLanguageRepo.Find(x => x.CreatedBy == uId);
-				//var passportChildren = uow.ChildrenPassportRepo.Find(x => x.CreatedBy == uId);
+                MemberCompletePreviewVM objCompletePreview = new MemberCompletePreviewVM();
+                string uId = userId;
+                using (var uow = new UnitOfWork(new NDCWebContext()))
+                {
+                    var personalDetail = uow.CrsMbrPersonalRepo.FirstOrDefault(x => x.CreatedBy == uId, np => np.OfficeStates, np2 => np2.OfficeStates.Countries);
+                    var appointment = uow.CrsMbrAppointmentRepo.FirstOrDefault(x => x.CreatedBy == uId);
+                    var qualification = uow.CrsMbrQualificationRepo.Find(x => x.CreatedBy == uId);
+                    var countryVisits = uow.CountryVisitRepo.Find(x => x.CreatedBy == uId);
+                    var languages = uow.CrsMbrLanguageRepo.Find(x => x.CreatedBy == uId);
+                    var asgnmntAppointments = uow.AsgmtAppointmentRepo.Find(x => x.CreatedBy == uId);
+                    //var biography = uow.CrsMbrBiographyRepo.FirstOrDefault(x => x.CreatedBy == uId);
+                    var visa = uow.VisaDetailRepo.FirstOrDefault(x => x.CreatedBy == uId);
+                    var accountinfo = uow.AccountInfoRepo.FirstOrDefault(x => x.CreatedBy == uId);
+                    var tally = uow.TallyDetailRepo.FirstOrDefault(x => x.CreatedBy == uId);
+                    var vehicleSticker = uow.CrsMbrVehicleStickerRepo.Find(x => x.CreatedBy == uId);
+                    var spouse = uow.CrsMbrSpouseRepo.FirstOrDefault(x => x.CreatedBy == uId, np2 => np2.iSpouseLanguages, np4 => np4.iSpouseQualifications);
+                    var passport = uow.PassportDetailRepo.FirstOrDefault(x => x.CreatedBy == uId, np => np.iChildrenPassports);
+                    var spouseQualification = uow.SpouseQualificationRepo.Find(x => x.CreatedBy == uId);
+                    var spouseChildren = uow.SpouseChildrenRepo.Find(x => x.CreatedBy == uId);
+                    var spouseLanguage = uow.SpouseLanguageRepo.Find(x => x.CreatedBy == uId);
+                    //var passportChildren = uow.ChildrenPassportRepo.Find(x => x.CreatedBy == uId);
 
 
-				var config = new MapperConfiguration(cfg =>
-				{
-					cfg.CreateMap<CrsMemberPersonal, CrsMemberPersonalIndxVM>();
-					cfg.CreateMap<CrsMbrAppointment, CrsMbrAppointmentIndxVM>();
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<CrsMemberPersonal, CrsMemberPersonalIndxVM>();
+                        cfg.CreateMap<CrsMbrAppointment, CrsMbrAppointmentIndxVM>();
 
-					cfg.CreateMap<CrsMbrQualification, CrsMbrQualificationIndxVM>();
-					cfg.CreateMap<CountryVisit, CountryVisitIndxVM>();
-					cfg.CreateMap<CrsMbrLanguage, CrsMbrLanguageIndxVM>();
-					cfg.CreateMap<AsgmtAppointment, ImportantAssignmentIndxVM>();
+                        cfg.CreateMap<CrsMbrQualification, CrsMbrQualificationIndxVM>();
+                        cfg.CreateMap<CountryVisit, CountryVisitIndxVM>();
+                        cfg.CreateMap<CrsMbrLanguage, CrsMbrLanguageIndxVM>();
+                        cfg.CreateMap<AsgmtAppointment, ImportantAssignmentIndxVM>();
 
-					//cfg.CreateMap<CrsMbrBiography, BiographyIndxVM>();
-					cfg.CreateMap<VisaDetail, VisaDetailIndxVM>();
-					cfg.CreateMap<AccountInfo, AccountInfoIndxVM>();
-					cfg.CreateMap<TallyDetail, TallyDetailIndxVM>();
-					cfg.CreateMap<CrsMbrVehicleSticker, CrsMbrVehicleStickerIndxVM>();
+                        //cfg.CreateMap<CrsMbrBiography, BiographyIndxVM>();
+                        cfg.CreateMap<VisaDetail, VisaDetailIndxVM>();
+                        cfg.CreateMap<AccountInfo, AccountInfoIndxVM>();
+                        cfg.CreateMap<TallyDetail, TallyDetailIndxVM>();
+                        cfg.CreateMap<CrsMbrVehicleSticker, CrsMbrVehicleStickerIndxVM>();
 
-					cfg.CreateMap<CrsMbrSpouse, SpouseIndxVM>();
-					cfg.CreateMap<PassportDetail, PassportDetailIndxVM>();
-					cfg.CreateMap<SpouseChildren, ChildrenIndxVM>();
-					//cfg.CreateMap<SpouseQualification, SpouseQualificationIndxVM>();
-					//cfg.CreateMap<SpouseLanguage, SpouseLanguageIndxVM>();
-					//cfg.CreateMap<ChildrenPassport, PassportChildrenIndxVM>();
-				});
+                        cfg.CreateMap<CrsMbrSpouse, SpouseIndxVM>();
+                        cfg.CreateMap<PassportDetail, PassportDetailIndxVM>();
+                        cfg.CreateMap<SpouseChildren, ChildrenIndxVM>();
+                        //cfg.CreateMap<SpouseQualification, SpouseQualificationIndxVM>();
+                        //cfg.CreateMap<SpouseLanguage, SpouseLanguageIndxVM>();
+                        //cfg.CreateMap<ChildrenPassport, PassportChildrenIndxVM>();
+                    });
 
-				IMapper mapper = config.CreateMapper();
-				CrsMemberPersonalIndxVM personalVM = mapper.Map<CrsMemberPersonal, CrsMemberPersonalIndxVM>(personalDetail);
-				CrsMbrAppointmentIndxVM appointmentVM = mapper.Map<CrsMbrAppointment, CrsMbrAppointmentIndxVM>(appointment);
-				var qualificationsVM = mapper.Map<IEnumerable<CrsMbrQualification>, List<CrsMbrQualificationIndxVM>>(qualification);
-				var countryVisitsVM = mapper.Map<IEnumerable<CountryVisit>, List<CountryVisitIndxVM>>(countryVisits);
-				var languagesVM = mapper.Map<IEnumerable<CrsMbrLanguage>, List<CrsMbrLanguageIndxVM>>(languages);
-				var importantAssignmentsVM = mapper.Map<IEnumerable<AsgmtAppointment>, List<ImportantAssignmentIndxVM>>(asgnmntAppointments);
-				//BiographyIndxVM biographyVM = mapper.Map<CrsMbrBiography, BiographyIndxVM>(biography);
-				VisaDetailIndxVM visaVM = mapper.Map<VisaDetail, VisaDetailIndxVM>(visa);
-				AccountInfoIndxVM accountInfoVM = mapper.Map<AccountInfo, AccountInfoIndxVM>(accountinfo);
-				TallyDetailIndxVM tallyVM = mapper.Map<TallyDetail, TallyDetailIndxVM>(tally);
-				var vehicleStickerVM = mapper.Map<IEnumerable<CrsMbrVehicleSticker>, List<CrsMbrVehicleStickerIndxVM>>(vehicleSticker);
-				SpouseIndxVM spouseVM = mapper.Map<CrsMbrSpouse, SpouseIndxVM>(spouse);
-				PassportDetailIndxVM passportIndxVM = mapper.Map<PassportDetail, PassportDetailIndxVM>(passport);
-				var spouseChildrensVM = mapper.Map<IEnumerable<SpouseChildren>, List<ChildrenIndxVM>>(spouseChildren);
-				//var spouseLanguagesVM = mapper.Map<IEnumerable<SpouseLanguage>, List<SpouseLanguageIndxVM>>(spouseLanguage);
-				//var spouseQualificationVM = mapper.Map<IEnumerable<SpouseQualification>, List<SpouseQualificationIndxVM>>(spouseQualification);
-				//var passportChildrensVM = mapper.Map<IEnumerable<ChildrenPassport>, List<PassportChildrenIndxVM>>(passportChildren);
+                    IMapper mapper = config.CreateMapper();
+                    CrsMemberPersonalIndxVM personalVM = mapper.Map<CrsMemberPersonal, CrsMemberPersonalIndxVM>(personalDetail);
+                    CrsMbrAppointmentIndxVM appointmentVM = mapper.Map<CrsMbrAppointment, CrsMbrAppointmentIndxVM>(appointment);
+                    var qualificationsVM = mapper.Map<IEnumerable<CrsMbrQualification>, List<CrsMbrQualificationIndxVM>>(qualification);
+                    var countryVisitsVM = mapper.Map<IEnumerable<CountryVisit>, List<CountryVisitIndxVM>>(countryVisits);
+                    var languagesVM = mapper.Map<IEnumerable<CrsMbrLanguage>, List<CrsMbrLanguageIndxVM>>(languages);
+                    var importantAssignmentsVM = mapper.Map<IEnumerable<AsgmtAppointment>, List<ImportantAssignmentIndxVM>>(asgnmntAppointments);
+                    //BiographyIndxVM biographyVM = mapper.Map<CrsMbrBiography, BiographyIndxVM>(biography);
+                    VisaDetailIndxVM visaVM = mapper.Map<VisaDetail, VisaDetailIndxVM>(visa);
+                    AccountInfoIndxVM accountInfoVM = mapper.Map<AccountInfo, AccountInfoIndxVM>(accountinfo);
+                    TallyDetailIndxVM tallyVM = mapper.Map<TallyDetail, TallyDetailIndxVM>(tally);
+                    var vehicleStickerVM = mapper.Map<IEnumerable<CrsMbrVehicleSticker>, List<CrsMbrVehicleStickerIndxVM>>(vehicleSticker);
+                    SpouseIndxVM spouseVM = mapper.Map<CrsMbrSpouse, SpouseIndxVM>(spouse);
+                    PassportDetailIndxVM passportIndxVM = mapper.Map<PassportDetail, PassportDetailIndxVM>(passport);
+                    var spouseChildrensVM = mapper.Map<IEnumerable<SpouseChildren>, List<ChildrenIndxVM>>(spouseChildren);
+                    //var spouseLanguagesVM = mapper.Map<IEnumerable<SpouseLanguage>, List<SpouseLanguageIndxVM>>(spouseLanguage);
+                    //var spouseQualificationVM = mapper.Map<IEnumerable<SpouseQualification>, List<SpouseQualificationIndxVM>>(spouseQualification);
+                    //var passportChildrensVM = mapper.Map<IEnumerable<ChildrenPassport>, List<PassportChildrenIndxVM>>(passportChildren);
 
-
-				objCompletePreview.PersonalVM = personalVM;
-				objCompletePreview.AppointmentVM = appointmentVM;
-				objCompletePreview.QualificationsVM = qualificationsVM;
-				objCompletePreview.CountryVisitsVM = countryVisitsVM;
-				objCompletePreview.LanguagesVM = languagesVM;
-				objCompletePreview.ImportantAssignmentsVM = importantAssignmentsVM;
-				//objCompletePreview.BiographyVM = biographyVM;
-				//objCompletePreview.VisaVM = visaVM;
-				objCompletePreview.AccountInfoVM = accountInfoVM;
-				objCompletePreview.TallyVM = tallyVM;
-				objCompletePreview.VehicleStickerVM = vehicleStickerVM;
-				objCompletePreview.SpouseVM = spouseVM;
-				//objCompletePreview.PassportVM = passportIndxVM;
-				objCompletePreview.ChildrensVM = spouseChildrensVM;
-				//objCompletePreview.SpouseLanguagesVM = spouseLanguagesVM;
-				//objCompletePreview.SpouseQualificationsVM = spouseQualificationVM;
-				//objCompletePreview.PassportChildrensVM = passportChildrensVM;
-			}
-			//return PartialView("Preview/_MemberCompletePreview", objCompletePreview);
-			return Json(new
+					if(personalVM != null)
+						objCompletePreview.PersonalVM = personalVM;
+                    if (appointmentVM != null)
+                        objCompletePreview.AppointmentVM = appointmentVM;
+                    if (qualificationsVM != null)
+                        objCompletePreview.QualificationsVM = qualificationsVM;
+                    if (countryVisitsVM != null)
+                        objCompletePreview.CountryVisitsVM = countryVisitsVM;
+                    if (languagesVM != null)
+                        objCompletePreview.LanguagesVM = languagesVM;
+                    if (importantAssignmentsVM != null)
+                        objCompletePreview.ImportantAssignmentsVM = importantAssignmentsVM;
+                    //objCompletePreview.BiographyVM = biographyVM;
+                    //objCompletePreview.VisaVM = visaVM;
+                    if (accountInfoVM != null)
+                        objCompletePreview.AccountInfoVM = accountInfoVM;
+                    if (tallyVM != null)
+                        objCompletePreview.TallyVM = tallyVM;
+                    if (vehicleStickerVM != null)
+                        objCompletePreview.VehicleStickerVM = vehicleStickerVM;
+                    if (spouseVM != null)
+                        objCompletePreview.SpouseVM = spouseVM;
+                    //objCompletePreview.PassportVM = passportIndxVM;
+                    if (spouseChildrensVM != null)
+                        objCompletePreview.ChildrensVM = spouseChildrensVM;
+                    //objCompletePreview.SpouseLanguagesVM = spouseLanguagesVM;
+                    //objCompletePreview.SpouseQualificationsVM = spouseQualificationVM;
+                    //objCompletePreview.PassportChildrensVM = passportChildrensVM;
+                }
+                var jsonSettings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                };
+                var jsonData = JsonConvert.SerializeObject(objCompletePreview, jsonSettings);
+                Response.ContentType = "application/json";
+				return Json(data: jsonData, behavior: JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
 			{
-				success = true,
-				data= objCompletePreview,
-			}, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, error = ex.Message }, JsonRequestBehavior.AllowGet);
+
+            }
+           
 		}
 
 		public ActionResult Eventboard()

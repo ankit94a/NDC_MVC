@@ -1,0 +1,47 @@
+@model NDCWeb.Areas.Member.View_Models.MemberCompletePreviewVM
+
+<div class="tab-pane fade show active" id="personal" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card h-100">
+                <div class="card-header fw-bold">Personal Information</div>
+                <div class="card-body" id="personalInfoBody">
+                    @*<p><strong>Full Name:</strong> @Model.PersonalVM.FullName</p>
+                    <p><strong>Date of Birth:</strong> @Model.PersonalVM.DOB?.ToString("dd-MM-yyyy")</p>*@
+                    <p><strong>Gender:</strong> @Model.PersonalVM.Gender</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-header fw-bold">Communication</div>
+                <div class="card-body" id="communicationInfoBody">
+                    @*<p><strong>Email:</strong> @Model.PersonalVM.Email</p>
+                    <p><strong>Phone:</strong> @Model.PersonalVM.Phone</p>
+                    <p><strong>Address:</strong> @Model.PersonalVM.Address</p>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header fw-bold">Passport Details</div>
+                <div class="card-body" id="passportBody">
+                    <p><strong>Passport Number:</strong> @Model.PassportVM?.PassportNumber ?? "-" </p>
+                    <p><strong>Issued Date:</strong> @Model.PassportVM?.IssueDate?.ToString("dd-MM-yyyy") ?? "-" </p>
+                    <p><strong>Expiry Date:</strong> @Model.PassportVM?.ExpiryDate?.ToString("dd-MM-yyyy") ?? "-" </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header fw-bold">Visa Details</div>
+                <div class="card-body" id="visaDetail">
+                    <p><strong>Visa Type:</strong> @Model.VisaVM?.VisaType ?? "-" </p>
+                    <p><strong>Visa Expiry:</strong> @Model.VisaVM?.ExpiryDate?.ToString("dd-MM-yyyy") ?? "-" </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -100,14 +100,14 @@ namespace NDCWeb.Controllers
 			//if (clientCaptcha.Equals(serverCaptcha) && ModelState.IsValid)
 			//if (!clientCaptcha.Equals(serverCaptcha))
 
-			if (this.IsCaptchaValid("Validate your captcha"))
-			{
-				//ViewBag.ShowCAPTCHA = serverCaptcha;
-				ViewBag.CaptchaErrorMessage = "Invalid Captcha";
-				ModelState.AddModelError("", "Invalid verification code. Please try again.");
-				ViewBag.CaptchaError = "Sorry, please type the characters shown.";
-				return View(model);
-			}
+			//if (this.IsCaptchaValid("Validate your captcha"))
+			//{
+			//	//ViewBag.ShowCAPTCHA = serverCaptcha;
+			//	ViewBag.CaptchaErrorMessage = "Invalid Captcha";
+			//	ModelState.AddModelError("", "Invalid verification code. Please try again.");
+			//	ViewBag.CaptchaError = "Sorry, please type the characters shown.";
+			//	return View(model);
+			//}
 			// check user name in case sensitive
 			/*if (model.UserName != null)
             {
