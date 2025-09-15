@@ -36,22 +36,21 @@
 </style>
 <div class="container-fluid mt-4 mb-4">
     <div class="row gutters-sm">
-        <div class="col-md-3">
-           
-            <!--Leave-->
-            @if (ViewBag.StaffType != null)
-            {
-                if (ViewBag.StaffType == 15 || ViewBag.StaffType == 11 || ViewBag.StaffType == 14)//"AQ"
+        @*<div class="col-md-3">
+                 @if (ViewBag.StaffType != null)
                 {
-                    <div class="card shadow-sm" style="clear:both; padding:2px">
-                        @{ Html.RenderAction("GetLeaveData"); }
+                    if (ViewBag.StaffType == 15 || ViewBag.StaffType == 11 || ViewBag.StaffType == 14)//"AQ"
+                    {
+                        <div class="card shadow-sm" style="clear:both; padding:2px">
+                            @{ Html.RenderAction("GetLeaveData"); }
 
 
-                    </div>
+                        </div>
+                    }
                 }
-            }
-        </div>
-        <div class="col-md-6">
+            </div>*@
+
+        <div class="col-md-9">
             <div class="calendarr">
                 @if (ViewBag.WeeklyTrainingProgramme != null)
                 {
@@ -383,20 +382,50 @@
 
                     </div>
                 </div>
-                <div class="card shadow">
+                @*<div class="card shadow">
                     <div class="card-header text-primary">
                         &nbsp;&nbsp; <i class="fa fa-calendar"></i> Socials
                     </div>
                     <div class="card-body">
-                        @{ Html.RenderAction("BirthdayAlert"); }
-                        <hr />
-                        @{ Html.RenderAction("FamilyBirthdayAlert"); }
-                        <hr />
-                        @{ Html.RenderAction("MarriageAnniversaryAlert"); }
+                            @{ Html.RenderAction("BirthdayAlert"); }
+                            <hr />
+                            @{ Html.RenderAction("FamilyBirthdayAlert"); }
+                            <hr />
+                            @{ Html.RenderAction("MarriageAnniversaryAlert"); }
+                        </div>
+                </div>*@
+            </div>
+        </div>
+        <br />
+        <div class="row g-3">
+            <!-- Birthday Alert Card -->
+            <div class="col-md-4">
+                <div class="card shadow border-0 rounded-3 h-100">
+                    <div class="card-body">
+                        @Html.Action("BirthdayAlert")
+                    </div>
+                </div>
+            </div>
+
+            <!-- Family Birthday Alert Card -->
+            <div class="col-md-4">
+                <div class="card shadow border-0 rounded-3 h-100">
+                    <div class="card-body">
+                        @Html.Action("FamilyBirthdayAlert")
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marriage Anniversary Alert Card -->
+            <div class="col-md-4">
+                <div class="card shadow border-0 rounded-3 h-100">
+                    <div class="card-body">
+                        @Html.Action("MarriageAnniversaryAlert")
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <style>
         body {
